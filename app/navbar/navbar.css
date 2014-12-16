@@ -1,0 +1,63 @@
+nav#navbar {
+    top: 0%;
+    margin-left: 300px;
+    background-color: #353d48;
+    border-radius: 0px;
+    border: none;
+    height: 82px;
+    min-height: 82px;
+    margin-bottom: 0px;
+}
+
+
+nav#navbar div.container-fluid{
+    padding-left: 0px;
+}
+
+nav#navbar .navbar-brand{ padding: 0px 30px;font-size: 1.5em;line-height: 80px; }
+nav#navbar .navbar-nav > li > a {  padding: 0px 30px; line-height: 80px; font-size: 1.5em; }
+nav#navbar .navbar-nav > li > form div {
+    line-height: 55px;
+    font-size: 1.5em;
+}
+nav#navbar .navbar-nav > li > form input {
+    height: 60px;
+}
+
+
+nav#navbar div.navbar-collapse {
+    padding-left: 0px;
+}
+
+form#search input {
+    border: none;
+    background-color: #353d48;
+    font-size: 1.5em;
+    color: #aeb5bf;
+    width: 400px;
+}
+
+
+a#toggle-sidebar .fa-chevron-left {
+    font-size: 0.5em;
+    vertical-align: super;
+}
+
+
+a#search i,
+a#settings i,
+a#notifications i,
+a#toggle-sidebar i {
+    font-size: 1.5em;
+}
+
+
+nav#navbar li {
+    border-color: #252b37;
+    border-style: solid;
+    border-width: 1px;
+}
+
+nav#navbar li a#search {
+    float: left;
+}
