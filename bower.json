@@ -11,7 +11,7 @@
     "angular-loader": "1.2.x",
     "angular-mocks": "~1.2.x",
     "html5-boilerplate": "~4.3.0",
-    "bootstrap": "3.3.1",
+    "bootstrap-sass-official": "3.3.1",
     "fontawesome": "4.2.0"
   }
 }
