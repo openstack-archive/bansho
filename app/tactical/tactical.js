@@ -1,29 +1,17 @@
 
-var tactical_app = angular.module('adagios.tactical', ['ngRoute'
-                                    ]);
+angular.module('adagios.tactical', ['ngRoute',
+                                    'adagios.tactical.status_overview',
+                                    'adagios.tactical.current_health',
+                                    'adagios.tactical.top_alert_producers'
+                                    ])
 
-tactical_app.config(['$routeProvider', function($routeProvider) {
-        }]);
-
-
-tactical_app.config(['$routeProvider', function($routeProvider) {
+.config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/tactical', {templateUrl: 'tactical/tactical.html', controller: 'TacticalCtrl'});
-}]);
+}])
 
-tactical_app.controller('TacticalCtrl', ['$scope', '$http',
+
+
+.controller('TacticalCtrl', ['$scope', '$http',
         function($scope, $http) {
-            $scope.toto = "pl";
-
-/*            $http.get('/core/config').success(function(data) {
-                $scope.config = data;
-            });
-
-
-        $scope.save = function(config) {
-            $http.post('/core/config', config).success(function(data) {
-                messageCenterService.add(data.state, data.message);
-            });
-        }
-*/
-    }]);
+    }])
 

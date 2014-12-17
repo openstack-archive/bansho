@@ -1,25 +1,19 @@
-<link rel="stylesheet" href="tactical/tactical.css">
-
-
-
-
 <div ng-app="adagios.tactical" ng-controller="TacticalCtrl" id="tactical" class="container-fluid">
 
 
     <h2>Tactical Overview</h2>
-    {{ toto }}
 
     <div id="summary" class="jumbotron">
 
       <div class="row">
         <div class="col-md-4">
-          div ng-include src="'partials/pages/tactical/summary/status_overview.html'"/div
+          <statusoverview></statusoverview>
         </div>
         <div class="col-md-4">
-          div ng-include src="'partials/pages/tactical/summary/current_health.html'"/div
+          <currenthealth></currenthealth>
         </div>
         <div class="col-md-4">
-          div ng-include src="'partials/pages/tactical/summary/top_alert_producers.html'"/div
+          <topalertproducers></topalertproducers>
         </div>
       </div>
 
