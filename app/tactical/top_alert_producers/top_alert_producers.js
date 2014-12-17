@@ -3,8 +3,9 @@ angular.module('adagios.tactical.top_alert_producers', ['ngRoute'
                                     ])
 .controller('TacticalTopAlertProducers', ['$scope', '$http',
         function($scope, $http) {
-            $scope.hosts = [{"host_name": "server-01", "problems": 10},
-                            {"host_name": "server-02", "problems": 5},]
+            $scope.hosts = [{"host_name": "server-18", "problems": 10},
+                            {"host_name": "server-22", "problems": 5},
+                            {"host_name": "server-13", "problems": 3}]
     }])
 
 .directive('topalertproducers', function() {
