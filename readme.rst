@@ -9,22 +9,21 @@ Installation
 
 ::
 
-  sudo apt-get install npm nodejs-legacy
-  git clone https://github.com/titilambert/adagios-frontend.git
-  cd adagios-frontend
-  npm install
-
+    sudo apt-get install npm nodejs-legacy
+    git clone https://github.com/titilambert/adagios-frontend.git
+    cd adagios-frontend
+    npm install
 
 
 Dev
 ===
 
-Use grunt to get css files
-
+Auto-refresh css files
 
 ::
 
-   grunt
+    npm install grunt-cli
+    grunt
 
 
 Launch
@@ -32,9 +31,7 @@ Launch
 
 ::
 
-  npm start
+    npm start
 
 
 Now, go on http://127.0.0.1:8000
-
-
