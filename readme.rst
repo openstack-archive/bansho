@@ -9,6 +9,7 @@ Installation
 
 ::
 
+  sudo apt-get install npm nodejs-legacy
   git clone https://github.com/titilambert/adagios-frontend.git
   cd adagios-frontend
   npm install
