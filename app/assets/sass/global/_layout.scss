@@ -1,0 +1,61 @@
+//----------------------------------*\
+// LAYOUT MODULE
+//----------------------------------*/
+
+.layout {
+    background:yellowgreen;    
+
+    .flexbox & {
+        display:flex; 
+        min-height:100vh; 
+        flex-direction:column;
+    }
+
+    
+
+    .no-flexbox & {
+        display:table;
+        min-height:100%;
+        width:100%;
+    }
+}
+
+.layout__container {
+    
+    .flexbox & {
+        display:block; /* IE fix */
+        display:flex;
+        flex: 1;
+        flex-direction:row;
+    }
+
+    .no-flexbox & {
+        display:table-row;
+        min-height:100%;
+    }
+}
+
+.layout__main {    
+    background:yellow;
+
+    .flexbox & {
+        display:block; /* IE fix */
+        flex:1;
+    }
+
+    .no-flexbox & {
+        display:table-cell;
+        vertical-align:top;
+        width:100%;
+    }
+}
+
+.layout__aside {
+    background:aquamarine;
+    width:250px;
+
+    .no-flexbox & {
+        display:table-cell;
+        vertical-align:top;
+    }
+}

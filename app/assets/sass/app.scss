@@ -1,31 +1,71 @@
-/* app css stylesheet */
+//----------------------------------*\
+// BOWER COMPONENTS
+//----------------------------------*/
 
+// Bootstrap
+//----------------------------------*/
+// Rewrite some bootstrap variables
+$icon-font-path:  '../../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/' !default;
+// $font-size-base: 20px !default;
 
-.menu {
-  list-style: none;
-  border-bottom: 0.1em solid black;
-  margin-bottom: 2em;
-  padding: 0 0 0.5em;
+// Then import bootstrap
+@import '../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap.scss';
+
+// Fontawesome
+//----------------------------------*/
+// Rewrite some fontawesome variables
+$fa-font-path: '../../bower_components/fontawesome/fonts' !default;
+
+@import '../../bower_components/fontawesome/scss/font-awesome.scss';
+
+//----------------------------------*\
+// GLOBAL MODULES
+//----------------------------------*/
+@import 'global/default';
+@import 'global/layout';
+
+//----------------------------------*\
+// OBJECT MODULES
+//----------------------------------*/
+
+//----------------------------------*\
+// INTERFACE MODULES
+//----------------------------------*/
+@import '../../navbar/navbar';
+@import '../../sidebar/sidebar';
+@import '../../tactical/tactical';
+
+body:before {
+    display:none;
+    content: $icon-font-path + " | " + $font-size-base + " | " + $fa-font-path;
 }
 
-.menu:before {
-  content: "[";
-}
 
-.menu:after {
-  content: "]";
-}
+/* .menu { */
+/*   list-style: none; */
+/*   border-bottom: 0.1em solid black; */
+/*   margin-bottom: 2em; */
+/*   padding: 0 0 0.5em; */
+/* } */
 
-.menu > li {
-  display: inline;
-}
+/* .menu:before { */
+/*   content: "["; */
+/* } */
 
-.menu > li:before {
-  content: "|";
-  padding-right: 0.3em;
-}
+/* .menu:after { */
+/*   content: "]"; */
+/* } */
 
-.menu > li:nth-child(1):before {
-  content: "";
-  padding: 0;
-}
+/* .menu > li { */
+/*   display: inline; */
+/* } */
+
+/* .menu > li:before { */
+/*   content: "|"; */
+/*   padding-right: 0.3em; */
+/* } */
+
+/* .menu > li:nth-child(1):before { */
+/*   content: ""; */
+/*   padding: 0; */
+/* } */
