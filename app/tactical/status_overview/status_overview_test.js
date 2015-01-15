@@ -1,17 +1,19 @@
+/*global describe, beforeEach, it, inject, expect*/
 'use strict';
 
-describe('Status Overview tactical submodule', function() {
+describe('Status Overview tactical submodule', function () {
 
-  beforeEach(module('adagios.tactical.status_overview'));
+    beforeEach(module('adagios.tactical.status_overview'));
 
-  describe('TacticalStatusOverViewCtrl', function() {
+    describe('TacticalStatusOverViewCtrl', function () {
 
-    it('should be defined', inject(function($controller) {
-      var scope = {};
-      var ctrl = $controller('TacticalStatusOverViewCtrl', {$scope:scope});
+        it('should be defined', inject(function ($controller) {
+            var scope, ctrl;
+            scope = {};
+            ctrl = $controller('NavBarCtrl', { $scope : scope });
 
-      expect(ctrl).toBeDefined();
-    }));
+            expect(ctrl).toBeDefined();
+        }));
 
-  });
+    });
 });

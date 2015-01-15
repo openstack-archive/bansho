@@ -1,17 +1,19 @@
+/*global describe, beforeEach, it, inject, expect*/
 'use strict';
 
-describe('Navbar module', function() {
+describe('Navbar module', function () {
 
-  beforeEach(module('adagios.navbar'));
+    beforeEach(module('adagios.navbar'));
 
-  describe('NavBarCtrl', function() {
+    describe('NavBarCtrl', function () {
 
-    it('should be defined', inject(function($controller) {
-      var scope = {};
-      var ctrl = $controller('NavBarCtrl', {$scope:scope});
+        it('should be defined', inject(function ($controller) {
+            var scope, ctrl;
+            scope = {};
+            ctrl = $controller('NavBarCtrl', { $scope : scope });
 
-      expect(ctrl).toBeDefined();
-    }));
+            expect(ctrl).toBeDefined();
+        }));
 
-  });
+    });
 });

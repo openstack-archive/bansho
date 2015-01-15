@@ -1,17 +1,19 @@
+/*global describe, beforeEach, it, inject, expect*/
 'use strict';
 
-describe('Current Health tactical submodule', function() {
+describe('Current Health tactical submodule', function () {
 
-  beforeEach(module('adagios.tactical.current_health'));
+    beforeEach(module('adagios.tactical.current_health'));
 
-  describe('TacticalCurrentHealth', function() {
+    describe('TacticalCurrentHealth', function () {
 
-    it('should be defined', inject(function($controller) {
-      var scope = {};
-      var ctrl = $controller('TacticalCurrentHealth', {$scope:scope});
+        it('should be defined', inject(function ($controller) {
+            var scope, ctrl;
+            scope = {};
+            ctrl = $controller('NavBarCtrl', { $scope : scope });
 
-      expect(ctrl).toBeDefined();
-    }));
+            expect(ctrl).toBeDefined();
+        }));
 
-  });
+    });
 });
