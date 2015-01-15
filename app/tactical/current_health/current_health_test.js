@@ -1,4 +1,3 @@
-/*global describe, beforeEach, it, inject, expect*/
 'use strict';
 
 describe('Current Health tactical submodule', function () {

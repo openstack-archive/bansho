@@ -1,4 +1,3 @@
-/*global describe, beforeEach, it, inject, expect*/
 'use strict';
 
 describe('Status Overview tactical submodule', function () {

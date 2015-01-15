@@ -1,6 +1,10 @@
 'use strict';
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
+
+    grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-jslint');
 
     grunt.initConfig({
 
@@ -12,7 +16,6 @@ module.exports = function(grunt) {
             css: ['<%= project.assets %>/sass/app.scss']
         },
 
-
         sass: {
             dev: {
                 options: {
@@ -20,7 +23,7 @@ module.exports = function(grunt) {
                     compass: false
                 },
                 files: {
-                    '<%= project.assets %>/css/app.css':'<%= project.css %>'
+                    '<%= project.assets %>/css/app.css' : '<%= project.css %>'
                 }
             }
         },
@@ -32,41 +35,39 @@ module.exports = function(grunt) {
             }
         },
 
-      jslint: { // configure the task
+        jslint: { // configure the task
 
-        client: {
-          src: [
-            'app/app.js',
-            'app/**/*.js'
-          ],
-          exclude: [
-            'app/bower_components/**/*.js',
-            'app/assets/**/*'
-          ],
-          directives: { // example directives
-            node: true,
-            todo: true
-          },
-          options: {
-            edition: 'latest', // specify an edition of jslint or use 'dir/mycustom-jslint.js' for own path
-            junit: 'out/client-junit.xml', // write the output to a JUnit XML
-            log: 'out/client-lint.log',
-            jslintXml: 'out/client-jslint.xml',
-            errorsOnly: true, // only display errors
-            failOnError: false, // defaults to true
-            checkstyle: 'out/client-checkstyle.xml' // write a checkstyle-XML
-          }
+            client: {
+                src: [
+                    'karma.conf.js',
+                    'Gruntfile.js',
+                    'app/app.js',
+                    'app/**/*.js'
+                ],
+                exclude: [
+                    'app/bower_components/**/*.js',
+                    'app/assets/**/*'
+                ],
+                directives: {
+                    node: true,
+                    unparam: true, // TEMPORARY: Ignore unused params
+                    predef: [ // Global variables
+                        'angular', 'inject', 'JustGage',
+                        'describe', 'beforeEach', 'it', 'expect'
+                    ]
+                },
+                options: {
+                    edition: 'latest', // specify an edition of jslint or use 'dir/mycustom-jslint.js' for own path
+                    junit: 'out/client-junit.xml', // write the output to a JUnit XML
+                    log: 'out/client-lint.log',
+                    jslintXml: 'out/client-jslint.xml',
+                    errorsOnly: true, // only display errors
+                    failOnError: false, // defaults to true
+                    checkstyle: 'out/client-checkstyle.xml' // write a checkstyle-XML
+                }
+            }
         }
-      }
     });
 
-    grunt.loadNpmTasks('grunt-contrib-sass');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-jslint');
-
-    grunt.registerTask('default', 'jslint');
-    grunt.registerTask('default', [
-        'watch'
-    ]);
-
+    grunt.registerTask('default', [ 'watch', 'jslint' ]);
 };

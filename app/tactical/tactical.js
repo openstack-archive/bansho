@@ -1,4 +1,3 @@
-/*global angular*/
 'use strict';
 
 angular.module('adagios.tactical', ['ngRoute',
@@ -15,4 +14,5 @@ angular.module('adagios.tactical', ['ngRoute',
     }])
 
     .controller('TacticalCtrl', ['$scope', '$http', function ($scope, $http) {
+        return;
     }]);

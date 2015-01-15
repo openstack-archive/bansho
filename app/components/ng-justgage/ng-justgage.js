@@ -1,4 +1,3 @@
-/*global angular, JustGage*/
 'use strict';
 
 angular.module("ngJustGage", [])

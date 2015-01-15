@@ -1,4 +1,3 @@
-/*global angular*/
 'use strict';
 
 angular.module('adagios.tactical.top_alert_producers', ['ngRoute' ])

@@ -1,4 +1,3 @@
-/*global describe, beforeEach, it, inject, expect*/
 'use strict';
 
 describe('Top Alert Producer tactical submodule', function () {
