@@ -1,3 +1,5 @@
+/*global angular*/
+'use strict';
 
 angular.module('adagios.tactical', ['ngRoute',
                                     'adagios.tactical.status_overview',
@@ -5,13 +7,12 @@ angular.module('adagios.tactical', ['ngRoute',
                                     'adagios.tactical.top_alert_producers'
                                     ])
 
-.config(['$routeProvider', function($routeProvider) {
-    $routeProvider.when('/tactical', {templateUrl: 'tactical/tactical.html', controller: 'TacticalCtrl'});
-}])
-
-
-
-.controller('TacticalCtrl', ['$scope', '$http',
-        function($scope, $http) {
+    .config(['$routeProvider', function ($routeProvider) {
+        $routeProvider.when('/tactical', {
+            templateUrl: 'tactical/tactical.html',
+            controller: 'TacticalCtrl'
+        });
     }])
 
+    .controller('TacticalCtrl', ['$scope', '$http', function ($scope, $http) {
+    }]);
