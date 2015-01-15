@@ -1,0 +1,17 @@
+'use strict';
+
+describe('Current Health tactical submodule', function() {
+
+  beforeEach(module('adagios.tactical.current_health'));
+
+  describe('TacticalCurrentHealth', function() {
+
+    it('should be defined', inject(function($controller) {
+      var scope = {};
+      var ctrl = $controller('TacticalCurrentHealth', {$scope:scope});
+
+      expect(ctrl).toBeDefined();
+    }));
+
+  });
+});
