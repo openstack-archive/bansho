@@ -1,12 +1,12 @@
 'use strict';
 
-describe('Navbar module', function () {
+describe('Topbar module', function () {
     var $compile,
         $rootScope,
         $controller,
         $httpBackend;
 
-    beforeEach(module('adagios.navbar'));
+    beforeEach(module('adagios.topbar'));
 
     beforeEach(inject(function (_$compile_, _$rootScope_, _$controller_, _$httpBackend_) {
         $compile = _$compile_;
@@ -14,24 +14,24 @@ describe('Navbar module', function () {
         $controller = _$controller_;
         $httpBackend = _$httpBackend_;
 
-        $httpBackend.expectGET('navbar/navbar.html').respond('<a>{{ notifications }}</a>');
+        $httpBackend.expectGET('topbar/topbar.html').respond('<a>{{ notifications }}</a>');
     }));
 
-    describe('NavBarCtrl', function () {
+    describe('TopBarCtrl', function () {
 
         it('should be defined', function () {
             var scope = $rootScope.$new(),
-                navbar = $controller('NavBarCtrl', { $scope : scope });
+                topbar = $controller('TopBarCtrl', { $scope : scope });
 
-            expect(navbar).toBeDefined();
+            expect(topbar).toBeDefined();
         });
 
     });
 
-    describe('Navbar directive', function () {
+    describe('Topbar directive', function () {
 
         it('should insert the number of warnings', function () {
-            var element = $compile('<navbar></navbar>')($rootScope);
+            var element = $compile('<topbar></topbar>')($rootScope);
             $httpBackend.flush();
             $rootScope.notifications = 44;
             $rootScope.$digest();

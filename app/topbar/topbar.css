@@ -1,4 +1,4 @@
-nav#navbar {
+nav#topbar {
     top: 0%;
     margin-left: 300px;
     background-color: #353d48;
@@ -10,22 +10,22 @@ nav#navbar {
 }
 
 
-nav#navbar div.container-fluid{
+nav#topbar div.container-fluid{
     padding-left: 0px;
 }
 
-nav#navbar .navbar-brand{ padding: 0px 30px;font-size: 1.5em;line-height: 80px; }
-nav#navbar .navbar-nav > li > a {  padding: 0px 30px; line-height: 80px; font-size: 1.5em; }
-nav#navbar .navbar-nav > li > form div {
+nav#topbar .navbar-brand{ padding: 0px 30px;font-size: 1.5em;line-height: 80px; }
+nav#topbar .navbar-nav > li > a {  padding: 0px 30px; line-height: 80px; font-size: 1.5em; }
+nav#topbar .navbar-nav > li > form div {
     line-height: 55px;
     font-size: 1.5em;
 }
-nav#navbar .navbar-nav > li > form input {
+nav#topbar .navbar-nav > li > form input {
     height: 60px;
 }
 
 
-nav#navbar div.navbar-collapse {
+nav#topbar div.navbar-collapse {
     padding-left: 0px;
 }
 
@@ -52,12 +52,12 @@ a#toggle-sidebar i {
 }
 
 
-nav#navbar li {
+nav#topbar li {
     border-color: #252b37;
     border-style: solid;
     border-width: 1px;
 }
 
-nav#navbar li a#search {
+nav#topbar li a#search {
     float: left;
 }

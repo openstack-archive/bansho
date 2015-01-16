@@ -3,7 +3,7 @@
 angular.module('adagios', [
     'ngRoute',
     'adagios.sidebar',
-    'adagios.navbar',
+    'adagios.topbar',
     'adagios.tactical'
 ])
 
