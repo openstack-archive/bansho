@@ -9,7 +9,7 @@ describe('Current Health tactical submodule', function () {
         it('should be defined', inject(function ($controller) {
             var scope, ctrl;
             scope = {};
-            ctrl = $controller('NavBarCtrl', { $scope : scope });
+            ctrl = $controller('TacticalCurrentHealth', { $scope : scope });
 
             expect(ctrl).toBeDefined();
         }));

@@ -9,7 +9,7 @@ describe('Tactical module', function () {
         it('should be defined', inject(function ($controller) {
             var scope, ctrl;
             scope = {};
-            ctrl = $controller('NavBarCtrl', { $scope : scope });
+            ctrl = $controller('TacticalCtrl', { $scope : scope });
 
             expect(ctrl).toBeDefined();
         }));

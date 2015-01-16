@@ -9,7 +9,7 @@ describe('Sidebar module', function () {
         it('should be defined', inject(function ($controller) {
             var scope, ctrl;
             scope = {};
-            ctrl = $controller('NavBarCtrl', { $scope : scope });
+            ctrl = $controller('SideBarCtrl', { $scope : scope });
 
             expect(ctrl).toBeDefined();
         }));
