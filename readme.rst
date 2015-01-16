@@ -26,6 +26,27 @@ Auto-refresh css files
     grunt
 
 
+Coding style
+===========
+
+This project conforms to JSLint coding style (http://github.com/douglascrockford/JSLint).
+Run the linter as follows:
+
+::
+
+    grunt jslint
+
+Tests
+=====
+
+AngularJS comes with Karma which is an automatic unit test runner.
+While running, Karma automatically executes the tests when any js file changes.
+To launch Karma :
+
+::
+
+    npm test
+
 Launch
 ======
 
