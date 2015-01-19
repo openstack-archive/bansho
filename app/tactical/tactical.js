@@ -3,7 +3,9 @@
 angular.module('adagios.tactical', ['ngRoute',
                                     'adagios.tactical.status_overview',
                                     'adagios.tactical.current_health',
-                                    'adagios.tactical.top_alert_producers'
+                                    'adagios.tactical.top_alert_producers',
+                                    'adagios.table'
+
                                     ])
 
     .config(['$routeProvider', function ($routeProvider) {

@@ -4,7 +4,8 @@ angular.module('adagios', [
     'ngRoute',
     'adagios.sidebar',
     'adagios.topbar',
-    'adagios.tactical'
+    'adagios.tactical',
+    'adagios.table'
 ])
 
     .config(['$routeProvider', function ($routeProvider) {
