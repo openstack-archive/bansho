@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('adagios.table.entry.column_host', [])
+angular.module('adagios.table.cell_last_check', [])
 
     .controller('SideBarCtrl', ['$scope', '$http', function ($scope, $http) {
         return;

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('adagios.table.entry.column_last_check', [])
+angular.module('adagios.table.cell_duration', [])
 
     .controller('SideBarCtrl', ['$scope', '$http', function ($scope, $http) {
         return;

@@ -1,14 +1,14 @@
 'use strict';
 
-angular.module('adagios.table.entry.column_duration', [])
+angular.module('adagios.table.cell_service_check', [])
 
     .controller('SideBarCtrl', ['$scope', '$http', function ($scope, $http) {
         return;
     }])
 
-    .directive('sidebar', function () {
+    .directive('column', function (col_type) {
         return {
             restrict: 'E',
-            templateUrl: "sidebar/sidebar.html"
+            templateUrl: "column/" + col_type + ".html"
         };
     });

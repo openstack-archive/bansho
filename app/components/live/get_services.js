@@ -10,4 +10,4 @@ angular.module('adagios.live')
                     console.error('GetServices : GET Request failed');
                 });
         };
-    }])
+    }]);
