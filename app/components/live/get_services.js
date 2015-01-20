@@ -1,16 +1,13 @@
 'use strict';
 
-angular.module('adagios.live.getservices', [])
+angular.module('adagios.live')
 
-    .factory('GetServices', ['$http', function ($http) {
-        alert('Salut');
-        $http.post("/rest/status/json/services/").
-            success(function(data, status, headers, config) {
-                alert(data);
-            }).
-            error(function(data, status, headers, config) {
-                alert('Request error');
-            });
+    .factory('GetServices', ['$http', function ($http, columns) {
 
-        return data;
+        return function (columns) {
+            return $http.get('/rest/status/json/services/?fields=' + columns)
+                .error(function (data, status, headers, config) {
+                    console.error('GetServices : GET Request failed');
+                });
+        };
     }]);

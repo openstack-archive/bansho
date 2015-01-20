@@ -1,15 +1,15 @@
 <div ng-app="adagios.table" ng-controller="TableCtrl" id="table">
-<table>
+<table class="table">
   <thead>
     <tr>
       <th ng-repeat="(key, value) in entries[0]">
-        <cell cell_type="header" > {{key}} </cell>
+        {{key}}
       </th>
     </tr>
   </thead>
   <tr ng-repeat="entry in entries">
     <td ng-repeat="(key, value) in entry">
-        <cell cell_type="{{key}}" > {{value}} </cell>
+      {{value}}
     </td>
   </tr>
 </table>

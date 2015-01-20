@@ -7,7 +7,7 @@ angular.module('adagios.table.entry', ['adagios.table.entry.column_duration',
                                       ])
 
     .controller('EntryCtrl', ['$scope', '$http', function ($scope, $http) {
-        noop;
+        return;
     }])
 
     .directive('entry', function () {
