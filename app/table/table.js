@@ -3,7 +3,8 @@
 angular.module('adagios.table', ['ngRoute', 'adagios.table.entry', 'adagios.live'])
 
     .controller('TableCtrl', ['$scope', '$http', 'GetServices', function ($scope, $http, GetServices) {
-        console.log(new GetServices(['host_name', 'last_check'])
+        $scope.columns = ['host_name', 'last_check'];
+        console.log(new GetServices($scope.columns)
             .success(function (data) {
                 $scope.entries = data;
             }));

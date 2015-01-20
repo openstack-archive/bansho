@@ -2,14 +2,14 @@
 <table class="table">
   <thead>
     <tr>
-      <th ng-repeat="(key, value) in entries[0]">
-        {{key}}
+      <th ng-repeat="thead in columns">
+        {{thead}}
       </th>
     </tr>
   </thead>
   <tr ng-repeat="entry in entries">
-    <td ng-repeat="(key, value) in entry">
-      {{value}}
+    <td ng-repeat="cell in columns">
+      {{entry[cell]}}
     </td>
   </tr>
 </table>
