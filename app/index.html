@@ -22,15 +22,17 @@
   <!-- Application -->
   <script src="app.js"></script>
     <!-- COMPONENTS -->
+    <script src="components/live/live.js"></script>
     <script src="components/live/notifications.js"></script>
+    <script src="components/live/get_services.js"></script>
     <script src="components/ng-justgage/ng-justgage.js"></script>
   <!-- MODULES -->
     <!-- Sidebar -->>
     <script src="sidebar/sidebar.js"></script>
     <link rel="stylesheet" href="sidebar/sidebar.css">
-    <!-- Navbar -->
-    <script src="navbar/navbar.js"></script>
-    <link rel="stylesheet" href="navbar/navbar.css">
+    <!-- Topbar -->
+    <script src="topbar/topbar.js"></script>
+    <link rel="stylesheet" href="topbar/topbar.css">
     <!-- Tactical -->
     <script src="tactical/tactical.js"></script>
     <link rel="stylesheet" href="tactical/tactical.css">
@@ -40,6 +42,13 @@
       <script src="tactical/current_health/current_health.js"></script>
       <!-- TopAlertProducers -->
       <script src="tactical/top_alert_producers/top_alert_producers.js"></script>
+
+    <script src="table/table.js"></script>
+    <script src="table/entry/entry.js"></script>
+    <script src="table/entry/column_duration/duration_column.js"></script>
+    <script src="table/entry/column_host/host_column.js"></script>
+    <script src="table/entry/column_last_check/last_check_column.js"></script>
+    <script src="table/entry/column_service_check/service_check_column.js"></script>
 
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="bower_components/raphael/raphael-min.js"></script>
@@ -54,8 +63,7 @@
 
   <sidebar></sidebar>
 
-  <navbar></navbar>
-
+  <topbar></topbar>
 
   <div ng-view id="page" class="content"></div>
 

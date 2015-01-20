@@ -8,3 +8,4 @@ tmp
 *.swp
 app/assets/css
 .sass-cache/
+out/

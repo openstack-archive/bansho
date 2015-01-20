@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('adagios.sidebar', [])
+angular.module('adagios.table.entry.column_host', [])
 
     .controller('SideBarCtrl', ['$scope', '$http', function ($scope, $http) {
         return;
