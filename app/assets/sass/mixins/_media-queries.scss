@@ -1,0 +1,65 @@
+//----------------------------------*\
+// MEDIA QUERIES
+//----------------------------------*/
+
+@mixin xsmall-screen {
+    @media (min-width: #{em($_screen_xsmall)}) and (max-width: #{em($_screen_small - 1)}) {
+        @content;
+    }
+}
+
+@mixin small-screen {
+    @media (min-width: #{em($_screen_small)}) and (max-width: #{em($_screen_medium - 1)}) {
+        @content;
+    }
+}
+
+@mixin medium-screen {
+    @media (min-width: #{em($_screen_medium)}) and (max-width: #{em($_screen_large - 1)}) {
+        @content;
+    }
+}
+
+@mixin medium-and-up-screen {
+    @media (min-width: #{em($_screen_medium)}) {
+        @content;
+    }
+}
+
+@mixin large-screen {
+    @media (min-width: #{em($_screen_large)}) and (max-width: #{em($_screen_xlarge - 1)}) {
+        @content;
+    }
+}
+
+@mixin large-xlarge-screen {
+    @media (min-width: #{em($_screen_large)}) {
+        @content;
+    }
+}
+
+@mixin xlarge-screen {
+    @media (min-width: #{em($_screen_xlarge)}) {
+        @content;
+    }
+}
+
+@mixin retina {
+    @media
+    only screen and (-webkit-min-device-pixel-ratio: 2),
+    only screen and (min--moz-device-pixel-ratio: 2),
+    only screen and (-o-min-device-pixel-ratio: 2/1),
+    only screen and (min-device-pixel-ratio: 2),
+    only screen and (min-resolution: 192dpi),
+    only screen and (min-resolution: 2dppx) {
+        @content;
+    }
+}
+
+@mixin print {
+    @media print {
+        @content;
+    }
+}
+
+/*  */

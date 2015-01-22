@@ -1,0 +1,27 @@
+//----------------------------------*\
+// TOGGLABLE TABS
+//----------------------------------*/
+/*  */
+.tabpanel {
+    .tablist__item {
+        display:inline-block;
+    }
+    
+    .tabpanel__tab {
+        color:white;
+        border-bottom:5px solid white;
+        width:50%;
+    }
+}
+
+.tab-content {
+    > .tab-pane {
+        display:none;
+        visibility:hidden;
+    }
+
+    > .active {
+        display:block;
+        visibility:visible;
+    }
+}

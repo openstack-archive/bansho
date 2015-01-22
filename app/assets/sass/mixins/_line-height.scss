@@ -1,0 +1,8 @@
+//----------------------------------*\
+// LINE HEIGHT
+//----------------------------------*/
+
+// Sets the line-height to a multiple of $base-line-height that's not smaller than $font-size
+@mixin line-height($font-size, $base-line-height) {
+    line-height: ceil($font-size / $base-line-height) * ($base-line-height / $font-size);
+}

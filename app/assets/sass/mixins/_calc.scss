@@ -1,0 +1,10 @@
+//----------------------------------*\
+// CALC
+//----------------------------------*/
+
+// A mixin for vendor-prefixing the CSS3 calc function. It accepts a property and a value.
+
+@mixin calc($property, $value) {
+    #{$property}: -webkit-calc(#{$value});
+    #{$property}:         calc(#{$value});
+}

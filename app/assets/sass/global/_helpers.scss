@@ -1,0 +1,120 @@
+//----------------------------------*\
+// BOILERPLATE LIKE HELPERS
+//----------------------------------*/
+
+%ir,
+.ir {
+    background-color: transparent;
+    border: 0;
+    overflow: hidden;
+    text-indent: -9999px;
+    &:before {
+        content: "";
+        display: block;
+        width: 0;
+        height: 150%
+    }
+}
+
+%hidden,
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+%visuallyhidden,
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+
+	&.focusable:active,
+	&.focusable:focus {
+		clip: auto;
+		height: auto;
+		margin: 0;
+		overflow: visible;
+		position: static;
+		width: auto;
+	}
+
+}
+
+%clearfix,
+.clearfix {
+    *zoom: 1;
+    &:before,
+    &:after {
+        display: table;
+        content: "";
+        line-height: 0;
+    }
+
+    &:after {
+        clear: both;
+    }
+
+}
+
+%invisible,
+.invisible {
+    visibility: hidden;
+}
+
+%hiddenfocus,
+.hiddenfocus {
+    @extend %visuallyhidden;
+    &:active,
+    &:focus {
+        clip: auto;
+        height: auto;
+        margin: 0;
+        overflow: visible;
+        position: static;
+        width: auto;
+    }
+
+}
+
+// Add media queries data for detection
+body:after {
+    display:none;
+    font-size:$_base_font_size + 0px;
+    line-height:$_base_line_height;
+}
+
+@include xsmall-screen {
+    body:after {content:'css @media width => x-small screen (min #{$_screen_xsmall}px)';}
+}
+
+@include small-screen {
+    body:after {content:'css @media width => small screen (min #{$_screen_small}px)';}
+}
+
+
+@include medium-screen {
+    body:after {content:'css @media width => medium screen (min #{$_screen_medium}px)';}
+}
+
+@include large-screen {
+    body:after {content:'css @media width => large screen (min #{$_screen_large}px)';}
+}
+
+@include xlarge-screen {
+    body:after {content:'css @media width => x-large screen (min #{$_screen_xlarge}px +)';}
+}
+
+//----------------------------------*\
+// JAVASCRIPT CLASSES
+//----------------------------------*/
+
+.js-is--hidden {display:none;}
+.js-is--visible {display:block;}
+//.js-is--current {}
+//.js-is--open {}
+//.js-is--close {}
