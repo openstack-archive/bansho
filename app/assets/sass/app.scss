@@ -1,31 +1,97 @@
-/* app css stylesheet */
+//----------------------------------*\
+// FONTAWESOME
+//----------------------------------*/
+
+// Rewrite Some Fontawesome Variables
+//----------------------------------*/
+$fa-font-path: '../../bower_components/fontawesome/fonts' !default;
+
+// Then Import Fontawesome
+//----------------------------------*/
+@import '../../bower_components/fontawesome/scss/font-awesome.scss';
+
+//----------------------------------*\
+// BOOTSTRAP MODULES
+//----------------------------------*/
+@import '../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/mixins/_vendor-prefixes.scss';
+@import '../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/_component-animations.scss';
+
+//----------------------------------*\
+// SETTINGS
+//----------------------------------*/
+@import 'settings/_variables.scss';
+
+//----------------------------------*\
+// FUNCTIONS
+//----------------------------------*/
+@import 'functions/_functions.scss';
+
+//----------------------------------*\
+// MIXINS
+//----------------------------------*/
+@import 'mixins/_vendor.scss';
+@import 'mixins/_position.scss';
+@import 'mixins/_line-height.scss';
+@import 'mixins/_media-queries.scss';
+@import 'mixins/_position.scss';
+
+//----------------------------------*\
+// GLOBAL MODULES
+//----------------------------------*/
+@import 'global/default';
+@import 'global/helpers';
+@import 'global/layout';
+@import 'global/color-schemes';
+@import 'global/print';
+
+//----------------------------------*\
+// SIMPLE MODULES
+//----------------------------------*/
+@import 'modules-simples/buttons';
+
+//----------------------------------*\
+// OBJECT MODULES
+//----------------------------------*/
+@import 'modules-objects/togglable-tabs';
+
+//----------------------------------*\
+// INTERFACE MODULES
+//----------------------------------*/
+@import '../../topbar/topbar';
+@import '../../sidebar/sidebar';
+@import '../../tactical/tactical';
+
+/* body:before { */
+/*     display:none; */
+/*     content: ''; */
+/* } */
 
 
-.menu {
-  list-style: none;
-  border-bottom: 0.1em solid black;
-  margin-bottom: 2em;
-  padding: 0 0 0.5em;
-}
+/* .menu { */
+/*   list-style: none; */
+/*   border-bottom: 0.1em solid black; */
+/*   margin-bottom: 2em; */
+/*   padding: 0 0 0.5em; */
+/* } */
 
-.menu:before {
-  content: "[";
-}
+/* .menu:before { */
+/*   content: "["; */
+/* } */
 
-.menu:after {
-  content: "]";
-}
+/* .menu:after { */
+/*   content: "]"; */
+/* } */
 
-.menu > li {
-  display: inline;
-}
+/* .menu > li { */
+/*   display: inline; */
+/* } */
 
-.menu > li:before {
-  content: "|";
-  padding-right: 0.3em;
-}
+/* .menu > li:before { */
+/*   content: "|"; */
+/*   padding-right: 0.3em; */
+/* } */
 
-.menu > li:nth-child(1):before {
-  content: "";
-  padding: 0;
-}
+/* .menu > li:nth-child(1):before { */
+/*   content: ""; */
+/*   padding: 0; */
+/* } */

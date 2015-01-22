@@ -1,38 +1,84 @@
-<nav ng-app="adagios.topbar" id="topbar" class="navbar navbar-default navbar-inverse" role="navigation" ng-controller="TopBarCtrl">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-topbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
+<nav ng-app="adagios.topbar" id="topbar" class="topbar layout__flexrow" role="navigation" ng-controller="TopBarCtrl">
+  <ul class="topbar__list topbar__list--left">
+    <li class="topbar__item topbar__toggle-sidebar">
+      <button class="topbar__button"
+              type="button"
+              data-toggle="collapse"
+              data-target="#sidebarWrapper"
+              aria-expanded="false"
+              aria-controls="sidebarWrapper">
+        <span class="visuallyhidden">Ouvrir la barre de navigation latérale</span>
+        <i class="fa fa-bars"></i>
       </button>
-    </div>
+    </li>
+    <li class="topbar__item topbar__notifications">
+      <button class="topbar__button"
+              id="notifications"
+              type="button"
+              data-notifications="{{ notifications }}"
+              data-toggle="collapse"
+              data-target="#notificationsPanel"
+              aria-expanded="false"
+              aria-controls="notificationsPanel">
+        <span class="visuallyhidden">Voir les notifications</span>
+        <i class="fa fa-bell"></i>
+      </button>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-topbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li>
-          <a href="#" id="toggle-sidebar">
-            <i class="fa fa-chevron-left"></i>
-            <i class="fa fa-align-justify"></i>
-          </a>
-        </li>
-        <li><a href="#" id="notifications"><i class="fa fa-bell"></i>{{ notifications }}</a></li>
-      </ul>
+      <div class="topbar__panel--fromleft collapse" id="notificationsPanel">
+        <div class="tabpanel">
+          <ul role="tablist">
+            <li role="presentation" class="tablist__item active">
+              <a href="#openProblems"
+                 class="tabpanel__tab"
+                 aria-controls="openProblems"
+                 role="tab"
+                 data-toggle="tab"
+                 data-openproblems="27">Open problems
+              </a>
+            </li>
+            <li role="presentation" class="tablist__item">
+              <a href="#allProblems"
+                 class="tabpanel__tab"
+                 aria-controls="allProblems"
+                 role="tab"
+                 data-toggle="tab"
+                 data-allproblems="38">All problems
+              </a>
+            </li>
+          </ul>
 
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-          <a href="#" id="search"><i class="fa fa-search"></i></a>
-        <form class="navbar-form navbar-left" role="search" id="search">
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search hosts, services, ...">
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="openProblems">Open problems</div>
+            <div role="tabpanel" class="tab-pane" id="allProblems">All problems</div>
           </div>
-        </form>
-        </li>
-        <li><a href="#" id="settings"><i class="fa fa-sliders fa-rotate-90"></i></a></li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+        </div>
+    </li>
+  </ul>
+
+  <ul class="topbar__list topbar__list--right">
+    <li class="topbar__item topbar__search">
+      <form class="topbar-form topbar-left" role="search" id="search">
+        <button class="topbar__button" id="search" type="submit">
+          <span class="visuallyhidden">Lancer une recherche</span>
+          <i class="fa fa-search"></i>
+        </button>
+
+        <label class="visuallyhidden" for="searchfield">Recherche</label>
+        <input id="searchfield" type="search" class="form-control" placeholder="Search hosts, services, ...">
+      </form>
+    </li>
+    <li class="topbar__item topbar__settings">
+      <button class="topbar__button"
+              id="settings"
+              data-toggle="collapse"
+              data-target="#settingsPanel"
+              aria-expanded="false"
+              aria-controls="settingsPanel">
+        <span class="visuallyhidden">Afficher la liste des paramètres</span>
+        <i class="fa fa-sliders fa-rotate-90"></i>
+      </button>
+
+      <div class="topbar__panel--fromright collapse" id="settingsPanel">...</div>
+    </li>
+  </ul>
 </nav>

@@ -1,6 +1,7 @@
 # Logs
 logs/*
 *.log
+*.orig
 
 !.gitkeep
 node_modules/

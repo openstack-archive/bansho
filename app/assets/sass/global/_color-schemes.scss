@@ -1,0 +1,33 @@
+//----------------------------------*\
+// COLOR SCHEMES
+//----------------------------------*/
+
+// Light Scheme
+//----------------------------------*/
+.color-scheme--light {
+
+    %colorLink {
+        color:$_color_light_epsilon;
+
+        &:hover {color:orange;}
+    }
+
+    %colorBorderThin {border-color:$_color_light_gamma;}
+
+    %colorBkgTopbarPanel {background:$_color_light_gamma;}
+}
+
+// Dark Scheme
+//----------------------------------*/
+.color-scheme--dark {
+
+    %colorLink {
+        color:$_color_dark_epsilon;
+
+        &:hover {color:white;}
+    }
+
+    %colorBorderThin {border-color:$_color_dark_gamma;}
+
+    %colorBkgTopbarPanel {background:$_color_dark_gamma;}
+}

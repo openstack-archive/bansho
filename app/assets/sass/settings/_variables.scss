@@ -1,0 +1,42 @@
+//----------------------------------*\
+// VARIABLES
+//----------------------------------*/
+
+// Image Path
+//----------------------------------*/
+$_img_path: "../images/" !default;
+
+// Color Schemes
+//----------------------------------*/
+// Light scheme
+$_color_light_alpha: '' !default;
+$_color_light_beta: '' !default;
+$_color_light_gamma: '' !default;
+$_color_light_delta: '' !default;
+$_color_light_epsilon: red !default;
+
+// Dark scheme
+$_color_dark_alpha: #353D48 !default;
+$_color_dark_beta: #49515C !default;
+$_color_dark_gamma: #23282E !default;
+$_color_dark_delta: #2e353d !default;
+$_color_dark_epsilon: #aeb5bf !default;
+
+// Typography
+$_base_font_size: 14 !default;
+$_base_line_height: 18 !default;
+
+// Fonts Family
+//----------------------------------*/
+$_font_family_alpha: sans-serif !default;
+$_font_family_beta: sans-serif !default;
+$_font_family_gamma: serif !default;
+
+
+// Media Queries Breakpoints
+//----------------------------------*/
+$_screen_xsmall: 320 !default;
+$_screen_small: 480 !default;
+$_screen_medium: 768 !default;
+$_screen_large: 992 !default;
+$_screen_xlarge: 1200 !default;
