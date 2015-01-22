@@ -1,4 +1,8 @@
+# Logs
 logs/*
+*.log
+*.orig
+
 !.gitkeep
 node_modules/
 bower_components/
@@ -8,3 +12,4 @@ tmp
 *.swp
 app/assets/css
 .sass-cache/
+out/

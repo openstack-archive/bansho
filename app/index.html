@@ -19,13 +19,15 @@
     <!-- Application -->
     <script src="app.js"></script>
     <!-- COMPONENTS -->
+    <script src="components/live/live.js"></script>
     <script src="components/live/notifications.js"></script>
+    <script src="components/live/get_services.js"></script>
     <script src="components/ng-justgage/ng-justgage.js"></script>
     <!-- MODULES -->
     <!-- Sidebar -->
     <script src="sidebar/sidebar.js"></script>
-    <!-- Navbar -->
-    <script src="navbar/navbar.js"></script>
+    <!-- Topbar -->
+    <script src="topbar/topbar.js"></script>
     <!-- Tactical -->
     <script src="tactical/tactical.js"></script>
     <!-- Status Overview -->
@@ -34,6 +36,13 @@
     <script src="tactical/current_health/current_health.js"></script>
     <!-- TopAlertProducers -->
     <script src="tactical/top_alert_producers/top_alert_producers.js"></script>
+    <script src="table/table.js"></script>
+    <script src="table/entry/entry.js"></script>
+    <script src="table/entry/column_duration/duration_column.js"></script>
+    <script src="table/entry/column_host/host_column.js"></script>
+    <script src="table/entry/column_last_check/last_check_column.js"></script>
+    <script src="table/entry/column_service_check/service_check_column.js"></script>
+
     <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>    
   </head>
   <body class="layout color-scheme--dark">
@@ -47,9 +56,7 @@
 
       <div class="layout__main">
         <div class="layout__row navbar-wrapper">
-          <navbar></navbar>
-        </div>
-
+          <topbar></topbar>
         <main ng-view id="page" class="main layout__row" role="main"></main>
         <footer class="footer layout__row" role="contentinfo">...</footer>
       </div>

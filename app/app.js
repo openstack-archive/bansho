@@ -1,13 +1,13 @@
 'use strict';
 
-// Declare app level module which depends on views, and components
 angular.module('adagios', [
-  'ngRoute',
-  'adagios.sidebar',
-  'adagios.navbar',
-  'adagios.tactical'
-]).
+    'ngRoute',
+    'adagios.sidebar',
+    'adagios.topbar',
+    'adagios.tactical',
+    'adagios.table'
+])
 
-config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({redirectTo: '/'});
-}]);
+    .config(['$routeProvider', function ($routeProvider) {
+        $routeProvider.otherwise({redirectTo: '/'});
+    }]);
