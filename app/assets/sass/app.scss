@@ -1,32 +1,58 @@
 //----------------------------------*\
-// BOWER COMPONENTS
+// FONTAWESOME
 //----------------------------------*/
-
-// Bootstrap
+/*  */
+// Rewrite Some Fontawesome Variables
 //----------------------------------*/
-// Rewrite some bootstrap variables
-$icon-font-path:  '../../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/' !default;
-// $font-size-base: 20px !default;
-
-// Then import bootstrap
-@import '../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap.scss';
-
-// Fontawesome
-//----------------------------------*/
-// Rewrite some fontawesome variables
 $fa-font-path: '../../bower_components/fontawesome/fonts' !default;
 
+// Then Import Fontawesome
+//----------------------------------*/
 @import '../../bower_components/fontawesome/scss/font-awesome.scss';
+
+//----------------------------------*\
+// BOOTSTRAP MODULES
+//----------------------------------*/
+@import '../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/mixins/_vendor-prefixes.scss';
+@import '../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/_component-animations.scss';
+
+//----------------------------------*\
+// SETTINGS
+//----------------------------------*/
+@import 'settings/_variables.scss';
+
+//----------------------------------*\
+// FUNCTIONS
+//----------------------------------*/
+@import 'functions/_functions.scss';
+
+//----------------------------------*\
+// MIXINS
+//----------------------------------*/
+@import 'mixins/_vendor.scss';
+@import 'mixins/_position.scss';
+@import 'mixins/_line-height.scss';
+@import 'mixins/_media-queries.scss';
+@import 'mixins/_position.scss';
 
 //----------------------------------*\
 // GLOBAL MODULES
 //----------------------------------*/
 @import 'global/default';
+@import 'global/helpers';
 @import 'global/layout';
+@import 'global/color-schemes';
+@import 'global/print';
+
+//----------------------------------*\
+// SIMPLE MODULES
+//----------------------------------*/
+@import 'modules-simples/buttons';
 
 //----------------------------------*\
 // OBJECT MODULES
 //----------------------------------*/
+@import 'modules-objects/togglable-tabs';
 
 //----------------------------------*\
 // INTERFACE MODULES
@@ -37,7 +63,7 @@ $fa-font-path: '../../bower_components/fontawesome/fonts' !default;
 
 body:before {
     display:none;
-    content: $icon-font-path + " | " + $font-size-base + " | " + $fa-font-path;
+    content: '';
 }
 
 
