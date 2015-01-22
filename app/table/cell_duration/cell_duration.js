@@ -1,14 +1,22 @@
 'use strict';
 
-angular.module('adagios.table.cell_duration', [])
+angular.module('adagios.table.cell_duration', ['ngSanitize'])
 
-    .controller('SideBarCtrl', ['$scope', '$http', function ($scope, $http) {
-        return;
+    .controller('CellDurationCtrl', ['$scope', '$sce', function ($scope, $sce) {
+        $scope.balise = 'salut';
     }])
 
-    .directive('sidebar', function () {
+    .directive('cellDuration', function () {
         return {
             restrict: 'E',
-            templateUrl: "sidebar/sidebar.html"
+            replace: true,
+            scope: false,
+            templateUrl: 'table/cell_duration/cell_duration.html',
+            link: function(scope, element, attrs) {
+                var factory = angular.element('<div></div>');
+                factory.html('<p>{{balise}}</p>');
+                console.log(scope);
+                $compile(factory)(scope);
+            }
         };
     });

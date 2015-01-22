@@ -2,13 +2,14 @@
 
 angular.module('adagios.table.cell_last_check', [])
 
-    .controller('SideBarCtrl', ['$scope', '$http', function ($scope, $http) {
+    .controller('CellLastCheckCtrl', ['$scope', function ($scope) {
         return;
     }])
 
-    .directive('sidebar', function () {
+    .directive('cellLastCheck', function () {
         return {
             restrict: 'E',
-            templateUrl: "sidebar/sidebar.html"
+            replace: true,
+            templateUrl: "table/cell_last_check/cell_last_check.html"
         };
     });

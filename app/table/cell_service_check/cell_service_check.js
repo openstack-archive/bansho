@@ -2,13 +2,13 @@
 
 angular.module('adagios.table.cell_service_check', [])
 
-    .controller('SideBarCtrl', ['$scope', '$http', function ($scope, $http) {
+    .controller('CellServiceCheck', ['$scope', function ($scope) {
         return;
     }])
 
-    .directive('column', function (col_type) {
+    .directive('cellServiceCheck', function () {
         return {
             restrict: 'E',
-            templateUrl: "column/" + col_type + ".html"
+            templateUrl: "table/cell_service_check/cell_service_check.html"
         };
     });

@@ -2,13 +2,14 @@
 
 angular.module('adagios.table.cell_host', [])
 
-    .controller('SideBarCtrl', ['$scope', '$http', function ($scope, $http) {
+    .controller('CellHostCtrl', ['$scope', function ($scope) {
         return;
     }])
 
-    .directive('sidebar', function () {
+    .directive('cellHost', function () {
         return {
             restrict: 'E',
-            templateUrl: "sidebar/sidebar.html"
+            replace: true,
+            templateUrl: "table/cell_host/cell_host.html"
         };
     });
