@@ -1,17 +1,17 @@
 <div ng-app="adagios.table" ng-controller="TableCtrl" id="table">
-<table class="table table-bordered table-hover">
+<table class="table table-bordered">
   <thead>
     <tr>
       <th></th>
-      <th ng-repeat="thead in columns">
+      <th ng-repeat="thead in cells">
         {{thead}}
       </th>
     </tr>
   </thead>
   <tr ng-repeat="entry in entries">
     <td><input type="checkbox"></td>
-    <td ng-repeat="cell in columns">
-      {{cell}}
+    <td ng-repeat="cell in cells">
+      <custom-cell type="{{cell}}"></custom-cell>
     </td>
   </tr>
 </table>

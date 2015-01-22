@@ -1,30 +1,27 @@
 'use strict';
 
 angular.module('adagios.table', ['ngRoute',
-                                 'ngSanitize',
-                                 'adagios.live',
-                                 'adagios.table.cell_duration',
-                                 'adagios.table.cell_host',
-                                 'adagios.table.cell_last_check',
-                                 'adagios.table.cell_service_check'
+                                 'adagios.live'
                                  ])
 
-    .controller('TableCtrl', ['$scope', '$sce', 'GetServices', function ($scope, $sce, GetServices) {
-        $scope.cellTagMapping = {
-            duration: $sce.trustAsHtml('<cell-duration></cell-duration>'),
-            host_name: $sce.trustAsHtml('<cell-host></cell-host>'),
-            last_check: $sce.trustAsHtml('<cell-last-check></cell-last-check>'),
-            service_check: $sce.trustAsHtml('<service-check></service-check>')
-        };
-        $scope.columns = ['host_name', 'last_check'];
+    .controller('TableCtrl', ['$scope', 'GetServices', function ($scope, GetServices) {
 
-        console.log(new GetServices($scope.columns)
+        $scope.cellPathMapping = {
+            duration: 'duration',
+            host_name: 'host',
+            last_check: 'last_check',
+            service_check: 'service_check'
+        };
+
+        $scope.cells = ['host_name', 'duration', 'last_check'];
+
+        console.log(new GetServices($scope.cells)
             .success(function (data) {
                 $scope.entries = data;
             }));
     }])
 
-    .directive('servicesTable', function () {
+    .directive('customTable', function () {
         return {
             restrict: 'E',
             replace: true,
@@ -32,10 +29,18 @@ angular.module('adagios.table', ['ngRoute',
         };
     })
 
-    .directive('servicesEntry', function () {
+    .directive('customCell', function () {
         return {
             restrict: 'E',
-            replace: true,
-            templateUrl: 'table/table.html'
+            link: function (scope, element, attrs) {
+                var path = scope.cellPathMapping[attrs.type];
+
+                scope.getTemplateUrl = function () {
+                    if (path) {
+                        return 'table/cell_' + path + '/cell_' + path + '.html';
+                    }
+                };
+            },
+            template: '<div ng-include="getTemplateUrl()"></div>'
         };
     });
