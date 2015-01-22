@@ -1,7 +1,7 @@
-<nav ng-app="adagios.topbar" id="nclass="navbar layout__flexrow" role="navigation" ng-controller="NavBarCtrl">
-  <ul class="navbar__list navbar__list--left">
-    <li class="navbar__item navbar__toggle-sidebar">
-      <button class="navbar__button"
+<nav ng-app="adagios.topbar" id="topbar" class="topbar layout__flexrow" role="navigation" ng-controller="TopBarCtrl">
+  <ul class="topbar__list topbar__list--left">
+    <li class="topbar__item topbar__toggle-sidebar">
+      <button class="topbar__button"
               type="button"
               data-toggle="collapse"
               data-target="#sidebarWrapper"
@@ -11,8 +11,8 @@
         <i class="fa fa-bars"></i>
       </button>
     </li>
-    <li class="navbar__item navbar__notifications">
-      <button class="navbar__button"
+    <li class="topbar__item topbar__notifications">
+      <button class="topbar__button"
               id="notifications"
               type="button"
               data-notifications="{{ notifications }}"
@@ -24,7 +24,7 @@
         <i class="fa fa-bell"></i>
       </button>
 
-      <div class="navbar__panel--fromleft collapse" id="notificationsPanel">
+      <div class="topbar__panel--fromleft collapse" id="notificationsPanel">
         <div class="tabpanel">
           <ul role="tablist">
             <li role="presentation" class="tablist__item active">
@@ -55,10 +55,10 @@
     </li>
   </ul>
 
-  <ul class="navbar__list navbar__list--right">
-    <li class="navbar__item navbar__search">
-      <form class="navbar-form navbar-left" role="search" id="search">
-        <button class="navbar__button" id="search" type="submit">
+  <ul class="topbar__list topbar__list--right">
+    <li class="topbar__item topbar__search">
+      <form class="topbar-form topbar-left" role="search" id="search">
+        <button class="topbar__button" id="search" type="submit">
           <span class="visuallyhidden">Lancer une recherche</span>
           <i class="fa fa-search"></i>
         </button>
@@ -67,8 +67,8 @@
         <input id="searchfield" type="search" class="form-control" placeholder="Search hosts, services, ...">
       </form>
     </li>
-    <li class="navbar__item navbar__settings">
-      <button class="navbar__button"
+    <li class="topbar__item topbar__settings">
+      <button class="topbar__button"
               id="settings"
               data-toggle="collapse"
               data-target="#settingsPanel"
@@ -78,7 +78,7 @@
         <i class="fa fa-sliders fa-rotate-90"></i>
       </button>
 
-      <div class="navbar__panel--fromright collapse" id="settingsPanel">...</div>
+      <div class="topbar__panel--fromright collapse" id="settingsPanel">...</div>
     </li>
   </ul>
 </nav>

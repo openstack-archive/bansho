@@ -1,7 +1,7 @@
 //----------------------------------*\
 // FONTAWESOME
 //----------------------------------*/
-/*  */
+
 // Rewrite Some Fontawesome Variables
 //----------------------------------*/
 $fa-font-path: '../../bower_components/fontawesome/fonts' !default;
@@ -57,14 +57,14 @@ $fa-font-path: '../../bower_components/fontawesome/fonts' !default;
 //----------------------------------*\
 // INTERFACE MODULES
 //----------------------------------*/
-@import '../../navbar/navbar';
+@import '../../topbar/topbar';
 @import '../../sidebar/sidebar';
 @import '../../tactical/tactical';
 
-body:before {
-    display:none;
-    content: '';
-}
+/* body:before { */
+/*     display:none; */
+/*     content: ''; */
+/* } */
 
 
 /* .menu { */
