@@ -1,14 +1,16 @@
+.sidebar-wrapper {
+    //.color-scheme--dark & {background:$_color_dark_delta;}
+}
+
 .nav-side-menu {
   //overflow: auto;
   font-family: verdana;
   font-size: 12px;
   font-weight: 200;
-  /* background-color: #2e353d; */  
   //position: fixed;
   //top: 0px;
-  width: 300px;
   //height: 100%;
-  color: #e1ffff;  
+  color: #e1ffff;
 }
 
 .nav-side-menu .brand {
@@ -28,7 +30,7 @@
   margin: 0px;
   line-height: 35px;
   cursor: pointer;
-  /*    
+  /*
     .collapsed{
        .arrow:before{
                  font-family: FontAwesome;
@@ -144,4 +146,3 @@ body {
   margin: 0px;
   padding: 0px;
 }
-

@@ -3,8 +3,9 @@
 angular.module('adagios.sidebar', [])
 
 .controller('SideBarCtrl', ['$scope', '$http',
-    function($scope, $http) {
-    }])
+                            function($scope, $http) {
+                                
+                            }])
 
 .directive('sidebar', function() {
   return {
@@ -12,5 +13,3 @@ angular.module('adagios.sidebar', [])
     templateUrl: "sidebar/sidebar.html"
   };
 });
-
-
