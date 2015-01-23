@@ -23,6 +23,7 @@ Dev
 To watch for sass files change and auto-refresh css run :
 
 ::
+
     grunt
 
 To compile css files run :
@@ -61,3 +62,27 @@ Launch
 
 
 Now, go on http://127.0.0.1:8000
+
+Contributing
+============
+
+To contribute to this project, please fork the repo. Then do your commits (branch as you will)
+and then open a pull-request to this repo's master branch.
+
+::
+
+    <fork this repo on github>
+    git clone your-repo/adagios-frontend
+    git checkout -b dev-new-feature-xx
+    git commit ...
+    git push origin dev-new-feature-xx
+    <You can now open your pull-request to this repo's master>
+
+Good practices before opening a pull request:
+
+    - Run tests with `npm test`
+    - Lint your .js files with `grunt jslint`
+    - Make sure your directives are prefixed with `adg`
+    - Make sure your controllers are suffixed with `Ctrl`
+    - Resolve merge conflicts locally
+
