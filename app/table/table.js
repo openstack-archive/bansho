@@ -21,7 +21,7 @@ angular.module('adagios.table', ['ngRoute',
             }));
     }])
 
-    .directive('customTable', function () {
+    .directive('adgTable', function () {
         return {
             restrict: 'E',
             replace: true,
@@ -29,7 +29,7 @@ angular.module('adagios.table', ['ngRoute',
         };
     })
 
-    .directive('customCell', function () {
+    .directive('adgCell', function () {
         return {
             restrict: 'E',
             link: function (scope, element, attrs) {

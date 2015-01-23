@@ -7,7 +7,7 @@ angular.module('adagios.tactical.current_health', ['ngRoute', 'ngJustGage' ])
         $scope.services = 94.4;
     }])
 
-    .directive('currenthealth', function () {
+    .directive('adgCurrentHealth', function () {
         return {
             restrict: 'E',
             templateUrl: "tactical/current_health/current_health.html"

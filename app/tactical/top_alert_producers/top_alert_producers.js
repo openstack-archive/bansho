@@ -18,7 +18,7 @@ angular.module('adagios.tactical.top_alert_producers', ['ngRoute' ])
         ];
     }])
 
-    .directive('topalertproducers', function () {
+    .directive('adgTopAlertProducers', function () {
         return {
             restrict: 'E',
             templateUrl: "tactical/top_alert_producers/top_alert_producers.html"

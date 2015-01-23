@@ -14,7 +14,7 @@ angular.module('adagios.tactical.status_overview', ['ngRoute' ])
         };
     }])
 
-    .directive('statusoverview', function () {
+    .directive('adgStatusOverview', function () {
         return {
             restrict: 'E',
             templateUrl: "tactical/status_overview/status_overview.html"

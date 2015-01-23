@@ -31,7 +31,7 @@ describe('Sidebar module', function () {
     describe('Sidebar directive', function () {
 
         it('should send a GET request', function () {
-            var element = $compile('<sidebar></sidebar>')($rootScope);
+            var element = $compile('<adg-sidebar></adg-sidebar>')($rootScope);
             $httpBackend.flush();
 
             expect(element.html()).toBe('<li></li>');

@@ -33,7 +33,7 @@ describe('Status Overview tactical submodule', function () {
     describe('Status overview directive', function () {
 
         it('should insert the number of warnings', function () {
-            var element = $compile('<statusoverview></statusoverview>')($rootScope);
+            var element = $compile('<adg-status-overview></adg-status-overview>')($rootScope);
             $httpBackend.flush();
             $rootScope.problems = 31;
             $rootScope.$digest();
