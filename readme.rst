@@ -32,6 +32,17 @@ To compile css files run :
 
     grunt sass
 
+If you wish to develop in a docker container, here is how to proceed (assuming
+you already have docker installed) :
+
+::
+
+    sed -i "s/localhost/0.0.0.0/" package.json
+    make build
+    make run
+    curl http://localhost/app
+
+
 Coding style
 ===========
 
