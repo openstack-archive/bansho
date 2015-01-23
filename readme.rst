@@ -9,22 +9,27 @@ Installation
 
 ::
 
-    sudo apt-get install npm nodejs-legacy
+    sudo apt-get install npm nodejs-legacy ruby
     git clone https://github.com/titilambert/adagios-frontend.git
     cd adagios-frontend
     npm install
+    npm install grunt-cli
+    gem install sass
 
 
 Dev
 ===
 
-Auto-refresh css files
+To watch for sass files change and auto-refresh css run :
+
+::
+    grunt
+
+To compile css files run :
 
 ::
 
-    npm install grunt-cli
-    grunt
-
+    grunt sass
 
 Coding style
 ===========

@@ -7,7 +7,7 @@ angular.module('adagios.sidebar', [])
                                 
                             }])
 
-    .directive('sidebar', function () {
+    .directive('adgSidebar', function () {
         return {
             restrict: 'E',
             templateUrl: "sidebar/sidebar.html"

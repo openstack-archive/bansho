@@ -6,7 +6,7 @@ angular.module('adagios.topbar', ['adagios.live'])
         $scope.notifications = GetProblems;
     }])
 
-    .directive('topbar', function () {
+    .directive('adgTopbar', function () {
         return {
             restrict: 'E',
             templateUrl: "topbar/topbar.html"
