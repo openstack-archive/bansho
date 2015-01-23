@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html lang="en" ng-app="adagios" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html lang="en" ng-app="adagios" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if lt IE 7]>      <html lang="en" ng-app="adagios" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]--> <!--[if IE 7]>         <html lang="en" ng-app="adagios" class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html lang="en" ng-app="adagios" class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html lang="en" ng-app="adagios" class="no-js"> <!--<![endif]-->
 <head>
@@ -38,10 +37,6 @@
       <script src="tactical/top_alert_producers/top_alert_producers.js"></script>
 
     <script src="table/table.js"></script>
-    <script src="table/cell_duration/cell_duration.js"></script>
-    <script src="table/cell_host/cell_host.js"></script>
-    <script src="table/cell_last_check/cell_last_check.js"></script>
-    <script src="table/cell_service_check/cell_service_check.js"></script>
 	<script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>    
   </head>
 
@@ -51,12 +46,12 @@
         <![endif]-->
     <div class="layout__container">
       <aside class="layout__aside sidebar-wrapper collapse" id="sidebarWrapper">
-        <sidebar></sidebar>
+        <adg-sidebar></adg-sidebar>
       </aside>
       
       <div class="layout__main">
         <div class="layout__row topbar-wrapper">
-          <topbar></topbar>
+          <adg-topbar></adg-topbar>
         </div>
         
         <main ng-view id="page" class="main layout__row" role="main"></main>
