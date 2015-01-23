@@ -1,4 +1,4 @@
-all: build run
+all: build daemon
 
 clean: kill remove
 
