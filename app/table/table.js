@@ -6,19 +6,28 @@ angular.module('adagios.table', ['ngRoute',
 
     .controller('TableCtrl', ['$scope', 'GetServices', function ($scope, GetServices) {
 
-        $scope.cellPathMapping = {
-            duration: 'duration',
-            host_name: 'host',
-            last_check: 'last_check',
-            service_check: 'service_check'
+        var requestFields = [];
+
+        // The module directory name must be cell_ + key
+        $scope.cellToFieldsMap = {
+            host: [ 'host_state', 'host_name' ],
+            service_check: ['state', 'description', 'plugin_output' ],
+            duration: ['last_state_change'],
+            last_check: ['last_check']
         };
 
-        $scope.cells = ['host_name', 'duration', 'last_check'];
+        $scope.cells = ['host', 'service_check', 'duration', 'last_check'];
 
-        console.log(new GetServices($scope.cells)
+        angular.forEach($scope.cells, function (key, value) {
+            angular.forEach($scope.cellToFieldsMap[key], function (_value) {
+                requestFields.push(_value);
+            });
+        });
+
+        new GetServices(requestFields)
             .success(function (data) {
                 $scope.entries = data;
-            }));
+            });
     }])
 
     .directive('adgTable', function () {
@@ -33,12 +42,11 @@ angular.module('adagios.table', ['ngRoute',
         return {
             restrict: 'E',
             link: function (scope, element, attrs) {
-                var path = scope.cellPathMapping[attrs.type];
-
                 scope.getTemplateUrl = function () {
-                    if (path) {
-                        return 'table/cell_' + path + '/cell_' + path + '.html';
+                    if (attrs.type) {
+                        return 'table/cell_' + attrs.type + '/cell_' + attrs.type + '.html';
                     }
+                    console.error('<adg-cell> "type" attribute is undefined');
                 };
             },
             template: '<div ng-include="getTemplateUrl()"></div>'
