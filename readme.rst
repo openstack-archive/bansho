@@ -39,7 +39,7 @@ you already have docker installed) :
 
     sed -i "s/localhost/0.0.0.0/" package.json
     make build
-    make run
+    make daemon
     curl http://localhost/app
 
 
