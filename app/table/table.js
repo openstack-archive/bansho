@@ -6,17 +6,18 @@ angular.module('adagios.table', ['ngRoute',
 
     .controller('TableCtrl', ['$scope', 'GetServices', function ($scope, GetServices) {
 
-        var requestFields = [];
+        var requestFields = [],
+            filters =  { host_name: 'srv', plugin_output: 'SWAP'};
+
+        $scope.cells = ['host', 'service_check', 'duration', 'last_check'];
 
         // The module directory name must be cell_ + key
         $scope.cellToFieldsMap = {
             host: [ 'host_state', 'host_name' ],
-            service_check: ['state', 'description', 'plugin_output' ],
+            service_check: ['state', 'description', 'plugin_output'],
             duration: ['last_state_change'],
             last_check: ['last_check']
         };
-
-        $scope.cells = ['host', 'service_check', 'duration', 'last_check'];
 
         angular.forEach($scope.cells, function (key, value) {
             angular.forEach($scope.cellToFieldsMap[key], function (_value) {
@@ -24,7 +25,7 @@ angular.module('adagios.table', ['ngRoute',
             });
         });
 
-        new GetServices(requestFields)
+        new GetServices(requestFields,)
             .success(function (data) {
                 $scope.entries = data;
             });
