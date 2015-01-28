@@ -4,7 +4,7 @@ angular.module('adagios.table', ['ngRoute',
                                  'adagios.live'
                                  ])
 
-    .controller('TableCtrl', ['$scope', 'GetServices', function ($scope, GetServices) {
+    .controller('TableCtrl', ['$scope', 'getServices', function ($scope, getServices) {
 
         var requestFields = [],
             filters =  { host_name: 'srv', plugin_output: 'SWAP'};
@@ -25,7 +25,7 @@ angular.module('adagios.table', ['ngRoute',
             });
         });
 
-        new GetServices(requestFields, filters)
+        getServices(requestFields, filters)
             .success(function (data) {
                 $scope.entries = data;
             });

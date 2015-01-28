@@ -2,8 +2,8 @@
 
 angular.module('adagios.topbar', ['adagios.live'])
 
-    .controller('TopBarCtrl', ['$scope', '$http', 'GetProblems', function ($scope, $http, GetProblems) {
-        $scope.notifications = GetProblems;
+    .controller('TopBarCtrl', ['$scope', '$http', 'getProblems', function ($scope, $http, getProblems) {
+        $scope.notifications = getProblems;
     }])
 
     .directive('adgTopbar', function () {

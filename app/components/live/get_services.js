@@ -2,21 +2,21 @@
 
 angular.module('adagios.live')
 
-    .constant('searchFields', { host_name: 'host_name__contains',
+    .constant('filterFields', { host_name: 'host_name__contains',
                                 description: 'description__contains',
                                 plugin_output: 'plugin_output__contains',
                                 host_address: 'host_address__contains' })
 
-    .factory('GetServices', ['$http', 'searchFields',
-        function ($http, searchFields, columns, filters) {
+    .factory('getServices', ['$http', 'filterFields',
+        function ($http, filterFields, columns, filters) {
             return function (columns, filters) {
                 var filtersQuery = '';
 
                 function createQuery(filters) {
                     angular.forEach(filters, function (value, key) {
                         console.log(key);
-                        console.log(searchFields[key]);
-                        filtersQuery += '&' + searchFields[key] + '=';
+                        console.log(filterFields[key]);
+                        filtersQuery += '&' + filterFields[key] + '=';
                         filtersQuery += value;
                     });
                 }
@@ -25,7 +25,7 @@ angular.module('adagios.live')
 
                 return $http.get('/rest/status/json/services/?fields=' + columns + filtersQuery)
                     .error(function (data, status, headers, config) {
-                        console.error('GetServices : GET Request failed');
+                        console.error('getServices : GET Request failed');
                     });
             };
         }]);
