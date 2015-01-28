@@ -34,7 +34,6 @@ angular.module('adagios.table', ['ngRoute',
     .directive('adgTable', function () {
         return {
             restrict: 'E',
-            replace: true,
             templateUrl: 'table/table.html'
         };
     })
