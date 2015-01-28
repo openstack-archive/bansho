@@ -14,8 +14,6 @@ angular.module('adagios.live')
 
                 function createQuery(filters) {
                     angular.forEach(filters, function (value, key) {
-                        console.log(key);
-                        console.log(filterFields[key]);
                         filtersQuery += '&' + filterFields[key] + '=';
                         filtersQuery += value;
                     });
