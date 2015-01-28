@@ -25,7 +25,7 @@ angular.module('adagios.table', ['ngRoute',
             });
         });
 
-        new GetServices(requestFields,)
+        new GetServices(requestFields, filters)
             .success(function (data) {
                 $scope.entries = data;
             });

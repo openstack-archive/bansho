@@ -57,7 +57,8 @@ module.exports = function (grunt) {
                     nomen: true,
                     predef: [ // Global variables
                         'angular', 'inject', 'JustGage',
-                        'describe', 'beforeEach', 'it', 'expect'
+                        'describe', 'beforeEach', 'it', 'expect',
+                        'moment'
                     ]
                 },
                 options: {
