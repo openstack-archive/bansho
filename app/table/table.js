@@ -7,7 +7,7 @@ angular.module('adagios.table', ['ngRoute',
     .controller('TableCtrl', ['$scope', 'getServices', function ($scope, getServices) {
 
         var requestFields = [],
-            filters =  { host_name: 'srv', plugin_output: 'SWAP'};
+            filters =  {};
 
         $scope.cells = ['host', 'service_check', 'duration', 'last_check'];
 

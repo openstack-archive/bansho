@@ -2,24 +2,37 @@
 
 angular.module('adagios.live')
 
-    .constant('filterFields', { host_name: 'host_name__contains',
-                                description: 'description__contains',
-                                plugin_output: 'plugin_output__contains',
-                                host_address: 'host_address__contains' })
+    .constant('filterSuffixes', { contains: '__contains',
+                                  has_fields: '__has_field',
+                                  startswith: '__startswith',
+                                  endswith: '__endswith',
+                                  exists: '__exists',
+                                  in: '__in',
+                                  regex: '__regex'
+                                })
 
-    .factory('getServices', ['$http', 'filterFields',
-        function ($http, filterFields, columns, filters) {
+    .factory('getServices', ['$http', 'filterSuffixes',
+        function ($http, filterSuffixes, columns, filters) {
             return function (columns, filters) {
                 var filtersQuery = '';
 
-                function createQuery(filters) {
+                function createFiltersQuery(filters) {
+                    var builtQuery = '';
                     angular.forEach(filters, function (value, key) {
-                        filtersQuery += '&' + filterFields[key] + '=';
-                        filtersQuery += value;
+                        var filterType = filterSuffixes[key];
+                        angular.forEach(value, function (fieldValues, fieldName) {
+                            var filter = fieldName + filterType;
+                            angular.forEach(fieldValues, function (_value) {
+                                var filterQuery = '&' + filter + '=' + _value;
+                                builtQuery += filterQuery;
+                            });
+                        });
                     });
+
+                    return builtQuery;
                 }
 
-                createQuery(filters);
+                filtersQuery = createFiltersQuery(filters);
 
                 return $http.get('/rest/status/json/services/?fields=' + columns + filtersQuery)
                     .error(function (data, status, headers, config) {
