@@ -2,12 +2,41 @@
 
 angular.module('adagios.live')
 
-    .factory('GetServices', ['$http', function ($http, columns) {
+    .constant('filterSuffixes', { contains: '__contains',
+                                  has_fields: '__has_field',
+                                  startswith: '__startswith',
+                                  endswith: '__endswith',
+                                  exists: '__exists',
+                                  in: '__in',
+                                  regex: '__regex'
+                                })
 
-        return function (columns) {
-            return $http.get('/rest/status/json/services/?fields=' + columns)
-                .error(function (data, status, headers, config) {
-                    console.error('GetServices : GET Request failed');
-                });
-        };
-    }]);
+    .factory('getServices', ['$http', 'filterSuffixes',
+        function ($http, filterSuffixes, columns, filters) {
+            return function (columns, filters) {
+                var filtersQuery = '';
+
+                function createFiltersQuery(filters) {
+                    var builtQuery = '';
+                    angular.forEach(filters, function (value, key) {
+                        var filterType = filterSuffixes[key];
+                        angular.forEach(value, function (fieldValues, fieldName) {
+                            var filter = fieldName + filterType;
+                            angular.forEach(fieldValues, function (_value) {
+                                var filterQuery = '&' + filter + '=' + _value;
+                                builtQuery += filterQuery;
+                            });
+                        });
+                    });
+
+                    return builtQuery;
+                }
+
+                filtersQuery = createFiltersQuery(filters);
+
+                return $http.get('/rest/status/json/services/?fields=' + columns + filtersQuery)
+                    .error(function (data, status, headers, config) {
+                        console.error('getServices : GET Request failed');
+                    });
+            };
+        }]);

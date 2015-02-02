@@ -3,9 +3,8 @@
 angular.module('adagios.sidebar', [])
 
     .controller('SideBarCtrl', ['$scope', '$http', function ($scope, $http) {
-        return;
-                                
-                            }])
+        angular.noop();
+    }])
 
     .directive('adgSidebar', function () {
         return {

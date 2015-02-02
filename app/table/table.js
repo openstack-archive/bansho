@@ -4,19 +4,20 @@ angular.module('adagios.table', ['ngRoute',
                                  'adagios.live'
                                  ])
 
-    .controller('TableCtrl', ['$scope', 'GetServices', function ($scope, GetServices) {
+    .controller('TableCtrl', ['$scope', 'getServices', function ($scope, getServices) {
 
-        var requestFields = [];
+        var requestFields = [],
+            filters =  {};
+
+        $scope.cells = ['host', 'service_check', 'duration', 'last_check'];
 
         // The module directory name must be cell_ + key
         $scope.cellToFieldsMap = {
             host: [ 'host_state', 'host_name' ],
-            service_check: ['state', 'description', 'plugin_output' ],
+            service_check: ['state', 'description', 'plugin_output'],
             duration: ['last_state_change'],
             last_check: ['last_check']
         };
-
-        $scope.cells = ['host', 'service_check', 'duration', 'last_check'];
 
         angular.forEach($scope.cells, function (key, value) {
             angular.forEach($scope.cellToFieldsMap[key], function (_value) {
@@ -24,7 +25,7 @@ angular.module('adagios.table', ['ngRoute',
             });
         });
 
-        new GetServices(requestFields)
+        getServices(requestFields, filters)
             .success(function (data) {
                 $scope.entries = data;
             });
@@ -33,7 +34,6 @@ angular.module('adagios.table', ['ngRoute',
     .directive('adgTable', function () {
         return {
             restrict: 'E',
-            replace: true,
             templateUrl: 'table/table.html'
         };
     })
