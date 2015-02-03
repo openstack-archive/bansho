@@ -33,19 +33,28 @@ angular.module('adagios.table', ['ngRoute',
             });
     }])
 
-    .directive('adgTable', function () {
+    .directive('adgTable', ['tableConfig', function (tableConfig) {
         return {
             restrict: 'E',
-            templateUrl: 'table/table.html'
+            link: function (scope, element, attrs) {
+                scope.generateTable = function () {
+                    if (!!attrs.cells) {
+                        tableConfig.dashboardCells = attrs.cells.split(',');
+                        return 'table/table.html';
+                    }
+                    console.log('<adg-table> "cells" attribute is undefined');
+                };
+            },
+            template: '<div ng-include="generateTable()"></div>'
         };
-    })
+    }])
 
     .directive('adgCell', function () {
         return {
             restrict: 'E',
             link: function (scope, element, attrs) {
                 scope.getTemplateUrl = function () {
-                    if (attrs.type) {
+                    if (!!attrs.type) {
                         return 'table/cell_' + attrs.type + '/cell_' + attrs.type + '.html';
                     }
                     console.error('<adg-cell> "type" attribute is undefined');
@@ -53,8 +62,4 @@ angular.module('adagios.table', ['ngRoute',
             },
             template: '<div ng-include="getTemplateUrl()"></div>'
         };
-    })
-
-    .run(['readConfig', 'tableConfig', function (readConfig, tableConfig) {
-        tableConfig.dashboardCells = readConfig.dashboardCells;
-    }]);
+    });
