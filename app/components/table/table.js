@@ -1,28 +1,24 @@
 'use strict';
 
-angular.module('adagios.table', ['ngRoute',
-                                 'adagios.live'
+angular.module('adagios.table', ['adagios.live',
+                                 'adagios.table.cell_host',
+                                 'adagios.table.cell_duration',
+                                 'adagios.table.cell_service_check',
+                                 'adagios.table.cell_last_check'
                                  ])
 
-    .value('tableConfig', {})
+    .value('tableConfig', {cellToFieldsMap: {}})
 
     .controller('TableCtrl', ['$scope', 'getServices', 'readConfig', 'tableConfig', function ($scope, getServices, readConfig, tableConfig) {
 
         var requestFields = [],
             filters =  {};
 
-        // The module directory name must be cell_ + key
-        $scope.cellToFieldsMap = {
-            host: [ 'host_state', 'host_name' ],
-            service_check: ['state', 'description', 'plugin_output'],
-            duration: ['last_state_change'],
-            last_check: ['last_check']
-        };
-
         $scope.cells = tableConfig.dashboardCells;
+        console.log(tableConfig);
 
         angular.forEach($scope.cells, function (key, value) {
-            angular.forEach($scope.cellToFieldsMap[key], function (_value) {
+            angular.forEach(tableConfig.cellToFieldsMap[key], function (_value) {
                 requestFields.push(_value);
             });
         });
