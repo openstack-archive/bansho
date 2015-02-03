@@ -56,6 +56,7 @@ module.exports = function (grunt) {
                     unparam: true, // TEMPORARY: Ignore unused params
                     nomen: true,
                     predef: [ // Global variables
+                        'document', '$', '$get',
                         'angular', 'inject', 'JustGage',
                         'describe', 'beforeEach', 'it', 'expect',
                         'moment'
