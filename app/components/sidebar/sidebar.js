@@ -9,6 +9,6 @@ angular.module('adagios.sidebar', [])
     .directive('adgSidebar', function () {
         return {
             restrict: 'E',
-            templateUrl: "sidebar/sidebar.html"
+            templateUrl: "components/sidebar/sidebar.html"
         };
     });

@@ -14,7 +14,7 @@ describe('Status Overview tactical submodule', function () {
         $controller = _$controller_;
         $httpBackend = _$httpBackend_;
 
-        $httpBackend.expectGET('tactical/status_overview/status_overview.html')
+        $httpBackend.expectGET('components/tactical/status_overview/status_overview.html')
             .respond('<td>{{ problems }}</td>');
     }));
 

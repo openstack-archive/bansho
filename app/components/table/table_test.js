@@ -21,7 +21,7 @@ describe('In Table module', function () {
             angular.forEach(cells, function (cell) {
                 var elem = angular.element('<adg-cell type="' + cell + '"></adg-cell>');
                 $compile(elem)($rootScope);
-                $httpBackend.expectGET('table/cell_' + cell + '/cell_' + cell + '.html').respond('');
+                $httpBackend.expectGET('components/table/cell_' + cell + '/cell_' + cell + '.html').respond('');
                 $httpBackend.flush();
             });
         });
@@ -30,9 +30,9 @@ describe('In Table module', function () {
     describe('adgTable directive', function () {
 
         it('should request table/table.html template', function () {
-            var elem = angular.element('<adg-table></adg-table>');
+            var elem = angular.element('<adg-table cells="host,service_check,duration,last_check"></adg-table>');
             $compile(elem)($rootScope);
-            $httpBackend.expectGET('table/table.html').respond('');
+            $httpBackend.expectGET('components/table/table.html').respond('');
             $httpBackend.flush();
         });
     });

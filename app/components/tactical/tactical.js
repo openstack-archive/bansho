@@ -9,7 +9,7 @@ angular.module('adagios.tactical', ['ngRoute',
 
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/tactical', {
-            templateUrl: 'tactical/tactical.html',
+            templateUrl: 'components/tactical/tactical.html',
             controller: 'TacticalCtrl'
         });
     }])

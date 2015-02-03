@@ -14,7 +14,7 @@ describe('Top Alert Producer tactical submodule', function () {
         $controller = _$controller_;
         $httpBackend = _$httpBackend_;
 
-        $httpBackend.expectGET('tactical/top_alert_producers/top_alert_producers.html')
+        $httpBackend.expectGET('components/tactical/top_alert_producers/top_alert_producers.html')
             .respond('<td>{{ problems }}</td>');
     }));
 

@@ -40,7 +40,7 @@ angular.module('adagios.table', ['ngRoute',
                 scope.generateTable = function () {
                     if (!!attrs.cells) {
                         tableConfig.dashboardCells = attrs.cells.split(',');
-                        return 'table/table.html';
+                        return 'components/table/table.html';
                     }
                     console.log('<adg-table> "cells" attribute is undefined');
                 };
@@ -55,7 +55,7 @@ angular.module('adagios.table', ['ngRoute',
             link: function (scope, element, attrs) {
                 scope.getTemplateUrl = function () {
                     if (!!attrs.type) {
-                        return 'table/cell_' + attrs.type + '/cell_' + attrs.type + '.html';
+                        return 'components/table/cell_' + attrs.type + '/cell_' + attrs.type + '.html';
                     }
                     console.error('<adg-cell> "type" attribute is undefined');
                 };

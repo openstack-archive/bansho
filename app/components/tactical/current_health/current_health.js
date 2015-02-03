@@ -10,6 +10,6 @@ angular.module('adagios.tactical.current_health', ['ngRoute', 'ngJustGage' ])
     .directive('adgCurrentHealth', function () {
         return {
             restrict: 'E',
-            templateUrl: "tactical/current_health/current_health.html"
+            templateUrl: 'components/tactical/current_health/current_health.html'
         };
     });

@@ -9,6 +9,6 @@ angular.module('adagios.topbar', ['adagios.live'])
     .directive('adgTopbar', function () {
         return {
             restrict: 'E',
-            templateUrl: "topbar/topbar.html"
+            templateUrl: 'components/topbar/topbar.html'
         };
     });

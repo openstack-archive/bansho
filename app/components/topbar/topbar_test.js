@@ -14,7 +14,7 @@ describe('Topbar module', function () {
         $controller = _$controller_;
         $httpBackend = _$httpBackend_;
 
-        $httpBackend.expectGET('topbar/topbar.html').respond('<a>{{ notifications }}</a>');
+        $httpBackend.expectGET('components/topbar/topbar.html').respond('<a>{{ notifications }}</a>');
     }));
 
     describe('TopBarCtrl', function () {

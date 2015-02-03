@@ -14,7 +14,7 @@ describe('Sidebar module', function () {
         $controller = _$controller_;
         $httpBackend = _$httpBackend_;
 
-        $httpBackend.expectGET('sidebar/sidebar.html').respond('<li></li>');
+        $httpBackend.expectGET('components/sidebar/sidebar.html').respond('<li></li>');
     }));
 
     describe('SideBarCtrl', function () {

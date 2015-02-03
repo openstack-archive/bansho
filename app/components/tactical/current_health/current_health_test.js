@@ -14,7 +14,7 @@ describe('Current Health tactical submodule', function () {
         $controller = _$controller_;
         $httpBackend = _$httpBackend_;
 
-        $httpBackend.expectGET('tactical/current_health/current_health.html')
+        $httpBackend.expectGET('components/tactical/current_health/current_health.html')
             .respond('<th>Current Health</th>');
     }));
 
