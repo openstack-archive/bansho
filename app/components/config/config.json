@@ -1,0 +1,3 @@
+{
+	"cells":["host", "service_check", "duration", "last_check"]
+}

@@ -2,7 +2,7 @@
 <!--[if IE 7]>         <html lang="en" ng-app="adagios" class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if lt IE 7]>      <html lang="en" ng-app="adagios" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]--> <!--[if IE 7]>         <html lang="en" ng-app="adagios" class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html lang="en" ng-app="adagios" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en" ng-app="adagios" class="no-js"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,6 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="assets/css/app.css">
     <meta name="description" content="">
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
     
     <!-- Angular -->
     <script src="bower_components/angular/angular.js"></script>
@@ -17,6 +19,7 @@
     
     <!-- Application -->
     <script src="app.js"></script>
+    <script src="components/config/config.js"></script>
      
     <!-- COMPONENTS -->
     <script src="components/live/live.js"></script>
@@ -60,7 +63,6 @@
         <footer class="footer layout__row" role="contentinfo">...</footer>
       </div>
       
-      <script src="bower_components/jquery/dist/jquery.min.js"></script>
       <script src="bower_components/raphael/raphael-min.js"></script>
       <script src="bower_components/justgage-toorshia/justgage.js"></script>    
       <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
