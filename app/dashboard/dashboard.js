@@ -7,6 +7,8 @@ angular.module('adagios.tactical', ['ngRoute',
                                     'adagios.table'
                                     ])
 
+    .value('dashboardConfig', {})
+
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/dashboard', {
             templateUrl: 'dashboard/dashboard.html',
@@ -14,6 +16,10 @@ angular.module('adagios.tactical', ['ngRoute',
         });
     }])
 
-    .controller('DashboardCtrl', ['$scope', '$http', function ($scope, $http) {
-        return;
+    .controller('DashboardCtrl', ['$scope', 'dashboardConfig', function ($scope, dashboardConfig) {
+        $scope.dashboardCells = dashboardConfig.cells.join();
+    }])
+
+    .run(['readConfig', 'dashboardConfig', function (readConfig, dashboardConfig) {
+        dashboardConfig.cells = readConfig.dashboardCells;
     }]);
