@@ -1,21 +1,27 @@
 'use strict';
 
 
-function AdagiosConfig(dashboardCells) {
-    this.dashboardCells = dashboardCells;
+function AdagiosConfig(dashboardConfig, hostsConfig) {
+    this.dashboardConfig = dashboardConfig;
+    this.hostsConfig = hostsConfig;
 }
 
 angular.module('adagios.config', [])
 
     .provider('readConfig', function ReadConfigProvider() {
 
-        var dashboardCells = [];
+        var dashboardConfig = {},
+            hostsConfig = {};
 
-        this.setDashboardCells = function (value) {
-            dashboardCells = value;
+        this.setDashboardConfig = function (value) {
+            dashboardConfig = value;
+        };
+
+        this.setHostsConfig = function (value) {
+            hostsConfig = value;
         };
 
         this.$get = [function getConfigFactory() {
-            return new AdagiosConfig(dashboardCells);
+            return new AdagiosConfig(dashboardConfig, hostsConfig);
         }];
     });

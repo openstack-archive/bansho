@@ -18,8 +18,10 @@ angular.module('adagios.tactical', ['ngRoute',
 
     .controller('DashboardCtrl', ['$scope', 'dashboardConfig', function ($scope, dashboardConfig) {
         $scope.dashboardCells = dashboardConfig.cells.join();
+        $scope.dashboardApiName = dashboardConfig.apiName;
     }])
 
     .run(['readConfig', 'dashboardConfig', function (readConfig, dashboardConfig) {
-        dashboardConfig.cells = readConfig.dashboardCells;
+        dashboardConfig.cells = readConfig.dashboardConfig.cells;
+        dashboardConfig.apiName = readConfig.dashboardConfig.apiName;
     }]);

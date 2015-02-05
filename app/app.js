@@ -5,7 +5,7 @@ angular.element(document).ready(function () {
     $.get('components/config/config.json', function (data) {
 
         angular.module('adagios.config').config(['readConfigProvider', function (readConfigProvider) {
-            readConfigProvider.setDashboardCells(data.cells);
+            readConfigProvider.setDashboardConfig(data.dashboardConfig);
         }]);
 
         angular.bootstrap(document, ['adagios']);

@@ -1,3 +1,6 @@
 {
-	"cells":["host", "service_check", "duration", "last_check"]
+    "dashboardConfig": {
+        "cells": ["host", "service_check", "duration", "last_check"],
+        "apiName": "services"
+    }
 }

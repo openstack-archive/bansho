@@ -7,15 +7,16 @@ angular.module('adagios.table', ['adagios.live',
                                  'adagios.table.cell_last_check'
                                  ])
 
-    .value('tableConfig', {cellToFieldsMap: {}})
+    .value('tableConfig', { cells: [],
+                            apiName: '',
+                            cellToFieldsMap: {} })
 
     .controller('TableCtrl', ['$scope', 'getServices', 'readConfig', 'tableConfig', function ($scope, getServices, readConfig, tableConfig) {
 
         var requestFields = [],
             filters =  {};
 
-        $scope.cells = tableConfig.dashboardCells;
-        console.log(tableConfig);
+        $scope.cells = tableConfig.cells;
 
         angular.forEach($scope.cells, function (key, value) {
             angular.forEach(tableConfig.cellToFieldsMap[key], function (_value) {
@@ -23,7 +24,7 @@ angular.module('adagios.table', ['adagios.live',
             });
         });
 
-        getServices(requestFields, filters)
+        getServices(requestFields, filters, tableConfig.apiName)
             .success(function (data) {
                 $scope.entries = data;
             });
@@ -34,11 +35,12 @@ angular.module('adagios.table', ['adagios.live',
             restrict: 'E',
             link: function (scope, element, attrs) {
                 scope.generateTable = function () {
-                    if (!!attrs.cells) {
-                        tableConfig.dashboardCells = attrs.cells.split(',');
+                    if (!!attrs.cells && !!attrs.apiName) {
+                        tableConfig.cells = attrs.cells.split(',');
+                        tableConfig.apiName = attrs.apiName;
                         return 'components/table/table.html';
                     }
-                    console.log('<adg-table> "cells" attribute is undefined');
+                    console.log('<adg-table> "cells" and "api-name" attributes must be defined');
                 };
             },
             template: '<div ng-include="generateTable()"></div>'

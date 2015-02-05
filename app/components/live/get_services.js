@@ -12,8 +12,8 @@ angular.module('adagios.live')
                                 })
 
     .factory('getServices', ['$http', 'filterSuffixes',
-        function ($http, filterSuffixes, columns, filters) {
-            return function (columns, filters) {
+        function ($http, filterSuffixes, columns, filters, apiName) {
+            return function (columns, filters, apiName) {
                 var filtersQuery = '';
 
                 function createFiltersQuery(filters) {
@@ -34,7 +34,7 @@ angular.module('adagios.live')
 
                 filtersQuery = createFiltersQuery(filters);
 
-                return $http.get('/rest/status/json/services/?fields=' + columns + filtersQuery)
+                return $http.get('/rest/status/json/' + apiName + '/?fields=' + columns + filtersQuery)
                     .error(function (data, status, headers, config) {
                         console.error('getServices : GET Request failed');
                     });
