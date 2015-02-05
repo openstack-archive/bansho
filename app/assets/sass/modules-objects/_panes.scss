@@ -1,0 +1,39 @@
+.panes {
+    background:aquamarine;
+    display:table;
+    width:100%;
+
+    .color-scheme--dark & {
+        background:$_color_dark_gamma;
+    }
+
+    .color-scheme--light & {
+        background:$_color_light_gamma;
+    }
+}
+
+.panes__pane {
+    //background:blue;
+    border-style:solid;
+    border-width:0 0 0 1px;
+    display:table-cell;
+    padding:$_space_narrow;
+
+    &:first-child {border-left:0;}
+
+    @include large-xlarge-screen {
+        padding:$_space;
+    }
+
+    .color-scheme--dark & {
+        border-color:$_color_dark_beta;
+    }
+
+    .color-scheme--light & {
+        border-color:$_color_light_beta;
+    }
+
+    .panes--2 & {width:50%;}
+
+    .panes--3 & {width:33.333333333%;}
+}

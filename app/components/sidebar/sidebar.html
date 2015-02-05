@@ -1,56 +1,59 @@
-<div nv-app="adagios.sidebar" class="nav-side-menu" ng-controller="SideBarCtrl">
-  <div class="brand">ADAGIOS</div>
-  <div class="menu-list">
-    
-    <ul id="menu-content" class="menu-content out">      
-      <li class="menu-title">
-        <a href="#"> Shortcut <span class="arrow"></span></a>
-        <ul class="sub-menu" id="shortcut">
-          <li><a href="#/dashboard">Dashboard</a></li>
-          <li><a href="#/hosts">Hosts</a></li>
-          <li><a href="#/services">Services</a></li>
-          <li><a href="#">Networks parents</a></li>
+<div ng-app="adagios.sidebar" class="sidebar" ng-controller="SideBarCtrl">
+  <button class="sidebar__close">
+    <span class="visuallyhidden">Close the sidebar</span>
+    <i class="fa fa-times"></i>
+  </button>
+ 
+  <header class="sidebar__header">
+    <h1 class="sidebar__appname">ADAGIOS</h1>
+    <time class="sidebar__date" datetime="2014-11-24 16:04">24 nov. 16:04</time>
+  </header>
+  
+  <nav class="sidebar__nav" role="navigation">
+    <ul class="sidebar__list" id="sidebarList">
+      <li class="sidebar__item">
+        <span class="sidebar__category">Shortcut</span>
+        
+        <ul class="sidebar__sublist" id="shortcutList">
+          <li class="sidebar__subitem"><a class="state--current" href="#/tactical">Dashboard</a></li>
+          <li class="sidebar__subitem"><a href="#/hosts">Hosts</a></li>
+          <li class="sidebar__subitem"><a href="#">Services</a></li>
+          <li class="sidebar__subitem"><a href="#">Networks parents</a></li>
         </ul>
-      </li>      
-      
-      
-      <li class="menu-title">
-        <a href="#"> Reports <span class="arrow"></span></a>
       </li>
-      <ul class="sub-menu" id="reports">
-        <li><a href="#">State History</a></li>
-        <li><a href="#">Log</a></li>
-        <li><a href="#">Comments</a></li>
-        <li><a href="#">Downtimes</a></li>
-      </ul>
-      
-      
-      <li class="menu-title">
-        <a href="#"> Groups <span class="arrow"></span></a>
+      <li class="sidebar__item">
+        <span class="sidebar__category">Reports</span>
+        
+        <ul class="sidebar__sublist" id="reportsList">
+          <li class="sidebar__subitem"><a href="#">State History</a></li>
+          <li class="sidebar__subitem"><a href="#">Log</a></li>
+          <li class="sidebar__subitem"><a href="#">Comments</a></li>
+          <li class="sidebar__subitem"><a href="#">Downtimes</a></li>
+        </ul>
       </li>
-      <ul class="sub-menu" id="groups">
-        <li><a href="#">Hostgroups</a></li>
-        <li><a href="#">Servicegroups</a></li>
-        <li><a href="#">Contactgroups</a></li>
-      </ul>
-      
-      
-      <li class="menu-title">
-        <a href="#"> Other <span class="arrow"></span></a>
+      <li class="sidebar__item">
+        <span class="sidebar__category">Groups</span>
+        
+        <ul class="sidebar__sublist" id="groupsList">
+          <li class="sidebar__subitem"><a href="#">Hostgroups</a></li>
+          <li class="sidebar__subitem"><a href="#">Servicegroups</a></li>
+          <li class="sidebar__subitem"><a href="#">Contactgroups</a></li>
+        </ul>
       </li>
-      <ul class="sub-menu" id="other">
-        <li><a href="#">Grafana</a></li>
-        <li><a href="#">Nagvis</a></li>
-      </ul>
-      
-      
-      
-      <li>
-        <a href="#">
-          <i class="fa fa-user fa-lg"></i> Profile
-        </a>
-      </li>
-      
+      <li class="sidebar__item">
+        <span class="sidebar__category">Other</span>
+        
+        <ul class="sidebar__sublist" id="otherList">
+          <li class="sidebar__subitem"><a href="#">Grafana</a></li>
+          <li class="sidebar__subitem"><a href="#">Nagvis</a></li>
+        </ul>
+      </li>            
     </ul>
-  </div>
+  </nav>
+
+  <footer class="sidebar__profile">
+    <a class="sidebar__profile__toggle" href="#profile">
+      <span class="sidebar__profile__name">Jean-Michel <br>Vasquez-Peruz</span>
+    </a>
+  </footer>
 </div>

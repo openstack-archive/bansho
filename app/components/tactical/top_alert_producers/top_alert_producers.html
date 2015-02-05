@@ -1,22 +1,14 @@
 <table ng-app="adagios.tactical.top_alert_producers" ng-controller="TacticalTopAlertProducers" class="table">
   <thead>
     <tr>
-      <th>
-        Top Alert Producers
-      </th>
-      <th>
-          <i class="fa fa-bell"></i>
-      </th>
+      <th>Top alert producers</th>
+      <th><i class="ico-bell-alt"></i></th>
     </tr>
   </thead>
   <tbody>
     <tr ng-repeat="host in hosts">
-      <td>
-          {{ host.host_name }}
-      </td>
-      <td>
-          {{ host.problems }}
-      </td>
+      <th>{{ host.host_name }}</th>
+      <td class="state--error">{{ host.problems }}</td>
     </tr>  
   </tbody>
 </table>

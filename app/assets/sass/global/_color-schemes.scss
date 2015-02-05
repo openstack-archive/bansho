@@ -5,29 +5,46 @@
 // Light Scheme
 //----------------------------------*/
 .color-scheme--light {
-
-    %colorLink {
-        color:$_color_light_epsilon;
-
-        &:hover {color:orange;}
-    }
-
-    %colorBorderThin {border-color:$_color_light_gamma;}
-
-    %colorBkgTopbarPanel {background:$_color_light_gamma;}
+    // Light scheme is not ready for now.
 }
 
 // Dark Scheme
 //----------------------------------*/
-.color-scheme--dark {
-
-    %colorLink {
-        color:$_color_dark_epsilon;
-
-        &:hover {color:white;}
+.color-scheme--dark {    
+    %colorTxtCurrent {
+        color:$_color_dark_delta;
     }
 
-    %colorBorderThin {border-color:$_color_dark_gamma;}
+    %colorHightContrast {
+        color:$_color_omega;
+    }
 
-    %colorBkgTopbarPanel {background:$_color_dark_gamma;}
+    // For panel and the sidebar
+    %colorBkgPanel {
+        background:$_color_dark_alpha;
+    }
+
+    %colorLink {
+        color:$_color_dark_delta;
+
+        &:hover {
+            color:white;
+        }
+    }
+
+    %colorBorderThin {
+        border-color:$_color_dark_alpha;
+    }
+
+    %colorBkgTopbar {
+        background:$_color_dark_beta;
+    }
+    
+    %colorBkgTopbarPanel {
+        background:$_color_dark_alpha;
+    }
+
+    %colorBkgTopbarButton {
+        background:$_color_dark_beta;        
+    }
 }

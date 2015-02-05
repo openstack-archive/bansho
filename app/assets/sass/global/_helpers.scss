@@ -110,11 +110,14 @@ body:after {
 }
 
 //----------------------------------*\
-// JAVASCRIPT CLASSES
+// STATES CLASSES
 //----------------------------------*/
-
-.js-is--hidden {display:none;}
-.js-is--visible {display:block;}
-//.js-is--current {}
-//.js-is--open {}
-//.js-is--close {}
+.state--hidden {display:none;}
+.state--visible {display:block;}
+/* .state--current {} */
+/* .state--open {} */
+/* .state--close {} */
+/* .state--error {} */
+/*     .state--warning {} */
+/*     .state--ok {} */
+/* etc. */

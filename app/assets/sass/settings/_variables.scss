@@ -1,37 +1,37 @@
 //----------------------------------*\
-// VARIABLES
+// DEFAULT VARIABLES
 //----------------------------------*/
 
 // Image Path
 //----------------------------------*/
 $_img_path: "../images/" !default;
 
-// Color Schemes
+// Colors
 //----------------------------------*/
 // Light scheme
 $_color_light_alpha: '' !default;
 $_color_light_beta: '' !default;
 $_color_light_gamma: '' !default;
-$_color_light_delta: '' !default;
-$_color_light_epsilon: red !default;
+$_color_light_delta: red !default;
 
 // Dark scheme
-$_color_dark_alpha: #353D48 !default;
-$_color_dark_beta: #49515C !default;
-$_color_dark_gamma: #23282E !default;
-$_color_dark_delta: #2e353d !default;
-$_color_dark_epsilon: #aeb5bf !default;
+$_color_dark_alpha: #252C35 !default;
+$_color_dark_beta: #353D48 !default;
+$_color_dark_gamma: #49515C !default;
+$_color_dark_delta: #A2AAB4 !default;
 
-// Typography
-$_base_font_size: 14 !default;
-$_base_line_height: 18 !default;
+// Black and White
+$_color_alpha: #000 !default;
+$_color_omega: #FFF !default;
+
+// Colors for states
+$_color_error: #E84C3D !default;
+$_color_warning: #F9A13B !default;
+$_color_ok: #81A854 !default;
 
 // Fonts Family
 //----------------------------------*/
-$_font_family_alpha: sans-serif !default;
-$_font_family_beta: sans-serif !default;
-$_font_family_gamma: serif !default;
-
+$_font_family_alpha: 'Roboto', sans-serif !default; // fonts.googleapis.com/css?family=Roboto
 
 // Media Queries Breakpoints
 //----------------------------------*/
@@ -40,3 +40,13 @@ $_screen_small: 480 !default;
 $_screen_medium: 768 !default;
 $_screen_large: 992 !default;
 $_screen_xlarge: 1200 !default;
+
+// Typography
+//----------------------------------*/
+$_base_font_size: 14 !default;
+$_base_line_height: 18 !default;
+
+// X Y Rhythm
+//----------------------------------*/
+$_space:30px !default;
+$_space_narrow:15px !default;

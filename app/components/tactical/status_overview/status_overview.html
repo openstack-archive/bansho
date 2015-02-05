@@ -1,39 +1,24 @@
-<table ng-app="adagios.tactical.status_overview" ng-controller="TacticalStatusOverViewCtrl"  class="table">
+<table ng-app="adagios.tactical.status_overview" ng-controller="TacticalStatusOverViewCtrl" class="table">
   <thead>
     <tr>
+      <th>Status overview</th>
+      <th>#</th>
       <th>
-        Status overview
-      </th>
-      <th>
-          #
-      </th>
-      <th>
-          <i class="fa fa-bell"></i>
+        <span class="visuallyhidden">Notifications number</span>
+        <i class="ico-bell-alt"></i>
       </th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>
-          HOSTS
-      </td>
-      <td>
-          {{ hosts.count }}
-      </td>
-      <td class="alerts">
-          {{ hosts.problems }}
-      </td>
+      <th>Hosts</th>
+      <td>{{ hosts.count }}</td>
+      <td class="state--error alerts">{{ hosts.problems }}</td>
     </tr>  
     <tr>
-      <td>
-          SERVICES
-      </td>
-      <td>
-          {{ services.count }}
-      </td>
-      <td class="alerts">
-          {{ services.problems }}
-      </td>
+      <th>Services</th>
+      <td>{{ services.count }}</td>
+      <td class="state--error alerts">{{ services.problems }}</td>
     </tr>
   </tbody>
 </table>

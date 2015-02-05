@@ -1,180 +1,221 @@
+//----------------------------------*\
+// TOPBAR MODULE
+//----------------------------------*/
 .topbar-wrapper {
-    border-bottom:1px solid;
+    @extend %colorBkgTopbar;
     @extend %colorBorderThin;
+    border-bottom:1px solid;
 }
 
-.topbar {
-    a {@extend %colorLink;}
+.topbar a {@extend %colorLink;}
 
-    &.layout__flexrow {
-        .flexbox & {}
-    }
-}
-
-.topbar__list {
-    display:block;
-
-    .flexbox .layout__flexrow & {
-        flex:1;
-    }
-
-    &.topbar__list--left {text-align:left;}
-    &.topbar__list--right {text-align:right;}
-}
+.topbar__list {display:block;}
 
 .topbar__item {
     @extend %colorBorderThin;
-    border-right:1px solid;
+    border:0 solid;
     display:inline-block;
-    float:left;
     position:relative;
 
-    .topbar__list--right &.topbar__search {
-        border-left:1px solid;
-        @extend %colorBorderThin;
+    .topbar__list--left & {
+        border-right-width:1px;
+        float:left;
     }
-
-    .topbar__button {
-        @extend %button-reset;
-        @extend %colorLink;
-        padding:32px;
+    .topbar__list--right & {
+        border-left-width:1px;
+        float:right;
     }
 
     %topbar__panel {
-        @extend %colorBkgTopbarPanel;
-        max-width:485px;
-        min-width:320px;
+        @extend %colorBkgPanel;
+        width:320px;
         position:absolute;
-        top:100%;        
+        top:100%;
+        z-index:999999;
     }
 
     .topbar__panel--fromleft {
         @extend %topbar__panel;
-        left:-1px;
+        left:-81px;
+
+        @include medium-and-up-screen {
+            left:-1px;
+            width:485px;
+        }
     }
 
     .topbar__panel--fromright {
         @extend %topbar__panel;
-        right:-1px;
+        right:0;
+
+        @include medium-and-up-screen {
+            width:190px;
+        }
+    }
+
+    .topbar__panel__content {padding:$_space $_space_narrow 0;}
+}
+
+.topbar__button {
+    @extend %button-reset;
+    @extend %colorBkgTopbarButton;
+    @extend %colorLink;
+    height:80px;
+    position:relative;
+    width:79px;
+
+    &[aria-expanded="true"] {color:$_color_omega;}
+
+    [class^="ico-"],
+    [class*=" ico-"] {
+        bottom:30px;
+        display:block;
+        font-size:em(20, $_base_font_size);
+        height:1em;
+        left:0;
+        line-height:1em;
+        margin:0 auto;
+        position:absolute;
+        right:0;
+        text-align:center;
+        top:auto;
+        width:1em;
+
+        &:before {margin:0;}
     }
 }
 
 .topbar__toggle-sidebar {
 
     .topbar__button {
-        position:relative;
+        &[aria-expanded="true"],
+        &:hover {
+            .color-scheme--dark & {
+                background:$_color_dark_alpha;
+            }
+
+            .color-scheme--light & {
+                background:$_color_light_alpha;
+            }
+        }
+    }
+
+    .ico-menu {
 
         &:after {
-            //bottom:0;
+            @extend %ico;
+            bottom:0;
             display:inline-block;
-            font:normal 10px FontAwesome;
+            font-size:10px;
             margin:auto 0;
             position:absolute;
-            //top:0;
+            top:0;
         }
+    }
 
-        &[aria-expanded="false"]:after {
-            content:'\f0da';
-            left:auto;
-            right:8px;
-        }
+    [aria-expanded="false"] .ico-menu:after {
+        content:'\e808';
+        right:-7px;
+    }
 
-        &[aria-expanded="true"]:after {
-            content:'\f0d9';
-            left:8px;
-            right:auto;
-        }
+    [aria-expanded="true"] .ico-menu:after {
+        content:'\e807';
+        left:-7px;
     }
 }
 
 .topbar__notifications {
     .topbar__button {
-        position:relative;
+        &[aria-expanded="true"],
+        &:hover {
+            .color-scheme--dark & {
+                background:$_color_dark_alpha;
+            }
 
+            .color-scheme--light & {
+                background:$_color_light_alpha;
+            }
+        }
+    }
+
+    .ico-bell-alt {
         &:after {
-            background:red;
+            background:$_color_error;
             border-radius:100%;
-            color:white;
+            color:$_color_omega;
             content:attr(data-notifications);
             font-size:10px;
+            font-style:normal;
             height:18px;
+            left:7px;
             line-height:18px;
             position:absolute;
-            right:5px;
             text-align:center;
-            top:5px;
+            top:-9px;
             width:18px;
         }
     }
 }
 
+.topbar__search {
 
+    .topbar__button {float:left;}
 
-.topbar__search #searchfield {
-    display:none;
+    .topbar__searchfield {
+        background:transparent;
+        border:0;
+        display:none;
+        float:right;
+        font-size:1em;
+        height:14px;
+        margin:36px $_space 0 0;
+        vertical-align:baseline;
 
-    @include medium-and-up-screen {
-        display:inline-block;
-        margin-right:15px;
+        @include large-xlarge-screen {
+            display:inline-block;
+        }
     }
 }
 
-/* #topbar {     */
-/*     border-radius: 0px; */
-/*     border: none; */
-/*     height: 82px; */
-/*     min-height: 82px; */
-/*     margin-bottom: 0px; */
-/* } */
+.topbar__settings {
+    .topbar__button {
+        &[aria-expanded="true"],
+        &:hover {
+            .color-scheme--dark & {
+                background:$_color_dark_alpha;
+            }
 
-/* #topbar .container-fluid{ */
-/*     padding-left: 0px; */
-/* } */
+            .color-scheme--light & {
+                background:$_color_light_alpha;
+            }
+        }
+    }
 
-/* #topbar .topbar-brand{ padding: 0px 30px;font-size: 1.5em;line-height: 80px; } */
-/* #topbar .topbar-nav > li > a {  padding: 0px 30px; line-height: 80px; font-size: 1.5em; } */
-/* #topbar .topbar-nav > li > form div { */
-/*     line-height: 55px; */
-/*     font-size: 1.5em; */
-/* } */
-/* #topbar .topbar-nav > li > form input { */
-/*     height: 60px; */
-/* } */
+    .ico-sliders:before {
+        @include vendor(transform, rotate(90deg));
+    }
+}
 
+.topbar__settings__category {
+    @extend %typo-title;
+    display:block;
+    margin-bottom:$_space;
 
-/* #topbar div.topbar-collapse { */
-/*     padding-left: 0px; */
-/* } */
+    .color-scheme--dark & {
+        color:$_color_dark_gamma;
+    }
 
-/* #search input { */
-/*     border: none; */
-/*     background-color: #353d48; */
-/*     font-size: 1.5em; */
-/*     color: #aeb5bf; */
-/*     width: 400px; */
-/* } */
+    .color-scheme--light & {
+        color:$_color_light_gamma;
+    }
+}
 
+.topbar__settings__item,
+.topbar__settings__subitem {display:block;}
 
-/* a#toggle-sidebar .fa-chevron-left { */
-/*     font-size: 0.5em; */
-/*     vertical-align: super; */
-/* } */
+.topbar__settings__subitem {
+    @extend %typo-menu;
+    margin-bottom:$_space;
 
-
-/* #search i, */
-/* #settings i, */
-/* #notifications i, */
-/* #toggle-sidebar i { */
-/*     font-size: 1.5em; */
-/* } */
-
-
-/* #topbar li { */
-/*     border-color: #252b37; */
-/*     border-style: solid; */
-/*     border-width: 1px; */
-/* } */
-
-/* #topbar li #search { */
-/*     float: left; */
-/* } */
+    a {display:block;}
+}

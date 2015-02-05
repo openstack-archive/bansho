@@ -1,16 +1,4 @@
 //----------------------------------*\
-// FONTAWESOME
-//----------------------------------*/
-
-// Rewrite Some Fontawesome Variables
-//----------------------------------*/
-$fa-font-path: '../../bower_components/fontawesome/fonts' !default;
-
-// Then Import Fontawesome
-//----------------------------------*/
-@import '../../bower_components/fontawesome/scss/font-awesome.scss';
-
-//----------------------------------*\
 // BOOTSTRAP MODULES
 //----------------------------------*/
 @import '../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/mixins/_vendor-prefixes.scss';
@@ -39,9 +27,11 @@ $fa-font-path: '../../bower_components/fontawesome/fonts' !default;
 // GLOBAL MODULES
 //----------------------------------*/
 @import 'global/default';
+@import 'global/color-schemes';
+@import 'global/typography';
+@import 'global/iconography';
 @import 'global/helpers';
 @import 'global/layout';
-@import 'global/color-schemes';
 @import 'global/print';
 
 //----------------------------------*\
@@ -53,45 +43,13 @@ $fa-font-path: '../../bower_components/fontawesome/fonts' !default;
 // OBJECT MODULES
 //----------------------------------*/
 @import 'modules-objects/togglable-tabs';
+@import 'modules-objects/problems';
+@import 'modules-objects/panes';
 
 //----------------------------------*\
 // INTERFACE MODULES
 //----------------------------------*/
-@import '../../components/topbar/topbar';
-@import '../../components/sidebar/sidebar';
-@import '../../components/tactical/tactical';
-
-/* body:before { */
-/*     display:none; */
-/*     content: ''; */
-/* } */
-
-
-/* .menu { */
-/*   list-style: none; */
-/*   border-bottom: 0.1em solid black; */
-/*   margin-bottom: 2em; */
-/*   padding: 0 0 0.5em; */
-/* } */
-
-/* .menu:before { */
-/*   content: "["; */
-/* } */
-
-/* .menu:after { */
-/*   content: "]"; */
-/* } */
-
-/* .menu > li { */
-/*   display: inline; */
-/* } */
-
-/* .menu > li:before { */
-/*   content: "|"; */
-/*   padding-right: 0.3em; */
-/* } */
-
-/* .menu > li:nth-child(1):before { */
-/*   content: ""; */
-/*   padding: 0; */
-/* } */
+@import 'modules-interface/main';
+@import '../../topbar/topbar';
+@import '../../sidebar/sidebar';
+@import '../../tactical/tactical';

@@ -1,0 +1,48 @@
+//----------------------------------*\
+// TYPOGRAPHY
+//----------------------------------*/
+%typo-logo-title {
+    font:400 em(26, $_base_font_size)(/ 1) $_font_family_alpha;
+    text-transform:uppercase;
+    // Tracking 300 PSD = Combien en letterspacing CSS ?
+}
+
+%typo-title {font:400 em(24, $_base_font_size)(/ 1) $_font_family_alpha;}
+
+%typo-subtitle {font:700 em(14, $_base_font_size)(/ 1) $_font_family_alpha;}
+
+%typo-header-table {
+    font:400 em(14, $_base_font_size)(/ 1) $_font_family_alpha;
+    text-transform:uppercase;
+}
+
+%typo-current-text {font:400 em(14, $_base_font_size)(/ 1) $_font_family_alpha;}
+
+%typo-more-info {font:italic 400 em(14, $_base_font_size)(/ 1) $_font_family_alpha;}
+
+%typo-more-info--little {font:400 em(12, $_base_font_size)(/ 1) $_font_family_alpha;}
+
+%typo-menu {font:400 em(14, $_base_font_size)(/ 1) $_font_family_alpha;}
+
+/* h1, h2, h3, h4, h5, h6 {margin:0;} */
+
+h1,
+.like-h1 {@extend %typo-logo-title;}
+
+h2,
+.like-h2 {
+    @extend %typo-title;
+    margin:0;
+}
+
+/* h3, */
+/* .like-h3 {} */
+
+/* h4, */
+/* .like-h4 {} */
+
+/* h5, */
+/* .like-h5 {} */
+
+/* h6, */
+/* .like-h6 {} */

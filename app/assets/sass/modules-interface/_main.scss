@@ -1,0 +1,98 @@
+//----------------------------------*\
+// MAIN BLOCK INTERFACE
+//----------------------------------*/
+
+.main[role="main"] {}
+
+.main__overview {
+    padding:$_space $_space_narrow $_space_narrow;
+    position:relative;
+
+    @include large-xlarge-screen {
+        padding:$_space;
+    }
+
+    .color-scheme--dark & {
+        background:$_color_dark_beta;
+    }
+
+    .color-scheme--light & {
+        background:$_color_light_beta;
+    }
+
+    table {width:100%;}
+
+    td,
+    th {
+        text-align:right;
+
+        .color-scheme--dark & {
+            color:$_color_omega;
+        }
+
+        .color-scheme--light & {
+            color:$_color_alpha;
+        }
+
+        &:first-child {text-align:left;}
+        
+        &.state--error {color:$_color_error;}
+        &.state--warning {color:$_color_warning;}
+        &.state--ok {color:$_color_ok;}
+    }
+
+    thead th {
+        @extend %typo-subtitle;
+
+        &:first-child {
+            .color-scheme--dark & {
+                color:$_color_dark_alpha;
+            }
+
+            .color-scheme--light & {
+                color:$_color_light_alpha;
+            }
+        }
+    }
+
+    tbody {
+        td,
+        th {
+            border-top-style:solid;
+            border-top-width:1px;
+
+            .color-scheme--dark & {
+                border-top-color:$_color_dark_beta;
+            }
+
+            .color-scheme--light & {
+                border-top-color:$_color_light_beta;
+            }
+        }
+
+        tr:first-child {
+            td,
+            th {border-top:0;}
+        }
+        
+        th {@extend %typo-header-table;}
+    }
+}
+
+.main__overview__title {
+    margin-bottom:$_space_narrow;
+
+    @include large-xlarge-screen {
+        margin-bottom:$_space;
+    }
+
+    .color-scheme--dark & {
+        color:$_color_omega;
+    }
+
+    .color-scheme--light & {
+        color:$_color_alpha;
+    }
+}
+
+.main__content {}

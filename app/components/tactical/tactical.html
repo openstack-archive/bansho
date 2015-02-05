@@ -1,21 +1,24 @@
-<div ng-app="adagios.tactical" ng-controller="TacticalCtrl" id="tactical" class="">
+<article ng-app="adagios.tactical" ng-controller="TacticalCtrl" id="tactical">
+  <header class="main__overview">
+    <h2 class="main__overview__title">Tactical Overview</h2>
 
-    <h2>Tactical Overview</h2>
-
-    <div id="summary" class="jumbotron">
-
-      <div class="row">
-        <div class="col-md-4">
-          <adg-status-overview></adg-status-overview>
-        </div>
-        <div class="col-md-4">
-          <adg-current-health></adg-current-health>
-        </div>
-        <div class="col-md-4">
-          <adg-top-alert-producers></adg-top-alert-producers>
-        </div>
+    <div class="panes panes--3">
+      <div class="panes__pane">
+        <adg-status-overview></adg-status-overview>
       </div>
 
-    </div>
+      <div class="panes__pane">
+        <adg-current-health></adg-current-health>
+      </div>
 
-</div>
+      <div class="panes__pane">
+        <adg-top-alert-producers></adg-top-alert-producers>
+      </div>
+    </div>
+  </header>
+
+
+  <section class="main__content">
+    <adg-table></adg-table>
+  </section>
+</article>

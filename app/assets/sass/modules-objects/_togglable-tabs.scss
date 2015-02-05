@@ -1,20 +1,48 @@
 //----------------------------------*\
 // TOGGLABLE TABS
 //----------------------------------*/
-/*  */
-.tabpanel {
-    .tablist__item {
-        display:inline-block;
+.tablist__list {
+    display:block;
+}
+
+.tablist__item {
+    display:block;
+    float:left;
+    width:50%;
+}
+
+.tabpanel__tab {
+    border:solid white;
+    border-width:0 0 1px;
+    display:block;
+    line-height:1;
+    margin:0 4px;
+    padding:0 $_space .5em 0;
+    position:relative;
+
+    &[aria-expanded="true"] {
+        border-width:0 0 3px;
+        color:$_color_omega;
     }
-    
-    .tabpanel__tab {
-        color:white;
-        border-bottom:5px solid white;
-        width:50%;
+
+    :first-child > & {
+        margin-left:0;
+    }
+
+    &:after {
+        bottom:em($_base_font_size);
+        content:attr(data-problems);
+        display:inline-block;
+        font-size:em(10, $_base_font_size);
+        position:absolute;
+        right:0;
     }
 }
 
 .tab-content {
+    clear:both;
+    padding:$_space 0 $_space_narrow;
+
     > .tab-pane {
         display:none;
         visibility:hidden;

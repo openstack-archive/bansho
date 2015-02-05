@@ -1,17 +1,18 @@
-<div ng-app="adagios.tactical.current_health" ng-controller="TacticalCurrentHealth" class="row">
-  <table>
-    <thead>
-      <tr>
-        <th>
-          Current Health
-        </th>
-      </tr>
-    </thead>
-  </table>
-  <div class="col-md-6">
-    <just-gage id="allservices" class="someClass" min=0 max=100 value=services title="ALL SERVICES"></just-gage>
-  </div>
-  <div class="col-md-6">
-    <just-gage id="allhosts" class="someClass" min=0 max=100 value=hosts title="ALL HOSTS"></just-gage>
-  </div>
-</div>
+<table class="current-health" ng-app="adagios.tactical.current_health" ng-controller="TacticalCurrentHealth">
+  <thead>
+    <tr>
+      <th>Current health</th>
+      <th>&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="layout__half">
+        <just-gage id="allservices" class="someClass" min=0 max=100 value=services title="ALL SERVICES"></just-gage>
+      </td>
+      <td class="layout__half">
+        <just-gage id="allhosts" class="someClass" min=0 max=100 value=hosts title="ALL HOSTS"></just-gage>
+      </td>
+    </tr>
+  </tbody>
+</table>  
