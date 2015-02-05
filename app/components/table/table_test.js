@@ -30,7 +30,7 @@ describe('In Table module', function () {
     describe('adgTable directive', function () {
 
         it('should request table/table.html template', function () {
-            var elem = angular.element('<adg-table cells="host,service_check,duration,last_check"></adg-table>');
+            var elem = angular.element('<adg-table cells="host,service_check,duration,last_check" api-name="services"></adg-table>');
             $compile(elem)($rootScope);
             $httpBackend.expectGET('components/table/table.html').respond('');
             $httpBackend.flush();
