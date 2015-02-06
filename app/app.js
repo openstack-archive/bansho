@@ -7,6 +7,7 @@ angular.element(document).ready(function () {
         angular.module('adagios.config').config(['readConfigProvider', function (readConfigProvider) {
             readConfigProvider.setDashboardConfig(data.dashboardConfig);
             readConfigProvider.setHostsConfig(data.hostsConfig);
+            readConfigProvider.setServicesConfig(data.servicesConfig);
         }]);
 
         angular.bootstrap(document, ['adagios']);
@@ -22,7 +23,8 @@ angular.module('adagios', [
     'adagios.table',
     'adagios.filters',
     'adagios.config',
-    'adagios.view.hosts'
+    'adagios.view.hosts',
+    'adagios.view.services'
 ])
 
     .config(['$routeProvider', function ($routeProvider) {

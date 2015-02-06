@@ -1,9 +1,10 @@
 'use strict';
 
 
-function AdagiosConfig(dashboardConfig, hostsConfig) {
+function AdagiosConfig(dashboardConfig, hostsConfig, servicesConfig) {
     this.dashboardConfig = dashboardConfig;
     this.hostsConfig = hostsConfig;
+    this.servicesConfig = servicesConfig;
 }
 
 angular.module('adagios.config', [])
@@ -11,7 +12,8 @@ angular.module('adagios.config', [])
     .provider('readConfig', function ReadConfigProvider() {
 
         var dashboardConfig = {},
-            hostsConfig = {};
+            hostsConfig = {},
+            servicesConfig = {};
 
         this.setDashboardConfig = function (value) {
             dashboardConfig = value;
@@ -21,7 +23,11 @@ angular.module('adagios.config', [])
             hostsConfig = value;
         };
 
+        this.setServicesConfig = function (value) {
+            servicesConfig = value;
+        };
+
         this.$get = [function getConfigFactory() {
-            return new AdagiosConfig(dashboardConfig, hostsConfig);
+            return new AdagiosConfig(dashboardConfig, hostsConfig, servicesConfig);
         }];
     });
