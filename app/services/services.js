@@ -20,7 +20,7 @@ angular.module('adagios.view.services', ['ngRoute',
     }])
 
     .run(['readConfig', 'servicesConfig', function (readConfig, servicesConfig) {
-        servicesConfig.cells = readConfig.servicesConfig.cells;
-        servicesConfig.apiName = readConfig.servicesConfig.apiName;
-        servicesConfig.filters = readConfig.servicesConfig.filters;
+        servicesConfig.cells = readConfig.data.servicesConfig.cells;
+        servicesConfig.apiName = readConfig.data.servicesConfig.apiName;
+        servicesConfig.filters = readConfig.data.servicesConfig.filters;
     }]);

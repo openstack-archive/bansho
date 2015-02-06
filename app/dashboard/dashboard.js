@@ -23,7 +23,7 @@ angular.module('adagios.tactical', ['ngRoute',
     }])
 
     .run(['readConfig', 'dashboardConfig', function (readConfig, dashboardConfig) {
-        dashboardConfig.cells = readConfig.dashboardConfig.cells;
-        dashboardConfig.apiName = readConfig.dashboardConfig.apiName;
-        dashboardConfig.filters = readConfig.dashboardConfig.filters;
+        dashboardConfig.cells = readConfig.data.dashboardConfig.cells;
+        dashboardConfig.apiName = readConfig.data.dashboardConfig.apiName;
+        dashboardConfig.filters = readConfig.data.dashboardConfig.filters;
     }]);

@@ -5,9 +5,7 @@ angular.element(document).ready(function () {
     $.get('components/config/config.json', function (data) {
 
         angular.module('adagios.config').config(['readConfigProvider', function (readConfigProvider) {
-            readConfigProvider.setDashboardConfig(data.dashboardConfig);
-            readConfigProvider.setHostsConfig(data.hostsConfig);
-            readConfigProvider.setServicesConfig(data.servicesConfig);
+            readConfigProvider.loadJSON(data);
         }]);
 
         angular.bootstrap(document, ['adagios']);
