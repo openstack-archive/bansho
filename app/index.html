@@ -2,7 +2,7 @@
 <!--[if IE 7]>         <html lang="en" ng-app="adagios" class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if lt IE 7]>      <html lang="en" ng-app="adagios" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]--> <!--[if IE 7]>         <html lang="en" ng-app="adagios" class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html lang="en" ng-app="adagios" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en" ng-app="adagios" class="no-js"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,6 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="assets/css/app.css">
     <meta name="description" content="">
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
     
     <!-- Angular -->
     <script src="bower_components/angular/angular.js"></script>
@@ -17,6 +19,7 @@
     
     <!-- Application -->
     <script src="app.js"></script>
+    <script src="components/config/config.js"></script>
      
     <!-- COMPONENTS -->
     <script src="components/live/live.js"></script>
@@ -27,19 +30,30 @@
     <script src="components/filters/filters.js"></script>
 
     <!-- MODULES -->
-    <script src="sidebar/sidebar.js"></script>
+    <script src="components/sidebar/sidebar.js"></script>
 
-    <script src="topbar/topbar.js"></script>
+    <script src="components/topbar/topbar.js"></script>
 
-    <script src="tactical/tactical.js"></script>
-    <script src="tactical/status_overview/status_overview.js"></script>
-    <script src="tactical/current_health/current_health.js"></script>
-    <script src="tactical/top_alert_producers/top_alert_producers.js"></script>
+    <script src="components/tactical/tactical.js"></script>
+    <script src="components/tactical/status_overview/status_overview.js"></script>
+    <script src="components/tactical/current_health/current_health.js"></script>
+    <script src="components/tactical/top_alert_producers/top_alert_producers.js"></script>
 
-    <script src="table/table.js"></script>
+    <script src="components/table/table.js"></script>
+    <script src="components/table/cell_duration/cell_duration.js"></script>
+    <script src="components/table/cell_host/cell_host.js"></script>
+    <script src="components/table/cell_last_check/cell_last_check.js"></script>
+    <script src="components/table/cell_service_check/cell_service_check.js"></script>
+    <script src="components/table/cell_hosts_host/cell_hosts_host.js"></script>
+    <script src="components/table/cell_host_address/cell_host_address.js"></script>
+    <script src="components/table/cell_host_status/cell_host_status.js"></script>
 
 	  <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>    
 	  <script src="bower_components/moment/moment.js"></script>    
+
+    <!-- VIEWS -->
+    <script src="dashboard/dashboard.js"></script>
+    <script src="hosts/hosts.js"></script>
   </head>
 
   <body class="layout color-scheme--dark">
@@ -60,7 +74,6 @@
         <footer class="footer layout__row" role="contentinfo">...</footer>
       </div>
       
-      <script src="bower_components/jquery/dist/jquery.min.js"></script>
       <script src="bower_components/raphael/raphael-min.js"></script>
       <script src="bower_components/justgage-toorshia/justgage.js"></script>    
       <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>

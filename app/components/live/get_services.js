@@ -8,12 +8,13 @@ angular.module('adagios.live')
                                   endswith: '__endswith',
                                   exists: '__exists',
                                   in: '__in',
+                                  isnot: '__isnot',
                                   regex: '__regex'
                                 })
 
     .factory('getServices', ['$http', 'filterSuffixes',
-        function ($http, filterSuffixes, columns, filters) {
-            return function (columns, filters) {
+        function ($http, filterSuffixes, columns, filters, apiName) {
+            return function (columns, filters, apiName) {
                 var filtersQuery = '';
 
                 function createFiltersQuery(filters) {
@@ -34,7 +35,7 @@ angular.module('adagios.live')
 
                 filtersQuery = createFiltersQuery(filters);
 
-                return $http.get('/rest/status/json/services/?fields=' + columns + filtersQuery)
+                return $http.get('/rest/status/json/' + apiName + '/?fields=' + columns + filtersQuery)
                     .error(function (data, status, headers, config) {
                         console.error('getServices : GET Request failed');
                     });

@@ -1,0 +1,23 @@
+<div ng-app="adagios.tactical" ng-controller="DashboardCtrl" id="tactical" class="">
+
+    <h2>Tactical Overview</h2>
+
+    <div id="summary" class="jumbotron">
+
+      <div class="row">
+        <div class="col-md-4">
+          <adg-status-overview></adg-status-overview>
+        </div>
+        <div class="col-md-4">
+          <adg-current-health></adg-current-health>
+        </div>
+        <div class="col-md-4">
+          <adg-top-alert-producers></adg-top-alert-producers>
+        </div>
+      </div>
+
+    </div>
+
+    <adg-table cells="{{dashboardCells}}" api-name="{{dashboardApiName}}" filters="{{dashboardFilters}}"></adg-table>
+
+</div>
