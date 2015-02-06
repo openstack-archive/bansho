@@ -20,7 +20,7 @@ angular.module('adagios.view.hosts', ['ngRoute',
     }])
 
     .run(['readConfig', 'hostsConfig', function (readConfig, hostsConfig) {
-        hostsConfig.cells = readConfig.hostsConfig.cells;
-        hostsConfig.apiName = readConfig.hostsConfig.apiName;
-        hostsConfig.filters = readConfig.hostsConfig.filters;
+        hostsConfig.cells = readConfig.data.hostsConfig.cells;
+        hostsConfig.apiName = readConfig.data.hostsConfig.apiName;
+        hostsConfig.filters = readConfig.data.hostsConfig.filters;
     }]);
