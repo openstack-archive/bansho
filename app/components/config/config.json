@@ -1,10 +1,12 @@
 {
     "dashboardConfig": {
         "cells": ["host", "service_check", "duration", "last_check"],
-        "apiName": "services"
+        "apiName": "services",
+        "filters": { "isnot": { "host_state": ["0"]} }
     },
     "hostsConfig": {
         "cells": ["hosts_host", "host_address", "duration", "last_check", "host_status"],
-        "apiName": "hosts"
+        "apiName": "hosts",
+        "filters": {}
     }
 }

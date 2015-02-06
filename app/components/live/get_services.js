@@ -8,6 +8,7 @@ angular.module('adagios.live')
                                   endswith: '__endswith',
                                   exists: '__exists',
                                   in: '__in',
+                                  isnot: '__isnot',
                                   regex: '__regex'
                                 })
 

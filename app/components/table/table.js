@@ -12,14 +12,16 @@ angular.module('adagios.table', ['adagios.live',
 
     .value('tableConfig', { cells: [],
                             apiName: '',
+                            filters: {},
                             cellToFieldsMap: {} })
 
     .controller('TableCtrl', ['$scope', 'getServices', 'readConfig', 'tableConfig', function ($scope, getServices, readConfig, tableConfig) {
 
         var requestFields = [],
-            filters =  {};
+            filters = JSON.parse(tableConfig.filters);
 
         $scope.cells = tableConfig.cells;
+
         angular.forEach($scope.cells, function (key, value) {
             angular.forEach(tableConfig.cellToFieldsMap[key], function (_value) {
                 requestFields.push(_value);
@@ -37,9 +39,15 @@ angular.module('adagios.table', ['adagios.live',
             restrict: 'E',
             link: function (scope, element, attrs) {
                 scope.generateTable = function () {
+
                     if (!!attrs.cells && !!attrs.apiName) {
                         tableConfig.cells = attrs.cells.split(',');
                         tableConfig.apiName = attrs.apiName;
+
+                        if (!!attrs.filters) {
+                            tableConfig.filters = attrs.filters;
+                        }
+
                         return 'components/table/table.html';
                     }
                     console.log('<adg-table> "cells" and "api-name" attributes must be defined');
