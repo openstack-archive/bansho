@@ -13,5 +13,17 @@
         "cells": ["host", "service_check", "duration", "last_check"],
         "apiName": "services",
         "filters": {}
-    }
+    },
+	"customViewsConfig": {
+		"customView1": {
+			"cells": ["hosts_host", "host_address", "duration", "last_check", "host_status"],
+			"apiName": "hosts",
+			"filters": {}
+		},
+		"customView2": {
+			"cells": ["host", "service_check", "duration", "last_check"],
+			"apiName": "services",
+			"filters": {}
+		}
+	}
 }
