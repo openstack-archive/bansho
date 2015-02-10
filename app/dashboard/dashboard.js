@@ -1,11 +1,9 @@
 'use strict';
 
-angular.module('adagios.tactical', ['ngRoute',
-                                    'adagios.tactical.status_overview',
-                                    'adagios.tactical.current_health',
-                                    'adagios.tactical.top_alert_producers',
-                                    'adagios.table'
-                                    ])
+angular.module('adagios.view.dashboard', ['ngRoute',
+                                          'adagios.tactical',
+                                          'adagios.table'
+                                         ])
 
     .value('dashboardConfig', {})
 

@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('adagios.table', ['adagios.live',
+                                 'adagios.filters',
                                  'adagios.table.cell_host',
                                  'adagios.table.cell_duration',
                                  'adagios.table.cell_service_check',

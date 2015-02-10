@@ -17,10 +17,8 @@ angular.module('adagios', [
     'ngRoute',
     'adagios.sidebar',
     'adagios.topbar',
-    'adagios.tactical',
-    'adagios.table',
-    'adagios.filters',
     'adagios.config',
+    'adagios.view.dashboard',
     'adagios.view.hosts',
     'adagios.view.services'
 ])
