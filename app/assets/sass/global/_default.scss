@@ -21,21 +21,12 @@
 }
 
 html,
-button,
-input,
-select,
-textarea {/* color:$_color_text; */}
-
-html,
 body {
-    &.color-scheme--dark {background:$_color_dark_alpha;}
-
     height:100%;
     min-height:100%;
 }
 
 html {
-    //@include line-height($_base_font_size, $_base_line_height);
     font-size:em($_base_font_size);
     font-family:$_font_family_alpha;
     -ms-text-size-adjust:100%;
@@ -43,6 +34,16 @@ html {
 }
 
 body {
+    &.color-scheme--dark {
+        background:$_color_dark_gamma;
+        color:$_color_dark_delta;
+    }
+
+    &.color-scheme--light {
+        background:$_color_light_gamma;
+        color:$_color_light_delta;
+    }
+
     font-size:inherit;
     line-height:inherit;
     margin:0;
@@ -74,22 +75,20 @@ audio:not([controls]) {
 [hidden],
 template {display:none;}
 
-a {background:transparent;}
+a {
+    @extend %colorLink;
+    background:transparent;
+}
 
 a:focus {outline:thin dotted;}
 
 a:active,
 a:hover {outline:0;}
 
-h1 {
-    font-size:2em;
-    margin:0.67em 0;
-}
-
 abbr[title] {border-bottom:1px dotted;}
 
 b,
-strong {font-weight:bold;}
+strong {font-weight:700;}
 
 dfn {font-style:italic;}
 
@@ -116,7 +115,7 @@ pre {white-space:pre-wrap;}
 
 q {quotes:"\201C" "\201D" "\2018" "\2019";}
 
-small {font-size:80%;}
+small {font-size:em(10, $_base_font_size);}
 
 sub,
 sup {
@@ -151,6 +150,7 @@ button,
 input,
 select,
 textarea {
+    @extend %colorTxtCurrent;
     font-family:inherit;
     font-size:100%;
     margin:0;
@@ -205,10 +205,25 @@ table {
     border-spacing:0;
 }
 
+td,
+th {text-align:left;}
+
+thead {
+    th {padding:0 0 $_space_narrow;}
+}
+
+tbody {
+    td,
+    th {padding:$_space_narrow 0;}
+}
+
 menu,
 nav {
-    a {text-decoration:none;}
+    margin:0;
+    padding:0;
     
+    a {text-decoration:none;}
+
     ol,
     ul {
         list-style-type:none;

@@ -1,0 +1,128 @@
+//----------------------------------*\
+// FILTERS
+//----------------------------------*/
+.filters__list {
+    border-style:solid;
+    border-width:1px 0;
+    position:relative;
+
+    .color-scheme--dark & {
+        background:$_color_dark_gamma;
+        border-color:$_color_dark_beta;
+    }
+
+    .color-scheme--light & {
+        background:$_color_light_gamma;
+        border-color:$_color_light_beta;
+    }
+}
+
+.filters__item {
+    display:inline-block;
+    float:left;
+    position:relative;
+
+    &.filters__item--settings {float:right;}
+}
+
+.filters__sublist {
+    padding:$_space_narrow;    
+
+    .filters__item,
+    .filters__subitem {display:block;}
+}
+
+
+.filters__button {
+    @extend %button-reset;
+    @extend %colorLink;
+    border-style:solid;
+    border-width:0 0 0 1px;
+    display:block;
+    min-height:56px;
+    padding:0 $_space_narrow;
+    position:relative;
+    width:auto;    
+
+    .color-scheme--dark & {
+        border-color:$_color_dark_beta;
+    }
+
+    .color-scheme--light & {
+        border-color:$_color_light_beta;
+    }
+
+    .filters__item--more &,
+    .filters__item--settings & {border-right-width:1px;}
+
+    .filters__item--problems & {
+        min-width:180px;
+        text-align:left;
+
+        .ico-down-dir {float:right;}
+    }
+
+    .filters__item--more & {
+        min-width:87px;
+        text-align:left;
+        text-transform:lowercase;        
+        
+        .ico-down-dir {
+            float:right;
+        }
+    }
+
+    &[aria-expanded="true"],
+    &:hover {
+        .color-scheme--dark & {
+            background:$_color_dark_beta;
+            color:$_color_omega;
+        }
+
+        .color-scheme--light & {
+            background:$_color_light_beta;
+            color:$_color_alpha;
+        }
+    }
+}
+
+.filters__panel {
+    left:0;
+    min-width:100%;
+    position:absolute;
+    top:100%;
+    z-index:999999;
+
+    .color-scheme--dark & {
+        background:$_color_dark_beta;
+    }
+
+    .color-scheme--light & {
+        background:$_color_light_beta;
+    }
+
+    .filters__item--more & {
+        display:block;
+
+        @include large-xlarge-screen {
+            display:inline;
+        }
+    }
+
+    .filters__item--settings & {
+        left:auto;
+        right:0;
+    }
+}
+
+.filters__link {
+    &.state--current {
+        .color-scheme--dark & {
+            color:$_color_omega;
+        }
+
+        .color-scheme--light & {
+            color:$_color_alpha;
+        }
+    }
+}

@@ -5,80 +5,46 @@
     display:table;
     min-height:100%;
     width:100%;
-
-    .flexbox & {
-        display:flex;
-        min-height:100vh;
-        flex-direction:column;
-    }
 }
 
 .layout__container {
-    //background:yellow;
     display:table-row;
     min-height:100%;
-
-    .flexbox & {
-        display:block; /* IE fix */
-        display:flex;
-        flex:1;
-        flex-direction:row;
-    }
 }
 
 .layout__main {
     display:table-cell;
-    //min-width:320px;
     vertical-align:top;
     width:100%;
-
-    .flexbox & {
-        display:block; /* IE fix */
-        flex:1;
-    }
 }
 
 .layout__aside {
-    //background:red;
     display:table-cell;
     min-height:100%;
     min-width:320px;
     vertical-align:top;
     width:320px;
 
-    .flexbox & {
-        display:block;
-    }
-
     @include large-xlarge-screen {
         min-width:250px;
         width:250px;
     }
-    /*  */
+
     &.collapse {
         display:none;
         visibility:hidden;
 
         &.in {
-            display:block;
+            display:table-cell;
             visibility:visible;
         }
     }
 }
 
-.layout__row {
-    /* background:black; */
-    margin-bottom:1em;
-}
+.layout__full {width:100%;}
 
-.layout__flexrow {
-    /* background:yellow; */
+.layout__half {width:50%;}
 
-    /* > :nth-child(even) {background-color:aquamarine;} */
-    /* > :nth-child(odd) {background-color:pink;} */
+.layout__third {width:33.333333333%;}
 
-    .flexbox & {
-        display:flex;
-        flex-direction:row;
-    }
-}
+.layout__quarter {width:25%;}

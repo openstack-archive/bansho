@@ -8,15 +8,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Adagios</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,400italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="assets/css/app.css">
     <meta name="description" content="">
 
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    
     <!-- Angular -->
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
-    
+
     <!-- Application -->
     <script src="app.js"></script>
     <script src="components/config/config.js"></script>
@@ -48,8 +47,8 @@
     <script src="components/table/cell_host_address/cell_host_address.js"></script>
     <script src="components/table/cell_host_status/cell_host_status.js"></script>
 
-	  <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>    
-	  <script src="bower_components/moment/moment.js"></script>    
+	<script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>    
+	<script src="bower_components/moment/moment.js"></script>    
 
     <!-- VIEWS -->
     <script src="dashboard/dashboard.js"></script>
@@ -65,19 +64,21 @@
       <aside class="layout__aside sidebar-wrapper collapse" id="sidebarWrapper">
         <adg-sidebar></adg-sidebar>
       </aside>
-      
+
       <div class="layout__main">
-        <div class="layout__row topbar-wrapper">
+        <div class="topbar-wrapper clearfix">
           <adg-topbar></adg-topbar>
         </div>
-        
-        <main ng-view id="page" class="main layout__row" role="main"></main>
-        <footer class="footer layout__row" role="contentinfo">...</footer>
+
+        <main ng-view id="page" class="main" role="main"></main>
+        <footer class="footer" role="contentinfo">...</footer>
       </div>
-      
-      <script src="bower_components/raphael/raphael-min.js"></script>
-      <script src="bower_components/justgage-toorshia/justgage.js"></script>    
-      <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
-      <script src="assets/js/scripts.js"></script>
+    </div>
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/raphael/raphael-min.js"></script>
+    <script src="bower_components/justgage-toorshia/justgage.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+    <script src="assets/js/scripts.js"></script>
   </body>
 </html>

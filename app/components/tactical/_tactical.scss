@@ -1,10 +1,8 @@
-#tactical {
-    background-color: #353d48;
-    color: white;
-    padding: 20px;
-
-}
-
-#tactical #summary {
-    background-color: #49515c;
+//----------------------------------*\
+// TACTICAL
+//----------------------------------*/
+.current-health {
+    tbody {
+        td, th {padding-top:0;}
+    }
 }
