@@ -1,0 +1,165 @@
+//----------------------------------*\
+// DATA TABLE
+//----------------------------------*/
+
+.data-table {
+    width:100%;
+
+    input[type="checkbox"] {background:red;}
+
+    .color-scheme--dark & {
+        color:$_color_omega;
+    }
+
+    .color-scheme--light & {
+        color:$_color_alpha;
+    }
+
+    a {
+        display:inline-block;
+        text-decoration:none;
+
+        .color-scheme--dark & {
+            color:$_color_omega;
+        }
+
+        .color-scheme--light & {
+            color:$_color_alpha;
+        }
+    }
+
+    td, th {
+        border-style:solid;
+        border-width:0 0 1px;
+        padding-left:$_space_narrow;
+        padding-right:$_space_narrow;
+        vertical-align:top;
+
+        .color-scheme--dark & {
+            border-color:$_color_dark_beta;
+        }
+
+        .color-scheme--light & {
+            border-color:$_color_light_beta;
+        }
+    }
+
+    thead {
+        th {
+            border-style:solid;
+            border-width:0 0 0 1px;
+            padding-top:$_space_narrow;
+            vertical-align:middle;
+
+            .color-scheme--dark & {
+                background:$_color_dark_beta;
+                border-color:$_color_dark_gamma;
+
+                &.state--current {background:$_color_dark_alpha;}
+            }
+
+            .color-scheme--light & {
+                background:$_color_light_beta;
+                border-color:$_color_light_gamma;
+
+                &.state--current {background:$_color_light_alpha;}
+            }
+
+            &.data-table__host,
+            &.data-table__checkbox {border:0;}
+        }
+    }
+
+    .state--hasChild,
+    .state--isChild {
+        
+        td, th {        
+
+            .color-scheme--dark & {
+                background:$_color_dark_beta;
+            }
+
+            .color-scheme--light & {
+                background:$_color_light_beta;
+            }
+        }
+    }
+}
+
+.data-table__data {
+    margin:0;
+
+    .state--error &,
+    .state--warning &,
+    .state--ok & {
+        position:relative;
+
+        &:before {
+            top:0;
+            font-family:"adagios-fontawesome";
+            left:0;
+            position:absolute;
+            z-index:988888;
+        }
+    }
+
+    .state--error & {
+        @extend .ico-error;
+        padding-left:(16 + $_space_narrow);
+
+        &:before {
+            color:$_color_error;
+            font-size:em(13, $_base_font_size);
+        }
+    }
+
+    .state--warning & {
+        @extend .ico-warning;
+        padding-left:(16 + $_space_narrow);
+
+        &:before {
+            color:$_color_warning;
+            font-size:em(16, $_base_font_size);
+        }
+    }
+
+    .state--ok & {
+        @extend .ico-ok;
+        padding-left:(18 + $_space_narrow);
+
+        &:before {
+            color:$_color_ok;
+            font-size:em(20, $_base_font_size);
+        }
+    }
+}
+
+.data-table__checkbox {width:auto;}
+
+.data-table__host {width:percentage(367 / 1200);}
+
+.data-table__service__summary,
+.data-table__duration,
+.data-table__lastcheck {
+    @extend %typo-more-info--little;
+
+    .color-scheme--dark & {
+        color:$_color_dark_delta;
+    }
+
+    .color-scheme--light & {
+        color:$_color_light_delta;
+    }
+}
+
+.data-table__service {
+    width:percentage(501 / 1200);
+    //.data-table__service__name {}
+
+    .data-table__service__summary {
+        font-style:italic;
+        margin-left:0;
+    }
+}
+
+.data-table__duration {width:percentage(166 / 1200);}

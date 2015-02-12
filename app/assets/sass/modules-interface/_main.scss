@@ -35,7 +35,7 @@
         }
 
         &:first-child {text-align:left;}
-        
+
         &.state--error {color:$_color_error;}
         &.state--warning {color:$_color_warning;}
         &.state--ok {color:$_color_ok;}
@@ -74,7 +74,7 @@
             td,
             th {border-top:0;}
         }
-        
+
         th {@extend %typo-header-table;}
     }
 }
@@ -95,4 +95,61 @@
     }
 }
 
-.main__content {}
+.main__content {
+    padding:$_space $_space_narrow;
+
+    @include large-xlarge-screen {
+        padding:$_space;
+    }
+
+    // Togglable tabs variations
+    .tablist {margin-bottom:$_space;}
+
+    .tabpanel__tab {
+        font-size:1em;
+
+        @include large-xlarge-screen {
+            font-size:em(24, $_base_font_size);
+        }
+    }
+}
+
+.main__content__header {
+
+    .main__content__title,
+    .main__content__alert {        
+
+        @include large-xlarge-screen {
+            float:left;
+            margin-top:0;
+        }
+    }
+}
+
+.main__content__title {
+    margin-right:$_space_narrow;
+
+    @include large-xlarge-screen {
+        display:inline-block;
+    }
+
+    .color-scheme--dark & {
+        color:$_color_omega;
+    }
+
+    .color-scheme--light & {
+        color:$_color_alpha;
+    }
+}
+
+.main__content__alert {
+    @extend %typo-more-info;
+    background:$_color_ok;
+    color:$_color_omega;
+    display:inline-block;
+    padding:8px 11px;
+
+    &.state--error {background:$_color_error;}
+    &.state--warning {background:$_color_warning;}
+    &.state--ok {background:$_color_ok;}
+}

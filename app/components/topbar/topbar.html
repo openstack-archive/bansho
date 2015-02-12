@@ -25,11 +25,11 @@
       
       <div class="topbar__panel--fromleft collapse" id="notificationsPanel">
         <div class="topbar__panel__content tabpanel">
-          <ul role="tablist">
+          <ul class="tablist clearfix">
             <li role="presentation" class="tablist__item active">
-              <a href="#openProblems"
+              <a href="#topOpenProblems"
                  class="tabpanel__tab"
-                 aria-controls="openProblems"
+                 aria-controls="topOpenProblems"
                  aria-expanded="true"
                  role="tab"
                  data-toggle="tab"
@@ -37,9 +37,9 @@
               </a>
             </li>
             <li role="presentation" class="tablist__item">
-              <a href="#allProblems"
+              <a href="#topAllProblems"
                  class="tabpanel__tab"
-                 aria-controls="allProblems"
+                 aria-controls="topAllProblems"
                  aria-expanded="false"
                  role="tab"
                  data-toggle="tab"
@@ -49,7 +49,7 @@
           </ul>
           
           <div class="tab-content">
-            <div role="tabpanel" class="problems tab-pane active" id="openProblems">
+            <div role="tabpanel" class="problems tab-pane active" id="topOpenProblems">
               <ol class="problems__list">
                 <li class="problems__item">
                   <strong class="problems__host state--ok">localhost</strong>
@@ -101,8 +101,8 @@
               <button class="problems__viewall" type="button">View all open problems</button>
             </div>
             
-            <div role="tabpanel" class="tab-pane" id="allProblems">
-              All problems
+            <div role="tabpanel" class="tab-pane" id="topAllProblems">
+              ALL PROBLEMS
             </div>
           </div>
         </div>
