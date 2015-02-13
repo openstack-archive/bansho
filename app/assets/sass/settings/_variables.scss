@@ -20,6 +20,24 @@ $_color_dark_beta: #353D48 !default;
 $_color_dark_gamma: #49515C !default;
 $_color_dark_delta: #A2AAB4 !default;
 
+$_color_schemes: (
+    dark: (
+        alpha: #252C35,
+        beta: #353D48,
+        gamma: #49515C,
+        delta: #A2AAB4
+    ),
+
+    light: (
+        alpha: #252C35,
+        beta: #353D48,
+        gamma: #49515C,
+        delta: #A2AAB4
+    )
+);
+
+//@mixin color-scheme()
+
 // Black and White
 $_color_alpha: #000 !default;
 $_color_omega: #FFF !default;

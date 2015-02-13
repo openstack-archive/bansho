@@ -42,6 +42,8 @@
         .color-scheme--light & {
             border-color:$_color_light_beta;
         }
+
+        &.data-table__checkbox {padding-right:0;}
     }
 
     thead {
@@ -63,17 +65,31 @@
                 border-color:$_color_light_gamma;
 
                 &.state--current {background:$_color_light_alpha;}
-            }
+            }            
 
             &.data-table__host,
             &.data-table__checkbox {border:0;}
+
+            [class*="ico-"] {float:right;}
+
+            &:first-child + th {padding-left:0;}
+        }
+    }
+
+    td {
+        &:first-child {
+
+            + td {
+                padding-left:35px;
+            }
+
         }
     }
 
     .state--hasChild,
     .state--isChild {
-        
-        td, th {        
+
+        td, th {
 
             .color-scheme--dark & {
                 background:$_color_dark_beta;
@@ -83,6 +99,31 @@
                 background:$_color_light_beta;
             }
         }
+    }
+
+    .state--hasChild {
+        
+        td:first-child + td {
+            color:red;
+            position:relative;
+
+            &:before {                
+                content:"\e804";
+                display:block;
+                font-family:"adagios-fontawesome";
+                left:0;
+                position:absolute;                
+
+                .color-scheme--dark & {
+                    color:$_color_omega;
+                }
+
+                .color-scheme--light & {
+                    color:$_color_alpha;
+                } 
+            }
+        }
+        
     }
 }
 
@@ -134,10 +175,6 @@
     }
 }
 
-.data-table__checkbox {width:auto;}
-
-.data-table__host {width:percentage(367 / 1200);}
-
 .data-table__service__summary,
 .data-table__duration,
 .data-table__lastcheck {
@@ -152,9 +189,12 @@
     }
 }
 
+/* .data-table__checkbox {width:14px;} */
+
+.data-table__host {width:percentage(368 / 1200);}
+
 .data-table__service {
-    width:percentage(501 / 1200);
-    //.data-table__service__name {}
+    width:percentage(500 / 1200);
 
     .data-table__service__summary {
         font-style:italic;
@@ -163,3 +203,5 @@
 }
 
 .data-table__duration {width:percentage(166 / 1200);}
+
+.data-table__lastcheck {width:percentage(134 / 1200);}

@@ -17,11 +17,11 @@
 //----------------------------------*\
 // MIXINS
 //----------------------------------*/
-@import 'mixins/_vendor.scss';
-@import 'mixins/_position.scss';
-@import 'mixins/_line-height.scss';
-@import 'mixins/_media-queries.scss';
-@import 'mixins/_position.scss';
+@import 'mixins/vendor';
+@import 'mixins/position';
+@import 'mixins/line-height';
+@import 'mixins/media-queries';
+@import 'mixins/position';
 
 //----------------------------------*\
 // GLOBAL MODULES

@@ -1,11 +1,11 @@
 <article ng-app="adagios.tactical" ng-controller="TacticalCtrl" id="tactical">
   <header class="main__overview">
     <h2 class="main__overview__title">Tactical Overview</h2>
-    
+
     <adg-tactical></adg-tactical>
 
   </header>
-  
+
   <section class="main__content tabpanel">
     <nav>
       <ul class="tablist clearfix">
@@ -31,7 +31,7 @@
         </li>
       </ul>
     </nav>
-    
+
     <menu class="filters">
       <ul class="filters__list clearfix">
         <li class="filters__item filters__item--problems">
@@ -41,10 +41,10 @@
                   data-target="#filtersProblems"
                   aria-expanded="false"
                   aria-controls="filtersProblems">
-            <span>All</span>
+            <spa>All</span>
             <i class="ico-down-dir"></i>
           </button>
-          
+
           <div class="filters__panel collapse" id="filtersProblems">
             <ul class="filters__sublist">
               <li class="filters__subitem">
@@ -92,7 +92,7 @@
             <span>More</span>
             <i class="ico-down-dir"></i>
           </button>
-          
+
           <div class="filters__panel collapse" id="filtersMore">
             <ul class="filters__sublist">
               <li class="filters__subitem">
@@ -117,7 +117,7 @@
             <span class="visuallyhidden">Filters Settings</span>
             <i class="ico-cog"></i>
           </button>
-          
+
           <div class="filters__panel collapse" id="filtersSettings">
             <ul class="filters__sublist">
               <li>...</li>
@@ -128,16 +128,16 @@
         </li>
       </ul>
     </menu>
-    
+
     <div class="tab-content">
       <div role="tabpanel" class="problems tab-pane active" id="openProblems">
         <header class="main__content__header clearfix">
           <h2 class="main__content__title">Unhandled service problems</h2>
           <p class="main__content__alert state--error">There are 5 host problems.</p>
         </header>
-        
+
         <adg-table cells="{{dashboardCells}}" api-name="{{dashboardApiName}}" filters="{{dashboardFilters}}"></adg-table>
-        
+
         <table class="data-table">
           <thead>
             <tr>
@@ -151,10 +151,10 @@
               <th class="data-table__lastcheck">Last check</th>
             </tr>
           </thead>
-          
+
           <tr>
             <td class="data-table__checkbox"><input type="checkbox"></td>
-            <td class="data-table__host state--ok">              
+            <td class="data-table__host state--ok">
               <a class="data-table__data" href="#">localhost</a>
             </td>
             <td class="data-table__service state--warning">
@@ -163,13 +163,17 @@
                 <dd class="data-table__service__summary">DISK WARNING - free space : / 673 MB (12% inode = 59%)</dd>
               </dl>
             </td>
-            <td class="data-table__duration">1 month, 2 weeks</td>
-            <td class="data-table__lastcheck">0 minutes ago</td>
+            <td class="data-table__duration">
+              <span class="data-table__data">1 month, 2 weeks</span>
+            </td>
+            <td class="data-table__lastcheck">
+              <span class="data-table__data">0 minutes ago</span>
+            </td>
           </tr>
-          
+
           <tr class="state--hasChild">
             <td class="data-table__checkbox"><input type="checkbox"></td>
-            <td class="data-table__host state--ok">              
+            <td class="data-table__host state--ok">
               <a class="data-table__data" href="#">srv-apache-01</a>
             </td>
             <td class="data-table__service state--warning">
@@ -178,10 +182,14 @@
                 <dd class="data-table__service__summary">DISK WARNING - free space : / 673 MB (12% inode = 59%)</dd>
               </dl>
             </td>
-            <td class="data-table__duration">1 month, 2 weeks</td>
-            <td class="data-table__lastcheck">0 minutes ago</td>
+            <td class="data-table__duration">
+              <span class="data-table__data">1 month, 2 weeks</span>
+            </td>
+            <td class="data-table__lastcheck">
+              <span class="data-table__data">0 minutes ago</span>
+            </td>
           </tr>
-          
+
           <tbody class="state--isChild">
             <tr>
               <td class="data-table__checkbox"><input type="checkbox"></td>
@@ -192,14 +200,18 @@
                   <dd class="data-table__service__summary">DISK ERROR - free space : / 673 MB (12% inode = 59%)</dd>
                 </dl>
               </td>
-              <td class="data-table__duration">1 month, 2 weeks</td>
-              <td class="data-table__lastcheck">0 minutes ago</td>
+              <td class="data-table__duration">
+                <span class="data-table__data">1 month, 2 weeks</span>
+              </td>
+              <td class="data-table__lastcheck">
+                <span class="data-table__data">0 minutes ago</span>
+             </td>
             </tr>
           </tbody>
-          
+
           <tr>
             <td class="data-table__checkbox"><input type="checkbox"></td>
-            <td class="data-table__host state--ok">              
+            <td class="data-table__host state--ok">
               <a class="data-table__data" href="#">localhost</a>
             </td>
             <td class="data-table__service state--warning">
@@ -208,13 +220,18 @@
                 <dd class="data-table__service__summary">DISK WARNING - free space : / 673 MB (12% inode = 59%)</dd>
               </dl>
             </td>
-            <td class="data-table__duration">1 month, 2 weeks</td>
-            <td class="data-table__lastcheck">0 minutes ago</td>
+            <td class="data-table__duration">
+              <span class="data-table__data">
+                <span class="data-table__data">1 month, 2 weeks</span>
+            </td>
+            <td class="data-table__lastcheck">
+              <span class="data-table__data">0 minutes ago</span>
+            </td>
           </tr>
 
           <tr>
             <td class="data-table__checkbox"><input type="checkbox"></td>
-            <td class="data-table__host state--ok">              
+            <td class="data-table__host state--ok">
               <a class="data-table__data" href="#">localhost</a>
             </td>
             <td class="data-table__service state--warning">
@@ -223,16 +240,20 @@
                 <dd class="data-table__service__summary">DISK WARNING - free space : / 673 MB (12% inode = 59%)</dd>
               </dl>
             </td>
-            <td class="data-table__duration">1 month, 2 weeks</td>
-            <td class="data-table__lastcheck">0 minutes ago</td>
+            <td class="data-table__duration">
+              <span class="data-table__data">1 month, 2 weeks</span>
+            </td>
+            <td class="data-table__lastcheck">
+              <span class="data-table__data">0 minutes ago</span>
+            </td>
           </tr>
         </table>
-      </div>      
-      
+      </div>
+
       <div role="tabpanel" class="problems tab-pane" id="allProblems">
         <header class="main__content__header">
           <h2 class="main__content__title">All service problems</h2>
-          
+
           <p class="main__content__alert">...</p>
         </header>
       </div>
