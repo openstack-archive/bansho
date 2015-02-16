@@ -2,20 +2,17 @@
   <thead>
       <tr>
         <th class="data-table__checkbox"><input type="checkbox"></th>
-        <th class="state--current data-table__host">
-          <span class="data-table__cell__string">Host</span>
+        <th ng-repeat="i in cellIndexes" class="data-table__{{cellsName[i]}}">
+          {{cellsText[i]}}
           <i class="ico-up-dir"></i>
         </th>
-        <th class="data-table__service">Service check</th>
-        <th class="data-table__duration">Duration</th>
-        <th class="data-table__lastcheck">Last check</th>
       </tr>
   </thead>
 
   <tbody class="" ng-repeat="entry in entries">
     <tr>
       <td><input type="checkbox"></td>
-      <td ng-repeat="cell in cells">
+      <td ng-repeat="cell in cellsName">
         <adg-cell type="{{cell}}"></adg-cell>
       </td>
     </tr>

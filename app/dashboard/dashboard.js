@@ -15,13 +15,15 @@ angular.module('adagios.view.dashboard', ['ngRoute',
     }])
 
     .controller('DashboardCtrl', ['$scope', 'dashboardConfig', function ($scope, dashboardConfig) {
-        $scope.dashboardCells = dashboardConfig.cells.join();
+        $scope.dashboardCellsText = dashboardConfig.cellsText.join();
+        $scope.dashboardCellsName = dashboardConfig.cellsName.join();
         $scope.dashboardApiName = dashboardConfig.apiName;
         $scope.dashboardFilters = dashboardConfig.filters;
     }])
 
     .run(['readConfig', 'dashboardConfig', function (readConfig, dashboardConfig) {
-        dashboardConfig.cells = readConfig.data.dashboardConfig.cells;
+        dashboardConfig.cellsText = readConfig.data.dashboardConfig.cells.text;
+        dashboardConfig.cellsName = readConfig.data.dashboardConfig.cells.name;
         dashboardConfig.apiName = readConfig.data.dashboardConfig.apiName;
         dashboardConfig.filters = readConfig.data.dashboardConfig.filters;
     }]);
