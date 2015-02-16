@@ -20,7 +20,8 @@ angular.module('adagios', [
     'adagios.config',
     'adagios.view.dashboard',
     'adagios.view.hosts',
-    'adagios.view.services'
+    'adagios.view.services',
+    'adagios.view.custom'
 ])
 
     .config(['$routeProvider', function ($routeProvider) {
