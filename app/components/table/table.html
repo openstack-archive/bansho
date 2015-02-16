@@ -1,18 +1,24 @@
-<div ng-app="adagios.table" ng-controller="TableCtrl" id="table">
-<table class="table table-bordered">
+<table class="data-table" ng-controller="TableCtrl" id="table">
   <thead>
-    <tr>
-      <th></th>
-      <th ng-repeat="thead in cells">
-        {{thead}}
-      </th>
-    </tr>
+      <tr>
+        <th class="data-table__checkbox"><input type="checkbox"></th>
+        <th class="state--current data-table__host">
+          <span class="data-table__cell__string">Host</span>
+          <i class="ico-up-dir"></i>
+        </th>
+        <th class="data-table__service">Service check</th>
+        <th class="data-table__duration">Duration</th>
+        <th class="data-table__lastcheck">Last check</th>
+      </tr>
   </thead>
-  <tr ng-repeat="entry in entries">
-    <td><input type="checkbox"></td>
-    <td ng-repeat="cell in cells">
-      <adg-cell type="{{cell}}"></adg-cell>
-    </td>
-  </tr>
+
+  <tbody class="" ng-repeat="entry in entries">
+    <tr>
+      <td><input type="checkbox"></td>
+      <td ng-repeat="cell in cells">
+        <adg-cell type="{{cell}}"></adg-cell>
+      </td>
+    </tr>
+  </tbody>
+
 </table>
-</div>
