@@ -14,6 +14,7 @@ angular.module('adagios.view.hosts', ['ngRoute',
     }])
 
     .controller('HostsCtrl', ['$scope', 'hostsConfig', function ($scope, hostsConfig) {
+        $scope.hostsTitle = hostsConfig.title;
         $scope.hostsCellsText = hostsConfig.cellsText.join();
         $scope.hostsCellsName = hostsConfig.cellsName.join();
         $scope.hostsApiName = hostsConfig.apiName;
@@ -21,6 +22,7 @@ angular.module('adagios.view.hosts', ['ngRoute',
     }])
 
     .run(['readConfig', 'hostsConfig', function (readConfig, hostsConfig) {
+        hostsConfig.title = readConfig.data.hostsConfig.title;
         hostsConfig.cellsText = readConfig.data.hostsConfig.cells.text;
         hostsConfig.cellsName = readConfig.data.hostsConfig.cells.name;
         hostsConfig.apiName = readConfig.data.hostsConfig.apiName;

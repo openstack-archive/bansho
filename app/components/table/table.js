@@ -19,13 +19,14 @@ angular.module('adagios.table', ['adagios.live',
     .controller('TableCtrl', ['$scope', 'getServices', 'readConfig', 'tableConfig', function ($scope, getServices, readConfig, tableConfig) {
 
         var requestFields = [],
-            filters = JSON.parse(tableConfig.filters);
+            filters = JSON.parse(tableConfig.filters),
+            i;
 
         $scope.cellsName = tableConfig.cells.name;
         $scope.cellsText = tableConfig.cells.text;
         $scope.cellIndexes = [];
 
-        for (var i = 0; i < $scope.cellsName.length; i++) {
+        for (i = 0; i < $scope.cellsName.length; i += 1) {
             $scope.cellIndexes.push(i);
         }
 

@@ -15,6 +15,7 @@ angular.module('adagios.view.dashboard', ['ngRoute',
     }])
 
     .controller('DashboardCtrl', ['$scope', 'dashboardConfig', function ($scope, dashboardConfig) {
+        $scope.dashboardTitle = dashboardConfig.title;
         $scope.dashboardCellsText = dashboardConfig.cellsText.join();
         $scope.dashboardCellsName = dashboardConfig.cellsName.join();
         $scope.dashboardApiName = dashboardConfig.apiName;
@@ -22,6 +23,7 @@ angular.module('adagios.view.dashboard', ['ngRoute',
     }])
 
     .run(['readConfig', 'dashboardConfig', function (readConfig, dashboardConfig) {
+        dashboardConfig.title = readConfig.data.dashboardConfig.title;
         dashboardConfig.cellsText = readConfig.data.dashboardConfig.cells.text;
         dashboardConfig.cellsName = readConfig.data.dashboardConfig.cells.name;
         dashboardConfig.apiName = readConfig.data.dashboardConfig.apiName;

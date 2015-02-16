@@ -1,5 +1,6 @@
 {
     "dashboardConfig": {
+		"title": "Unhandled service problems",
         "cells": {
             "text": [
                 "Host",
@@ -24,6 +25,7 @@
         }
     },
     "hostsConfig": {
+		"title": "Hosts",
         "cells": {
             "text": [
                 "Host",
@@ -44,6 +46,7 @@
         "filters": {}
     },
     "servicesConfig": {
+		"title": "Services",
         "cells": {
             "text": [
                 "Host",
@@ -63,6 +66,7 @@
     },
     "customViewsConfig": {
         "customView1": {
+			"title": "Custom View 1",
             "cells": {
                 "text": [
                     "Host",
@@ -83,6 +87,7 @@
             "filters": {}
         },
         "customView2": {
+			"title": "Custom View 2",
             "cells": {
                 "text": [
                     "Host",
