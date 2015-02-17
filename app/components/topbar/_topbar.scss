@@ -87,8 +87,7 @@
 
 .topbar__toggle-sidebar {
 
-    .topbar__button {
-        &[aria-expanded="true"],
+    .topbar__button {        
         &:hover {
             .color-scheme--dark & {
                 background:$_color_dark_alpha;

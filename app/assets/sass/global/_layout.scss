@@ -19,24 +19,34 @@
 }
 
 .layout__aside {
-    display:table-cell;
+    display:block;
+    left:0;
     min-height:100%;
     min-width:320px;
+    position:absolute;
+    top:0;
     vertical-align:top;
     width:320px;
-
-    @include large-xlarge-screen {
-        min-width:250px;
-        width:250px;
-    }
+    z-index:9999999;
 
     &.collapse {
         display:none;
         visibility:hidden;
 
         &.in {
-            display:table-cell;
+            display:block;
             visibility:visible;
+        }
+    }
+
+    @include large-xlarge-screen {
+        display:table-cell;
+        min-width:250px;
+        position:relative;
+        width:250px;
+
+        &.collapse.in {
+            display:table-cell;
         }
     }
 }

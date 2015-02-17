@@ -28,12 +28,24 @@
         }
     }
 
-    td, th {
+    tbody {
         border-style:solid;
         border-width:0 0 1px;
-        padding-left:$_space_narrow;
-        padding-right:$_space_narrow;
-        vertical-align:top;
+        display:block;
+        padding-bottom:$_space_narrow;
+        padding-left:$_space;
+
+        @include medium-and-up-screen {
+            border:0;
+            display:table-row-group;
+            padding-bottom:0;
+            padding-left:0;
+        }
+
+        &.state--hasChild {
+            border:0;
+            padding-bottom:0;
+        }
 
         .color-scheme--dark & {
             border-color:$_color_dark_beta;
@@ -42,30 +54,82 @@
         .color-scheme--light & {
             border-color:$_color_light_beta;
         }
+    }
 
-        &.data-table__checkbox {padding-right:0;}
+    tr {
+        display:block;
+        position:relative;
+
+        @include medium-and-up-screen {
+            display:table-row;
+            position:static;
+        }
+    }
+
+    td, th {
+        border-style:solid;
+        border-width:0;
+        display:block;
+        padding:$_space_narrow 0 0;
+        vertical-align:top;
+
+        @include medium-and-up-screen {
+            border-width:0 0 1px;
+            display:table-cell;
+            padding:$_space_narrow;
+        }
+
+        .color-scheme--dark & {
+            border-color:$_color_dark_beta;
+        }
+
+        .color-scheme--light & {
+            border-color:$_color_light_beta;
+        }
     }
 
     thead {
+        display:none;
+
+        @include medium-and-up-screen {
+            display:table-header-group;
+        }
+
         th {
             border-style:solid;
             border-width:0 0 0 1px;
             padding-top:$_space_narrow;
             vertical-align:middle;
 
+            &.state--asc:before,
+            &.state--desc:before {
+                @extend %ico;
+                float:right;
+            }
+
+            &.state--asc {
+                @extend .ico-up-dir;
+            }
+
+            &.state--desc {
+                @extend .ico-down-dir;
+            }
+
             .color-scheme--dark & {
                 background:$_color_dark_beta;
                 border-color:$_color_dark_gamma;
 
-                &.state--current {background:$_color_dark_alpha;}
+                &.state--asc,
+                &.state--desc {background:$_color_dark_alpha;}
             }
 
             .color-scheme--light & {
                 background:$_color_light_beta;
                 border-color:$_color_light_gamma;
 
-                &.state--current {background:$_color_light_alpha;}
-            }            
+                &.state--asc,
+                &.state--desc {background:$_color_light_alpha;}
+            }
 
             &.data-table__host,
             &.data-table__checkbox {border:0;}
@@ -76,13 +140,13 @@
         }
     }
 
-    td {
-        &:first-child {
-
-            + td {
-                padding-left:35px;
+    @include medium-and-up-screen {
+        td {
+            &:first-child {
+                + td {
+                    padding-left:35px;
+                }
             }
-
         }
     }
 
@@ -90,29 +154,33 @@
     .state--isChild {
 
         td, th {
+            @include medium-and-up-screen {
+                .color-scheme--dark & {
+                    background:$_color_dark_beta;
+                }
 
-            .color-scheme--dark & {
-                background:$_color_dark_beta;
-            }
-
-            .color-scheme--light & {
-                background:$_color_light_beta;
+                .color-scheme--light & {
+                    background:$_color_light_beta;
+                }
             }
         }
     }
 
     .state--hasChild {
-        
+
         td:first-child + td {
-            color:red;
             position:relative;
 
-            &:before {                
-                content:"\e804";
-                display:block;
-                font-family:"adagios-fontawesome";
-                left:0;
-                position:absolute;                
+            .data-table__collapse {
+                /* @extend %button-reset; */
+                @extend %ico;
+                display:none;
+
+                @include medium-and-up-screen {
+                    display:inline-block;
+                    left:0;
+                    position:absolute;
+                }
 
                 .color-scheme--dark & {
                     color:$_color_omega;
@@ -120,10 +188,38 @@
 
                 .color-scheme--light & {
                     color:$_color_alpha;
-                } 
+                }
             }
         }
-        
+    }
+
+    .state--isChild {
+        .data-table__checkbox {
+            display:none;
+
+            @include medium-and-up-screen {
+                display:table-cell;
+            }
+        }
+
+        .data-table__host {
+            display:none;
+
+            .data-table__data {display:none}
+
+            @include medium-and-up-screen {
+                display:table-cell;
+            }
+        }
+    }
+
+    .data-table__duration,
+    .data-table__lastcheck {
+        display:none;
+
+        @include medium-and-up-screen {
+            display:table-cell;
+        }
     }
 }
 
@@ -189,19 +285,36 @@
     }
 }
 
-/* .data-table__checkbox {width:14px;} */
+.data-table__checkbox {
+    left:-30px;
+    position:absolute;
+    top:0;
+    width:14px;
 
-.data-table__host {width:percentage(368 / 1200);}
+    @include medium-and-up-screen {
+        left:auto;
+        position:static;
+        top:auto;
+    }
+}
+
+.data-table__host {
+    width:auto;
+
+    @include medium-and-up-screen {
+        width:percentage(368 / 1200);
+    }
+}
 
 .data-table__service {
-    width:percentage(500 / 1200);
+    width:auto;
+
+    @include medium-and-up-screen {
+        width:percentage(500 / 1200);
+    }
 
     .data-table__service__summary {
         font-style:italic;
         margin-left:0;
     }
 }
-
-.data-table__duration {width:percentage(166 / 1200);}
-
-.data-table__lastcheck {width:percentage(134 / 1200);}

@@ -1,4 +1,4 @@
-var SFLfront = (function() {
+var AdagiosUI = (function() {
     "use strict";
 
 	// States for UI modifications
@@ -18,8 +18,24 @@ var SFLfront = (function() {
 		tablet: 959
 	};
 
+    var test = function(str) {
+        console.log(str);
+    };
+
+    var syncBkgCheckbox = function() {
+        var $activeHostCell = $('th.data-table__host.state--asc, th.data-table__host.state--desc');
+        var activeHostCell_bkgColor = $activeHostCell.css('background-color');
+
+        $activeHostCell
+            .prev('th')
+            .css('background-color', activeHostCell_bkgColor);      
+    };
+
 	return {
 		state: state,
-		mquery: mquery
+		test: test,
+		mquery: mquery,
+        syncBkgCheckbox : syncBkgCheckbox
 	};
+    
 })();
