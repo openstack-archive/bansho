@@ -1,18 +1,21 @@
-<div ng-app="adagios.table" ng-controller="TableCtrl" id="table">
-<table class="table table-bordered">
+<table class="data-table" ng-controller="TableCtrl" id="table">
   <thead>
-    <tr>
-      <th></th>
-      <th ng-repeat="thead in cells">
-        {{thead}}
-      </th>
-    </tr>
+      <tr>
+        <th class="data-table__checkbox"><input type="checkbox"></th>
+        <th ng-repeat="i in cellIndexes" class="data-table__{{cellsName[i]}}">
+          {{cellsText[i]}}
+          <i class="ico-up-dir"></i>
+        </th>
+      </tr>
   </thead>
-  <tr ng-repeat="entry in entries">
-    <td><input type="checkbox"></td>
-    <td ng-repeat="cell in cells">
-      <adg-cell type="{{cell}}"></adg-cell>
-    </td>
-  </tr>
+
+  <tbody class="" ng-repeat="entry in entries">
+    <tr>
+      <td><input type="checkbox"></td>
+      <td ng-repeat="cell in cellsName">
+        <adg-cell type="{{cell}}"></adg-cell>
+      </td>
+    </tr>
+  </tbody>
+
 </table>
-</div>

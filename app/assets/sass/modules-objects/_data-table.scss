@@ -278,7 +278,7 @@
 
 .data-table__service__summary,
 td.data-table__duration,
-td.data-table__lastcheck {
+td.data-table__last_check {
     @extend %typo-more-info--little;
 
     .color-scheme--dark & {

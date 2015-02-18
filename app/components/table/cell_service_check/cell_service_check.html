@@ -1,3 +1,6 @@
-<div>{{entry.state}}</div>
-<div>{{entry.description}}</div>
-<div>{{entry.plugin_output}}</div>
+<div class="data-table__service {{state}}" ng-controller="CellServiceCheckCtrl">
+  <dl class="data-table__data">
+    <dt class="data-table__service__name">{{entry.description}}</dt>
+    <dd class="data-table__service__summary">{{entry.plugin_output}}</dd>
+  </dl>
+</div>
