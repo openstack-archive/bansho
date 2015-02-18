@@ -45,24 +45,27 @@ angular.module('adagios.table', ['adagios.live',
                 parent_found = false,
                 i;
 
-            if (!!data.host) {
-                return data;
-            }
-
             for (i = 0; i < data.length; i += 1) {
                 entry = data[i];
+                if (entry.host_name === undefined) return data;
                 actual_host = entry.host_name;
 
                 if (entry.host_name === last_host) {
 
                     if (!data[i-1].has_child && !parent_found) {
                         data[i-1].has_child = 1;
+                        data[i-1].child_class='state--hasChild';
+                        entry.child_class='state--isChild';
+                        entry.host_state = "";
                         parent_found = true;
                     } else {
                         entry.is_child = 1;
+                        entry.child_class='state--isChild';
+                        entry.host_state = "";
                     }
 
                     entry.host_name = "";
+
                 } else {
                     first_child = false;
                     parent_found = false;
@@ -77,7 +80,6 @@ angular.module('adagios.table', ['adagios.live',
         getServices(requestFields, filters, tableConfig.apiName)
             .success(function (data) {
                 $scope.entries = processMultipleServicesPerHost(data);
-                console.log($scope.entries);
             });
     }])
 
