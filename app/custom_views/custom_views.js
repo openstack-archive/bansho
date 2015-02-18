@@ -23,19 +23,21 @@ angular.module('adagios.view.custom', ['ngRoute',
             if (!!$routeParams.view) {
                 viewName = $routeParams.view;
             } else {
-                console.log("ERROR : 'view' GET parameter must be the custom view name");
+                console.error("ERROR : 'view' GET parameter must be the custom view name");
                 return;
             }
 
-            $scope.customViewCells = customViewsConfig[viewName].cells.join();
+            $scope.customViewTitle = customViewsConfig[viewName].title;
+            $scope.customViewCellsText = customViewsConfig[viewName].cells.text.join();
+            $scope.customViewCellsName = customViewsConfig[viewName].cells.name.join();
             $scope.customViewApiName = customViewsConfig[viewName].apiName;
             $scope.customViewFilters = customViewsConfig[viewName].filters;
-    }])
+        }])
 
     .run(['readConfig', 'customViewsConfig', function (readConfig, customViewsConfig) {
         var viewsConfig = readConfig.data.customViewsConfig;
-        
-        angular.forEach(viewsConfig, function(config, view) {
+
+        angular.forEach(viewsConfig, function (config, view) {
             customViewsConfig[view] = config;
         });
 

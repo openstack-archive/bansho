@@ -1,7 +1,19 @@
-<div ng-controller="HostsCtrl" id="tactical" class="">
+<article ng-controller="HostsCtrl" id="tactical">
+  
+  <section class="main__content tabpanel">
+        
+    <div class="tab-content">
+      <div role="tabpanel" class="problems tab-pane active" id="openProblems">
+        <header class="main__content__header clearfix">
+          <h2 class="main__content__title">{{hostsTitle}}</h2>
+        </header>
+      </div>
+    </div>
 
-    <h2>Hosts</h2>
+    <adg-table cells-name="{{hostsCellsName}}"
+               cells-text="{{hostsCellsText}}"
+               api-name="{{hostsApiName}}" 
+               filters="{{hostsFilters}}">
 
-    <adg-table cells="{{hostsCells}}" api-name="{{hostsApiName}}" filters="{{hostsFilters}}"></adg-table>
-
-</div>
+  </section>
+</article>

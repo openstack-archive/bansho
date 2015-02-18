@@ -1,29 +1,109 @@
 {
     "dashboardConfig": {
-        "cells": ["host", "service_check", "duration", "last_check"],
+		"title": "Unhandled service problems",
+        "cells": {
+            "text": [
+                "Host",
+                "Service check",
+                "Duration",
+                "Last check"
+            ],
+            "name": [
+                "host",
+                "service_check",
+                "duration",
+                "last_check"
+            ]
+        },
         "apiName": "services",
-        "filters": { "isnot": { "host_state": ["0"]} }
+        "filters": {
+            "isnot": {
+                "host_state": [
+                    "0"
+                ]
+            }
+        }
     },
     "hostsConfig": {
-        "cells": ["hosts_host", "host_address", "duration", "last_check", "host_status"],
+		"title": "Hosts",
+        "cells": {
+            "text": [
+                "Host",
+                "Address",
+                "Duration",
+                "Last check",
+                "Host status"
+            ],
+            "name": [
+                "hosts_host",
+                "host_address",
+                "duration",
+                "last_check",
+                "host_status"
+            ]
+        },
         "apiName": "hosts",
         "filters": {}
     },
     "servicesConfig": {
-        "cells": ["host", "service_check", "duration", "last_check"],
+		"title": "Services",
+        "cells": {
+            "text": [
+                "Host",
+                "Service check",
+                "Duration",
+                "Last check"
+            ],
+            "name": [
+                "host",
+                "service_check",
+                "duration",
+                "last_check"
+            ]
+        },
         "apiName": "services",
         "filters": {}
     },
-	"customViewsConfig": {
-		"customView1": {
-			"cells": ["hosts_host", "host_address", "duration", "last_check", "host_status"],
-			"apiName": "hosts",
-			"filters": {}
-		},
-		"customView2": {
-			"cells": ["host", "service_check", "duration", "last_check"],
-			"apiName": "services",
-			"filters": {}
-		}
-	}
+    "customViewsConfig": {
+        "customView1": {
+			"title": "Custom View 1",
+            "cells": {
+                "text": [
+                    "Host",
+                    "Address",
+                    "Duration",
+                    "Last check",
+                    "Host status"
+                ],
+                "name": [
+                    "hosts_host",
+                    "host_address",
+                    "duration",
+                    "last_check",
+                    "host_status"
+                ]
+            },
+            "apiName": "hosts",
+            "filters": {}
+        },
+        "customView2": {
+			"title": "Custom View 2",
+            "cells": {
+                "text": [
+                    "Host",
+                    "Service check",
+                    "Duration",
+                    "Last check"
+                ],
+                "name": [
+                    "host",
+                    "service_check",
+                    "duration",
+                    "last_check"
+                ]
+            },
+            "apiName": "services",
+            "filters": {}
+        }
+    }
 }

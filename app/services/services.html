@@ -1,7 +1,19 @@
-<div ng-controller="ServicesCtrl" id="tactical" class="">
+<article ng-controller="ServicesCtrl" id="tactical">
+  
+  <section class="main__content tabpanel">
+        
+    <div class="tab-content">
+      <div role="tabpanel" class="problems tab-pane active" id="openProblems">
+        <header class="main__content__header clearfix">
+          <h2 class="main__content__title">{{servicesTitle}}</h2>
+        </header>
+      </div>
+    </div>
 
-    <h2>Services</h2>
+    <adg-table cells-name="{{servicesCellsName}}"
+               cells-text="{{servicesCellsText}}" 
+               api-name="{{servicesApiName}}" 
+               filters="{{servicesFilters}}">
 
-    <adg-table cells="{{servicesCells}}" api-name="{{servicesApiName}}" filters="{{servicesFilters}}"></adg-table>
-
-</div>
+  </section>
+</article>

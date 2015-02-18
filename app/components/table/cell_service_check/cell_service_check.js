@@ -3,7 +3,13 @@
 angular.module('adagios.table.cell_service_check', ['adagios.table'])
 
     .controller('CellServiceCheckCtrl', ['$scope', function ($scope) {
-        angular.noop();
+        if ($scope.entry.state === 0) {
+            $scope.state = 'state--ok';
+        } else if ($scope.entry === 1) {
+            $scope.state = 'state--warning';
+        } else {
+            $scope.state = 'state--error';
+        }
     }])
 
     .run(['tableConfig', function (tableConfig) {
