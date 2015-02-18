@@ -68,7 +68,7 @@ angular.module('adagios.table', ['adagios.live',
 
     .directive('adgCell', function () {
         return {
-            restrict: 'E',
+            restrict: 'A',
             link: function (scope, element, attrs) {
                 scope.getTemplateUrl = function () {
                     if (!!attrs.type) {

@@ -12,8 +12,7 @@
   <tbody class="" ng-repeat="entry in entries">
     <tr>
       <td><input type="checkbox"></td>
-      <td ng-repeat="cell in cellsName">
-        <adg-cell type="{{cell}}"></adg-cell>
+      <td class="data-table__{{ cell }}" adg-cell type="{{cell}}" ng-repeat="cell in cellsName">
       </td>
     </tr>
   </tbody>
