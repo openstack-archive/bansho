@@ -2,9 +2,19 @@
 // PANES
 //----------------------------------*/
 .panes {
-    background:aquamarine;
-    display:table;
-    width:100%;
+    //background:aquamarine;
+    //border:5px solid red;    
+    display:block;
+    overflow-x:auto;
+    width:auto;
+
+    @include medium-and-up-screen {
+        border:0;
+	    display:table;
+        min-height:0;
+        overflow-x:visible;
+        width:100%;
+    }
 
     .color-scheme--dark & {
         background:$_color_dark_gamma;
@@ -12,6 +22,19 @@
 
     .color-scheme--light & {
         background:$_color_light_gamma;
+    }
+}
+
+.panes__container {
+    //background:indigo;    
+    display:table;    
+    width:auto;
+    width:840px;
+
+    @include medium-and-up-screen {
+        display:table-row;
+        min-width:0;
+        position:static;    
     }
 }
 

@@ -5,7 +5,7 @@
 .data-table {
     width:100%;
 
-    input[type="checkbox"] {background:red;}
+    //input[type="checkbox"] {background:red;}
 
     .color-scheme--dark & {
         color:$_color_omega;
@@ -86,6 +86,11 @@
         .color-scheme--light & {
             border-color:$_color_light_beta;
         }
+
+        /* &:before { */
+        /*     content:attr(data-colname); */
+        /*     display:inline-block; */
+        /* } */
     }
 
     thead {
@@ -272,8 +277,8 @@
 }
 
 .data-table__service__summary,
-.data-table__duration,
-.data-table__lastcheck {
+td.data-table__duration,
+td.data-table__lastcheck {
     @extend %typo-more-info--little;
 
     .color-scheme--dark & {
