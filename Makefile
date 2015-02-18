@@ -5,6 +5,9 @@ clean: kill remove
 build:
 	sudo docker build -t adg-fe container
 
+rebuild:
+	sudo docker build --no-cache -t adg-fe container
+
 interactive:
 	sudo docker run -p 80:80 -p 8000:8000 -v ${PWD}:/opt/adagios-frontend -i -t --name adg-fe adg-fe bash
 
