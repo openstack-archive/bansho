@@ -14,7 +14,6 @@ angular.module('adagios.table', ['adagios.live',
     .value('tableConfig', { cells: { 'text': [], 'name': [] },
                             apiName: '',
                             filters: {},
-                            cellToFunctionsMap: {},
                             cellToFieldsMap: {} })
 
     .controller('TableCtrl', ['$scope', 'getServices', 'readConfig', 'tableConfig', function ($scope, getServices, readConfig, tableConfig) {
@@ -39,11 +38,6 @@ angular.module('adagios.table', ['adagios.live',
 
         getServices(requestFields, filters, tableConfig.apiName)
             .success(function (data) {
-                angular.forEach(data, function (d) {
-                    angular.forEach($scope.cellsName, function (key, value) {
-                        d = tableConfig.cellToFunctionsMap[key](d)
-                    })
-                })
                 $scope.entries = data;
             });
     }])
@@ -77,7 +71,6 @@ angular.module('adagios.table', ['adagios.live',
         return {
             restrict:'A',
 
-            transclude: 'element',
             compile: function() {
                     return function postCompile(scope, element, attrs) {
                             var template = 'components/table/cell_' + attrs.type + '/cell_' + attrs.type + '.html'
@@ -86,11 +79,9 @@ angular.module('adagios.table', ['adagios.live',
                               .success(function(data) {
                                  $templateCache.put(template, data);
                                  var titi = $compile(data)(scope)
-                                 console.log(titi)
                                  element.replaceWith(titi)
                                });
                         }
                     }
-//            template: '<span ></span>'
         };
     });

@@ -9,7 +9,10 @@
                 "Last check"
             ],
             "name": [
-                "host"
+                "host",
+                "service_check",
+                "duration",
+                "last_check"
             ]
         },
         "apiName": "services",
