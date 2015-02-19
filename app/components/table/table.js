@@ -42,50 +42,55 @@ angular.module('adagios.table', ['adagios.live',
             });
     }])
 
-    .directive('adgTable', ['tableConfig', function (tableConfig) {
+    .directive('adgTable', ['$http', '$compile', 'tableConfig',  function ($http, $compile, tableConfig) {
         return {
             restrict: 'E',
-            link: function (scope, element, attrs) {
-                scope.generateTable = function () {
+            compile: function () {
+                return function (scope, element, attrs) {
 
-                    if (!!attrs.cellsText && !!attrs.cellsName && !!attrs.apiName) {
-                        tableConfig.cells.text = attrs.cellsText.split(',');
-                        tableConfig.cells.name = attrs.cellsName.split(',');
-                        tableConfig.apiName = attrs.apiName;
-
-                        if (!!attrs.filters) {
-                            tableConfig.filters = attrs.filters;
-                        }
-
-                        return 'components/table/table.html';
+                    if (!attrs.cellsText || !attrs.cellsName || !attrs.apiName) {
+                        throw new Error('<adg-table> "cells-text", "cells-name" and "api-name" attributes must be defined');
                     }
-                    console.error('<adg-table> "cells" and "api-name" attributes must be defined');
+
+                    tableConfig.cells.text = attrs.cellsText.split(',');
+                    tableConfig.cells.name = attrs.cellsName.split(',');
+                    tableConfig.apiName = attrs.apiName;
+
+                    if (!!attrs.filters) {
+                        tableConfig.filters = attrs.filters;
+                    }
+
+                    var template = 'components/table/table.html';
+
+                    $http.get(template, { cache: true })
+                        .success(function (data) {
+                            var elem = $compile(data)(scope);
+                            element.append(elem);
+                        });
                 };
-            },
-            template: '<div ng-include="generateTable()"></div>'
+            }
         };
     }])
 
     .directive('adgCell', function ($http, $compile, $templateCache) {
 
         return {
-            restrict:'A',
-
-            compile: function() {
-                    return function postCompile(scope, element, attrs) {
-                            var template = 'components/table/cell_' + attrs.type + '/cell_' + attrs.type + '.html'
-                            // TODO: Manage a true caching
-                            var toto = $templateCache.get(template)
-                            $http.get(template)
-                              .success(function(data) {
-                                 $templateCache.put(template, data);
-                                 var titi = $compile(data)(scope)
-                                 // We do this HACK because we are in a "table" element
-                                 // Which accept only td element :(
-                                 // Don't do this anywhere else
-                                 element.replaceWith(titi)
-                               });
-                        }
+            restrict: 'A',
+            compile: function () {
+                return function (scope, element, attrs) {
+                    if (!attrs.cellName) {
+                        throw new Error('<adg-cell> "cell-name" attribute must be defined');
                     }
+
+                    var template = 'components/table/cell_' + attrs.cellName + '/cell_' + attrs.cellName + '.html';
+
+                    $http.get(template, { cache: true })
+                        .success(function (data) {
+                            var td = $compile(data)(scope);
+                            // HACK : replaceWith is a necessary hack because <tr> only accepts <td> as a child
+                            element.replaceWith(td);
+                        });
+                };
+            }
         };
     });

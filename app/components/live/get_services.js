@@ -37,7 +37,7 @@ angular.module('adagios.live')
 
                 return $http.get('/rest/status/json/' + apiName + '/?fields=' + columns + filtersQuery)
                     .error(function (data, status, headers, config) {
-                        console.error('getServices : GET Request failed');
+                        throw new Error('getServices : GET Request failed');
                     });
             };
         }]);
