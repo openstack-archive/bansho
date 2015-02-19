@@ -14,6 +14,7 @@ angular.module('adagios.table', ['adagios.live',
     .value('tableConfig', { cells: { 'text': [], 'name': [] },
                             apiName: '',
                             filters: {},
+                            cellToFunctionsMap: {},
                             cellToFieldsMap: {} })
 
     .controller('TableCtrl', ['$scope', 'getServices', 'readConfig', 'tableConfig', function ($scope, getServices, readConfig, tableConfig) {
@@ -38,6 +39,11 @@ angular.module('adagios.table', ['adagios.live',
 
         getServices(requestFields, filters, tableConfig.apiName)
             .success(function (data) {
+                angular.forEach(data, function (d) {
+                    angular.forEach($scope.cellsName, function (key, value) {
+                        d = tableConfig.cellToFunctionsMap[key](d)
+                    })
+                })
                 $scope.entries = data;
             });
     }])
@@ -66,17 +72,25 @@ angular.module('adagios.table', ['adagios.live',
         };
     }])
 
-    .directive('adgCell', function () {
+    .directive('adgCell', function ($http, $compile, $templateCache) {
+
         return {
-            restrict: 'A',
-            link: function (scope, element, attrs) {
-                scope.getTemplateUrl = function () {
-                    if (!!attrs.type) {
-                        return 'components/table/cell_' + attrs.type + '/cell_' + attrs.type + '.html';
+            restrict:'A',
+
+            transclude: 'element',
+            compile: function() {
+                    return function postCompile(scope, element, attrs) {
+                            var template = 'components/table/cell_' + attrs.type + '/cell_' + attrs.type + '.html'
+                            var toto = $templateCache.get(template)
+                            $http.get(template)
+                              .success(function(data) {
+                                 $templateCache.put(template, data);
+                                 var titi = $compile(data)(scope)
+                                 console.log(titi)
+                                 element.replaceWith(titi)
+                               });
+                        }
                     }
-                    console.error('<adg-cell> "type" attribute is undefined');
-                };
-            },
-            template: '<div ng-include="getTemplateUrl()"></div>'
+//            template: '<span ></span>'
         };
     });

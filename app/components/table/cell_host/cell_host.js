@@ -14,4 +14,15 @@ angular.module('adagios.table.cell_host', ['adagios.table'])
 
     .run(['tableConfig', function (tableConfig) {
         tableConfig.cellToFieldsMap.host = [ 'host_state', 'host_name' ];
+
+        tableConfig.cellToFunctionsMap.host = function(data) {
+            if (data.host_state === 0) {
+                data.state = 'state--ok';
+            } else if (data.host_state === 1) {
+                data.state = 'state--warning';
+            } else {
+                data.state = 'state--error';
+            }
+            return data
+        };
     }]);
