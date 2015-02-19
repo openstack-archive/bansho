@@ -39,7 +39,7 @@ you already have docker installed) :
 
     make build
     make daemon
-    curl http://localhost/app
+    curl http://localhost:8080/app
 
 
 Coding style

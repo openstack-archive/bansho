@@ -18,10 +18,11 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Configure Apache2 for reverse-proxying
 ADD 000-default.conf etc/apache2/sites-enabled/000-default.conf
+ADD ports.conf etc/apache2/ports.conf
 RUN a2enmod proxy
 RUN a2enmod proxy_http
 
 # Expose appropriate ports
-EXPOSE 80 8000
+EXPOSE 8080
 
 CMD ["/usr/bin/supervisord"]
