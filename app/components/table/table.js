@@ -74,11 +74,15 @@ angular.module('adagios.table', ['adagios.live',
             compile: function() {
                     return function postCompile(scope, element, attrs) {
                             var template = 'components/table/cell_' + attrs.type + '/cell_' + attrs.type + '.html'
+                            // TODO: Manage a true caching
                             var toto = $templateCache.get(template)
                             $http.get(template)
                               .success(function(data) {
                                  $templateCache.put(template, data);
                                  var titi = $compile(data)(scope)
+                                 // We do this HACK because we are in a "table" element
+                                 // Which accept only td element :(
+                                 // Don't do this anywhere else
                                  element.replaceWith(titi)
                                });
                         }
