@@ -1,22 +1,13 @@
 'use strict';
 
-angular.module('adagios.table', ['adagios.live',
-                                 'adagios.filters',
-                                 'adagios.table.cell_host',
-                                 'adagios.table.cell_duration',
-                                 'adagios.table.cell_service_check',
-                                 'adagios.table.cell_last_check',
-                                 'adagios.table.cell_hosts_host',
-                                 'adagios.table.cell_host_address',
-                                 'adagios.table.cell_host_status'
-                                 ])
+angular.module('adagios.table', ['adagios.live'])
 
     .value('tableConfig', { cells: { 'text': [], 'name': [] },
                             apiName: '',
                             filters: {},
                             cellToFieldsMap: {} })
 
-    .controller('TableCtrl', ['$scope', 'getServices', 'readConfig', 'tableConfig', function ($scope, getServices, readConfig, tableConfig) {
+    .controller('TableCtrl', ['$scope', 'getServices', 'tableConfig', function ($scope, getServices, tableConfig) {
 
         var requestFields = [],
             filters = JSON.parse(tableConfig.filters),
@@ -30,7 +21,7 @@ angular.module('adagios.table', ['adagios.live',
             $scope.cellIndexes.push(i);
         }
 
-        angular.forEach($scope.cellsName, function (key, value) {
+        angular.forEach($scope.cellsName, function (key) {
             angular.forEach(tableConfig.cellToFieldsMap[key], function (_value) {
                 requestFields.push(_value);
             });
@@ -72,7 +63,7 @@ angular.module('adagios.table', ['adagios.live',
         };
     }])
 
-    .directive('adgCell', function ($http, $compile, $templateCache) {
+    .directive('adgCell', ['$http', '$compile', function ($http, $compile) {
 
         return {
             restrict: 'A',
@@ -93,4 +84,4 @@ angular.module('adagios.table', ['adagios.live',
                 };
             }
         };
-    });
+    }]);

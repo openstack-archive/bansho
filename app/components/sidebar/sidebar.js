@@ -2,7 +2,7 @@
 
 angular.module('adagios.sidebar', [])
 
-    .controller('SideBarCtrl', ['$scope', '$http', function ($scope, $http) {
+    .controller('SideBarCtrl', [function () {
         angular.noop();
     }])
 

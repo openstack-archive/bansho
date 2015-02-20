@@ -20,7 +20,8 @@ Installation
 Dev
 ===
 
-To watch for sass files change and auto-refresh css run :
+You must leave grunt running in the background to automatically compile css
+and minify/compress js files when source code changes
 
 ::
 
@@ -31,6 +32,12 @@ To compile css files run :
 ::
 
     grunt sass
+
+To compile js files run :
+
+::
+
+    grunt uglify
 
 If you wish to develop in a docker container, here is how to proceed (assuming
 you already have docker installed) :

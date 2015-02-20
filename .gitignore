@@ -13,3 +13,4 @@ tmp
 app/assets/css
 .sass-cache/
 out/
+build/

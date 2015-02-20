@@ -5,7 +5,7 @@ angular.module('adagios.tactical', ['adagios.tactical.status_overview',
                                     'adagios.tactical.top_alert_producers'
                                    ])
 
-    .controller('TacticalCtrl', ['$scope', '$http', function ($scope, $http) {
+    .controller('TacticalCtrl', [function () {
 
         // Togglable tabs
         // Don't follow hyperlinks

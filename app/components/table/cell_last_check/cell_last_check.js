@@ -2,7 +2,7 @@
 
 angular.module('adagios.table.cell_last_check', ['adagios.table'])
 
-    .controller('CellLastCheckCtrl', ['$scope', function ($scope) {
+    .controller('CellLastCheckCtrl', [function () {
         angular.noop();
     }])
 

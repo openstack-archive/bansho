@@ -2,7 +2,7 @@
 
 angular.module('adagios.tactical.current_health', ['ngRoute', 'ngJustGage' ])
 
-    .controller('TacticalCurrentHealth', ['$scope', '$http', function ($scope, $http) {
+    .controller('TacticalCurrentHealth', ['$scope', function ($scope) {
         $scope.hosts =  75.2;
         $scope.services = 94.4;
     }])

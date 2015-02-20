@@ -2,7 +2,7 @@
 
 angular.module('adagios.topbar', ['adagios.live'])
 
-    .controller('TopBarCtrl', ['$scope', '$http', 'getProblems', function ($scope, $http, getProblems) {
+    .controller('TopBarCtrl', ['$scope', 'getProblems', function ($scope, getProblems) {
         $scope.notifications = getProblems;
     }])
 
