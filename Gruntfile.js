@@ -61,7 +61,6 @@ module.exports = function (grunt) {
                 ],
                 directives: {
                     node: true,
-                    unparam: true, // TEMPORARY: Ignore unused params
                     nomen: true,
                     predef: [ // Global variables
                         'document', '$', '$get',

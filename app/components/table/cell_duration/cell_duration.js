@@ -2,7 +2,7 @@
 
 angular.module('adagios.table.cell_duration', ['adagios.table'])
 
-    .controller('CellDurationCtrl', ['$scope', function ($scope) {
+    .controller('CellDurationCtrl', [function () {
         angular.noop();
     }])
 

@@ -14,7 +14,7 @@ angular.module("ngJustGage", [])
                 options: '='
             },
             template: '<div id="{{id}}-justgage" class="{{class}}"></div>',
-            link: function (scope, element, attrs) {
+            link: function (scope) {
                 $timeout(function () {
                     var options, key, graph;
 

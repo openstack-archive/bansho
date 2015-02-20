@@ -2,7 +2,7 @@
 
 angular.module('adagios.table.cell_host_address', ['adagios.table'])
 
-    .controller('CellHostAddressCtrl', ['$scope', function ($scope) {
+    .controller('CellHostAddressCtrl', [function () {
         angular.noop();
     }])
 

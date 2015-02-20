@@ -16,7 +16,7 @@ angular.module('adagios.table', ['adagios.live',
                             filters: {},
                             cellToFieldsMap: {} })
 
-    .controller('TableCtrl', ['$scope', 'getServices', 'readConfig', 'tableConfig', function ($scope, getServices, readConfig, tableConfig) {
+    .controller('TableCtrl', ['$scope', 'getServices', 'tableConfig', function ($scope, getServices, tableConfig) {
 
         var requestFields = [],
             filters = JSON.parse(tableConfig.filters),
@@ -30,7 +30,7 @@ angular.module('adagios.table', ['adagios.live',
             $scope.cellIndexes.push(i);
         }
 
-        angular.forEach($scope.cellsName, function (key, value) {
+        angular.forEach($scope.cellsName, function (key) {
             angular.forEach(tableConfig.cellToFieldsMap[key], function (_value) {
                 requestFields.push(_value);
             });

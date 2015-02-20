@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('adagios.tactical.top_alert_producers', ['ngRoute' ])
-    .controller('TacticalTopAlertProducers', ['$scope', '$http', function ($scope, $http) {
+    .controller('TacticalTopAlertProducers', ['$scope', function ($scope) {
         $scope.hosts = [
             {
                 "host_name": "server-18",
