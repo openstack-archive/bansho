@@ -33,6 +33,12 @@ To compile css files run :
 
     grunt sass
 
+To compile js files run :
+
+::
+
+    grunt uglify
+
 If you wish to develop in a docker container, here is how to proceed (assuming
 you already have docker installed) :
 
