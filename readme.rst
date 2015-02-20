@@ -20,7 +20,8 @@ Installation
 Dev
 ===
 
-To watch for sass files change and auto-refresh css run :
+You must leave grunt running in the background to automatically compile css
+and minify/compress js files when source code changes
 
 ::
 
