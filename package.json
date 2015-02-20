@@ -16,7 +16,8 @@
     "karma": "~0.10",
     "karma-junit-reporter": "^0.2.2",
     "protractor": "^1.1.1",
-    "shelljs": "^0.2.6"
+    "shelljs": "^0.2.6",
+    "grunt-contrib-uglify": "~0.8.0"
   },
   "scripts": {
     "postinstall": "bower install",

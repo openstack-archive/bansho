@@ -2,10 +2,6 @@
 
 module.exports = function (grunt) {
 
-    grunt.loadNpmTasks('grunt-contrib-sass');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-jslint');
-
     grunt.initConfig({
 
         pkg: grunt.file.readJSON('package.json'),
@@ -72,8 +68,53 @@ module.exports = function (grunt) {
                     checkstyle: 'out/client-checkstyle.xml' // write a checkstyle-XML
                 }
             }
+        },
+
+        // Minify and concatenate adagios in one file
+        uglify: {
+            compress: {
+                files: [{
+                    'app/build/js/adagios.js' : [
+                        'app/app.js',
+                        'app/components/config/config.js',
+                        'app/components/live/live.js',
+                        'app/components/live/notifications.js',
+                        'app/components/live/get_services.js',
+                        'app/components/ng-justgage/ng-justgage.js',
+                        'app/components/filters/filters.js',
+                        'app/components/sidebar/sidebar.js',
+                        'app/components/topbar/topbar.js',
+                        'app/components/tactical/tactical.js',
+                        'app/components/tactical/status_overview/status_overview.js',
+                        'app/components/tactical/current_health/current_health.js',
+                        'app/components/tactical/top_alert_producers/top_alert_producers.js',
+                        'app/components/table/table.js',
+                        'app/components/table/cell_duration/cell_duration.js',
+                        'app/components/table/cell_host/cell_host.js',
+                        'app/components/table/cell_last_check/cell_last_check.js',
+                        'app/components/table/cell_service_check/cell_service_check.js',
+                        'app/components/table/cell_hosts_host/cell_hosts_host.js',
+                        'app/components/table/cell_host_address/cell_host_address.js',
+                        'app/components/table/cell_host_status/cell_host_status.js',
+                        'app/dashboard/dashboard.js',
+                        'app/hosts/hosts.js',
+                        'app/services/services.js',
+                        'app/custom_views/custom_views.js',
+
+                        // Excluded files/directories
+                        '!app/bower_components/**',
+                        '!app/build/**', 
+                        '!app/**/*_test.js'
+                    ]
+                }]
+            }
         }
     });
 
-    grunt.registerTask('default', [ 'watch', 'jslint' ]);
+    grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-jslint');
+
+    grunt.registerTask('default', [ 'watch', 'jslint' , 'uglify']);
 };

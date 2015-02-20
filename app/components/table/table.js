@@ -72,7 +72,7 @@ angular.module('adagios.table', ['adagios.live',
         };
     }])
 
-    .directive('adgCell', function ($http, $compile, $templateCache) {
+    .directive('adgCell', ['$http', '$compile', function ($http, $compile) {
 
         return {
             restrict: 'A',
@@ -93,4 +93,4 @@ angular.module('adagios.table', ['adagios.live',
                 };
             }
         };
-    });
+    }]);
