@@ -9,7 +9,8 @@ module.exports = function (grunt) {
         project: {
             app: ['app'],
             assets: ['<%= project.app %>/assets'],
-            css: ['<%= project.assets %>/sass/app.scss']
+            css: ['<%= project.assets %>/sass/app.scss'],
+            build: ['<%= project.app %>/build/']
         },
 
         sass: {
@@ -31,6 +32,16 @@ module.exports = function (grunt) {
                     '<%= project.app %>/{,*/}*/{,*/}*.{scss,sass}'
                 ],
                 tasks: ['sass:dev']
+            },
+            uglify: {
+                files: [
+                    '<%= project.app %>/**/*.js',
+                    '<%= project.app %>/**/*_test.js',
+                    '!<%= project.app %>/bower_components/**',
+                    '!<%= project.build %>/**',
+                    '!<%= project.assets %>/**'
+                ],
+                tasks: ['uglify:compress']
             }
         },
 
@@ -40,12 +51,13 @@ module.exports = function (grunt) {
                 src: [
                     'karma.conf.js',
                     'Gruntfile.js',
-                    'app/app.js',
-                    'app/**/*.js'
+                    '<%= project.app %>/app.js',
+                    '<%= project.app %>/**/*.js'
                 ],
                 exclude: [
-                    'app/bower_components/**/*.js',
-                    'app/assets/**/*'
+                    '<%= project.app %>/bower_components/**/*.js',
+                    '<%= project.assets %>/**',
+                    '<%= project.build %>/**'
                 ],
                 directives: {
                     node: true,
@@ -74,37 +86,37 @@ module.exports = function (grunt) {
         uglify: {
             compress: {
                 files: [{
-                    'app/build/js/adagios.js' : [
-                        'app/app.js',
-                        'app/components/config/config.js',
-                        'app/components/live/live.js',
-                        'app/components/live/notifications.js',
-                        'app/components/live/get_services.js',
-                        'app/components/ng-justgage/ng-justgage.js',
-                        'app/components/filters/filters.js',
-                        'app/components/sidebar/sidebar.js',
-                        'app/components/topbar/topbar.js',
-                        'app/components/tactical/tactical.js',
-                        'app/components/tactical/status_overview/status_overview.js',
-                        'app/components/tactical/current_health/current_health.js',
-                        'app/components/tactical/top_alert_producers/top_alert_producers.js',
-                        'app/components/table/table.js',
-                        'app/components/table/cell_duration/cell_duration.js',
-                        'app/components/table/cell_host/cell_host.js',
-                        'app/components/table/cell_last_check/cell_last_check.js',
-                        'app/components/table/cell_service_check/cell_service_check.js',
-                        'app/components/table/cell_hosts_host/cell_hosts_host.js',
-                        'app/components/table/cell_host_address/cell_host_address.js',
-                        'app/components/table/cell_host_status/cell_host_status.js',
-                        'app/dashboard/dashboard.js',
-                        'app/hosts/hosts.js',
-                        'app/services/services.js',
-                        'app/custom_views/custom_views.js',
+                    '<%= project.build %>/js/adagios.js' : [
+                        '<%= project.app %>/app.js',
+                        '<%= project.app %>/components/config/config.js',
+                        '<%= project.app %>/components/live/live.js',
+                        '<%= project.app %>/components/live/notifications.js',
+                        '<%= project.app %>/components/live/get_services.js',
+                        '<%= project.app %>/components/ng-justgage/ng-justgage.js',
+                        '<%= project.app %>/components/filters/filters.js',
+                        '<%= project.app %>/components/sidebar/sidebar.js',
+                        '<%= project.app %>/components/topbar/topbar.js',
+                        '<%= project.app %>/components/tactical/tactical.js',
+                        '<%= project.app %>/components/tactical/status_overview/status_overview.js',
+                        '<%= project.app %>/components/tactical/current_health/current_health.js',
+                        '<%= project.app %>/components/tactical/top_alert_producers/top_alert_producers.js',
+                        '<%= project.app %>/components/table/table.js',
+                        '<%= project.app %>/components/table/cell_duration/cell_duration.js',
+                        '<%= project.app %>/components/table/cell_host/cell_host.js',
+                        '<%= project.app %>/components/table/cell_last_check/cell_last_check.js',
+                        '<%= project.app %>/components/table/cell_service_check/cell_service_check.js',
+                        '<%= project.app %>/components/table/cell_hosts_host/cell_hosts_host.js',
+                        '<%= project.app %>/components/table/cell_host_address/cell_host_address.js',
+                        '<%= project.app %>/components/table/cell_host_status/cell_host_status.js',
+                        '<%= project.app %>/dashboard/dashboard.js',
+                        '<%= project.app %>/hosts/hosts.js',
+                        '<%= project.app %>/services/services.js',
+                        '<%= project.app %>/custom_views/custom_views.js',
 
                         // Excluded files/directories
-                        '!app/bower_components/**',
-                        '!app/build/**', 
-                        '!app/**/*_test.js'
+                        '!<%= project.app %>/bower_components/**',
+                        '!<%= project.app %>/build/**',
+                        '!<%= project.app %>/**/*_test.js'
                     ]
                 }]
             }
@@ -116,5 +128,5 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-jslint');
 
-    grunt.registerTask('default', [ 'watch', 'jslint' , 'uglify']);
+    grunt.registerTask('default', [ 'watch', 'jslint', 'uglify']);
 };
