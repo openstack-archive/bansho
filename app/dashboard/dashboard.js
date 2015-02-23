@@ -2,7 +2,8 @@
 
 angular.module('adagios.view.dashboard', ['ngRoute',
                                           'adagios.tactical',
-                                          'adagios.table'
+                                          'adagios.table',
+                                          'adagios.live'
                                          ])
 
     .value('dashboardConfig', {})
@@ -14,12 +15,23 @@ angular.module('adagios.view.dashboard', ['ngRoute',
         });
     }])
 
-    .controller('DashboardCtrl', ['$scope', 'dashboardConfig', function ($scope, dashboardConfig) {
+    .controller('DashboardCtrl', ['$scope', 'dashboardConfig', 'getServices', function ($scope, dashboardConfig, getServices) {
+
+        var fields = ['state'],
+            filters = {'isnot' : { 'state' : ['0'] }},
+            apiName = 'hosts';
+
         $scope.dashboardTitle = dashboardConfig.title;
         $scope.dashboardCellsText = dashboardConfig.cellsText.join();
         $scope.dashboardCellsName = dashboardConfig.cellsName.join();
         $scope.dashboardApiName = dashboardConfig.apiName;
         $scope.dashboardFilters = dashboardConfig.filters;
+
+        getServices(fields, filters, apiName)
+            .success(function (data) {
+                $scope.nbHostProblems = data.length;
+            });
+
     }])
 
     .run(['readConfig', 'dashboardConfig', function (readConfig, dashboardConfig) {
