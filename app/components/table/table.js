@@ -1,6 +1,16 @@
 'use strict';
 
-angular.module('adagios.table', ['adagios.live'])
+angular.module('adagios.table', ['adagios.live',
+                                 'adagios.table.actionbar',
+                                 'adagios.filters',
+                                 'adagios.table.cell_host',
+                                 'adagios.table.cell_duration',
+                                 'adagios.table.cell_service_check',
+                                 'adagios.table.cell_last_check',
+                                 'adagios.table.cell_hosts_host',
+                                 'adagios.table.cell_host_address',
+                                 'adagios.table.cell_host_status'
+                                ])
 
     .value('tableConfig', { cells: { 'text': [], 'name': [] },
                             apiName: '',
