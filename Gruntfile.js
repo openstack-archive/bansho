@@ -85,7 +85,7 @@ module.exports = function (grunt) {
         uglify: {
             compress: {
                 files: [{
-                    '<%= project.build %>/js/adagios.js' : [
+                    '<%= project.build %>/js/adagios.min.js' : [
                         '<%= project.app %>/app.js',
                         '<%= project.app %>/components/config/config.js',
                         '<%= project.app %>/components/live/live.js',
@@ -99,6 +99,7 @@ module.exports = function (grunt) {
                         '<%= project.app %>/components/tactical/status_overview/status_overview.js',
                         '<%= project.app %>/components/tactical/current_health/current_health.js',
                         '<%= project.app %>/components/tactical/top_alert_producers/top_alert_producers.js',
+                        '<%= project.app %>/components/table/actionbar/actionbar.js',
                         '<%= project.app %>/components/table/table.js',
                         '<%= project.app %>/components/table/cell_duration/cell_duration.js',
                         '<%= project.app %>/components/table/cell_host/cell_host.js',

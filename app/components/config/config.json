@@ -18,7 +18,7 @@
         "apiName": "services",
         "filters": {
             "isnot": {
-                "host_state": [
+                "state": [
                     "0"
                 ]
             }
