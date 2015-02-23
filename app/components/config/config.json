@@ -22,7 +22,9 @@
                     "0"
                 ]
             }
-        }
+        },
+		"wrap" : ["host"],
+		"noRepeat" : ["host"]
     },
     "hostsConfig": {
 		"title": "Hosts",

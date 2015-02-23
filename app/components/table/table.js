@@ -15,9 +15,12 @@ angular.module('adagios.table', ['adagios.live',
     .value('tableConfig', { cells: { 'text': [], 'name': [] },
                             apiName: '',
                             filters: {},
-                            cellToFieldsMap: {} })
+                            cellToFieldsMap: {},
+                            toWrap: [],
+                            noRepeat: []})
 
-    .controller('TableCtrl', ['$scope', 'getServices', 'tableConfig', function ($scope, getServices, tableConfig) {
+    .controller('TableCtrl', ['$scope', 'getServices', 'tableConfig', 'processColumnRepeat',
+        function ($scope, getServices, tableConfig, processColumnRepeat) {
 
         var requestFields = [],
             filters = JSON.parse(tableConfig.filters),
@@ -37,53 +40,14 @@ angular.module('adagios.table', ['adagios.live',
             });
         });
 
-        function processMultipleServicesPerHost(data) {
-            var last_host = "",
-                actual_host = "",
-                entry = {},
-                first_child = false,
-                parent_found = false,
-                i;
-
-            for (i = 0; i < data.length; i += 1) {
-                entry = data[i];
-                if (entry.host_name === undefined) return data;
-                actual_host = entry.host_name;
-
-                if (entry.host_name === last_host) {
-
-                    if (!data[i-1].has_child && !parent_found) {
-                        data[i-1].has_child = 1;
-                        data[i-1].child_class='state--hasChild';
-                        entry.child_class='state--isChild';
-                        entry.host_state = "";
-                        parent_found = true;
-                    } else {
-                        entry.is_child = 1;
-                        entry.child_class='state--isChild';
-                        entry.host_state = "";
-                    }
-
-                    entry.host_name = "";
-
-                } else {
-                    first_child = false;
-                    parent_found = false;
-                }
-
-                last_host = actual_host;
-            }
-
-            return data;
-        }
-
         getServices(requestFields, filters, tableConfig.apiName)
             .success(function (data) {
-                $scope.entries = processMultipleServicesPerHost(data);
+                console.log(tableConfig.toWrap[0]);
+                $scope.entries = processColumnRepeat(data, tableConfig.cellToFieldsMap[tableConfig.toWrap[0]][1], tableConfig.cellToFieldsMap[tableConfig.toWrap[0]]);
             });
     }])
 
-    .directive('adgTable', ['$http', '$compile', 'tableConfig',  function ($http, $compile, tableConfig) {
+    .directive('adgTable', ['$http', '$compile', 'tableConfig', function ($http, $compile, tableConfig) {
         return {
             restrict: 'E',
             compile: function () {
@@ -96,6 +60,8 @@ angular.module('adagios.table', ['adagios.live',
                     tableConfig.cells.text = attrs.cellsText.split(',');
                     tableConfig.cells.name = attrs.cellsName.split(',');
                     tableConfig.apiName = attrs.apiName;
+                    tableConfig.toWrap = attrs.toWrap.split(',');
+                    tableConfig.noRepeat = attrs.noRepeat.split(',');
 
                     if (!!attrs.filters) {
                         tableConfig.filters = attrs.filters;
@@ -134,4 +100,52 @@ angular.module('adagios.table', ['adagios.live',
                 };
             }
         };
-    }]);
+    }])
+
+    .service('processColumnRepeat', function() {
+        
+        function clearFields(entry, fields) {
+            angular.forEach(fields, function (value) {
+               entry[value] = ''; 
+            });
+        };
+
+        return function (data, fieldToProcess, fields) {
+            var last = '',
+                actual = '',
+                entry = {},
+                first_child = false,
+                parent_found = false,
+                i;
+
+            console.log(fieldToProcess);
+            for (i = 0; i < data.length; i += 1) {
+                entry = data[i];
+                actual = entry[fieldToProcess];
+
+                console.log(entry.host_name + " " + entry[fieldToProcess] + " === " + last);
+                if (entry[fieldToProcess] === last) {
+
+                    if (!data[i-1].has_child && !parent_found) {
+                        data[i-1].has_child = 1;
+                        data[i-1].child_class='state--hasChild';
+                        entry.child_class='state--isChild';
+                        parent_found = true;
+                    } else {
+                        entry.is_child = 1;
+                        entry.child_class='state--isChild';
+                    }
+
+                    clearFields(entry, fields);
+
+                } else {
+                    first_child = false;
+                    parent_found = false;
+                }
+
+                last = actual;
+            }
+
+            return data;
+        }
+    });

@@ -117,8 +117,11 @@ module.exports = function (grunt) {
                         '!<%= project.app %>/bower_components/**',
                         '!<%= project.app %>/build/**',
                         '!<%= project.app %>/**/*_test.js'
-                    ]
-                }]
+                    ],
+                }],
+                options: {
+                    mangle: false
+                }
             }
         }
     });

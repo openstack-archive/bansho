@@ -26,6 +26,8 @@ angular.module('adagios.view.dashboard', ['ngRoute',
         $scope.dashboardCellsName = dashboardConfig.cellsName.join();
         $scope.dashboardApiName = dashboardConfig.apiName;
         $scope.dashboardFilters = dashboardConfig.filters;
+        $scope.dashboardToWrap = dashboardConfig.toWrap.join();
+        $scope.dashboardNoRepeat = dashboardConfig.noRepeat.join();
 
         getServices(fields, filters, apiName)
             .success(function (data) {
@@ -40,4 +42,6 @@ angular.module('adagios.view.dashboard', ['ngRoute',
         dashboardConfig.cellsName = readConfig.data.dashboardConfig.cells.name;
         dashboardConfig.apiName = readConfig.data.dashboardConfig.apiName;
         dashboardConfig.filters = readConfig.data.dashboardConfig.filters;
+        dashboardConfig.toWrap = readConfig.data.dashboardConfig.wrap;
+        dashboardConfig.noRepeat = readConfig.data.dashboardConfig.noRepeat;
     }]);
