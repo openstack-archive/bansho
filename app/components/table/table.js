@@ -19,7 +19,7 @@ angular.module('adagios.table', ['adagios.live',
                             cellWrappableField: {},
                             noRepeatCell: '',
                             isWrappable: false,
-                            refreshInterval: 0
+                            refreshInterval: '0'
                           })
 
     .controller('TableCtrl', ['$scope', '$interval', 'getServices', 'tableConfig', 'processColumnRepeat',
@@ -59,8 +59,8 @@ angular.module('adagios.table', ['adagios.live',
             }
 
         $scope.getData(requestFields, filters, tableConfig.apiName);
-
-        if (tableConfig.refreshInterval !== 0) {
+        
+        if (tableConfig.refreshInterval !== '0') {
             $interval(function() {
                 $scope.getData(requestFields, filters, tableConfig.apiName);
             }, tableConfig.refreshInterval);
@@ -84,7 +84,7 @@ angular.module('adagios.table', ['adagios.live',
                     tableConfig.apiName = attrs.apiName;
                     tableConfig.isWrappable = attrs.isWrappable;
                     tableConfig.noRepeatCell = attrs.noRepeatCell;
-
+                    
                     if (!!attrs.refreshInterval) {
                         tableConfig.refreshInterval = attrs.refreshInterval;
                     }
