@@ -16,8 +16,10 @@ angular.module('adagios.table', ['adagios.live',
                             apiName: '',
                             filters: {},
                             cellToFieldsMap: {},
-                            toWrap: [],
-                            noRepeat: []})
+                            cellWrappableField: {},
+                            noRepeatCell: "",
+                            isWrappable: false
+                          })
 
     .controller('TableCtrl', ['$scope', 'getServices', 'tableConfig', 'processColumnRepeat',
         function ($scope, getServices, tableConfig, processColumnRepeat) {
@@ -42,8 +44,14 @@ angular.module('adagios.table', ['adagios.live',
 
         getServices(requestFields, filters, tableConfig.apiName)
             .success(function (data) {
-                console.log(tableConfig.toWrap[0]);
-                $scope.entries = processColumnRepeat(data, tableConfig.cellToFieldsMap[tableConfig.toWrap[0]][1], tableConfig.cellToFieldsMap[tableConfig.toWrap[0]]);
+                var fieldToWrap = tableConfig.cellWrappableField[tableConfig.noRepeatCell],
+                    cellFields = tableConfig.cellToFieldsMap[tableConfig.noRepeatCell];
+
+                if (tableConfig.noRepeatCell !== "") {
+                    data = processColumnRepeat(data, fieldToWrap, cellFields, tableConfig.isWrappable);
+                }
+
+                $scope.entries = data;
             });
     }])
 
@@ -53,15 +61,16 @@ angular.module('adagios.table', ['adagios.live',
             compile: function () {
                 return function (scope, element, attrs) {
 
-                    if (!attrs.cellsText || !attrs.cellsName || !attrs.apiName) {
-                        throw new Error('<adg-table> "cells-text", "cells-name" and "api-name" attributes must be defined');
+                    if (!attrs.cellsText || !attrs.cellsName || !attrs.apiName || !attrs.isWrappable) {
+                        throw new Error('<adg-table> "cells-text", "cells-name", "api-name"'
+                                        + ' and "is-wrappable" attributes must be defined');
                     }
 
                     tableConfig.cells.text = attrs.cellsText.split(',');
                     tableConfig.cells.name = attrs.cellsName.split(',');
                     tableConfig.apiName = attrs.apiName;
-                    tableConfig.toWrap = attrs.toWrap.split(',');
-                    tableConfig.noRepeat = attrs.noRepeat.split(',');
+                    tableConfig.isWrappable = attrs.isWrappable;
+                    tableConfig.noRepeatCell = attrs.noRepeatCell;
 
                     if (!!attrs.filters) {
                         tableConfig.filters = attrs.filters;
@@ -110,30 +119,33 @@ angular.module('adagios.table', ['adagios.live',
             });
         };
 
-        return function (data, fieldToProcess, fields) {
+        return function (data, fieldToProcess, fields, isWrappable) {
             var last = '',
                 actual = '',
                 entry = {},
                 first_child = false,
                 parent_found = false,
+                class_name = ['', ''],
                 i;
 
-            console.log(fieldToProcess);
+            if (isWrappable == "true") {
+                class_name = ['state--hasChild', 'state--isChild'];
+            }
+            
             for (i = 0; i < data.length; i += 1) {
                 entry = data[i];
                 actual = entry[fieldToProcess];
 
-                console.log(entry.host_name + " " + entry[fieldToProcess] + " === " + last);
                 if (entry[fieldToProcess] === last) {
 
                     if (!data[i-1].has_child && !parent_found) {
                         data[i-1].has_child = 1;
-                        data[i-1].child_class='state--hasChild';
-                        entry.child_class='state--isChild';
+                        data[i-1].child_class = class_name[0];
+                        entry.child_class = class_name[1];
                         parent_found = true;
                     } else {
                         entry.is_child = 1;
-                        entry.child_class='state--isChild';
+                        entry.child_class = class_name[1];
                     }
 
                     clearFields(entry, fields);

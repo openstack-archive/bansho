@@ -23,8 +23,8 @@
                 ]
             }
         },
-		"wrap" : ["host"],
-		"noRepeat" : ["host"]
+		"isWrappable" : true,
+		"noRepeatCell" : "host"
     },
     "hostsConfig": {
 		"title": "Hosts",
@@ -45,7 +45,9 @@
             ]
         },
         "apiName": "hosts",
-        "filters": {}
+        "filters": {},
+		"isWrappable" : false,
+		"noRepeatCell" : ""
     },
     "servicesConfig": {
 		"title": "Services",
@@ -64,7 +66,9 @@
             ]
         },
         "apiName": "services",
-        "filters": {}
+        "filters": {},
+		"isWrappable" : false,
+		"noRepeatCell" : "host"
     },
     "customViewsConfig": {
         "customView1": {
@@ -86,7 +90,9 @@
                 ]
             },
             "apiName": "hosts",
-            "filters": {}
+            "filters": {},
+			"isWrappable" : false,
+			"noRepeatCell" : ""
         },
         "customView2": {
 			"title": "Custom View 2",
@@ -105,7 +111,9 @@
                 ]
             },
             "apiName": "services",
-            "filters": {}
+            "filters": {},
+			"isWrappable" : false,
+			"noRepeatCell" : "host"
         }
     }
 }
