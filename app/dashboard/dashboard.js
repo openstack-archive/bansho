@@ -15,10 +15,11 @@ angular.module('adagios.view.dashboard', ['ngRoute',
         });
     }])
 
-    .controller('DashboardCtrl', ['$scope', 'dashboardConfig', 'getServices', function ($scope, dashboardConfig, getServices) {
+    .controller('DashboardCtrl', ['$scope', '$timeout', 'dashboardConfig', 'getServices', function ($scope, $timeout, dashboardConfig, getServices) {
 
         var fields = ['state'],
             filters = {'isnot' : { 'state' : ['0'] }},
+            filters2 = {'isnot' : { 'state' : ['2'] }},
             apiName = 'hosts';
 
         $scope.dashboardTitle = dashboardConfig.title;
@@ -30,10 +31,15 @@ angular.module('adagios.view.dashboard', ['ngRoute',
         $scope.dashboardNoRepeatCell = dashboardConfig.noRepeatCell;
         $scope.dashboardRefreshInterval = dashboardConfig.refreshInterval;
 
+        $scope.filters2 = filters2;
+        
+
         getServices(fields, filters, apiName)
             .success(function (data) {
                 $scope.nbHostProblems = data.length;
             });
+
+        $timeout(function() { console.log("CHANGE"); $scope.dashboardFilters = $scope.filters2; }, 5000);
 
     }])
 
