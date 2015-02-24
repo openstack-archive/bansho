@@ -19,6 +19,8 @@ angular.module('adagios.view.hosts', ['ngRoute',
         $scope.hostsCellsName = hostsConfig.cellsName.join();
         $scope.hostsApiName = hostsConfig.apiName;
         $scope.hostsFilters = hostsConfig.filters;
+        $scope.hostsIsWrappable = hostsConfig.isWrappable;
+        $scope.hostsRefreshInterval = hostsConfig.refreshInterval;
     }])
 
     .run(['readConfig', 'hostsConfig', function (readConfig, hostsConfig) {
@@ -27,4 +29,7 @@ angular.module('adagios.view.hosts', ['ngRoute',
         hostsConfig.cellsName = readConfig.data.hostsConfig.cells.name;
         hostsConfig.apiName = readConfig.data.hostsConfig.apiName;
         hostsConfig.filters = readConfig.data.hostsConfig.filters;
+        hostsConfig.isWrappable = readConfig.data.hostsConfig.isWrappable;
+        hostsConfig.noRepeatCell = readConfig.data.hostsConfig.noRepeatCell;
+        hostsConfig.refreshInterval = readConfig.data.hostsConfig.refreshInterval;
     }]);

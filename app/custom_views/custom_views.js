@@ -32,6 +32,9 @@ angular.module('adagios.view.custom', ['ngRoute',
             $scope.customViewCellsName = customViewsConfig[viewName].cells.name.join();
             $scope.customViewApiName = customViewsConfig[viewName].apiName;
             $scope.customViewFilters = customViewsConfig[viewName].filters;
+            $scope.customViewIsWrappable = customViewsConfig[viewName].isWrappable;
+            $scope.customViewNoRepeatCell = customViewsConfig[viewName].noRepeatCell;
+            $scope.customViewRefreshInterval = customViewsConfig[viewName].refreshInterval;
         }])
 
     .run(['readConfig', 'customViewsConfig', function (readConfig, customViewsConfig) {

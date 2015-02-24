@@ -2,10 +2,18 @@
 
 angular.module('adagios.table.cell_hosts_host', ['adagios.table'])
 
-    .controller('CellHostsHostCtrl', [function () {
-        angular.noop();
+    .controller('CellHostsHostCtrl', ['$scope', function ($scope) {
+        if ($scope.entry.state === 0) {
+            $scope.state = 'state--ok';
+        } else if ($scope.entry.state === 1) {
+            $scope.state = 'state--warning';
+        } else if ($scope.entry.state == "") {
+            $scope.state = '';
+        } else {
+            $scope.state = 'state--error';
+        }
     }])
 
     .run(['tableConfig', function (tableConfig) {
-        tableConfig.cellToFieldsMap.hosts_host = ['name'];
+        tableConfig.cellToFieldsMap.hosts_host = ['name', 'state'];
     }]);

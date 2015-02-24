@@ -22,7 +22,10 @@
                     "0"
                 ]
             }
-        }
+        },
+		"isWrappable" : true,
+		"noRepeatCell" : "host",
+		"refreshInterval": "10000"
     },
     "hostsConfig": {
 		"title": "Hosts",
@@ -43,7 +46,10 @@
             ]
         },
         "apiName": "hosts",
-        "filters": {}
+        "filters": {},
+		"isWrappable" : false,
+		"noRepeatCell" : "",
+		"refreshInterval": "10000"
     },
     "servicesConfig": {
 		"title": "Services",
@@ -62,7 +68,10 @@
             ]
         },
         "apiName": "services",
-        "filters": {}
+        "filters": {},
+		"isWrappable" : false,
+		"noRepeatCell" : "host",
+		"refreshInterval": "10000"
     },
     "customViewsConfig": {
         "customView1": {
@@ -84,7 +93,10 @@
                 ]
             },
             "apiName": "hosts",
-            "filters": {}
+            "filters": {},
+			"isWrappable" : false,
+			"noRepeatCell" : "",
+			"refreshInterval": "10000"
         },
         "customView2": {
 			"title": "Custom View 2",
@@ -103,7 +115,10 @@
                 ]
             },
             "apiName": "services",
-            "filters": {}
+            "filters": {},
+			"isWrappable" : false,
+			"noRepeatCell" : "host",
+			"refreshInterval": "10000"
         }
     }
 }
