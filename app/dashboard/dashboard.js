@@ -28,6 +28,7 @@ angular.module('adagios.view.dashboard', ['ngRoute',
         $scope.dashboardFilters = dashboardConfig.filters;
         $scope.dashboardIsWrappable = dashboardConfig.isWrappable;
         $scope.dashboardNoRepeatCell = dashboardConfig.noRepeatCell;
+        $scope.dashboardRefreshInterval = dashboardConfig.refreshInterval;
 
         getServices(fields, filters, apiName)
             .success(function (data) {
@@ -44,4 +45,5 @@ angular.module('adagios.view.dashboard', ['ngRoute',
         dashboardConfig.filters = readConfig.data.dashboardConfig.filters;
         dashboardConfig.isWrappable = readConfig.data.dashboardConfig.isWrappable;
         dashboardConfig.noRepeatCell = readConfig.data.dashboardConfig.noRepeatCell;
+        dashboardConfig.refreshInterval = readConfig.data.dashboardConfig.refreshInterval;
     }]);

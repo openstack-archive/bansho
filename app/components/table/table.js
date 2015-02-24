@@ -17,12 +17,13 @@ angular.module('adagios.table', ['adagios.live',
                             filters: {},
                             cellToFieldsMap: {},
                             cellWrappableField: {},
-                            noRepeatCell: "",
-                            isWrappable: false
+                            noRepeatCell: '',
+                            isWrappable: false,
+                            refreshInterval: 0
                           })
 
-    .controller('TableCtrl', ['$scope', 'getServices', 'tableConfig', 'processColumnRepeat',
-        function ($scope, getServices, tableConfig, processColumnRepeat) {
+    .controller('TableCtrl', ['$scope', '$interval', 'getServices', 'tableConfig', 'processColumnRepeat',
+        function ($scope, $interval, getServices, tableConfig, processColumnRepeat) {
 
         var requestFields = [],
             filters = JSON.parse(tableConfig.filters),
@@ -42,17 +43,29 @@ angular.module('adagios.table', ['adagios.live',
             });
         });
 
-        getServices(requestFields, filters, tableConfig.apiName)
-            .success(function (data) {
-                var fieldToWrap = tableConfig.cellWrappableField[tableConfig.noRepeatCell],
-                    cellFields = tableConfig.cellToFieldsMap[tableConfig.noRepeatCell];
+        $scope.getData = 
+            function (requestFields, filters, apiName) {
+                getServices(requestFields, filters, tableConfig.apiName)
+                    .success(function (data) {
+                        var fieldToWrap = tableConfig.cellWrappableField[tableConfig.noRepeatCell],
+                            cellFields = tableConfig.cellToFieldsMap[tableConfig.noRepeatCell];
 
-                if (tableConfig.noRepeatCell !== "") {
-                    data = processColumnRepeat(data, fieldToWrap, cellFields, tableConfig.isWrappable);
-                }
+                        if (tableConfig.noRepeatCell !== "") {
+                            data = processColumnRepeat(data, fieldToWrap, cellFields, tableConfig.isWrappable);
+                        }
 
-                $scope.entries = data;
-            });
+                        $scope.entries = data;
+                    });
+            }
+
+        $scope.getData(requestFields, filters, tableConfig.apiName);
+
+        if (tableConfig.refreshInterval !== 0) {
+            $interval(function() {
+                $scope.getData(requestFields, filters, tableConfig.apiName);
+            }, tableConfig.refreshInterval);
+        }
+
     }])
 
     .directive('adgTable', ['$http', '$compile', 'tableConfig', function ($http, $compile, tableConfig) {
@@ -71,6 +84,10 @@ angular.module('adagios.table', ['adagios.live',
                     tableConfig.apiName = attrs.apiName;
                     tableConfig.isWrappable = attrs.isWrappable;
                     tableConfig.noRepeatCell = attrs.noRepeatCell;
+
+                    if (!!attrs.refreshInterval) {
+                        tableConfig.refreshInterval = attrs.refreshInterval;
+                    }
 
                     if (!!attrs.filters) {
                         tableConfig.filters = attrs.filters;
@@ -119,6 +136,9 @@ angular.module('adagios.table', ['adagios.live',
             });
         };
 
+        // Erase subsequently repeated data of a given cell only keeping the first occurrence
+        // fieldToProcess is the field to watch for subsequent repetition
+        // fields are all the fields of a given cell whose data will be erased
         return function (data, fieldToProcess, fields, isWrappable) {
             var last = '',
                 actual = '',

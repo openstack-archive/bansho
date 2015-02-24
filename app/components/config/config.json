@@ -24,7 +24,8 @@
             }
         },
 		"isWrappable" : true,
-		"noRepeatCell" : "host"
+		"noRepeatCell" : "host",
+		"refreshInterval": "10000"
     },
     "hostsConfig": {
 		"title": "Hosts",
@@ -47,7 +48,8 @@
         "apiName": "hosts",
         "filters": {},
 		"isWrappable" : false,
-		"noRepeatCell" : ""
+		"noRepeatCell" : "",
+		"refreshInterval": "10000"
     },
     "servicesConfig": {
 		"title": "Services",
@@ -68,7 +70,8 @@
         "apiName": "services",
         "filters": {},
 		"isWrappable" : false,
-		"noRepeatCell" : "host"
+		"noRepeatCell" : "host",
+		"refreshInterval": "10000"
     },
     "customViewsConfig": {
         "customView1": {
@@ -92,7 +95,8 @@
             "apiName": "hosts",
             "filters": {},
 			"isWrappable" : false,
-			"noRepeatCell" : ""
+			"noRepeatCell" : "",
+			"refreshInterval": "10000"
         },
         "customView2": {
 			"title": "Custom View 2",
@@ -113,7 +117,8 @@
             "apiName": "services",
             "filters": {},
 			"isWrappable" : false,
-			"noRepeatCell" : "host"
+			"noRepeatCell" : "host",
+			"refreshInterval": "10000"
         }
     }
 }

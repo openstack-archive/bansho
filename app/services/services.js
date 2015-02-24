@@ -21,6 +21,7 @@ angular.module('adagios.view.services', ['ngRoute',
         $scope.servicesFilters = servicesConfig.filters;
         $scope.servicesIsWrappable = servicesConfig.isWrappable;
         $scope.servicesNoRepeatCell = servicesConfig.noRepeatCell;
+        $scope.servicesRefreshInterval = servicesConfig.refreshInterval;
     }])
 
     .run(['readConfig', 'servicesConfig', function (readConfig, servicesConfig) {
@@ -31,4 +32,5 @@ angular.module('adagios.view.services', ['ngRoute',
         servicesConfig.filters = readConfig.data.servicesConfig.filters;
         servicesConfig.isWrappable = readConfig.data.servicesConfig.isWrappable;
         servicesConfig.noRepeatCell = readConfig.data.servicesConfig.noRepeatCell;
+        servicesConfig.refreshInterval = readConfig.data.servicesConfig.refreshInterval;
     }]);
