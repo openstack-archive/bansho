@@ -1,75 +1,112 @@
 {
     "dashboardConfig": {
 		"title": "Unhandled service problems",
-		"refreshInterval": "10000",
+		"refreshInterval": "0",
 		"template": "",
-		"components" : [{
-			"title": "Service problems",
-			"type": "table",
-			"config": {
-				"cells": {
-					"text": [
-						"Host",
-						"Service check",
-						"Duration",
-						"Last check"
-					],
-					"name": [
-						"host",
-						"service_check",
-						"duration",
-						"last_check"
-					]
-				},
-				"apiName": "services",
-				"filters": {
-					"isnot": {
-						"state": [
-							"0"
+		"components" : [
+			{
+				"type": "table",
+				"config": {
+					"title": "Hosts",
+					"cells": {
+						"text": [
+							"Host",
+							"Address",
+							"Duration",
+							"Last check",
+							"Host status"
+						],
+						"name": [
+							"hosts_host",
+							"host_address",
+							"duration",
+							"last_check",
+							"host_status"
 						]
-					}
-				},
-				"isWrappable" : true,
-				"noRepeatCell" : "host"
+					},
+					"apiName": "hosts",
+					"filters": {
+						"isnot": {
+							"state": [
+								"0"
+							]
+						}
+					},
+					"isWrappable" : false,
+					"noRepeatCell" : ""
+				}
+			},
+			{
+				"type": "table",
+				"config": {
+					"title": "Service problems",
+					"cells": {
+						"text": [
+							"Host",
+							"Service check",
+							"Duration",
+							"Last check"
+						],
+						"name": [
+							"host",
+							"service_check",
+							"duration",
+							"last_check"
+						]
+					},
+					"apiName": "services",
+					"filters": {
+						"isnot": {
+							"state": [
+								"0"
+							]
+						}
+					},
+					"isWrappable" : true,
+					"noRepeatCell" : "host"
+				}
 			}
-		}]
+		]
     },
     "hostsConfig": {
 		"title": "Hosts",
 		"refreshInterval": "10000",
 		"template": "",
-		"components": [{
-			"title": "Hosts",
-			"type": "table",
-			"config": {
-				"cells": {
-					"text": [
-						"Host",
-						"Address",
-						"Duration",
-						"Last check",
-						"Host status"
-					],
-					"name": [
-						"hosts_host",
-						"host_address",
-						"duration",
-						"last_check",
-						"host_status"
-					]
-				},
-				"apiName": "hosts",
-				"filters": {},
-				"isWrappable" : false,
-				"noRepeatCell" : ""
+		"components": [
+			{
+				"type": "table",
+				"config": {
+					"title": "Hosts",
+					"cells": {
+						"text": [
+							"Host",
+							"Address",
+							"Duration",
+							"Last check",
+							"Host status"
+						],
+						"name": [
+							"hosts_host",
+							"host_address",
+							"duration",
+							"last_check",
+							"host_status"
+						]
+					},
+					"apiName": "hosts",
+					"filters": {},
+					"isWrappable" : false,
+					"noRepeatCell" : ""
+				}
 			}
-		}]
+		]
 	},
     "servicesConfig": {
 		"title": "Services",
 		"refreshInterval": "10000",
 		"template": "",
         "components": [{
+			"title": "Services",
 			"type": "table",
 			"config": {
 				"cells": {
@@ -99,9 +136,9 @@
 			"refreshInterval": "10000",
 			"template": "",
 			"components": [{
-				"title": "Custom View 1",
 				"type": "table",
 				"config": {
+					"title": "Custom View 1",
 					"cells": {
 						"text": [
 							"Host",
@@ -130,9 +167,9 @@
 			"refreshInterval": "10000",
 			"template": "",
 			"components": [{
-				"title": "Custom View 2",
 				"type": "table",
 				"config": {
+					"title": "Custom View 2",
 					"cells": {
 						"text": [
 							"Host",

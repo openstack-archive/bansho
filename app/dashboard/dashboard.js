@@ -19,37 +19,49 @@ angular.module('adagios.view.dashboard', ['ngRoute',
 
         var fields = ['state'],
             filters = {'isnot' : { 'state' : ['0'] }},
-            filters2 = {'isnot' : { 'state' : ['2'] }},
-            apiName = 'hosts';
+            apiName = 'hosts',
+            components = [],
+            i = 0;
 
-        $scope.dashboardTitle = dashboardConfig.title;
-        $scope.dashboardCellsText = dashboardConfig.cellsText.join();
-        $scope.dashboardCellsName = dashboardConfig.cellsName.join();
-        $scope.dashboardApiName = dashboardConfig.apiName;
-        $scope.dashboardFilters = dashboardConfig.filters;
-        $scope.dashboardIsWrappable = dashboardConfig.isWrappable;
-        $scope.dashboardNoRepeatCell = dashboardConfig.noRepeatCell;
-        $scope.dashboardRefreshInterval = dashboardConfig.refreshInterval;
+        $scope.dashboardTitle = dashboardConfig.data.title;
+        $scope.dashboardTemplate = dashboardConfig.data.template;
+        $scope.dashboardRefreshInterval = dashboardConfig.data.refreshInterval;
 
-        $scope.filters2 = filters2;
-        
+        $scope.dashboardTactical = [];
+        $scope.dashboardTables = [];
+
+        components = dashboardConfig.data.components;
+
+        function tableConfig(config) {
+            this.title = config.title;
+            this.CellsText = config.cells.text.join();
+            this.CellsName = config.cells.name.join();
+            this.ApiName = config.apiName;
+            this.Filters = config.filters;
+            this.IsWrappable = config.isWrappable;
+            this.NoRepeatCell = config.noRepeatCell;
+        };
+
+        function tacticalConfig(config) {
+        };
+
+        for (i = 0; i < components.length; i += 1) {
+            var component = components[i],
+                config = component.config;
+
+            if (component.type === 'table') {
+                $scope.dashboardTables.push(new tableConfig(config));
+            } else if (component.type === 'tactical') {
+                $scope.dashboardTactical.push(new tacticalConfig(config));
+            }
+        }
 
         getServices(fields, filters, apiName)
             .success(function (data) {
                 $scope.nbHostProblems = data.length;
             });
-
-        $timeout(function() { console.log("CHANGE"); $scope.dashboardFilters = $scope.filters2; }, 5000);
-
     }])
 
     .run(['readConfig', 'dashboardConfig', function (readConfig, dashboardConfig) {
-        dashboardConfig.title = readConfig.data.dashboardConfig.title;
-        dashboardConfig.cellsText = readConfig.data.dashboardConfig.cells.text;
-        dashboardConfig.cellsName = readConfig.data.dashboardConfig.cells.name;
-        dashboardConfig.apiName = readConfig.data.dashboardConfig.apiName;
-        dashboardConfig.filters = readConfig.data.dashboardConfig.filters;
-        dashboardConfig.isWrappable = readConfig.data.dashboardConfig.isWrappable;
-        dashboardConfig.noRepeatCell = readConfig.data.dashboardConfig.noRepeatCell;
-        dashboardConfig.refreshInterval = readConfig.data.dashboardConfig.refreshInterval;
+        dashboardConfig.data = readConfig.data.dashboardConfig;
     }]);

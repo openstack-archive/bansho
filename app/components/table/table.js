@@ -12,25 +12,18 @@ angular.module('adagios.table', ['adagios.live',
                                  'adagios.table.cell_host_status'
                                 ])
 
-    .value('tableConfig', { cells: { 'text': [], 'name': [] },
-                            apiName: '',
-                            filters: {},
-                            cellToFieldsMap: {},
-                            cellWrappableField: {},
-                            noRepeatCell: '',
-                            isWrappable: false,
-                            refreshInterval: '0'
-                          })
+    .value('tableConfig', { 'cellToFieldsMap': {}, 'cellWrappableField': {}, 'index': 0})
 
     .controller('TableCtrl', ['$scope', '$interval', 'getServices', 'tableConfig', 'processColumnRepeat',
         function ($scope, $interval, getServices, tableConfig, processColumnRepeat) {
 
         var requestFields = [],
-            filters = JSON.parse(tableConfig.filters),
+            filters = JSON.parse(tableConfig[tableConfig.index].filters),
+            conf = tableConfig[tableConfig.index],
             i;
 
-        $scope.cellsName = tableConfig.cells.name;
-        $scope.cellsText = tableConfig.cells.text;
+        $scope.cellsName = conf.cells.name;
+        $scope.cellsText = conf.cells.text;
         $scope.cellIndexes = [];
 
         for (i = 0; i < $scope.cellsName.length; i += 1) {
@@ -42,30 +35,32 @@ angular.module('adagios.table', ['adagios.live',
                 requestFields.push(_value);
             });
         });
-
+         
         $scope.getData = 
             function (requestFields, filters, apiName) {
-                getServices(requestFields, filters, tableConfig.apiName)
+                getServices(requestFields, filters, conf.apiName)
                     .success(function (data) {
-                        var fieldToWrap = tableConfig.cellWrappableField[tableConfig.noRepeatCell],
-                            cellFields = tableConfig.cellToFieldsMap[tableConfig.noRepeatCell];
+                        var fieldToWrap = tableConfig.cellWrappableField[conf.noRepeatCell],
+                            cellFields = tableConfig.cellToFieldsMap[conf.noRepeatCell];
 
-                        if (tableConfig.noRepeatCell !== "") {
-                            data = processColumnRepeat(data, fieldToWrap, cellFields, tableConfig.isWrappable);
+                        if (conf.noRepeatCell !== "") {
+                            data = processColumnRepeat(data, fieldToWrap, cellFields, conf.isWrappable);
                         }
 
                         $scope.entries = data;
                     });
             }
 
-        $scope.getData(requestFields, filters, tableConfig.apiName);
-        
+        $scope.getData(requestFields, filters, conf.apiName);
+
         if (tableConfig.refreshInterval !== '0') {
             $interval(function() {
-                $scope.getData(requestFields, filters, tableConfig.apiName);
+                $scope.getData(requestFields, filters, conf.apiName);
             }, tableConfig.refreshInterval);
         }
 
+        // Used if there's more than one table in a view
+        tableConfig.index += 1;
     }])
 
     .directive('adgTable', ['$http', '$compile', 'tableConfig', function ($http, $compile, tableConfig) {
@@ -79,18 +74,26 @@ angular.module('adagios.table', ['adagios.live',
                                         + ' and "is-wrappable" attributes must be defined');
                     }
 
-                    tableConfig.cells.text = attrs.cellsText.split(',');
-                    tableConfig.cells.name = attrs.cellsName.split(',');
-                    tableConfig.apiName = attrs.apiName;
-                    tableConfig.isWrappable = attrs.isWrappable;
-                    tableConfig.noRepeatCell = attrs.noRepeatCell;
+                    tableConfig[attrs.tableIndex] = {};
+                    tableConfig[attrs.tableIndex].filters = {};
+
+                    tableConfig[attrs.tableIndex].cells = { 'text': [], 'name': [] };
+                    tableConfig[attrs.tableIndex].cells.text = attrs.cellsText.split(',');
+                    tableConfig[attrs.tableIndex].cells.name = attrs.cellsName.split(',');
+
+                    tableConfig[attrs.tableIndex].apiName = attrs.apiName;
+
+                    tableConfig[attrs.tableIndex].isWrappable = false;
+                    tableConfig[attrs.tableIndex].isWrappable = attrs.isWrappable;
+                    tableConfig[attrs.tableIndex].noRepeatCell = attrs.noRepeatCell;
+                    tableConfig[attrs.tableIndex].tableIndex = attrs.tableIndex;
                     
                     if (!!attrs.refreshInterval) {
                         tableConfig.refreshInterval = attrs.refreshInterval;
                     }
 
                     if (!!attrs.filters) {
-                        tableConfig.filters = attrs.filters;
+                        tableConfig[attrs.tableIndex].filters = attrs.filters;
                     }
 
                     var template = 'components/table/table.html';
@@ -106,7 +109,6 @@ angular.module('adagios.table', ['adagios.live',
     }])
 
     .directive('adgCell', ['$http', '$compile', function ($http, $compile) {
-
         return {
             restrict: 'A',
             compile: function () {
