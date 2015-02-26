@@ -17,6 +17,11 @@ angular.module('adagios.tactical', ['adagios.tactical.status_overview',
     .directive('adgTactical', function () {
         return {
             restrict: 'E',
-            templateUrl: 'components/tactical/tactical.html'
+            templateUrl: 'components/tactical/tactical.html',
+            controller: function ($scope, $attrs) {
+                $scope.statusOverview = JSON.parse($attrs.statusOverview.toLowerCase());
+                $scope.currentHealth = JSON.parse($attrs.currentHealth.toLowerCase());
+                $scope.topAlertProducers = JSON.parse($attrs.topAlertProducers.toLowerCase());
+            }
         };
     });
