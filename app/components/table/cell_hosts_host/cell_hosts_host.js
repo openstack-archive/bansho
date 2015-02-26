@@ -7,7 +7,7 @@ angular.module('adagios.table.cell_hosts_host', ['adagios.table'])
             $scope.state = 'state--ok';
         } else if ($scope.entry.state === 1) {
             $scope.state = 'state--warning';
-        } else if ($scope.entry.state == "") {
+        } else if ($scope.entry.state === "") {
             $scope.state = '';
         } else {
             $scope.state = 'state--error';

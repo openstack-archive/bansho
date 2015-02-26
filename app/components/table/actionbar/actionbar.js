@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('adagios.table.actionbar', [])
 
     .controller('TableActionbarCtrl', [function () {
