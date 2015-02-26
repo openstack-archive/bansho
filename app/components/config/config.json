@@ -1,7 +1,7 @@
 {
     "dashboardConfig": {
 		"title": "Unhandled service problems",
-		"refreshInterval": "0",
+		"refreshInterval": "10000",
 		"template": "",
 		"components" : [
 			{
@@ -82,7 +82,7 @@
     "hostsConfig": {
 		"title": "Hosts",
 		"refreshInterval": "10000",
-		"template": "",
+		"template": "singleTable",
 		"components": [
 			{
 				"type": "table",
@@ -115,11 +115,11 @@
     "servicesConfig": {
 		"title": "Services",
 		"refreshInterval": "10000",
-		"template": "",
+		"template": "singleTable",
         "components": [{
-			"title": "Services",
 			"type": "table",
 			"config": {
+				"title": "Services",
 				"cells": {
 					"text": [
 						"Host",
@@ -140,67 +140,5 @@
 				"noRepeatCell" : "host"
 			}
 		}]
-    },
-    "customViewsConfig": {
-        "customView1": {
-			"title": "Custom View 1",
-			"refreshInterval": "10000",
-			"template": "",
-			"components": [{
-				"type": "table",
-				"config": {
-					"title": "Custom View 1",
-					"cells": {
-						"text": [
-							"Host",
-							"Address",
-							"Duration",
-							"Last check",
-							"Host status"
-						],
-						"name": [
-							"hosts_host",
-							"host_address",
-							"duration",
-							"last_check",
-							"host_status"
-						]
-					},
-					"apiName": "hosts",
-					"filters": {},
-					"isWrappable" : false,
-					"noRepeatCell" : ""
-				}
-			}]
-        },
-        "customView2": {
-			"title": "Custom View 2",
-			"refreshInterval": "10000",
-			"template": "",
-			"components": [{
-				"type": "table",
-				"config": {
-					"title": "Custom View 2",
-					"cells": {
-						"text": [
-							"Host",
-							"Service check",
-							"Duration",
-							"Last check"
-						],
-						"name": [
-							"host",
-							"service_check",
-							"duration",
-							"last_check"
-						]
-					},
-					"apiName": "services",
-					"filters": {},
-					"isWrappable" : false,
-					"noRepeatCell" : "host"
-				}
-			}]
-        }
     }
 }

@@ -27,21 +27,28 @@ angular.module('adagios.view.custom', ['ngRoute',
                 return;
             }
 
-            $scope.customViewTitle = customViewsConfig[viewName].title;
-            $scope.customViewCellsText = customViewsConfig[viewName].cells.text.join();
-            $scope.customViewCellsName = customViewsConfig[viewName].cells.name.join();
-            $scope.customViewApiName = customViewsConfig[viewName].apiName;
-            $scope.customViewFilters = customViewsConfig[viewName].filters;
-            $scope.customViewIsWrappable = customViewsConfig[viewName].isWrappable;
-            $scope.customViewNoRepeatCell = customViewsConfig[viewName].noRepeatCell;
-            $scope.customViewRefreshInterval = customViewsConfig[viewName].refreshInterval;
+            function TableConfig(config) {
+                this.title = config.title;
+                this.CellsText = config.cells.text.join();
+                this.CellsName = config.cells.name.join();
+                this.ApiName = config.apiName;
+                this.Filters = config.filters;
+                this.IsWrappable = config.isWrappable;
+                this.NoRepeatCell = config.noRepeatCell;
+            }
+
+            $scope.tableConfig = new TableConfig(customViewsConfig[viewName].components[0].config);
+
+            $scope.singleTableTitle = customViewsConfig[viewName].title;
+            $scope.singleTableRefreshInterval = customViewsConfig[viewName].refreshInterval;
         }])
 
     .run(['readConfig', 'customViewsConfig', function (readConfig, customViewsConfig) {
-        var viewsConfig = readConfig.data.customViewsConfig;
+        var viewsConfig = readConfig.data;
 
         angular.forEach(viewsConfig, function (config, view) {
-            customViewsConfig[view] = config;
+            if (config.template === "singleTable") {
+                customViewsConfig[view] = config;
+            }
         });
-
     }]);

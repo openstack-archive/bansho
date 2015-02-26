@@ -5,18 +5,19 @@
     <div class="tab-content">
       <div role="tabpanel" class="problems tab-pane active" id="openProblems">
         <header class="main__content__header clearfix">
-          <h2 class="main__content__title">{{customViewTitle}}</h2>
+          <h2 class="main__content__title">{{singleTableTitle}}</h2>
         </header>
       </div>
     </div>
 
-    <adg-table cells-name="{{customViewCellsName}}"
-               cells-text="{{customViewCellsText}}"
-               api-name="{{customViewApiName}}" 
-               filters="{{customViewFilters}}"
-               is-wrappable="{{customViewIsWrappable}}"
-               no-repeat-cell="{{customViewNoRepeatCell}}"
-               refresh-interval="{{customViewRefreshInterval}}"></adg-table>
+    <adg-table cells-name="{{tableConfig.CellsName}}"
+               cells-text="{{tableConfig.CellsText}}"
+               api-name="{{tableConfig.ApiName}}" 
+               filters="{{tableConfig.Filters}}"
+               is-wrappable="{{tableConfig.IsWrappable}}"
+               no-repeat-cell="{{tableConfig.NoRepeatCell}}"
+               refresh-interval="{{singleTableRefreshInterval}}"
+               table-id="0"></adg-table>
 
   </section>
 </article>

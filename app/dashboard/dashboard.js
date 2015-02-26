@@ -15,12 +15,14 @@ angular.module('adagios.view.dashboard', ['ngRoute',
         });
     }])
 
-    .controller('DashboardCtrl', ['$scope', '$timeout', 'dashboardConfig', 'getServices', function ($scope, $timeout, dashboardConfig, getServices) {
+    .controller('DashboardCtrl', ['$scope', 'dashboardConfig', 'getServices', function ($scope, dashboardConfig, getServices) {
 
         var fields = ['state'],
             filters = {'isnot' : { 'state' : ['0'] }},
             apiName = 'hosts',
             components = [],
+            component,
+            config,
             i = 0;
 
         $scope.dashboardTitle = dashboardConfig.data.title;
@@ -32,7 +34,7 @@ angular.module('adagios.view.dashboard', ['ngRoute',
 
         components = dashboardConfig.data.components;
 
-        function tableConfig(config) {
+        function TableConfig(config) {
             this.title = config.title;
             this.CellsText = config.cells.text.join();
             this.CellsName = config.cells.name.join();
@@ -40,23 +42,23 @@ angular.module('adagios.view.dashboard', ['ngRoute',
             this.Filters = config.filters;
             this.IsWrappable = config.isWrappable;
             this.NoRepeatCell = config.noRepeatCell;
-        };
+        }
 
-        function tacticalConfig(config) {
+        function TacticalConfig(config) {
             this.title = config.title;
             this.statusOverview = config.components.statusOverview;
             this.currentHealth = config.components.currentHealth;
             this.topAlertProducers = config.components.topAlertProducers;
-        };
+        }
 
         for (i = 0; i < components.length; i += 1) {
-            var component = components[i],
-                config = component.config;
+            component = components[i];
+            config = component.config;
 
             if (component.type === 'table') {
-                $scope.dashboardTables.push(new tableConfig(config));
+                $scope.dashboardTables.push(new TableConfig(config));
             } else if (component.type === 'tactical') {
-                $scope.dashboardTactical.push(new tacticalConfig(config));
+                $scope.dashboardTactical.push(new TacticalConfig(config));
                 console.log($scope.dashboardTactical[0].statusOverview);
             }
         }
