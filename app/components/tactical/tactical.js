@@ -5,7 +5,13 @@ angular.module('adagios.tactical', ['adagios.tactical.status_overview',
                                     'adagios.tactical.top_alert_producers'
                                    ])
 
-    .controller('TacticalCtrl', [function () {
+    .value('tacticalConfig', {})
+
+    .controller('TacticalCtrl', ['$scope', 'tacticalConfig', function ($scope, tacticalConfig) {
+
+        $scope.statusOverview = tacticalConfig.statusOverview;
+        $scope.currentHealth = tacticalConfig.currentHealth;
+        $scope.topAlertProducers = tacticalConfig.topAlertProducers;
 
         // Togglable tabs
         // Don't follow hyperlinks
@@ -14,14 +20,18 @@ angular.module('adagios.tactical', ['adagios.tactical.status_overview',
         });
     }])
 
-    .directive('adgTactical', function () {
+    .directive('adgTactical', ['tacticalConfig', function (tacticalConfig) {
         return {
             restrict: 'E',
             templateUrl: 'components/tactical/tactical.html',
-            controller: function ($scope, $attrs) {
-                $scope.statusOverview = JSON.parse($attrs.statusOverview.toLowerCase());
-                $scope.currentHealth = JSON.parse($attrs.currentHealth.toLowerCase());
-                $scope.topAlertProducers = JSON.parse($attrs.topAlertProducers.toLowerCase());
+            compile: function compile() {
+                return {
+                    pre: function preLink(scope, iElement, iAttrs, controller) {
+                        tacticalConfig.statusOverview = JSON.parse(iAttrs.statusOverview.toLowerCase());
+                        tacticalConfig.currentHealth = JSON.parse(iAttrs.currentHealth.toLowerCase());
+                        tacticalConfig.topAlertProducers = JSON.parse(iAttrs.topAlertProducers.toLowerCase());
+                    }
+                }
             }
         };
-    });
+    }]);

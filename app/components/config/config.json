@@ -5,6 +5,17 @@
 		"template": "",
 		"components" : [
 			{
+				"type": "tactical",
+				"config": {
+					"title": "Tactical Overview",
+					"components": {
+						"statusOverview": "true",
+						"currentHealth": "true",
+						"topAlertProducers": "true"
+					}
+				}
+			},
+			{
 				"type": "table",
 				"config": {
 					"title": "Hosts",

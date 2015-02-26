@@ -43,6 +43,10 @@ angular.module('adagios.view.dashboard', ['ngRoute',
         };
 
         function tacticalConfig(config) {
+            this.title = config.title;
+            this.statusOverview = config.components.statusOverview;
+            this.currentHealth = config.components.currentHealth;
+            this.topAlertProducers = config.components.topAlertProducers;
         };
 
         for (i = 0; i < components.length; i += 1) {
@@ -53,6 +57,7 @@ angular.module('adagios.view.dashboard', ['ngRoute',
                 $scope.dashboardTables.push(new tableConfig(config));
             } else if (component.type === 'tactical') {
                 $scope.dashboardTactical.push(new tacticalConfig(config));
+                console.log($scope.dashboardTactical[0].statusOverview);
             }
         }
 
