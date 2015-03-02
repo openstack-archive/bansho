@@ -35,6 +35,7 @@ angular.module('adagios.table', ['adagios.live',
                     requestFields.push(_value);
                 });
             });
+        });
 
             getData = function (requestFields, filters, apiName) {
                 getServices(requestFields, filters, apiName)
@@ -108,6 +109,7 @@ angular.module('adagios.table', ['adagios.live',
     }])
 
     .directive('adgCell', ['$http', '$compile', function ($http, $compile) {
+
         return {
             restrict: 'A',
             compile: function () {
@@ -154,6 +156,7 @@ angular.module('adagios.table', ['adagios.live',
             var last = '',
                 actual = '',
                 entry = {},
+                first_child = false,
                 parent_found = false,
                 class_name = ['', ''],
                 i;
@@ -188,5 +191,5 @@ angular.module('adagios.table', ['adagios.live',
             }
 
             return data;
-        };
+        }
     });
