@@ -13,19 +13,17 @@ Installation
     git clone https://github.com/titilambert/adagios-frontend.git
     cd adagios-frontend
     npm install
-    npm install grunt-cli
     gem install sass
 
 
 Dev
 ===
 
-You must leave grunt running in the background to automatically compile css
-and minify/compress js files when source code changes
+Load our dev virtualenv :
 
 ::
 
-    grunt
+    source dev_virtualenv
 
 To compile css files run :
 
@@ -48,9 +46,18 @@ you already have docker installed) :
     make daemon
     curl http://localhost:8080/app
 
+You must leave grunt running in the background to automatically compile css
+and minify/compress js files when source code changes
+
+::
+
+    grunt
+
+
+
 
 Coding style
-===========
+============
 
 This project conforms to JSLint coding style (http://github.com/douglascrockford/JSLint).
 Run the linter as follows:
