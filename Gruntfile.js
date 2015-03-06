@@ -178,7 +178,8 @@ module.exports = function (grunt) {
                     ]
                 }],
                 options: {
-                    mangle: false
+                    mangle: false,
+                    beautify: true
                 }
             }
         }
