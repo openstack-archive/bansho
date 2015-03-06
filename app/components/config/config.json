@@ -2,7 +2,7 @@
     "dashboardConfig": {
 		"title": "Unhandled service problems",
 		"refreshInterval": "10000",
-		"template": "",
+		"template": "dashboard",
 		"components" : [
 			{
 				"type": "tactical",

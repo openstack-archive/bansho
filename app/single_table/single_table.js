@@ -38,7 +38,7 @@ angular.module('adagios.view.singleTable', ['ngRoute',
         var viewsConfig = readConfig.data;
 
         angular.forEach(viewsConfig, function (config, view) {
-            if (config.template === "singleTable") {
+            if (config.template === 'singleTable') {
                 singleTableConfig[view] = config;
             }
         });
