@@ -9,10 +9,11 @@
       </tr>
   </thead>
 
-  <tbody class="{{entry.child_class}}" ng-repeat="entry in entries| actionbarSelectFilter:actionbarFilters.activeFilter | filter:actionbarFilters.searchFilter">
+  <tbody class="{{entry.child_class}}" ng-repeat="entry in entries| actionbarSelectFilter:actionbarFilters.activeFilter | filter:actionbarFilters.searchFilter | noRepeat">
     <tr>
       <td><input type="checkbox"></td>
       <td adg-cell cell-name="{{cell}}" ng-repeat="cell in cellsName"></td>
     </tr>
   </tbody>
+
 </table>

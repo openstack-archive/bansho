@@ -184,6 +184,7 @@ angular.module('adagios.table', ['adagios.live',
                     clearFields(entry, fields);
 
                 } else {
+                    first_child = false;
                     parent_found = false;
                 }
 
