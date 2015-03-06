@@ -16,8 +16,8 @@ angular.module('adagios.view.singleTable', ['ngRoute',
         });
     }])
 
-    .controller('SingleTableCtrl', ['$scope', '$routeParams', 'singleTableConfig', 'tableConfig',
-        function ($scope, $routeParams, singleTableConfig, tableConfig) {
+    .controller('SingleTableCtrl', ['$scope', '$routeParams', 'singleTableConfig', 'tableConfig', 'TableConfigObj',
+        function ($scope, $routeParams, singleTableConfig, tableConfig, TableConfigObj) {
             var viewName = "";
 
             tableConfig.index = 0;
@@ -28,17 +28,7 @@ angular.module('adagios.view.singleTable', ['ngRoute',
                 throw new Error("ERROR : 'view' GET parameter must be the custom view name");
             }
 
-            function TableConfig(config) {
-                this.title = config.title;
-                this.CellsText = config.cells.text.join();
-                this.CellsName = config.cells.name.join();
-                this.ApiName = config.apiName;
-                this.Filters = config.filters;
-                this.IsWrappable = config.isWrappable;
-                this.NoRepeatCell = config.noRepeatCell;
-            }
-
-            $scope.tableConfig = new TableConfig(singleTableConfig[viewName].components[0].config);
+            $scope.tableConfig = new TableConfigObj(singleTableConfig[viewName].components[0].config);
 
             $scope.singleTableTitle = singleTableConfig[viewName].title;
             $scope.singleTableRefreshInterval = singleTableConfig[viewName].refreshInterval;

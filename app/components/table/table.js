@@ -129,6 +129,16 @@ angular.module('adagios.table', ['adagios.live',
         };
     }])
 
+    .value('TableConfigObj', function (config) {
+        this.title = config.title;
+        this.CellsText = config.cells.text.join();
+        this.CellsName = config.cells.name.join();
+        this.ApiName = config.apiName;
+        this.Filters = config.filters;
+        this.IsWrappable = config.isWrappable;
+        this.NoRepeatCell = config.noRepeatCell;
+    })
+
     .service('processColumnRepeat', function () {
 
         function clearFields(entry, fields) {

@@ -7,6 +7,13 @@ angular.module('adagios.tactical', ['adagios.tactical.status_overview',
 
     .value('tacticalConfig', {})
 
+    .value('TacticalConfigObj', function (config) {
+        this.title = config.title;
+        this.statusOverview = config.components.statusOverview;
+        this.currentHealth = config.components.currentHealth;
+        this.topAlertProducers = config.components.topAlertProducers;
+    })
+
     .controller('TacticalCtrl', ['$scope', 'tacticalConfig', function ($scope, tacticalConfig) {
 
         $scope.statusOverview = tacticalConfig.statusOverview;

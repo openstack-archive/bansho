@@ -15,8 +15,8 @@ angular.module('adagios.view.dashboard', ['ngRoute',
         });
     }])
 
-    .controller('DashboardCtrl', ['$scope', 'dashboardConfig', 'getServices', 'tableConfig',
-        function ($scope, dashboardConfig, getServices, tableConfig) {
+    .controller('DashboardCtrl', ['$scope', 'dashboardConfig', 'getServices', 'tableConfig', 'TableConfigObj', 'TacticalConfigObj',
+        function ($scope, dashboardConfig, getServices, tableConfig, TableConfigObj, TacticalConfigObj) {
 
             var fields = ['state'],
                 filters = {'isnot' : { 'state' : ['0'] }},
@@ -36,32 +36,14 @@ angular.module('adagios.view.dashboard', ['ngRoute',
 
             components = dashboardConfig.data.components;
 
-            function TableConfig(config) {
-                this.title = config.title;
-                this.CellsText = config.cells.text.join();
-                this.CellsName = config.cells.name.join();
-                this.ApiName = config.apiName;
-                this.Filters = config.filters;
-                this.IsWrappable = config.isWrappable;
-                this.NoRepeatCell = config.noRepeatCell;
-            }
-
-            function TacticalConfig(config) {
-                this.title = config.title;
-                this.statusOverview = config.components.statusOverview;
-                this.currentHealth = config.components.currentHealth;
-                this.topAlertProducers = config.components.topAlertProducers;
-            }
-
             for (i = 0; i < components.length; i += 1) {
                 component = components[i];
                 config = component.config;
 
                 if (component.type === 'table') {
-                    $scope.dashboardTables.push(new TableConfig(config));
+                    $scope.dashboardTables.push(new TableConfigObj(config));
                 } else if (component.type === 'tactical') {
-                    $scope.dashboardTactical.push(new TacticalConfig(config));
-                    console.log($scope.dashboardTactical[0].statusOverview);
+                    $scope.dashboardTactical.push(new TacticalConfigObj(config));
                 }
             }
 
