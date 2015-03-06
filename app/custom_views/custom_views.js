@@ -16,9 +16,11 @@ angular.module('adagios.view.custom', ['ngRoute',
         });
     }])
 
-    .controller('CustomViewsCtrl', [ '$scope', '$routeParams', 'customViewsConfig',
-        function ($scope, $routeParams, customViewsConfig) {
+    .controller('CustomViewsCtrl', [ '$scope', '$routeParams', 'customViewsConfig', 'tableConfig',
+        function ($scope, $routeParams, customViewsConfig, tableConfig) {
             var viewName = "";
+
+            tableConfig.index = 0;
 
             if (!!$routeParams.view) {
                 viewName = $routeParams.view;

@@ -15,7 +15,8 @@ angular.module('adagios.view.dashboard', ['ngRoute',
         });
     }])
 
-    .controller('DashboardCtrl', ['$scope', 'dashboardConfig', 'getServices', function ($scope, dashboardConfig, getServices) {
+    .controller('DashboardCtrl', ['$scope', 'dashboardConfig', 'getServices', 'tableConfig',
+            function ($scope, dashboardConfig, getServices, tableConfig) {
 
         var fields = ['state'],
             filters = {'isnot' : { 'state' : ['0'] }},
@@ -25,6 +26,7 @@ angular.module('adagios.view.dashboard', ['ngRoute',
             config,
             i = 0;
 
+        tableConfig.index = 0;
         $scope.dashboardTitle = dashboardConfig.data.title;
         $scope.dashboardTemplate = dashboardConfig.data.template;
         $scope.dashboardRefreshInterval = dashboardConfig.data.refreshInterval;
