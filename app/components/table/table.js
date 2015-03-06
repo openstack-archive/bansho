@@ -12,7 +12,7 @@ angular.module('adagios.table', ['adagios.live',
                                  'adagios.table.cell_host_status'
                                 ])
 
-    .value('tableConfig', { 'cellToFieldsMap': {}, 'cellWrappableField': {}, 'index': 0})
+    .value('tableConfig', {'cellToFieldsMap': {}, 'cellWrappableField': {}, 'index': 0})
 
     .controller('TableCtrl', ['$scope', '$interval', 'getServices', 'tableConfig', 'processColumnRepeat',
         function ($scope, $interval, getServices, tableConfig, processColumnRepeat) {

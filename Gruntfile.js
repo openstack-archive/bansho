@@ -110,9 +110,7 @@ module.exports = function (grunt) {
                         '<%= project.app %>/components/table/cell_host_address/cell_host_address.js',
                         '<%= project.app %>/components/table/cell_host_status/cell_host_status.js',
                         '<%= project.app %>/dashboard/dashboard.js',
-                        '<%= project.app %>/hosts/hosts.js',
-                        '<%= project.app %>/services/services.js',
-                        '<%= project.app %>/custom_views/custom_views.js'
+                        '<%= project.app %>/single_table/single_table.js'
                     ]
                 }],
                 options: {
@@ -145,9 +143,7 @@ module.exports = function (grunt) {
                         '<%= project.build %>/components/table/cell_host_address/cell_host_address.js': '<%= project.app %>/components/table/cell_host_address/cell_host_address.js',
                         '<%= project.build %>/components/table/cell_host_status/cell_host_status.js': '<%= project.app %>/components/table/cell_host_status/cell_host_status.js',
                         '<%= project.build %>/dashboard/dashboard.js': '<%= project.app %>/dashboard/dashboard.js',
-                        '<%= project.build %>/hosts/hosts.js': '<%= project.app %>/hosts/hosts.js',
-                        '<%= project.build %>/services/services.js': '<%= project.app %>/services/services.js',
-                        '<%= project.build %>/custom_views/custom_views.js' : '<%= project.app %>/custom_views/custom_views.js'
+                        '<%= project.build %>/single_table/single_table.js' : '<%= project.app %>/single_table/single_table.js'
                     },
                     {
                         '<%= project.build %>/js/adagios.min.js' : [
@@ -174,9 +170,7 @@ module.exports = function (grunt) {
                             '<%= project.build %>/components/table/cell_host_address/cell_host_address.js',
                             '<%= project.build %>/components/table/cell_host_status/cell_host_status.js',
                             '<%= project.build %>/dashboard/dashboard.js',
-                            '<%= project.build %>/hosts/hosts.js',
-                            '<%= project.build %>/services/services.js',
-                            '<%= project.build %>/custom_views/custom_views.js'
+                            '<%= project.build %>/single_table/single_table.js'
                         ]
                     }
                 ],
