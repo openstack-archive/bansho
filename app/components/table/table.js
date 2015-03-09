@@ -12,61 +12,55 @@ angular.module('adagios.table', ['adagios.live',
                                  'adagios.table.cell_host_status'
                                 ])
 
-    .value('tableConfig', { cells: { 'text': [], 'name': [] },
-                            apiName: '',
-                            filters: {},
-                            cellToFieldsMap: {},
-                            cellWrappableField: {},
-                            noRepeatCell: '',
-                            isWrappable: false,
-                            refreshInterval: '0'
-                          })
+    .value('tableConfig', {'cellToFieldsMap': {}, 'cellWrappableField': {}, 'index': 0})
 
     .controller('TableCtrl', ['$scope', '$interval', 'getServices', 'tableConfig', 'processColumnRepeat',
         function ($scope, $interval, getServices, tableConfig, processColumnRepeat) {
+            var requestFields = [],
+                filters = JSON.parse(tableConfig[tableConfig.index].filters),
+                conf = tableConfig[tableConfig.index],
+                getData,
+                i;
 
-        var requestFields = [],
-            filters = JSON.parse(tableConfig.filters),
-            i;
+            $scope.cellsName = conf.cells.name;
+            $scope.cellsText = conf.cells.text;
+            $scope.cellIndexes = [];
 
-        $scope.cellsName = tableConfig.cells.name;
-        $scope.cellsText = tableConfig.cells.text;
-        $scope.cellIndexes = [];
+            for (i = 0; i < $scope.cellsName.length; i += 1) {
+                $scope.cellIndexes.push(i);
+            }
 
-        for (i = 0; i < $scope.cellsName.length; i += 1) {
-            $scope.cellIndexes.push(i);
-        }
-
-        angular.forEach($scope.cellsName, function (key) {
-            angular.forEach(tableConfig.cellToFieldsMap[key], function (_value) {
-                requestFields.push(_value);
+            angular.forEach($scope.cellsName, function (key) {
+                angular.forEach(tableConfig.cellToFieldsMap[key], function (_value) {
+                    requestFields.push(_value);
+                });
             });
-        });
 
-        $scope.getData = 
-            function (requestFields, filters, apiName) {
-                getServices(requestFields, filters, tableConfig.apiName)
+            getData = function (requestFields, filters, apiName) {
+                getServices(requestFields, filters, apiName)
                     .success(function (data) {
-                        var fieldToWrap = tableConfig.cellWrappableField[tableConfig.noRepeatCell],
-                            cellFields = tableConfig.cellToFieldsMap[tableConfig.noRepeatCell];
+                        var fieldToWrap = tableConfig.cellWrappableField[conf.noRepeatCell],
+                            cellFields = tableConfig.cellToFieldsMap[conf.noRepeatCell];
 
-                        if (tableConfig.noRepeatCell !== "") {
-                            data = processColumnRepeat(data, fieldToWrap, cellFields, tableConfig.isWrappable);
+                        if (conf.noRepeatCell !== "") {
+                            data = processColumnRepeat(data, fieldToWrap, cellFields, conf.isWrappable);
                         }
 
                         $scope.entries = data;
                     });
+            };
+
+            getData(requestFields, filters, conf.apiName);
+
+            if (tableConfig.refreshInterval !== '0') {
+                $interval(function () {
+                    getData(requestFields, filters, conf.apiName);
+                }, tableConfig.refreshInterval);
             }
 
-        $scope.getData(requestFields, filters, tableConfig.apiName);
-        
-        if (tableConfig.refreshInterval !== '0') {
-            $interval(function() {
-                $scope.getData(requestFields, filters, tableConfig.apiName);
-            }, tableConfig.refreshInterval);
-        }
-
-    }])
+            // Used if there's more than one table in a view
+            tableConfig.index += 1;
+        }])
 
     .directive('adgTable', ['$http', '$compile', 'tableConfig', function ($http, $compile, tableConfig) {
         return {
@@ -79,18 +73,26 @@ angular.module('adagios.table', ['adagios.live',
                                         + ' and "is-wrappable" attributes must be defined');
                     }
 
-                    tableConfig.cells.text = attrs.cellsText.split(',');
-                    tableConfig.cells.name = attrs.cellsName.split(',');
-                    tableConfig.apiName = attrs.apiName;
-                    tableConfig.isWrappable = attrs.isWrappable;
-                    tableConfig.noRepeatCell = attrs.noRepeatCell;
-                    
+                    tableConfig[attrs.tableId] = {};
+                    tableConfig[attrs.tableId].filters = {};
+
+                    tableConfig[attrs.tableId].cells = { 'text': [], 'name': [] };
+                    tableConfig[attrs.tableId].cells.text = attrs.cellsText.split(',');
+                    tableConfig[attrs.tableId].cells.name = attrs.cellsName.split(',');
+
+                    tableConfig[attrs.tableId].apiName = attrs.apiName;
+
+                    tableConfig[attrs.tableId].isWrappable = false;
+                    tableConfig[attrs.tableId].isWrappable = attrs.isWrappable;
+                    tableConfig[attrs.tableId].noRepeatCell = attrs.noRepeatCell;
+                    tableConfig[attrs.tableId].tableId = attrs.tableId;
+
                     if (!!attrs.refreshInterval) {
                         tableConfig.refreshInterval = attrs.refreshInterval;
                     }
 
                     if (!!attrs.filters) {
-                        tableConfig.filters = attrs.filters;
+                        tableConfig[attrs.tableId].filters = attrs.filters;
                     }
 
                     var template = 'components/table/table.html';
@@ -106,7 +108,6 @@ angular.module('adagios.table', ['adagios.live',
     }])
 
     .directive('adgCell', ['$http', '$compile', function ($http, $compile) {
-
         return {
             restrict: 'A',
             compile: function () {
@@ -128,13 +129,23 @@ angular.module('adagios.table', ['adagios.live',
         };
     }])
 
-    .service('processColumnRepeat', function() {
-        
+    .value('TableConfigObj', function (config) {
+        this.title = config.title;
+        this.CellsText = config.cells.text.join();
+        this.CellsName = config.cells.name.join();
+        this.ApiName = config.apiName;
+        this.Filters = config.filters;
+        this.IsWrappable = config.isWrappable;
+        this.NoRepeatCell = config.noRepeatCell;
+    })
+
+    .service('processColumnRepeat', function () {
+
         function clearFields(entry, fields) {
             angular.forEach(fields, function (value) {
-               entry[value] = ''; 
+                entry[value] = '';
             });
-        };
+        }
 
         // Erase subsequently repeated data of a given cell only keeping the first occurrence
         // fieldToProcess is the field to watch for subsequent repetition
@@ -143,24 +154,23 @@ angular.module('adagios.table', ['adagios.live',
             var last = '',
                 actual = '',
                 entry = {},
-                first_child = false,
                 parent_found = false,
                 class_name = ['', ''],
                 i;
 
-            if (isWrappable == "true") {
+            if (isWrappable === "true") {
                 class_name = ['state--hasChild', 'state--isChild'];
             }
-            
+
             for (i = 0; i < data.length; i += 1) {
                 entry = data[i];
                 actual = entry[fieldToProcess];
 
                 if (entry[fieldToProcess] === last) {
 
-                    if (!data[i-1].has_child && !parent_found) {
-                        data[i-1].has_child = 1;
-                        data[i-1].child_class = class_name[0];
+                    if (!data[i - 1].has_child && !parent_found) {
+                        data[i - 1].has_child = 1;
+                        data[i - 1].child_class = class_name[0];
                         entry.child_class = class_name[1];
                         parent_found = true;
                     } else {
@@ -171,7 +181,6 @@ angular.module('adagios.table', ['adagios.live',
                     clearFields(entry, fields);
 
                 } else {
-                    first_child = false;
                     parent_found = false;
                 }
 
@@ -179,5 +188,5 @@ angular.module('adagios.table', ['adagios.live',
             }
 
             return data;
-        }
+        };
     });

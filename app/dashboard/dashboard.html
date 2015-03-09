@@ -1,8 +1,10 @@
-<article ng-app="adagios.tactical" ng-controller="TacticalCtrl" id="tactical">
+<article ng-controller="DashboardCtrl" id="tactical">
   <header class="main__overview">
-    <h2 class="main__overview__title">Tactical Overview</h2>
+    <h2 class="main__overview__title">{{dashboardTactical[0].title}}</h2>
     
-    <adg-tactical></adg-tactical>
+    <adg-tactical status-overview="{{dashboardTactical[0].statusOverview}}"
+                  current-health="{{dashboardTactical[0].currentHealth}}"
+                  top-alert-producers="{{dashboardTactical[0].topAlertProducers}}"></adg-tactical>
 
   </header>
   
@@ -37,17 +39,35 @@
     <div class="tab-content">
       <div role="tabpanel" class="problems tab-pane active" id="openProblems">
         <header class="main__content__header clearfix">
-          <h2 class="main__content__title">{{dashboardTitle}}</h2>
+          <h2 class="main__content__title">{{dashboardTables[0].title}}</h2>
           <p class="main__content__alert state--error">There are {{nbHostProblems}} host problems.</p>
         </header>
-        
-        <adg-table cells-text="{{dashboardCellsText}}"
-                   cells-name="{{dashboardCellsName}}" 
-                   api-name="{{dashboardApiName}}" 
-                   filters="{{dashboardFilters}}"
-                   is-wrappable="{{dashboardIsWrappable}}"
-                   no-repeat-cell="{{dashboardNoRepeatCell}}"
-                   refresh-interval="{{dashboardRefreshInterval}}"></adg-table>
+
+        <adg-table cells-text="{{dashboardTables[0].CellsText}}"
+                   cells-name="{{dashboardTables[0].CellsName}}"
+                   api-name="{{dashboardTables[0].ApiName}}"
+                   filters="{{dashboardTables[0].Filters}}"
+                   is-wrappable="{{dashboardTables[0].IsWrappable}}"
+                   no-repeat-cell="{{dashboardTables[0].NoRepeatCell}}"
+                   refresh-interval="{{dashboardRefreshInterval}}"
+                   table-id="0"></adg-table>
+
+      </div>
+
+      <div role="tabpanel" class="problems tab-pane active" id="openProblems">
+        <header class="main__content__header clearfix">
+          <h2 class="main__content__title">{{dashboardTables[1].title}}</h2>
+          <p class="main__content__alert state--error">There are {{nbHostProblems}} host problems.</p>
+        </header>
+
+        <adg-table cells-text="{{dashboardTables[1].CellsText}}"
+                   cells-name="{{dashboardTables[1].CellsName}}"
+                   api-name="{{dashboardTables[1].ApiName}}"
+                   filters="{{dashboardTables[1].Filters}}"
+                   is-wrappable="{{dashboardTables[1].IsWrappable}}"
+                   no-repeat-cell="{{dashboardTables[1].NoRepeatCell}}"
+                   refresh-interval="{{dashboardRefreshInterval}}"
+                   table-id="1"></adg-table>
 
       </div>
     </div>
