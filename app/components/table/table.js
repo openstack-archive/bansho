@@ -40,13 +40,6 @@ angular.module('adagios.table', ['adagios.live',
             getData = function (requestFields, filters, apiName) {
                 getServices(requestFields, filters, apiName)
                     .success(function (data) {
-                        var fieldToWrap = tableConfig.cellWrappableField[conf.noRepeatCell],
-                            cellFields = tableConfig.cellToFieldsMap[conf.noRepeatCell];
-
-                        if (conf.noRepeatCell !== "") {
-                            data = processColumnRepeat(data, fieldToWrap, cellFields, conf.isWrappable);
-                        }
-
                         $scope.entries = data;
                     });
             };
@@ -141,35 +134,23 @@ angular.module('adagios.table', ['adagios.live',
         this.NoRepeatCell = config.noRepeatCell;
     })
 
-    .service('processColumnRepeat', function () {
-
-        function clearFields(entry, fields) {
-            angular.forEach(fields, function (value) {
-                entry[value] = '';
-            });
-        }
-
-        // Erase subsequently repeated data of a given cell only keeping the first occurrence
-        // fieldToProcess is the field to watch for subsequent repetition
-        // fields are all the fields of a given cell whose data will be erased
-        return function (data, fieldToProcess, fields, isWrappable) {
+.filter('wrappableStyle', ['tableConfig', function (tableConfig) {
+        return function (data) {
             var last = '',
-                actual = '',
                 entry = {},
-                first_child = false,
                 parent_found = false,
                 class_name = ['', ''],
-                i;
+                i,
+                fieldToWrap = tableConfig.cellWrappableField[tableConfig.noRepeatCell];
 
-            if (isWrappable === "true") {
+            if (tableConfig.isWrappable) {
                 class_name = ['state--hasChild', 'state--isChild'];
             }
 
             for (i = 0; i < data.length; i += 1) {
                 entry = data[i];
-                actual = entry[fieldToProcess];
 
-                if (entry[fieldToProcess] === last) {
+                if (entry[fieldToWrap] === last) {
 
                     if (!data[i - 1].has_child && !parent_found) {
                         data[i - 1].has_child = 1;
@@ -181,16 +162,37 @@ angular.module('adagios.table', ['adagios.live',
                         entry.child_class = class_name[1];
                     }
 
-                    clearFields(entry, fields);
-
                 } else {
-                    first_child = false;
                     parent_found = false;
                 }
 
-                last = actual;
+                last = entry[fieldToWrap];
             }
 
             return data;
-        }
-    });
+        };
+    }])
+
+    .filter('noRepeat', ['tableConfig', function (tableConfig) {
+        return function (items) {
+            var newItems = [],
+                previous;
+
+            angular.forEach(items, function (item) {
+
+                var fieldToCompare = tableConfig.cellWrappableField[tableConfig.noRepeatCell],
+                    new_attr = tableConfig.noRepeatCell + "_additionnalClass";
+
+                if (previous === item[fieldToCompare]) {
+                    item[new_attr] = 'hide-childrens';
+                } else {
+                    previous = item[fieldToCompare].slice(0);
+                    if (!!item[new_attr]) {
+                        item[new_attr] = item[new_attr].replace("hide-childrens", "");
+                    }
+                }
+                newItems.push(item);
+            });
+            return newItems;
+        };
+    }]);
