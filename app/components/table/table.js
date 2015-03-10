@@ -14,8 +14,8 @@ angular.module('adagios.table', ['adagios.live',
 
     .value('tableConfig', {'cellToFieldsMap': {}, 'cellWrappableField': {}, 'index': 0})
 
-    .controller('TableCtrl', ['$scope', '$interval', 'getServices', 'tableConfig', 'processColumnRepeat',
-        function ($scope, $interval, getServices, tableConfig, processColumnRepeat) {
+    .controller('TableCtrl', ['$scope', '$interval', 'getServices', 'tableConfig', 'actionbarFilters',
+        function ($scope, $interval, getServices, tableConfig, actionbarFilters) {
             var requestFields = [],
                 filters = JSON.parse(tableConfig[tableConfig.index].filters),
                 conf = tableConfig[tableConfig.index],
@@ -35,7 +35,6 @@ angular.module('adagios.table', ['adagios.live',
                     requestFields.push(_value);
                 });
             });
-        });
 
             getData = function (requestFields, filters, apiName) {
                 getServices(requestFields, filters, apiName)
@@ -52,7 +51,10 @@ angular.module('adagios.table', ['adagios.live',
                 }, tableConfig.refreshInterval);
             }
 
-            // Used if there's more than one table in a view
+            $scope.actionbarFilters = actionbarFilters;
+
+            // Index needed to support multiple tables per view
+            $scope.tableIndex = tableConfig.index;
             tableConfig.index += 1;
         }])
 
@@ -134,34 +136,37 @@ angular.module('adagios.table', ['adagios.live',
         this.NoRepeatCell = config.noRepeatCell;
     })
 
-.filter('wrappableStyle', ['tableConfig', function (tableConfig) {
-        return function (data) {
+    .filter('wrappableStyle', ['tableConfig', function (tableConfig) {
+        return function (input, scope) {
             var last = '',
                 entry = {},
                 parent_found = false,
                 class_name = ['', ''],
                 i,
-                fieldToWrap = tableConfig.cellWrappableField[tableConfig.noRepeatCell];
+                fieldToWrap = tableConfig.cellWrappableField[tableConfig[scope.tableIndex].noRepeatCell];
 
-            if (tableConfig.isWrappable) {
+            if (fieldToWrap === undefined) {
+                return input;
+            }
+
+            if (tableConfig[scope.tableIndex].isWrappable) {
                 class_name = ['state--hasChild', 'state--isChild'];
             }
 
-            for (i = 0; i < data.length; i += 1) {
-                entry = data[i];
+            for (i = 0; i < input.length; i += 1) {
+                entry = input[i];
 
                 if (entry[fieldToWrap] === last) {
-
-                    if (!data[i - 1].has_child && !parent_found) {
-                        data[i - 1].has_child = 1;
-                        data[i - 1].child_class = class_name[0];
+                    if (!input[i - 1].has_child && !parent_found) {
+                        input[i - 1].has_child = 1;
+                        input[i - 1].child_class = class_name[0];
                         entry.child_class = class_name[1];
+
                         parent_found = true;
                     } else {
                         entry.is_child = 1;
                         entry.child_class = class_name[1];
                     }
-
                 } else {
                     parent_found = false;
                 }
@@ -169,19 +174,18 @@ angular.module('adagios.table', ['adagios.live',
                 last = entry[fieldToWrap];
             }
 
-            return data;
+            return input;
         };
     }])
 
     .filter('noRepeat', ['tableConfig', function (tableConfig) {
-        return function (items) {
+        return function (items, scope) {
             var newItems = [],
-                previous;
+                previous,
+                fieldToCompare = tableConfig.cellWrappableField[tableConfig[scope.tableIndex].noRepeatCell],
+                new_attr = tableConfig[scope.tableIndex].noRepeatCell + "_additionnalClass";
 
             angular.forEach(items, function (item) {
-
-                var fieldToCompare = tableConfig.cellWrappableField[tableConfig.noRepeatCell],
-                    new_attr = tableConfig.noRepeatCell + "_additionnalClass";
 
                 if (previous === item[fieldToCompare]) {
                     item[new_attr] = 'hide-childrens';
@@ -193,6 +197,7 @@ angular.module('adagios.table', ['adagios.live',
                 }
                 newItems.push(item);
             });
+
             return newItems;
         };
     }]);

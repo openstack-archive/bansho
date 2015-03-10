@@ -22,8 +22,7 @@ angular.module('adagios.table.actionbar', [])
                     text: "All in Downtime",
                     name: "all_downtime"
                 }
-            ],
-			searchFilter: ""
+            ]
         };
         return actionbarFilters;
     })
@@ -39,15 +38,21 @@ angular.module('adagios.table.actionbar', [])
 
     .filter('actionbarSelectFilter', function () {
         return function (items, activeFilter) {
-            var out = [];
+            var out = [],
+                i;
+
+            if (!!activeFilter) {
+                return items;
+            }
+
             if (!!items) {
                 if (activeFilter.name === "all") {
-                    for (var i = 0; i < items.length; i++) {
+                    for (i = 0; i < items.length; i += 1) {
                         out.push(items[i]);
                     }
                 } else if (activeFilter.name === "all_ok") {
-                    for (var i = 0; i < items.length; i++) {
-                        if (items[i].state == 0) {
+                    for (i = 0; i < items.length; i += 1) {
+                        if (items[i].state === 0) {
                             out.push(items[i]);
                         }
                     }
