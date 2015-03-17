@@ -33,7 +33,7 @@
         </li>
       </ul>
     </nav>
-
+    
     <adg-table-actionbar></adg-table-actionbar>
     
     <div class="tab-content">
@@ -42,7 +42,7 @@
           <h2 class="main__content__title">{{dashboardTables[0].title}}</h2>
           <p class="main__content__alert state--error">There are {{nbHostProblems}} host problems.</p>
         </header>
-
+        
         <adg-table cells-text="{{dashboardTables[0].CellsText}}"
                    cells-name="{{dashboardTables[0].CellsName}}"
                    api-name="{{dashboardTables[0].ApiName}}"
@@ -51,15 +51,15 @@
                    no-repeat-cell="{{dashboardTables[0].NoRepeatCell}}"
                    refresh-interval="{{dashboardRefreshInterval}}"
                    table-id="0"></adg-table>
-
+        
       </div>
-
-  <div role="tabpanel" class="problems tab-pane active" id="openProblems">
-    <header class="main__content__header clearfix">
+      
+      <div role="tabpanel" class="problems tab-pane active" id="openProblems">
+        <header class="main__content__header clearfix">
           <h2 class="main__content__title">{{dashboardTables[1].title}}</h2>
           <p class="main__content__alert state--error">There are {{nbHostProblems}} host problems.</p>
-    </header>
-
+        </header>
+        
         <adg-table cells-text="{{dashboardTables[1].CellsText}}"
                    cells-name="{{dashboardTables[1].CellsName}}"
                    api-name="{{dashboardTables[1].ApiName}}"
@@ -68,8 +68,8 @@
                    no-repeat-cell="{{dashboardTables[1].NoRepeatCell}}"
                    refresh-interval="{{dashboardRefreshInterval}}"
                    table-id="1"></adg-table>
-  </div>
-</div>
-
-</section>
+      </div>
+    </div>
+    
+  </section>
 </article>
