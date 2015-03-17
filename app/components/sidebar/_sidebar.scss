@@ -83,9 +83,12 @@
 }
 
 .sidebar__category {
+    @extend %button-reset;
     @extend %typo-title;
     display:block;
     padding:$_space $_space_narrow 0 $_space;
+    text-align:left;
+    width:100%;
 
     @include large-xlarge-screen {
         padding:$_space $_space 0;

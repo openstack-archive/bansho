@@ -12,12 +12,16 @@
   <nav class="sidebar__nav" role="navigation">
     <ul class="sidebar__list" id="sidebarList">
       <li class="sidebar__item">
-        <span class="sidebar__category">Shortcut</span>
+        <button class="sidebar__category"
+                data-toggle="collapse"
+                data-target="#shortcutList"
+                aria-expanded="true"
+                aria-controls="shortcutList">Shortcut</button>
         <button class="sidebar__customize ico-cog">
           <span class="visuallyhidden">Customize the shortcut category</span>
         </button>
         
-        <ul class="sidebar__sublist" id="shortcutList">
+        <ul class="sidebar__sublist collapse in" id="shortcutList">
           <li class="sidebar__subitem"><a class="state--current" href="#/dashboard">Dashboard</a></li>
           <li class="sidebar__subitem"><a href="#/hosts">Hosts</a></li>
           <li class="sidebar__subitem"><a href="#/services">Services</a></li>
@@ -25,12 +29,16 @@
         </ul>
       </li>
       <li class="sidebar__item">
-        <span class="sidebar__category">Reports</span>
+        <button class="sidebar__category"
+                data-toggle="collapse"
+                data-target="#reportsList"
+                aria-expanded="true"
+                aria-controls="reportsList">Reports</button>
         <button class="sidebar__customize ico-cog">
           <span class="visuallyhidden">Customize the reports category</span>
         </button>
         
-        <ul class="sidebar__sublist" id="reportsList">
+        <ul class="sidebar__sublist collapse in" id="reportsList">
           <li class="sidebar__subitem"><a href="#">State History</a></li>
           <li class="sidebar__subitem"><a href="#">Log</a></li>
           <li class="sidebar__subitem"><a href="#">Comments</a></li>
@@ -38,24 +46,32 @@
         </ul>
       </li>
       <li class="sidebar__item">
-        <span class="sidebar__category">Groups</span>
+        <button class="sidebar__category"
+                data-toggle="collapse"
+                data-target="#groupsList"
+                aria-expanded="true"
+                aria-controls="groupsList">Groups</button>
         <button class="sidebar__customize ico-cog">
           <span class="visuallyhidden">Customize the groups category</span>
         </button>
         
-        <ul class="sidebar__sublist" id="groupsList">
+        <ul class="sidebar__sublist collapse in" id="groupsList">
           <li class="sidebar__subitem"><a href="#">Hostgroups</a></li>
           <li class="sidebar__subitem"><a href="#">Servicegroups</a></li>
           <li class="sidebar__subitem"><a href="#">Contactgroups</a></li>
         </ul>
       </li>
       <li class="sidebar__item">
-        <span class="sidebar__category">Other</span>
+        <button class="sidebar__category"
+                data-toggle="collapse"
+                data-target="#otherList"
+                aria-expanded="true"
+                aria-controls="otherList">Other</button>
         <button class="sidebar__customize ico-cog">
           <span class="visuallyhidden">Customize other category</span>
         </button>
         
-        <ul class="sidebar__sublist" id="otherList">
+        <ul class="sidebar__sublist collapse in" id="otherList">
           <li class="sidebar__subitem"><a href="#">Grafana</a></li>
           <li class="sidebar__subitem"><a href="#">Nagvis</a></li>
         </ul>
