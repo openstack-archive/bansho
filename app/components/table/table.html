@@ -9,12 +9,10 @@
       </tr>
   </thead>
 
-  <tbody class="" ng-repeat="entry in entries">
+  <tbody class="{{entry.child_class}}" ng-repeat="entry in entries">
     <tr>
       <td><input type="checkbox"></td>
-      <td ng-repeat="cell in cellsName">
-        <adg-cell type="{{cell}}"></adg-cell>
-      </td>
+      <td adg-cell cell-name="{{cell}}" ng-repeat="cell in cellsName"></td>
     </tr>
   </tbody>
 

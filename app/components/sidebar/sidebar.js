@@ -2,10 +2,16 @@
 
 angular.module('adagios.sidebar', [])
 
-    .controller('SideBarCtrl', ['$scope', '$http', function ($scope, $http) {
-        angular.noop();
+    .controller('SideBarCtrl', ['$scope', '$location', function ($scope, $location) {
+        $scope.getClass = function (path) {
+            var class_name = "";
 
-        $scope.$on('$viewContentLoaded', AdagiosUI.closeSidebar());
+            if ($location.url().substr(0, path.length) === path) {
+                class_name = "state--current";
+            }
+
+            return class_name;
+        };
     }])
 
     .directive('adgSidebar', function () {

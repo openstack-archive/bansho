@@ -2,7 +2,7 @@
 
 angular.module('adagios.tactical.status_overview', ['ngRoute' ])
 
-    .controller('TacticalStatusOverViewCtrl', ['$scope', '$http', function ($scope, $http) {
+    .controller('TacticalStatusOverViewCtrl', ['$scope', function ($scope) {
         $scope.hosts = {
             "count": 104,
             "problems": 14

@@ -1,8 +1,10 @@
-<article ng-app="adagios.tactical" ng-controller="TacticalCtrl" id="tactical">
+<article ng-controller="DashboardCtrl" id="tactical">
   <header class="main__overview">
-    <h2 class="main__overview__title">Tactical Overview</h2>
+    <h2 class="main__overview__title">{{dashboardTactical[0].title}}</h2>
     
-    <adg-tactical></adg-tactical>
+    <adg-tactical status-overview="{{dashboardTactical[0].statusOverview}}"
+                  current-health="{{dashboardTactical[0].currentHealth}}"
+                  top-alert-producers="{{dashboardTactical[0].topAlertProducers}}"></adg-tactical>
     
   </header>
   
@@ -31,115 +33,41 @@
         </li>
       </ul>
     </nav>
+
+    <adg-table-actionbar></adg-table-actionbar>
     
-    <menu class="filters">
-      <ul class="filters__list clearfix">
-        <li class="filters__item filters__item--problems">
-          <button class="filters__button"
-                  type="button"
-                  data-toggle="collapse"
-                  data-target="#filtersProblems"
-                  aria-expanded="false"
-                  aria-controls="filtersProblems">
-            <spa>All</span>
-<i class="ico-down-dir"></i>
-</button>
+    <div class="tab-content">
+      <div role="tabpanel" class="problems tab-pane active" id="openProblems">
+        <header class="main__content__header clearfix">
+          <h2 class="main__content__title">{{dashboardTables[0].title}}</h2>
+          <p class="main__content__alert state--error">There are {{nbHostProblems}} host problems.</p>
+        </header>
 
-<div class="filters__panel collapse" id="filtersProblems">
-  <ul class="filters__sublist">
-    <li class="filters__subitem">
-      <a class="filters__link state--current" href="#">All</a>
-    </li>
-    <li class="filters__subitem">
-      <a class="filters__link" href="#">All OK</a>
-    </li>
-    <li class="filters__subitem">
-      <a class="filters__link" href="#">All Acknowledged</a>
-    </li>
-    <li class="filters__subitem">
-      <a class="filters__link" href="#">All in Downtime</a>
-    </li>
-  </ul>
-</div>
-</li>
-<li class="filters__item filters__item--recheck">
-  <button class="filters__button" type="button">
-    <span class="visuallyhidden">Recheck</span>
-    <i class="ico-arrows-cw"></i>
-  </button>
-</li>
-<li class="filters__item filters__item--acknowledge"
-    data-mover="true">
-  <button class="filters__button" type="button">
-    <span class="visuallyhidden">Acknowledge</span>
-    <i class="ico-thumbs-up"></i>
-  </button>
-</li>
-<li class="filters__item filters__item--downtime"
-    data-mover="true">
-  <button class="filters__button" type="button">
-    <span class="visuallyhidden">Downtime</span>
-    <i class="ico-clock"></i>
-  </button>
-</li>
-<li class="filters__item filters__item--more clearfix">
-  <button class="filters__button"
-          type="button"
-          data-toggle="collapse"
-          data-target="#filtersMore"
-          aria-expanded="false"
-          aria-controls="filtersMore">
-    <span>More</span>
-    <i class="ico-down-dir"></i>
-  </button>
-  
-  <div class="filters__panel collapse" id="filtersMore">
-    <ul class="filters__sublist">
-      <li class="filters__subitem">
-        <a class="filters__link" href="#">More I</a>
-      </li>
-      <li class="filters__subitem">
-        <a class="filters__link" href="#">More II</a>
-      </li>
-      <li class="filters__subitem">
-        <a class="filters__link" href="#">More III</a>
-      </li>
-    </ul>
-  </div>
-</li>
-<li class="filters__item filters__item--settings">
-  <button class="filters__button"
-          type="button"
-          data-toggle="collapse"
-          data-target="#filtersSettings"
-          aria-expanded="false"
-          aria-controls="filtersSettings">
-    <span class="visuallyhidden">Filters Settings</span>
-    <i class="ico-cog"></i>
-  </button>
-  
-  <div class="filters__panel collapse" id="filtersSettings">
-    <ul class="filters__sublist">
-      <li>...</li>
-      <li>...</li>
-      <li>...</li>
-    </ul>
-  </div>
-</li>
-</ul>
-</menu>
+        <adg-table cells-text="{{dashboardTables[0].CellsText}}"
+                   cells-name="{{dashboardTables[0].CellsName}}"
+                   api-name="{{dashboardTables[0].ApiName}}"
+                   filters="{{dashboardTables[0].Filters}}"
+                   is-wrappable="{{dashboardTables[0].IsWrappable}}"
+                   no-repeat-cell="{{dashboardTables[0].NoRepeatCell}}"
+                   refresh-interval="{{dashboardRefreshInterval}}"
+                   table-id="0"></adg-table>
 
-<div class="tab-content">
+      </div>
+
   <div role="tabpanel" class="problems tab-pane active" id="openProblems">
     <header class="main__content__header clearfix">
-      <h2 class="main__content__title">Unhandled service problems</h2>
-      <p class="main__content__alert state--error">There are 5 host problems.</p>
+          <h2 class="main__content__title">{{dashboardTables[1].title}}</h2>
+          <p class="main__content__alert state--error">There are {{nbHostProblems}} host problems.</p>
     </header>
-    
-    <adg-table cells-text="{{dashboardCellsText}}"
-               cells-name="{{dashboardCellsName}}" 
-               api-name="{{dashboardApiName}}" 
-               filters="{{dashboardFilters}}">          
+
+        <adg-table cells-text="{{dashboardTables[1].CellsText}}"
+                   cells-name="{{dashboardTables[1].CellsName}}"
+                   api-name="{{dashboardTables[1].ApiName}}"
+                   filters="{{dashboardTables[1].Filters}}"
+                   is-wrappable="{{dashboardTables[1].IsWrappable}}"
+                   no-repeat-cell="{{dashboardTables[1].NoRepeatCell}}"
+                   refresh-interval="{{dashboardRefreshInterval}}"
+                   table-id="1"></adg-table>
   </div>
 </div>
 

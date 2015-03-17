@@ -22,9 +22,9 @@
         </button>
         
         <ul class="sidebar__sublist collapse in" id="shortcutList">
-          <li class="sidebar__subitem"><a class="state--current" href="#/dashboard">Dashboard</a></li>
-          <li class="sidebar__subitem"><a href="#/hosts">Hosts</a></li>
-          <li class="sidebar__subitem"><a href="#/services">Services</a></li>
+          <li class="sidebar__subitem"><a ng-class="getClass('/dashboard?view=dashboardConfig')" href="#/dashboard?view=dashboardConfig">Dashboard</a></li>
+          <li class="sidebar__subitem"><a ng-class="getClass('/singleTable?view=hostsConfig')" href="#/singleTable?view=hostsConfig">Hosts</a></li>
+          <li class="sidebar__subitem"><a ng-class="getClass('/singleTable?view=servicesConfig')" href="#/singleTable?view=servicesConfig">Services</a></li>
           <li class="sidebar__subitem"><a href="#">Networks parents</a></li>
         </ul>
       </li>

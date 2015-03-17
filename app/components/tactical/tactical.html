@@ -1,14 +1,14 @@
 <div class="panes panes--3" ng-controller="TacticalCtrl" id="tactical">
-  <div class="panes__container">
-    <div class="panes__pane">
+<div class="panes__container">
+  <div class="panes__pane" ng-if="statusOverview">
       <adg-status-overview></adg-status-overview>
     </div>
     
-    <div class="panes__pane">
+  <div class="panes__pane" ng-if="currentHealth">
       <adg-current-health></adg-current-health>
     </div>
     
-    <div class="panes__pane">
+  <div class="panes__pane" ng-if="topAlertProducers">
       <adg-top-alert-producers></adg-top-alert-producers>
     </div>
   </div>
