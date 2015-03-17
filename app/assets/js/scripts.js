@@ -18,8 +18,8 @@ var AdagiosUI = (function() {
 		tablet: 959
 	};
 
-    var test = function(str) {
-        console.log(str);
+    var test = function() {
+        console.log();
     };
 
     var syncBkgCheckbox = function() {
@@ -31,11 +31,18 @@ var AdagiosUI = (function() {
             .css('background-color', activeHostCell_bkgColor);      
     };
 
+    var closeSidebar = function() {
+        $('.sidebar__close').on('click', function() {      
+            $('.topbar__toggle-sidebar').find('.topbar__button').trigger('click');
+        });
+    };
+
 	return {
 		state: state,
 		test: test,
 		mquery: mquery,
-        syncBkgCheckbox : syncBkgCheckbox
+        syncBkgCheckbox : syncBkgCheckbox,
+        closeSidebar : closeSidebar
 	};
     
 })();
