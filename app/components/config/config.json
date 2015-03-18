@@ -1,7 +1,7 @@
 {
     "dashboardConfig": {
 		"title": "Unhandled service problems",
-		"refreshInterval": "10000",
+		"refreshInterval": "0",
 		"template": "dashboard",
 		"components" : [
 			{
@@ -81,7 +81,7 @@
     },
     "hostsConfig": {
 		"title": "Hosts",
-		"refreshInterval": "10000",
+		"refreshInterval": "0",
 		"template": "singleTable",
 		"components": [
 			{
@@ -114,7 +114,7 @@
 	},
     "servicesConfig": {
 		"title": "Services",
-		"refreshInterval": "10000",
+		"refreshInterval": "0",
 		"template": "singleTable",
         "components": [{
 			"type": "table",
