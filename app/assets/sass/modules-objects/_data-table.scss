@@ -3,9 +3,8 @@
 //----------------------------------*/
 
 .data-table {
-    //width:100%;
-
-    //input[type="checkbox"] {background:red;}
+    margin-bottom:$_space;
+    width:100%;
 
     .color-scheme--dark & {
         color:$_color_omega;
@@ -137,6 +136,7 @@
             }
 
             &.data-table__host,
+            &.data-table__hosts_host,
             &.data-table__checkbox {border:0;}
 
             [class*="ico-"] {float:right;}
@@ -276,9 +276,7 @@
     }
 }
 
-.data-table__service__summary,
-td.data-table__duration,
-td.data-table__last_check {
+time.data-table__data {
     @extend %typo-more-info--little;
 
     .color-scheme--dark & {
@@ -321,5 +319,17 @@ td.data-table__last_check {
     .data-table__service__summary {
         font-style:italic;
         margin-left:0;
+    }
+}
+
+.data-table__service__summary {
+    @extend %typo-more-info--little;
+
+    .color-scheme--dark & {
+        color:$_color_dark_delta;
+    }
+
+    .color-scheme--light & {
+        color:$_color_light_delta;
     }
 }
