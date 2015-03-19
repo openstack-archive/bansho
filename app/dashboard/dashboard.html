@@ -51,6 +51,14 @@
                    no-repeat-cell="{{dashboardTables[0].NoRepeatCell}}"
                    refresh-interval="{{dashboardRefreshInterval}}"
                    table-id="0"></adg-table>
+      </div>
+
+      <div role="tabpanel" class="problems tab-pane active" id="openProblems">
+        <header class="main__content__header clearfix">
+          <h2 class="main__content__title">{{dashboardTables[1].title}}</h2>
+          <p class="main__content__alert state--error">There are {{nbHostProblems}} host problems.</p>
+        </header>
+
         
         <adg-table cells-text="{{dashboardTables[1].CellsText}}"
                    cells-name="{{dashboardTables[1].CellsName}}"
