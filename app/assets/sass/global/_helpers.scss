@@ -8,6 +8,7 @@
     border: 0;
     overflow: hidden;
     text-indent: -9999px;
+    
     &:before {
         content: "";
         display: block;
@@ -116,6 +117,10 @@ body:after {
 .state--visible {display:block;}
 /* .state--current {} */
 /* .state--hasChild {} */
+/* .state--isChild {} */
+/* .state--rmChild {} */
+/* .state--asc {} */
+/* .state--desc {} */
 /* .state--open {} */
 /* .state--close {} */
 /* .state--error {} */

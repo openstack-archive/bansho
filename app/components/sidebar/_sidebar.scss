@@ -3,8 +3,7 @@
 //----------------------------------*/
 .sidebar-wrapper {
     @extend %colorBkgPanel;
-    padding-bottom:em(72+$_space, $_base_font_size);
-    position:relative;
+    padding-bottom:em(72+$_space, $_base_font_size);    
 }
 
 //.sidebar {}
@@ -65,11 +64,12 @@
     }
 }
 
-.sidebar__nav {}
+//.sidebar__nav {}
 
 .sidebar__item {
     border-top:1px solid;
     margin-bottom:$_space;
+    position:relative;
 
     .color-scheme--dark & {
         border-top-color:$_color_dark_gamma;
@@ -83,10 +83,12 @@
 }
 
 .sidebar__category {
+    @extend %button-reset;
     @extend %typo-title;
     display:block;
-    position:relative;
     padding:$_space $_space_narrow 0 $_space;
+    text-align:left;
+    width:100%;
 
     @include large-xlarge-screen {
         padding:$_space $_space 0;
@@ -105,19 +107,33 @@
     }
 
     .sidebar__item:first-child & {padding-top:0;}
+}
 
-    &:after {
-        @extend %ico;
-        content:"\e801";
-        display:inline-block;
-        font-size:1em;
-        position:absolute;
-        right:$_space_narrow;
+.sidebar__customize {
+    @extend %button-reset;
+    display:inline-block;
+    font-size:em(24, $_base_font_size);
+    line-height:1;
+    padding:$_space $_space_narrow 0;
+    position:absolute;
+    right:0;
+    top:0 ;
 
-        @include large-xlarge-screen {
-            right:$_space;
-        }
+    @include large-xlarge-screen {
+        padding:$_space $_space 0;
     }
+
+    .color-scheme--dark & {
+        color:$_color_dark_gamma;
+    }
+
+    .color-scheme--light & {
+        color:$_color_light_gamma;
+    }
+
+    &:before {margin:0;}
+
+    .sidebar__item:first-child & {padding-top:0;}
 }
 
 .sidebar__sublist {
@@ -179,7 +195,7 @@
         text-decoration:none;
 
         &:after {
-            @extend %ico;            
+            @extend %ico;
             content:"\e809";
             display:inline-block;
             position:absolute;

@@ -87,18 +87,17 @@
 
 .topbar__toggle-sidebar {
 
-    .topbar__button {
-        &[aria-expanded="true"],
-        &:hover {
-            .color-scheme--dark & {
-                background:$_color_dark_alpha;
-            }
+    /* .topbar__button {         */
+    /*     &:hover { */
+    /*         .color-scheme--dark & { */
+    /*             background:$_color_dark_alpha; */
+    /*         } */
 
-            .color-scheme--light & {
-                background:$_color_light_alpha;
-            }
-        }
-    }
+    /*         .color-scheme--light & { */
+    /*             background:$_color_light_alpha; */
+    /*         } */
+    /*     } */
+    /* } */
 
     .ico-menu {
 

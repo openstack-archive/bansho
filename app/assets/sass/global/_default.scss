@@ -71,7 +71,6 @@ audio:not([controls]) {
     height:0;
 }
 
-
 [hidden],
 template {display:none;}
 
@@ -203,6 +202,14 @@ textarea {
 table {
     border-collapse:collapse;
     border-spacing:0;
+
+    //display:block;
+    //overflow-x:auto;
+
+    //@include medium-and-up-screen {
+	  //  display:table;
+       // overflow-x:visible;        
+    //}
 }
 
 td,
@@ -221,7 +228,7 @@ menu,
 nav {
     margin:0;
     padding:0;
-    
+
     a {text-decoration:none;}
 
     ol,
