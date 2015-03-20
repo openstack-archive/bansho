@@ -107,4 +107,51 @@ angular.module('adagios.live')
                 .error(function () {
                     throw new Error('getServices : GET Request failed');
                 });
-        }]);
+        }])
+
+    .factory('getObjectId', ['$http', function($http) {
+        return function (objectType, objectName) {
+
+            var postData, postString, req;
+
+            postString = "with_fields=id&object_type=" + objectType + "&host_name=" + objectName;
+
+            req = {
+                method: 'POST',
+                url: '/rest/pynag/json/get_objects',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                data: postString
+            };
+
+            return $http(req)
+                .error(function () {
+                    throw new Error('getObjectId : POST Request failed');
+                });
+        };
+    }])
+
+    .factory('getHostById', ['$http', function($http) {
+        return function (objectId) {
+
+            var postString, req;
+
+            postString = "with_fields=&id=" + objectId;
+
+            req = {
+                method: 'POST',
+                url: '/rest/pynag/json/get_object',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                data: postString
+            };
+
+
+            return $http(req)
+                .error(function () {
+                    throw new Error('getHostById : POST Request failed');
+                });
+        };
+    }]);
