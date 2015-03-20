@@ -109,10 +109,10 @@ angular.module('adagios.live')
                 });
         }])
 
-    .factory('getObjectId', ['$http', function($http) {
+    .factory('getObjectId', ['$http', function ($http) {
         return function (objectType, objectName) {
 
-            var postData, postString, req;
+            var postString, req;
 
             postString = "with_fields=id&object_type=" + objectType + "&host_name=" + objectName;
 
@@ -132,7 +132,7 @@ angular.module('adagios.live')
         };
     }])
 
-    .factory('getHostById', ['$http', function($http) {
+    .factory('getHostById', ['$http', function ($http) {
         return function (objectId) {
 
             var postString, req;

@@ -16,7 +16,7 @@ angular.module('adagios.view.host_view', ['ngRoute',
     .controller('HostViewCtrl', ['$http', '$scope', '$routeParams', 'getObjectId', 'getHostById',
         function ($http, $scope, $routeParams, getObjectId, getHostById) {
 
-            $scope.data = {}
+            $scope.data = {};
 
             if (!!$routeParams.host) {
                 $scope.hostName = $routeParams.host;
@@ -30,23 +30,22 @@ angular.module('adagios.view.host_view', ['ngRoute',
 
                 $http.get('/rest/status/json/hosts/?host_name=' + host)
                     .success(function (data) {
-                        $scope.data = objectData['live'] = data[0];
+                        $scope.data = objectData.live = data[0];
                     });
 
                 objectType = 'host';
                 getObjectId(objectType, host)
                     .success(function (data) {
-                        objectId = data[0]["id"];
-                        $scope.data["id"] = objectId;
+                        objectId = data[0].id;
+                        $scope.data.id = objectId;
                         getHostById(objectId)
                             .success(function (data) {
-                                $scope.data['config'] = data;
-                            })
+                                $scope.data.config = data;
+                            });
                     });
 
             };
 
-            getData($scope.host);
-            
+            getData($scope.hostName);
         }]);
 
