@@ -3,6 +3,8 @@
 angular.module('adagios.table.cell_host', ['adagios.table'])
 
     .controller('CellHostCtrl', ['$scope', function ($scope) {
+        $scope.cell_name = 'host';
+
         if ($scope.entry.host_state === 0) {
             $scope.state = 'state--ok';
         } else if ($scope.entry.host_state === 1) {

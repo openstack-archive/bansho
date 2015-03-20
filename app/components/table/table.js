@@ -14,8 +14,8 @@ angular.module('adagios.table', ['adagios.live',
 
     .value('tableConfig', {'cellToFieldsMap': {}, 'cellWrappableField': {}, 'index': 0})
 
-    .controller('TableCtrl', ['$scope', '$interval', 'getServices', 'tableConfig', 'processColumnRepeat',
-        function ($scope, $interval, getServices, tableConfig, processColumnRepeat) {
+    .controller('TableCtrl', ['$scope', '$interval', 'getServices', 'tableConfig', 'actionbarFilters',
+        function ($scope, $interval, getServices, tableConfig, actionbarFilters) {
             var requestFields = [],
                 filters = JSON.parse(tableConfig[tableConfig.index].filters),
                 conf = tableConfig[tableConfig.index],
@@ -39,13 +39,6 @@ angular.module('adagios.table', ['adagios.live',
             getData = function (requestFields, filters, apiName) {
                 getServices(requestFields, filters, apiName)
                     .success(function (data) {
-                        var fieldToWrap = tableConfig.cellWrappableField[conf.noRepeatCell],
-                            cellFields = tableConfig.cellToFieldsMap[conf.noRepeatCell];
-
-                        if (conf.noRepeatCell !== "") {
-                            data = processColumnRepeat(data, fieldToWrap, cellFields, conf.isWrappable);
-                        }
-
                         $scope.entries = data;
                     });
             };
@@ -58,7 +51,10 @@ angular.module('adagios.table', ['adagios.live',
                 }, tableConfig.refreshInterval);
             }
 
-            // Used if there's more than one table in a view
+            $scope.actionbarFilters = actionbarFilters;
+
+            // Index needed to support multiple tables per view
+            $scope.tableIndex = tableConfig.index;
             tableConfig.index += 1;
         }])
 
@@ -108,6 +104,7 @@ angular.module('adagios.table', ['adagios.live',
     }])
 
     .directive('adgCell', ['$http', '$compile', function ($http, $compile) {
+
         return {
             restrict: 'A',
             compile: function () {
@@ -139,54 +136,68 @@ angular.module('adagios.table', ['adagios.live',
         this.NoRepeatCell = config.noRepeatCell;
     })
 
-    .service('processColumnRepeat', function () {
-
-        function clearFields(entry, fields) {
-            angular.forEach(fields, function (value) {
-                entry[value] = '';
-            });
-        }
-
-        // Erase subsequently repeated data of a given cell only keeping the first occurrence
-        // fieldToProcess is the field to watch for subsequent repetition
-        // fields are all the fields of a given cell whose data will be erased
-        return function (data, fieldToProcess, fields, isWrappable) {
+    .filter('wrappableStyle', ['tableConfig', function (tableConfig) {
+        return function (input, scope) {
             var last = '',
-                actual = '',
                 entry = {},
                 parent_found = false,
                 class_name = ['', ''],
-                i;
+                i,
+                fieldToWrap = tableConfig.cellWrappableField[tableConfig[scope.tableIndex].noRepeatCell];
 
-            if (isWrappable === "true") {
+            if (fieldToWrap === undefined) {
+                return input;
+            }
+
+            if (tableConfig[scope.tableIndex].isWrappable) {
                 class_name = ['state--hasChild', 'state--isChild'];
             }
 
-            for (i = 0; i < data.length; i += 1) {
-                entry = data[i];
-                actual = entry[fieldToProcess];
+            for (i = 0; i < input.length; i += 1) {
+                entry = input[i];
 
-                if (entry[fieldToProcess] === last) {
-
-                    if (!data[i - 1].has_child && !parent_found) {
-                        data[i - 1].has_child = 1;
-                        data[i - 1].child_class = class_name[0];
+                if (entry[fieldToWrap] === last) {
+                    if (!input[i - 1].has_child && !parent_found) {
+                        input[i - 1].has_child = 1;
+                        input[i - 1].child_class = class_name[0];
                         entry.child_class = class_name[1];
+
                         parent_found = true;
                     } else {
                         entry.is_child = 1;
                         entry.child_class = class_name[1];
                     }
-
-                    clearFields(entry, fields);
-
                 } else {
                     parent_found = false;
                 }
 
-                last = actual;
+                last = entry[fieldToWrap];
             }
 
-            return data;
+            return input;
         };
-    });
+    }])
+
+    .filter('noRepeat', ['tableConfig', function (tableConfig) {
+        return function (items, scope) {
+            var newItems = [],
+                previous,
+                fieldToCompare = tableConfig.cellWrappableField[tableConfig[scope.tableIndex].noRepeatCell],
+                new_attr = tableConfig[scope.tableIndex].noRepeatCell + "_additionnalClass";
+
+            angular.forEach(items, function (item) {
+
+                if (previous === item[fieldToCompare]) {
+                    item[new_attr] = 'state--rmChild';
+                } else {
+                    previous = item[fieldToCompare].slice(0);
+                    if (!!item[new_attr]) {
+                        item[new_attr] = item[new_attr].replace("state--rmChild", "");
+                    }
+                }
+                newItems.push(item);
+            });
+
+            return newItems;
+        };
+    }]);
