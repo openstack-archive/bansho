@@ -17,7 +17,7 @@ angular.module('adagios.view.host_view', ['ngRoute',
         function ($scope, $routeParams) {
 
         if (!!$routeParams.view) {
-            viewName = $routeParams.view;
+            $scope.hostName = $routeParams.host;
         } else {
             throw new Error("ERROR : 'view' GET parameter must be the host");
         }
