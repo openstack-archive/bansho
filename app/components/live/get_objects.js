@@ -12,7 +12,7 @@ angular.module('adagios.live')
                                   regex: '__regex'
                                 })
 
-    .service('getServices', ['$http', 'filterSuffixes',
+    .service('getObjects', ['$http', 'filterSuffixes',
         function ($http, filterSuffixes) {
             return function (columns, filters, apiName, additionnalFields) {
                 var filtersQuery = '',
@@ -48,7 +48,7 @@ angular.module('adagios.live')
 
                 return $http.get('/rest/status/json/' + apiName + '/?fields=' + columns + filtersQuery + additionnalQuery)
                     .error(function () {
-                        throw new Error('getServices : GET Request failed');
+                        throw new Error('getObjects : GET Request failed');
                     });
             };
         }])
