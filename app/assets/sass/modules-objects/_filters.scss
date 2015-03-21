@@ -42,15 +42,15 @@
     min-height:56px;
     padding:0 $_space_narrow;
     position:relative;
-    width:auto;    
+    width:auto;
 
-    .color-scheme--dark & {        
+    .color-scheme--dark & {
         border-color:$_color_dark_beta;
-    }    
+    }
 
-    .color-scheme--light & {        
+    .color-scheme--light & {
         border-color:$_color_light_beta;
-    }    
+    }
 
     .filters__item--more &,
     .filters__item--settings & {border-right-width:1px;}
