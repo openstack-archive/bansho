@@ -83,21 +83,25 @@
 
         &:before {margin:0;}
     }
+
+    &.topbar__button--hover {
+        transition-duration: 0.5s;
+        transition-property: color, background-color;
+        
+        &[aria-expanded="true"],
+        &:hover {
+            .color-scheme--dark & {
+                background:$_color_dark_alpha;
+            }
+
+            .color-scheme--light & {
+                background:$_color_light_alpha;
+            }
+        }
+    }
 }
 
 .topbar__toggle-sidebar {
-
-    /* .topbar__button {         */
-    /*     &:hover { */
-    /*         .color-scheme--dark & { */
-    /*             background:$_color_dark_alpha; */
-    /*         } */
-
-    /*         .color-scheme--light & { */
-    /*             background:$_color_light_alpha; */
-    /*         } */
-    /*     } */
-    /* } */
 
     .ico-menu {
 
@@ -124,20 +128,9 @@
 }
 
 .topbar__notifications {
-    .topbar__button {
-        &[aria-expanded="true"],
-        &:hover {
-            .color-scheme--dark & {
-                background:$_color_dark_alpha;
-            }
-
-            .color-scheme--light & {
-                background:$_color_light_alpha;
-            }
-        }
-    }
-
+        
     .ico-bell-alt {
+        
         &:after {
             background:$_color_error;
             border-radius:100%;
@@ -176,19 +169,7 @@
     }
 }
 
-.topbar__settings {
-    .topbar__button {
-        &[aria-expanded="true"],
-        &:hover {
-            .color-scheme--dark & {
-                background:$_color_dark_alpha;
-            }
-
-            .color-scheme--light & {
-                background:$_color_light_alpha;
-            }
-        }
-    }
+.topbar__settings {    
 
     .ico-sliders:before {
         @include vendor(transform, rotate(90deg));
