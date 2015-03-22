@@ -41,7 +41,7 @@ deactivate nondestructive
 
 
 current_dir="$(cd "$(dirname "$BASH_SOURCE")"; pwd)"
-node_dir=${mydir}/node_modules
+node_dir=${current_dir}/node_modules
 
 VIRTUAL_ENV=$current_dir
 export VIRTUAL_ENV
