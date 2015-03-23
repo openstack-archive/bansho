@@ -22,7 +22,6 @@ angular.module('adagios.table', ['adagios.live',
                 getData,
                 i;
 
-        
             $scope.cellsName = conf.cells.name;
             $scope.cellsText = conf.cells.text;
             $scope.cellIndexes = [];
@@ -66,7 +65,8 @@ angular.module('adagios.table', ['adagios.live',
             compile: function () {
                 return function (scope, element, attrs) {
 
-                    var conf;
+                    var template = 'components/table/table.html',
+                        conf;
 
                     if (!attrs.cellsText || !attrs.cellsName || !attrs.apiName || !attrs.isWrappable) {
                         throw new Error('<adg-table> "cells-text", "cells-name", "api-name"'
@@ -100,7 +100,6 @@ angular.module('adagios.table', ['adagios.live',
                         tableConfig.refreshInterval = attrs.refreshInterval;
                     }
 
-                    var template = 'components/table/table.html';
 
                     $http.get(template, { cache: true })
                         .success(function (data) {

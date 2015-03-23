@@ -16,9 +16,9 @@ angular.module('adagios.table.cell_host_status', ['adagios.table'])
             $scope.alert_level = "alert alert-danger";
 
             if ($scope.entry.childs.length !== 0) {
-                $scope.entry.host_status = "Network outage";
-            } else {
                 $scope.entry.host_status = "Host down";
+            } else {
+                $scope.entry.host_status = "Network outage";
             }
         }
     }])

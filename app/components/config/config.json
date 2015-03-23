@@ -36,6 +36,71 @@
 						]
 					},
 					"apiName": "hosts",
+					"additionnalQueryFields": {
+						"acknowledged": 0,
+						"state": 1
+					},
+					"isWrappable" : false,
+					"noRepeatCell" : ""
+				}
+			},
+			{
+				"type": "table",
+				"config": {
+					"title": "Service problems",
+					"cells": {
+						"text": [
+							"Host",
+							"Service check",
+							"Duration",
+							"Last check"
+						],
+						"name": [
+							"host",
+							"service_check",
+							"duration",
+							"last_check"
+						]
+					},
+					"apiName": "services",
+					"filters": {
+						"isnot": {
+							"state": [
+								"0"
+							],
+							"host_state": [
+								"2"
+							]
+						}
+					},
+					"additionnalQueryFields": {
+						"acknowledged": 0
+					},
+					"isWrappable" : true,
+					"noRepeatCell" : "host"
+				}
+			},
+			{
+				"type": "table",
+				"config": {
+					"title": "Hosts",
+					"cells": {
+						"text": [
+							"Host",
+							"Address",
+							"Duration",
+							"Last check",
+							"Host status"
+						],
+						"name": [
+							"hosts_host",
+							"host_address",
+							"duration",
+							"last_check",
+							"host_status"
+						]
+					},
+					"apiName": "hosts",
 					"filters": {
 						"isnot": {
 							"state": [
