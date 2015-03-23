@@ -111,7 +111,8 @@ module.exports = function (grunt) {
                         '<%= project.app %>/components/table/cell_host_status/cell_host_status.js',
                         '<%= project.app %>/routing_view/routing_view.js',
                         '<%= project.app %>/templates/dashboard/dashboard.js',
-                        '<%= project.app %>/templates/single_table/single_table.js'
+                        '<%= project.app %>/templates/single_table/single_table.js',
+			'<%= project.app %>/object_view/object_view.js'
                     ]
                 }],
                 options: {
@@ -145,7 +146,8 @@ module.exports = function (grunt) {
                         '<%= project.build %>/components/table/cell_host_status/cell_host_status.js': '<%= project.app %>/components/table/cell_host_status/cell_host_status.js',
                         '<%= project.build %>/routing_view/routing_view.js': '<%= project.app %>/routing_view/routing_view.js',
                         '<%= project.build %>/templates/dashboard/dashboard.js': '<%= project.app %>/templates/dashboard/dashboard.js',
-                        '<%= project.build %>/templates/single_table/single_table.js' : '<%= project.app %>/templates/single_table/single_table.js'
+                        '<%= project.build %>/templates/single_table/single_table.js' : '<%= project.app %>/templates/single_table/single_table.js',
+			'<%= project.build %>/object_view/object_view.js' : '<%= project.app %>/object_view/object_view.js'
                     },
                     {
                         '<%= project.build %>/js/adagios.min.js' : [
@@ -173,7 +175,8 @@ module.exports = function (grunt) {
                             '<%= project.build %>/components/table/cell_host_status/cell_host_status.js',
                             '<%= project.build %>/routing_view/routing_view.js',
                             '<%= project.build %>/templates/dashboard/dashboard.js',
-                            '<%= project.build %>/templates/single_table/single_table.js'
+                            '<%= project.build %>/templates/single_table/single_table.js',
+		            '<%= project.build %>/object_view/object_view.js'
                         ]
                     }
                 ],

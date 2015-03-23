@@ -110,11 +110,17 @@ angular.module('adagios.live')
         }])
 
     .factory('getObjectId', ['$http', function ($http) {
-        return function (objectType, objectName) {
+        return function (objectType, objectIdentifier) {
 
             var postString, req;
 
-            postString = "with_fields=id&object_type=" + objectType + "&host_name=" + objectName;
+            postString = "with_fields=id&object_type=" + objectType;
+            angular.forEach(objectIdentifier, function (value, key) {
+                if (key === "description") {
+                    key = "service_description";
+                }
+                postString += "&" + key + "=" + value;
+            });
 
             req = {
                 method: 'POST',
@@ -132,7 +138,7 @@ angular.module('adagios.live')
         };
     }])
 
-    .factory('getHostById', ['$http', function ($http) {
+    .factory('getObjectById', ['$http', function ($http) {
         return function (objectId) {
 
             var postString, req;

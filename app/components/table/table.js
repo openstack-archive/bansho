@@ -187,6 +187,7 @@ angular.module('adagios.table', ['adagios.live',
                         input[i - 1].has_child = 1;
                         input[i - 1].child_class = class_name[0];
                         entry.child_class = class_name[1];
+
                         parent_found = true;
                     } else {
                         entry.is_child = 1;

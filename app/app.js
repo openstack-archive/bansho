@@ -20,6 +20,7 @@ angular.module('adagios', [
     'adagios.config',
     'adagios.view.dashboard',
     'adagios.view.singleTable',
+    'adagios.view.object_view',
     'adagios.view'
 ])
 

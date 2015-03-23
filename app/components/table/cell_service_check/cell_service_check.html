@@ -1,6 +1,8 @@
 <td class="data-table__service {{state}}" ng-controller="CellServiceCheckCtrl">
   <dl class="data-table__data">
-    <dt class="data-table__service__name">{{entry.description}}</dt>
+    <dt class="data-table__service__name">
+      <a href="#/object_view?object_type=service&host_name={{entry.host_name}}&description={{entry.description}}">{{entry.description}}</a>
+    </dt>
     <dd class="data-table__service__summary">{{entry.plugin_output}}</dd>
   </dl>
 </td>
