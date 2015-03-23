@@ -16,12 +16,13 @@ angular.module('adagios.table', ['adagios.live',
 
     .controller('TableCtrl', ['$scope', '$interval', 'getServices', 'tableConfig', 'actionbarFilters',
         function ($scope, $interval, getServices, tableConfig, actionbarFilters) {
+            console.log(tableConfig[tableConfig.index].additionnalQueryFields);
             var requestFields = [],
-                filters = JSON.parse(tableConfig[tableConfig.index].filters),
                 conf = tableConfig[tableConfig.index],
                 getData,
                 i;
 
+        
             $scope.cellsName = conf.cells.name;
             $scope.cellsText = conf.cells.text;
             $scope.cellIndexes = [];
@@ -36,18 +37,19 @@ angular.module('adagios.table', ['adagios.live',
                 });
             });
 
-            getData = function (requestFields, filters, apiName) {
-                getServices(requestFields, filters, apiName)
+            getData = function (requestFields, filters, apiName, additionnalFields) {
+                console.log(additionnalFields);
+                getServices(requestFields, filters, apiName, additionnalFields)
                     .success(function (data) {
                         $scope.entries = data;
                     });
             };
 
-            getData(requestFields, filters, conf.apiName);
+            getData(requestFields, conf.filters, conf.apiName, conf.additionnalQueryFields);
 
             if (tableConfig.refreshInterval !== '0') {
                 $interval(function () {
-                    getData(requestFields, filters, conf.apiName);
+                    getData(requestFields, conf.filters, conf.apiName, conf.additionnalQueryFields);
                 }, tableConfig.refreshInterval);
             }
 
@@ -64,31 +66,38 @@ angular.module('adagios.table', ['adagios.live',
             compile: function () {
                 return function (scope, element, attrs) {
 
+                    var conf;
+
                     if (!attrs.cellsText || !attrs.cellsName || !attrs.apiName || !attrs.isWrappable) {
                         throw new Error('<adg-table> "cells-text", "cells-name", "api-name"'
                                         + ' and "is-wrappable" attributes must be defined');
                     }
 
                     tableConfig[attrs.tableId] = {};
-                    tableConfig[attrs.tableId].filters = {};
+                    conf = tableConfig[attrs.tableId];
+                    conf.filters = {};
+                    conf.additionnalQueryFields = {};
 
-                    tableConfig[attrs.tableId].cells = { 'text': [], 'name': [] };
-                    tableConfig[attrs.tableId].cells.text = attrs.cellsText.split(',');
-                    tableConfig[attrs.tableId].cells.name = attrs.cellsName.split(',');
+                    conf.cells = { 'text': [], 'name': [] };
+                    conf.cells.text = attrs.cellsText.split(',');
+                    conf.cells.name = attrs.cellsName.split(',');
 
-                    tableConfig[attrs.tableId].apiName = attrs.apiName;
+                    conf.apiName = attrs.apiName;
 
-                    tableConfig[attrs.tableId].isWrappable = false;
-                    tableConfig[attrs.tableId].isWrappable = attrs.isWrappable;
-                    tableConfig[attrs.tableId].noRepeatCell = attrs.noRepeatCell;
-                    tableConfig[attrs.tableId].tableId = attrs.tableId;
+                    conf.isWrappable = JSON.parse(attrs.isWrappable);
+                    conf.noRepeatCell = attrs.noRepeatCell;
+                    conf.tableId = attrs.tableId;
+
+                    if (!!attrs.filters) {
+                        conf.filters = JSON.parse(attrs.filters);
+                    }
+
+                    if (!!attrs.additionnalQueryFields) {
+                        conf.additionnalQueryFields = JSON.parse(attrs.additionnalQueryFields);
+                    }
 
                     if (!!attrs.refreshInterval) {
                         tableConfig.refreshInterval = attrs.refreshInterval;
-                    }
-
-                    if (!!attrs.filters) {
-                        tableConfig[attrs.tableId].filters = attrs.filters;
                     }
 
                     var template = 'components/table/table.html';
@@ -134,6 +143,7 @@ angular.module('adagios.table', ['adagios.live',
         this.Filters = config.filters;
         this.IsWrappable = config.isWrappable;
         this.NoRepeatCell = config.noRepeatCell;
+        this.additionnalQueryFields = config.additionnalQueryFields;
     })
 
     .filter('wrappableStyle', ['tableConfig', function (tableConfig) {
