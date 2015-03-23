@@ -26,7 +26,7 @@
 }
 
 .filters__sublist {
-    padding:$_space_narrow;    
+    padding:$_space_narrow;
 
     .filters__item,
     .filters__subitem {display:block;}
@@ -42,7 +42,7 @@
     min-height:56px;
     padding:0 $_space_narrow;
     position:relative;
-    width:auto;    
+    width:auto;
 
     .color-scheme--dark & {
         border-color:$_color_dark_beta;
@@ -65,8 +65,8 @@
     .filters__item--more & {
         min-width:87px;
         text-align:left;
-        text-transform:lowercase;        
-        
+        text-transform:lowercase;
+
         .ico-down-dir {
             float:right;
         }

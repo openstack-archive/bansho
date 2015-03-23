@@ -26,9 +26,11 @@
 
     %colorLink {
         color:$_color_dark_delta;
+        transition-duration: 0.5s;
+        transition-property: color;
 
         &:hover {
-            color:white;
+            color:$_color_omega;
         }
     }
 

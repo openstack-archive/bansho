@@ -5,7 +5,7 @@
 .main[role="main"] {}
 
 .main__overview {
-    padding:$_space $_space_narrow $_space_narrow;
+    padding:$_space 0 $_space_narrow;
     position:relative;
 
     @include large-xlarge-screen {
@@ -81,9 +81,11 @@
 
 .main__overview__title {
     margin-bottom:$_space_narrow;
+    padding:0 $_space_narrow;
 
     @include large-xlarge-screen {
         margin-bottom:$_space;
+        padding:0;
     }
 
     .color-scheme--dark & {

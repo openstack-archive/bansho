@@ -118,6 +118,8 @@
     position:absolute;
     right:0;
     top:0 ;
+    transition-duration:0.5s;
+    transition-property:color;
 
     @include large-xlarge-screen {
         padding:$_space $_space 0;
@@ -130,6 +132,9 @@
     .color-scheme--light & {
         color:$_color_light_gamma;
     }
+
+    &:focus,
+    &:hover {color:$_color_omega;}
 
     &:before {margin:0;}
 
