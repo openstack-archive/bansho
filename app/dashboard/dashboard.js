@@ -15,13 +15,12 @@ angular.module('adagios.view.dashboard', ['ngRoute',
         });
     }])
 
-    .controller('DashboardCtrl', ['$scope', '$routeParams', 'dashboardConfig', 'getServices', 'tableConfig', 'TableConfigObj', 'TacticalConfigObj',
-        function ($scope, $routeParams, dashboardConfig, getServices, tableConfig, TableConfigObj, TacticalConfigObj) {
-
-            var fields = ['state'],
-                filters = {'isnot' : { 'state' : ['0'] }},
-                apiName = 'hosts',
-                components = [],
+    .controller('DashboardCtrl', ['$scope', '$routeParams', 'dashboardConfig', 'getServices', 'tableConfig',
+        'TableConfigObj', 'TacticalConfigObj', 'getHostOpenProblems', 'getServiceOpenProblems', 'getHostProblems',
+        'getServiceProblems',
+        function ($scope, $routeParams, dashboardConfig, getServices, tableConfig, TableConfigObj,
+            TacticalConfigObj, getHostOpenProblems, getServiceOpenProblems, getHostProblems, getServiceProblems) {
+            var components = [],
                 component,
                 config,
                 viewName,
@@ -55,10 +54,21 @@ angular.module('adagios.view.dashboard', ['ngRoute',
                 }
             }
 
-            getServices(fields, filters, apiName)
-                .success(function (data) {
-                    $scope.nbHostProblems = data.length;
-                });
+            getHostOpenProblems.success(function (data) {
+                $scope.nbHostOpenProblems = data.length;
+            });
+
+            getServiceOpenProblems.success(function (data) {
+                $scope.nbServiceOpenProblems = data.length;
+            });
+
+            getHostProblems.success(function (data) {
+                $scope.nbHostProblems = data.length;
+            });
+
+            getServiceProblems.success(function (data) {
+                $scope.nbServiceProblems = data.length;
+            });
         }])
 
     .run(['readConfig', 'dashboardConfig', function (readConfig, dashboardConfig) {

@@ -40,7 +40,10 @@
       <div role="tabpanel" class="problems tab-pane active" id="openProblems">
         <header class="main__content__header clearfix">
           <h2 class="main__content__title">{{dashboardTables[0].title}}</h2>
-          <p class="main__content__alert state--error">There are {{nbHostProblems}} host problems.</p>
+          <p class="main__content__alert state--error">
+            There are {{nbHostOpenProblems}} host
+            <ng-pluralize count="nbHostOpenProblems" when="{'0':'problem', '1': 'problem', 'other': 'problems'}"/>
+          </p>
         </header>
 
         <adg-table cells-text="{{dashboardTables[0].CellsText}}"
@@ -55,7 +58,10 @@
 
         <header class="main__content__header clearfix">
           <h2 class="main__content__title">{{dashboardTables[1].title}}</h2>
-          <p class="main__content__alert state--error">There are {{nbHostProblems}} host problems.</p>
+          <p class="main__content__alert state--error">
+            There are {{nbServiceOpenProblems}} host
+            <ng-pluralize count="nbServiceOpenProblems" when="{'0':'problem', '1': 'problem', 'other': 'problems'}"/>
+          </p>
         </header>
 
         <adg-table cells-text="{{dashboardTables[1].CellsText}}"
@@ -73,7 +79,10 @@
       <div role="tabpanel" class="problems tab-pane" id="allProblems">
         <header class="main__content__header clearfix">
           <h2 class="main__content__title">{{dashboardTables[2].title}}</h2>
-          <p class="main__content__alert state--error">There are {{nbHostProblems}} host problems.</p>
+          <p class="main__content__alert state--error">
+            There are {{nbHostProblems}} host
+            <ng-pluralize count="nbHostProblems" when="{'0':'problem', '1': 'problem', 'other': 'problems'}"/>
+          </p>
         </header>
 
         <adg-table cells-text="{{dashboardTables[2].CellsText}}"
@@ -87,7 +96,10 @@
 
         <header class="main__content__header clearfix">
           <h2 class="main__content__title">{{dashboardTables[3].title}}</h2>
-          <p class="main__content__alert state--error">There are {{nbHostProblems}} host problems.</p>
+          <p class="main__content__alert state--error">
+            There are {{nbServiceProblems}} service
+            <ng-pluralize count="nbServiceProblems" when="{'0':'problem', '1': 'problem', 'other': 'problems'}"/>
+          </p>
         </header>
 
         <adg-table cells-text="{{dashboardTables[3].CellsText}}"
@@ -98,7 +110,6 @@
                    no-repeat-cell="{{dashboardTables[3].NoRepeatCell}}"
                    refresh-interval="{{dashboardRefreshInterval}}"
                    table-id="3"></adg-table>
-        <p>Pas de tableaux encore pour All problems.</p>
       </div>
     </div>
     

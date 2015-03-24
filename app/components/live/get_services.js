@@ -12,7 +12,7 @@ angular.module('adagios.live')
                                   regex: '__regex'
                                 })
 
-    .factory('getServices', ['$http', 'filterSuffixes',
+    .service('getServices', ['$http', 'filterSuffixes',
         function ($http, filterSuffixes) {
             return function (columns, filters, apiName, additionnalFields) {
                 var filtersQuery = '',
@@ -51,4 +51,60 @@ angular.module('adagios.live')
                         throw new Error('getServices : GET Request failed');
                     });
             };
+        }])
+
+    // This service is used to count the number of host open problems
+    .service('getHostOpenProblems', ['$http', 'getServices',
+        function ($http, getServices) {
+            var fields = ['state'],
+                filters = {},
+                apiName = 'hosts',
+                additionnalQueryFields = {'acknowledged': 0, 'state': 1};
+
+            return getServices(fields, filters, apiName, additionnalQueryFields)
+                .error(function () {
+                    throw new Error('getServices : GET Request failed');
+                });
+        }])
+
+    // This service is used to count the number of service open problems
+    .service('getServiceOpenProblems', ['$http', 'getServices',
+        function ($http, getServices) {
+            var fields = ['state'],
+                filters = { "isnot": { "state": [ "0" ], "host_state": [ "2" ] }},
+                apiName = 'services',
+                additionnalQueryFields = {'acknowledged': 0};
+
+            return getServices(fields, filters, apiName, additionnalQueryFields)
+                .error(function () {
+                    throw new Error('getServices : GET Request failed');
+                });
+        }])
+
+    // This service is used to count the number of host problems
+    .service('getHostProblems', ['$http', 'getServices',
+        function ($http, getServices) {
+            var fields = ['state'],
+                filters = { 'isnot': {'state': [0]} },
+                apiName = 'hosts',
+                additionnalQueryFields = {};
+
+            return getServices(fields, filters, apiName, additionnalQueryFields)
+                .error(function () {
+                    throw new Error('getServices : GET Request failed');
+                });
+        }])
+
+    // This service is used to count the number of service problems
+    .service('getServiceProblems', ['$http', 'getServices',
+        function ($http, getServices) {
+            var fields = ['state'],
+                filters = { 'isnot': {'state': [0]} },
+                apiName = 'services',
+                additionnalQueryFields = {};
+
+            return getServices(fields, filters, apiName, additionnalQueryFields)
+                .error(function () {
+                    throw new Error('getServices : GET Request failed');
+                });
         }]);
