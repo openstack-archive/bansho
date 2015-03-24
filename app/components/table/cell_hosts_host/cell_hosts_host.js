@@ -6,11 +6,11 @@ angular.module('adagios.table.cell_hosts_host', ['adagios.table'])
         if ($scope.entry.state === 0) {
             $scope.state = 'state--ok';
         } else if ($scope.entry.state === 1) {
-            $scope.state = 'state--warning';
+            $scope.state = 'state--error';
         } else if ($scope.entry.state === "") {
             $scope.state = '';
         } else {
-            $scope.state = 'state--error';
+            $scope.state = 'state--unreachable';
         }
     }])
 
