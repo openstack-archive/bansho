@@ -16,7 +16,13 @@ angular.module('adagios.view', ['ngRoute',
     .controller('ViewCtrl', ['$scope', '$routeParams', 'viewsTemplate',
         function ($scope, $routeParams, viewsTemplate) {
             var templateName = viewsTemplate[$routeParams.view],
-                templateUrl = templateName + '/' + templateName + '.html';
+                templateUrl = 'templates/' + templateName + '/' + templateName + '.html';
+
+            if (!!$routeParams.view) {
+                $scope.viewName = $routeParams.view;
+            } else {
+                throw new Error("ERROR : 'view' GET parameter must be the custom view name");
+            }
 
             $scope.templateUrl = templateUrl;
         }])

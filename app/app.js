@@ -28,8 +28,8 @@ angular.module('adagios', [
     }])
 
     // Reinitialise objects on url change
-    .run(['$rootScope', 'reinitTables', function($rootScope, reinitTables) {
-        $rootScope.$on('$locationChangeStart', function() {
+    .run(['$rootScope', 'reinitTables', function ($rootScope, reinitTables) {
+        $rootScope.$on('$locationChangeStart', function () {
             reinitTables();
         });
     }]);
