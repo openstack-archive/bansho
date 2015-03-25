@@ -211,16 +211,16 @@ angular.module('adagios.table', ['adagios.live',
             var newItems = [],
                 previous,
                 fieldToCompare = tableGlobalConfig.cellWrappableField[tablesConfig[scope.tableIndex].noRepeatCell],
-                new_attr = tablesConfig[scope.tableIndex].noRepeatCell + "_additionnalClass";
+                newAttr = tablesConfig[scope.tableIndex].noRepeatCell + "_additionnalClass";
 
             angular.forEach(items, function (item) {
 
                 if (previous === item[fieldToCompare]) {
-                    item[new_attr] = 'state--rmChild';
+                    item[newAttr] = 'state--rmChild';
                 } else {
                     previous = item[fieldToCompare].slice(0);
-                    if (!!item[new_attr]) {
-                        item[new_attr] = item[new_attr].replace("state--rmChild", "");
+                    if (!!item[newAttr]) {
+                        item[newAttr] = item[newAttr].replace("state--rmChild", "");
                     }
                 }
                 newItems.push(item);
