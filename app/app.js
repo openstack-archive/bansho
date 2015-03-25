@@ -19,7 +19,8 @@ angular.module('adagios', [
     'adagios.topbar',
     'adagios.config',
     'adagios.view.dashboard',
-    'adagios.view.singleTable'
+    'adagios.view.singleTable',
+    'adagios.view'
 ])
 
     .config(['$routeProvider', function ($routeProvider) {

@@ -110,6 +110,7 @@ module.exports = function (grunt) {
                         '<%= project.app %>/components/table/cell_host_address/cell_host_address.js',
                         '<%= project.app %>/components/table/cell_host_status/cell_host_status.js',
                         '<%= project.app %>/dashboard/dashboard.js',
+                        '<%= project.app %>/routing_view/routing_view.js',
                         '<%= project.app %>/single_table/single_table.js'
                     ]
                 }],
@@ -143,6 +144,7 @@ module.exports = function (grunt) {
                         '<%= project.build %>/components/table/cell_host_address/cell_host_address.js': '<%= project.app %>/components/table/cell_host_address/cell_host_address.js',
                         '<%= project.build %>/components/table/cell_host_status/cell_host_status.js': '<%= project.app %>/components/table/cell_host_status/cell_host_status.js',
                         '<%= project.build %>/dashboard/dashboard.js': '<%= project.app %>/dashboard/dashboard.js',
+                        '<%= project.build %>/routing_view/routing_view.js': '<%= project.app %>/routing_view/routing_view.js',
                         '<%= project.build %>/single_table/single_table.js' : '<%= project.app %>/single_table/single_table.js'
                     },
                     {
@@ -170,6 +172,7 @@ module.exports = function (grunt) {
                             '<%= project.build %>/components/table/cell_host_address/cell_host_address.js',
                             '<%= project.build %>/components/table/cell_host_status/cell_host_status.js',
                             '<%= project.build %>/dashboard/dashboard.js',
+                            '<%= project.build %>/routing_view/routing_view.js',
                             '<%= project.build %>/single_table/single_table.js'
                         ]
                     }
