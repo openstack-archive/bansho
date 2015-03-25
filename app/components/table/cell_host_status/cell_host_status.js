@@ -23,6 +23,6 @@ angular.module('adagios.table.cell_host_status', ['adagios.table'])
         }
     }])
 
-    .run(['tableConfig', function (tableConfig) {
-        tableConfig.cellToFieldsMap.host_status = ['state', 'last_check', 'childs'];
+    .run(['tableGlobalConfig', function (tableGlobalConfig) {
+        tableGlobalConfig.cellToFieldsMap.host_status = ['state', 'last_check', 'childs'];
     }]);

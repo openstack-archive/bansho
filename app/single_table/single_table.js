@@ -16,11 +16,9 @@ angular.module('adagios.view.singleTable', ['ngRoute',
         });
     }])
 
-    .controller('SingleTableCtrl', ['$scope', '$routeParams', 'singleTableConfig', 'tableConfig', 'TableConfigObj',
-        function ($scope, $routeParams, singleTableConfig, tableConfig, TableConfigObj) {
+    .controller('SingleTableCtrl', ['$scope', '$routeParams', 'singleTableConfig', 'TableConfigObj',
+        function ($scope, $routeParams, singleTableConfig, TableConfigObj) {
             var viewName = "";
-
-            tableConfig.index = 0;
 
             if (!!$routeParams.view) {
                 viewName = $routeParams.view;

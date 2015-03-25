@@ -24,4 +24,11 @@ angular.module('adagios', [
 
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.otherwise({redirectTo: '/'});
+    }])
+
+    // Reinitialise objects on url change
+    .run(['$rootScope', 'reinitTables', function($rootScope, reinitTables) {
+        $rootScope.$on('$locationChangeStart', function() {
+            reinitTables();
+        });
     }]);

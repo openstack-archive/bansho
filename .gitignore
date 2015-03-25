@@ -10,6 +10,7 @@ tmp
 .DS_Store
 .idea
 *.swp
+*.swo
 app/assets/css
 .sass-cache/
 out/

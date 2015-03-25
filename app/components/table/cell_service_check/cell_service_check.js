@@ -12,6 +12,6 @@ angular.module('adagios.table.cell_service_check', ['adagios.table'])
         }
     }])
 
-    .run(['tableConfig', function (tableConfig) {
-        tableConfig.cellToFieldsMap.service_check = ['state', 'description', 'plugin_output'];
+    .run(['tableGlobalConfig', function (tableGlobalConfig) {
+        tableGlobalConfig.cellToFieldsMap.service_check = ['state', 'description', 'plugin_output'];
     }]);

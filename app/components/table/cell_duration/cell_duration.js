@@ -6,6 +6,6 @@ angular.module('adagios.table.cell_duration', ['adagios.table'])
         angular.noop();
     }])
 
-    .run(['tableConfig', function (tableConfig) {
-        tableConfig.cellToFieldsMap.duration = ['last_state_change'];
+    .run(['tableGlobalConfig', function (tableGlobalConfig) {
+        tableGlobalConfig.cellToFieldsMap.duration = ['last_state_change'];
     }]);
