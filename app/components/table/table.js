@@ -102,7 +102,7 @@ angular.module('adagios.table', ['adagios.live',
                         }
 
                         if (!!attrs.refreshInterval) {
-                            tableGlobalConfig.refreshInterval = parseInt(attrs.refreshInterval, 10);
+                            tableGlobalConfig.refreshInterval = parseInt(attrs.refreshInterval * 1000, 10);
                         }
 
 
