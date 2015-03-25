@@ -14,6 +14,6 @@ angular.module('adagios.table.cell_hosts_host', ['adagios.table'])
         }
     }])
 
-    .run(['tableConfig', function (tableConfig) {
-        tableConfig.cellToFieldsMap.hosts_host = ['name', 'state'];
+    .run(['tableGlobalConfig', function (tableGlobalConfig) {
+        tableGlobalConfig.cellToFieldsMap.hosts_host = ['name', 'state'];
     }]);

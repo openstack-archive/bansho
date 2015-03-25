@@ -6,6 +6,6 @@ angular.module('adagios.table.cell_last_check', ['adagios.table'])
         angular.noop();
     }])
 
-    .run(['tableConfig', function (tableConfig) {
-        tableConfig.cellToFieldsMap.last_check = ['last_check'];
+    .run(['tableGlobalConfig', function (tableGlobalConfig) {
+        tableGlobalConfig.cellToFieldsMap.last_check = ['last_check'];
     }]);
