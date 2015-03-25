@@ -15,18 +15,16 @@ angular.module('adagios.view.dashboard', ['ngRoute',
         });
     }])
 
-    .controller('DashboardCtrl', ['$scope', '$routeParams', 'dashboardConfig', 'getServices', 'resetTables',
+    .controller('DashboardCtrl', ['$scope', '$routeParams', 'dashboardConfig', 'getServices', 
         'TableConfigObj', 'TacticalConfigObj', 'getHostOpenProblems', 'getServiceOpenProblems', 'getHostProblems',
         'getServiceProblems',
-        function ($scope, $routeParams, dashboardConfig, getServices, resetTables, TableConfigObj,
+        function ($scope, $routeParams, dashboardConfig, getServices, TableConfigObj,
             TacticalConfigObj, getHostOpenProblems, getServiceOpenProblems, getHostProblems, getServiceProblems) {
             var components = [],
                 component,
                 config,
                 viewName,
                 i = 0;
-
-            resetTables();
 
             if (!!$routeParams.view) {
                 viewName = $routeParams.view;

@@ -139,7 +139,7 @@ angular.module('adagios.table', ['adagios.live',
         };
     }])
 
-    .service('resetTables', ['$interval', 'ajaxQueries', 'tablesConfig', 'tableGlobalConfig',
+    .service('reinitTables', ['$interval', 'ajaxQueries', 'tablesConfig', 'tableGlobalConfig',
         function ($interval, ajaxQueries, tablesConfig, tableGlobalConfig) {
             return function () {
                 // Stop AJAX queries
@@ -147,8 +147,7 @@ angular.module('adagios.table', ['adagios.live',
                     $interval.cancel(promise);
                 });
 
-                // Delete tables config
-                tablesConfig.length = 0;
+                // Reinitialise table index
                 tableGlobalConfig.nextTableIndex = 0;
             };
         }])
