@@ -8,14 +8,7 @@ angular.module('adagios.view.dashboard', ['ngRoute',
 
     .value('dashboardConfig', {})
 
-    .config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/dashboard', {
-            templateUrl: 'dashboard/dashboard.html',
-            controller: 'DashboardCtrl'
-        });
-    }])
-
-    .controller('DashboardCtrl', ['$scope', '$routeParams', 'dashboardConfig', 'getServices', 
+    .controller('DashboardCtrl', ['$scope', '$routeParams', 'dashboardConfig', 'getServices',
         'TableConfigObj', 'TacticalConfigObj', 'getHostOpenProblems', 'getServiceOpenProblems', 'getHostProblems',
         'getServiceProblems',
         function ($scope, $routeParams, dashboardConfig, getServices, TableConfigObj,
@@ -23,14 +16,8 @@ angular.module('adagios.view.dashboard', ['ngRoute',
             var components = [],
                 component,
                 config,
-                viewName,
+                viewName = $scope.viewName,
                 i = 0;
-
-            if (!!$routeParams.view) {
-                viewName = $routeParams.view;
-            } else {
-                throw new Error("ERROR : 'view' GET parameter must be the custom view name");
-            }
 
             $scope.dashboardTitle = dashboardConfig[viewName].title;
             $scope.dashboardTemplate = dashboardConfig[viewName].template;

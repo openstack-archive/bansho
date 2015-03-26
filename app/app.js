@@ -19,7 +19,8 @@ angular.module('adagios', [
     'adagios.topbar',
     'adagios.config',
     'adagios.view.dashboard',
-    'adagios.view.singleTable'
+    'adagios.view.singleTable',
+    'adagios.view'
 ])
 
     .config(['$routeProvider', function ($routeProvider) {
@@ -27,8 +28,8 @@ angular.module('adagios', [
     }])
 
     // Reinitialise objects on url change
-    .run(['$rootScope', 'reinitTables', function($rootScope, reinitTables) {
-        $rootScope.$on('$locationChangeStart', function() {
+    .run(['$rootScope', 'reinitTables', function ($rootScope, reinitTables) {
+        $rootScope.$on('$locationChangeStart', function () {
             reinitTables();
         });
     }]);

@@ -147,7 +147,7 @@
     "hostsConfig": {
 		"title": "Hosts",
 		"refreshInterval": 0,
-		"template": "singleTable",
+		"template": "single_table",
 		"components": [
 			{
 				"type": "table",
@@ -180,7 +180,7 @@
     "servicesConfig": {
 		"title": "Services",
 		"refreshInterval": 0,
-		"template": "singleTable",
+		"template": "single_table",
         "components": [{
 			"type": "table",
 			"config": {

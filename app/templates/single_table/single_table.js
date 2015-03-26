@@ -9,22 +9,9 @@ angular.module('adagios.view.singleTable', ['ngRoute',
 
     .value('singleTableConfig', {})
 
-    .config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/singleTable', {
-            templateUrl: 'single_table/single_table.html',
-            controller: 'SingleTableCtrl'
-        });
-    }])
-
     .controller('SingleTableCtrl', ['$scope', '$routeParams', 'singleTableConfig', 'TableConfigObj',
         function ($scope, $routeParams, singleTableConfig, TableConfigObj) {
-            var viewName = "";
-
-            if (!!$routeParams.view) {
-                viewName = $routeParams.view;
-            } else {
-                throw new Error("ERROR : 'view' GET parameter must be the custom view name");
-            }
+            var viewName = $scope.viewName;
 
             $scope.tableConfig = new TableConfigObj(singleTableConfig[viewName].components[0].config);
 
@@ -36,7 +23,7 @@ angular.module('adagios.view.singleTable', ['ngRoute',
         var viewsConfig = readConfig.data;
 
         angular.forEach(viewsConfig, function (config, view) {
-            if (config.template === 'singleTable') {
+            if (config.template === 'single_table') {
                 singleTableConfig[view] = config;
             }
         });
