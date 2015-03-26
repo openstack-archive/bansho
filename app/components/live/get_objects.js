@@ -109,7 +109,7 @@ angular.module('adagios.live')
                 });
         }])
 
-    .factory('getObjectId', ['$http', function ($http) {
+    .service('getObjectId', ['$http', function ($http) {
         return function (objectType, objectIdentifier) {
 
             var postString, req;
@@ -138,7 +138,7 @@ angular.module('adagios.live')
         };
     }])
 
-    .factory('getObjectById', ['$http', function ($http) {
+    .service('getObjectById', ['$http', function ($http) {
         return function (objectId) {
 
             var postString, req;
@@ -158,6 +158,53 @@ angular.module('adagios.live')
             return $http(req)
                 .error(function () {
                     throw new Error('getHostById : POST Request failed');
+                });
+        };
+    }])
+
+    // Add object of specified type to $scope.data
+    .service('addObjectToScope', ['$http', 'getObjectId', 'getObjectById', function ($http, getObjectId, getObjectById) {
+        return function (objectType, objectIdentifier, scope) {
+            var objectData = {},
+                url = "/rest/status/json/",
+                firstParameter = true,
+                endpoints = {
+                    "host" : "hosts",
+                    "service" : "services"
+                };
+
+            if (objectType === "host") {
+                objectIdentifier.host_name = objectIdentifier.host_name;
+            } else if (objectType === "service") {
+                objectIdentifier.host_name = objectIdentifier.host_name;
+                objectIdentifier.description = objectIdentifier.description;
+            }
+
+            url += endpoints[objectType];
+            url += "/?";
+
+            angular.forEach(objectIdentifier, function (value, key){
+                if(!firstParameter){
+                    url += "&";
+                }
+                url += key + "=" + value;
+                firstParameter = false;
+
+            });
+
+            $http.get(url)
+                .success(function (data) {
+                    objectData.live = data[0];
+                    getObjectId(objectType, objectIdentifier)
+                        .success(function (data) {
+                            var objectId = data[0].id;
+                            scope.data.id = objectId;
+                            getObjectById(objectId)
+                                .success(function (data) {
+                                    objectData.config = data;
+                                    scope.data = objectData;
+                                });
+                        });
                 });
         };
     }]);
