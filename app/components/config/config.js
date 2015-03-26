@@ -15,7 +15,7 @@ angular.module('adagios.config', [])
             data = value;
         };
 
-        this.$get = [function getConfigFactory() {
+        this.$get = [function () {
             return new AdagiosConfig(data);
         }];
     });

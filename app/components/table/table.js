@@ -18,8 +18,8 @@ angular.module('adagios.table', ['adagios.live',
 
     .value('ajaxQueries', [])
 
-    .controller('TableCtrl', ['$scope', '$interval', 'getServices', 'tablesConfig', 'actionbarFilters', 'ajaxQueries', 'tableGlobalConfig',
-        function ($scope, $interval, getServices, tablesConfig, actionbarFilters, ajaxQueries, tableGlobalConfig) {
+    .controller('TableCtrl', ['$scope', '$interval', 'getObjects', 'tablesConfig', 'actionbarFilters', 'ajaxQueries', 'tableGlobalConfig',
+        function ($scope, $interval, getObjects, tablesConfig, actionbarFilters, ajaxQueries, tableGlobalConfig) {
             var requestFields = [],
                 conf = tablesConfig[tableGlobalConfig.nextTableIndex],
                 getData,
@@ -40,7 +40,7 @@ angular.module('adagios.table', ['adagios.live',
             });
 
             getData = function (requestFields, filters, apiName, additionnalFields) {
-                getServices(requestFields, filters, apiName, additionnalFields)
+                getObjects(requestFields, filters, apiName, additionnalFields)
                     .success(function (data) {
                         $scope.entries = data;
                     });
@@ -117,7 +117,6 @@ angular.module('adagios.table', ['adagios.live',
         }])
 
     .directive('adgCell', ['$http', '$compile', function ($http, $compile) {
-
         return {
             restrict: 'A',
             compile: function () {

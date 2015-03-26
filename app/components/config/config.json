@@ -205,5 +205,10 @@
 				"noRepeatCell" : "host"
 			}
 		}]
+    },
+    "host": {
+		"title": "Host",
+		"refreshInterval": 0,
+		"template": "host"
     }
 }
