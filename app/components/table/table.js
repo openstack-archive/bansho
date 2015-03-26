@@ -226,4 +226,4 @@ angular.module('adagios.table', ['adagios.live',
 
             return newItems;
         };
-    });
+    }]);

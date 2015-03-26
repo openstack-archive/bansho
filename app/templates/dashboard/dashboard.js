@@ -8,10 +8,10 @@ angular.module('adagios.view.dashboard', ['ngRoute',
 
     .value('dashboardConfig', {})
 
-    .controller('DashboardCtrl', ['$scope', '$routeParams', 'dashboardConfig', 'getServices',
+    .controller('DashboardCtrl', ['$scope', '$routeParams', 'dashboardConfig', 'getObjects',
         'TableConfigObj', 'TacticalConfigObj', 'getHostOpenProblems', 'getServiceOpenProblems', 'getHostProblems',
         'getServiceProblems',
-        function ($scope, $routeParams, dashboardConfig, getServices, TableConfigObj,
+        function ($scope, $routeParams, dashboardConfig, getObjects, TableConfigObj,
             TacticalConfigObj, getHostOpenProblems, getServiceOpenProblems, getHostProblems, getServiceProblems) {
             var components = [],
                 component,
