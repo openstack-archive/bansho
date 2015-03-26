@@ -1,24 +1,34 @@
 'use strict';
 
-angular.module('adagios.host', [])
+angular.module('adagios.host', ['adagios.live'])
 
-    .controller('TableCtrl', ['$scope', function ($scope) {
-        angular.noop();
+    .value('hostConfig', {})
+
+    .controller('HostCtrl', ['$scope', 'hostConfig', 'addObjectToScope', function ($scope, hostConfig, addObjectToScope) {
+        var objectType = 'host',
+            objectIdentifier = {};
+
+        objectIdentifier.host_name = hostConfig.hostName;
+        $scope.data = {};
+
+        addObjectToScope(objectType, objectIdentifier, $scope);
     }])
 
-    .directive('adgHost', ['$http', '$compile',
-        function ($http, $compile) {
+    .directive('adgHost', ['$http', '$compile', 'hostConfig',
+        function ($http, $compile, hostConfig) {
             return {
                 restrict: 'E',
                 compile: function () {
                     return function (scope, element, attrs) {
 
-                        var template = 'components/host/host.html',
-                            conf;
+                        var template = 'components/host/host.html';
 
-                        if (!attrs.hostName || !attrs.modules) {
-                            throw new Error('<adg-host> "host-name" and "modules" attributes must be defined');
+                        if (!attrs.hostName) {
+                            throw new Error('<adg-host> "host-name" attribute must be defined');
                         }
+
+                        hostConfig.hostName = {};
+                        hostConfig.hostName = attrs.hostName;
 
                         $http.get(template, { cache: true })
                             .success(function (data) {

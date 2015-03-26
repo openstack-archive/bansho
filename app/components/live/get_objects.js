@@ -173,18 +173,11 @@ angular.module('adagios.live')
                     "service" : "services"
                 };
 
-            if (objectType === "host") {
-                objectIdentifier.host_name = objectIdentifier.host_name;
-            } else if (objectType === "service") {
-                objectIdentifier.host_name = objectIdentifier.host_name;
-                objectIdentifier.description = objectIdentifier.description;
-            }
-
             url += endpoints[objectType];
             url += "/?";
 
-            angular.forEach(objectIdentifier, function (value, key){
-                if(!firstParameter){
+            angular.forEach(objectIdentifier, function (value, key) {
+                if (!firstParameter) {
                     url += "&";
                 }
                 url += key + "=" + value;

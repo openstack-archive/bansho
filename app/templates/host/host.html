@@ -1,17 +1,3 @@
 <article ng-controller="HostViewCtrl">
-  <section class="main__content tabpanel">
-    <h2 class="main__overview__title">{{hostName}}</h2>
-    <table class="data-table">
-      <tbody >
-        <tr ng-repeat="(key, value) in data.live">
-          <td>{{key}}</td>
-          <td>{{value}}</td>
-        </tr>
-        <tr ng-repeat="(key, value) in data.config">
-          <td>{{key}}</td>
-          <td>{{value}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
+  <adg-host host-name="{{hostName}}"></adg-host>
 </article>

@@ -109,10 +109,16 @@ module.exports = function (grunt) {
                         '<%= project.app %>/components/table/cell_hosts_host/cell_hosts_host.js',
                         '<%= project.app %>/components/table/cell_host_address/cell_host_address.js',
                         '<%= project.app %>/components/table/cell_host_status/cell_host_status.js',
+                        '<%= project.app %>/components/host/host.js',
+                        '<%= project.app %>/components/host/host_cpu/host_cpu.js',
+                        '<%= project.app %>/components/host/host_info/host_info.js',
+                        '<%= project.app %>/components/host/host_load/host_load.js',
+                        '<%= project.app %>/components/host/host_main/host_main.js',
+                        '<%= project.app %>/components/host/host_services_list/host_services_list.js',
                         '<%= project.app %>/routing_view/routing_view.js',
                         '<%= project.app %>/templates/dashboard/dashboard.js',
                         '<%= project.app %>/templates/single_table/single_table.js',
-                        '<%= project.app %>/templates/host/host.js',
+                        '<%= project.app %>/templates/host/host.js'
                     ]
                 }],
                 options: {
@@ -144,10 +150,18 @@ module.exports = function (grunt) {
                         '<%= project.build %>/components/table/cell_hosts_host/cell_hosts_host.js': '<%= project.app %>/components/table/cell_hosts_host/cell_hosts_host.js',
                         '<%= project.build %>/components/table/cell_host_address/cell_host_address.js': '<%= project.app %>/components/table/cell_host_address/cell_host_address.js',
                         '<%= project.build %>/components/table/cell_host_status/cell_host_status.js': '<%= project.app %>/components/table/cell_host_status/cell_host_status.js',
+
+                        '<%= project.build %>/components/host/host.js': '<%= project.app %>/components/host/host.js',
+                        '<%= project.build %>/components/host/host_cpu/host_cpu.js': '<%= project.app %>/components/host/host_cpu/host_cpu.js',
+                        '<%= project.build %>/components/host/host_info/host_info.js': '<%= project.app %>/components/host/host_info/host_info.js',
+                        '<%= project.build %>/components/host/host_load/host_load.js': '<%= project.app %>/components/host/host_load/host_load.js',
+                        '<%= project.build %>/components/host/host_main/host_main.js': '<%= project.app %>/components/host/host_main/host_main.js',
+                        '<%= project.build %>/components/host/host_services_list/host_services_list.js': '<%= project.app %>/components/host/host_services_list/host_services_list.js',
+
                         '<%= project.build %>/routing_view/routing_view.js': '<%= project.app %>/routing_view/routing_view.js',
                         '<%= project.build %>/templates/dashboard/dashboard.js': '<%= project.app %>/templates/dashboard/dashboard.js',
                         '<%= project.build %>/templates/single_table/single_table.js' : '<%= project.app %>/templates/single_table/single_table.js',
-                        '<%= project.build %>/templates/host/host.js' : '<%= project.app %>/templates/host/host.js',
+                        '<%= project.build %>/templates/host/host.js' : '<%= project.app %>/templates/host/host.js'
                     },
                     {
                         '<%= project.build %>/js/adagios.min.js' : [
@@ -173,10 +187,16 @@ module.exports = function (grunt) {
                             '<%= project.build %>/components/table/cell_hosts_host/cell_hosts_host.js',
                             '<%= project.build %>/components/table/cell_host_address/cell_host_address.js',
                             '<%= project.build %>/components/table/cell_host_status/cell_host_status.js',
+                            '<%= project.build %>/components/host/host.js',
+                            '<%= project.build %>/components/host/host_cpu/host_cpu.js',
+                            '<%= project.build %>/components/host/host_info/host_info.js',
+                            '<%= project.build %>/components/host/host_load/host_load.js',
+                            '<%= project.build %>/components/host/host_main/host_main.js',
+                            '<%= project.build %>/components/host/host_services_list/host_services_list.js',
                             '<%= project.build %>/routing_view/routing_view.js',
                             '<%= project.build %>/templates/dashboard/dashboard.js',
                             '<%= project.build %>/templates/single_table/single_table.js',
-                            '<%= project.build %>/templates/host/host.js',
+                            '<%= project.build %>/templates/host/host.js'
                         ]
                     }
                 ],
