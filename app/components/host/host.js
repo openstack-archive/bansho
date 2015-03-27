@@ -1,6 +1,11 @@
 'use strict';
 
-angular.module('adagios.host', ['adagios.live'])
+angular.module('adagios.host', ['adagios.live',
+                                'adagios.host.main',
+                                'adagios.host.load',
+                                'adagios.host.cpu',
+                                'adagios.host.info',
+                                'adagios.host.services_list'])
 
     .value('hostConfig', {})
 
@@ -9,6 +14,7 @@ angular.module('adagios.host', ['adagios.live'])
             objectIdentifier = {};
 
         objectIdentifier.host_name = hostConfig.hostName;
+        $scope.hostName = hostConfig.hostName;
         $scope.data = {};
 
         addObjectToScope(objectType, objectIdentifier, $scope);

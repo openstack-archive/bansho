@@ -1,17 +1,9 @@
 <article ng-controller="HostCtrl">
-  <section class="main__content tabpanel">
-    <h2 class="main__overview__title">{{hostName}}</h2>
-    <table class="data-table">
-      <tbody >
-        <tr ng-repeat="(key, value) in data.live">
-          <td>{{key}}</td>
-          <td>{{value}}</td>
-        </tr>
-        <tr ng-repeat="(key, value) in data.config">
-          <td>{{key}}</td>
-          <td>{{value}}</td>
-        </tr>
-      </tbody>
-    </table>
+  <section class="main__content tabpanel" ng-if="data.live && data.config">
+    <adg-host-main></adg-host-main>
+    <adg-host-services-list></adg-host-services-list>
+    <adg-host-load></adg-host-load>
+    <adg-host-cpu></adg-host-cpu>
+    <adg-host-info></adg-host-info>
   </section>
 </article>

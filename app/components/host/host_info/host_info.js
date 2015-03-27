@@ -1,14 +1,17 @@
 'use strict';
 
-angular.module('adagios.host.cpu', [])
+angular.module('adagios.host.info', [])
 
-    .controller('HostCpuCtrl', ['$scope', function ($scope) {
-        angular.noop();
+    .controller('HostInfoCtrl', ['$scope', function ($scope) {
+        $scope.active_checks = ($scope.data.live.active_checks_enabled === '1') ? 'Enabled': 'Disabled';
+        $scope.notifications_enabled = ($scope.data.config.notifications_enabled === '1') ? 'Enabled': 'Disabled';
+        $scope.event_handler_enabled = ($scope.data.config.event_handler_enabled === '1') ? 'Enabled': 'Disabled';
+        $scope.flap_detection_enabled = ($scope.data.config.flap_detection_enabled === '1') ? 'Enabled': 'Disabled';
     }])
 
-    .directive('adgHostCpu', function () {
+    .directive('adgHostInfo', function () {
         return {
             restrict: 'E',
-            templateUrl: 'components/host/host_cpu/host_cpu.html'
+            templateUrl: 'components/host/host_info/host_info.html'
         };
     });
