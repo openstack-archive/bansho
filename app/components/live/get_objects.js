@@ -53,6 +53,16 @@ angular.module('adagios.live')
             };
         }])
 
+    .service('getService', ['$http',
+        function ($http) {
+            return function (hostName, description) {
+            return $http.get('/rest/status/json/services/?host_name=' + hostName + '&description=' + description)
+                .error(function () {
+                    throw new Error('getService : GET Request failed');
+                });
+            }
+        }])
+
     // This service is used to count the number of host open problems
     .service('getHostOpenProblems', ['$http', 'getObjects',
         function ($http, getObjects) {

@@ -210,5 +210,10 @@
 		"title": "Host",
 		"refreshInterval": 0,
 		"template": "host"
+    },
+    "service": {
+		"title": "Service",
+		"refreshInterval": 0,
+		"template": "service"
     }
 }

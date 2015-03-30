@@ -115,10 +115,12 @@ module.exports = function (grunt) {
                         '<%= project.app %>/components/host/host_load/host_load.js',
                         '<%= project.app %>/components/host/host_main/host_main.js',
                         '<%= project.app %>/components/host/host_services_list/host_services_list.js',
+                        '<%= project.app %>/components/service/service.js',
                         '<%= project.app %>/routing_view/routing_view.js',
                         '<%= project.app %>/templates/dashboard/dashboard.js',
                         '<%= project.app %>/templates/single_table/single_table.js',
-                        '<%= project.app %>/templates/host/host.js'
+                        '<%= project.app %>/templates/host/host.js',
+                        '<%= project.app %>/templates/service/service.js'
                     ]
                 }],
                 options: {
@@ -157,11 +159,13 @@ module.exports = function (grunt) {
                         '<%= project.build %>/components/host/host_load/host_load.js': '<%= project.app %>/components/host/host_load/host_load.js',
                         '<%= project.build %>/components/host/host_main/host_main.js': '<%= project.app %>/components/host/host_main/host_main.js',
                         '<%= project.build %>/components/host/host_services_list/host_services_list.js': '<%= project.app %>/components/host/host_services_list/host_services_list.js',
+                        '<%= project.build %>/components/service/service.js': '<%= project.app %>/components/service/service.js',
 
                         '<%= project.build %>/routing_view/routing_view.js': '<%= project.app %>/routing_view/routing_view.js',
                         '<%= project.build %>/templates/dashboard/dashboard.js': '<%= project.app %>/templates/dashboard/dashboard.js',
                         '<%= project.build %>/templates/single_table/single_table.js' : '<%= project.app %>/templates/single_table/single_table.js',
-                        '<%= project.build %>/templates/host/host.js' : '<%= project.app %>/templates/host/host.js'
+                        '<%= project.build %>/templates/host/host.js': '<%= project.app %>/templates/host/host.js',
+                        '<%= project.build %>/templates/service/service.js': '<%= project.app %>/templates/service/service.js'
                     },
                     {
                         '<%= project.build %>/js/adagios.min.js' : [
@@ -193,10 +197,12 @@ module.exports = function (grunt) {
                             '<%= project.build %>/components/host/host_load/host_load.js',
                             '<%= project.build %>/components/host/host_main/host_main.js',
                             '<%= project.build %>/components/host/host_services_list/host_services_list.js',
+                            '<%= project.build %>/components/service/service.js',
                             '<%= project.build %>/routing_view/routing_view.js',
                             '<%= project.build %>/templates/dashboard/dashboard.js',
                             '<%= project.build %>/templates/single_table/single_table.js',
-                            '<%= project.build %>/templates/host/host.js'
+                            '<%= project.build %>/templates/host/host.js',
+                            '<%= project.build %>/templates/service/service.js'
                         ]
                     }
                 ],
