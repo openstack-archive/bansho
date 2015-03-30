@@ -1,6 +1,9 @@
 'use strict';
 
-angular.module('adagios.service', ['adagios.live'])
+angular.module('adagios.service', ['adagios.live',
+                                   'adagios.service.main',
+                                   'adagios.service.info',
+                                   'adagios.service.metrics'])
 
     .value('serviceConfig', {})
 
