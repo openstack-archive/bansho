@@ -59,9 +59,9 @@ angular.module('adagios.tactical', ['adagios.tactical.status_overview',
                 return {
                     pre: function preLink(scope, iElement, iAttrs, controller) {
                         // This is the earliest phase during which attributes are evaluated
-                        tacticalConfig.statusOverview = JSON.parse(iAttrs.statusOverview.toLowerCase());
-                        tacticalConfig.currentHealth = JSON.parse(iAttrs.currentHealth.toLowerCase());
-                        tacticalConfig.topAlertProducers = JSON.parse(iAttrs.topAlertProducers.toLowerCase());
+                        tacticalConfig.statusOverview = JSON.parse(iAttrs.statusOverview);
+                        tacticalConfig.currentHealth = JSON.parse(iAttrs.currentHealth);
+                        tacticalConfig.topAlertProducers = JSON.parse(iAttrs.topAlertProducers);
                     }
                 };
             }

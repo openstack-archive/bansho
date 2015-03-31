@@ -9,9 +9,9 @@
                 "config": {
                     "title": "Tactical Overview",
                     "components": {
-                        "statusOverview": "true",
-                        "currentHealth": "true",
-                        "topAlertProducers": "false"
+                        "statusOverview": true,
+                        "currentHealth": true,
+                        "topAlertProducers": false
                     }
                 }
             },
