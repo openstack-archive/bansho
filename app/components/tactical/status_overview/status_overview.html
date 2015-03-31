@@ -1,4 +1,6 @@
-<table ng-app="adagios.tactical.status_overview" ng-controller="TacticalStatusOverViewCtrl" class="table">
+<table ng-controller="TacticalStatusOverViewCtrl"
+       class="table"
+       ng-if="hostProblems != 0 && totalHosts != 0 && serviceProblems != 0 && totalServices != 0">
   <thead>
     <tr>
       <th>Status overview</th>
@@ -12,13 +14,13 @@
   <tbody>
     <tr>
       <th>Hosts</th>
-      <td>{{ hosts.count }}</td>
-      <td class="state--error alerts">{{ hosts.problems }}</td>
+      <td>{{totalHosts}}</td>
+      <td class="state--error alerts">{{hostProblems}}</td>
     </tr>  
     <tr>
       <th>Services</th>
-      <td>{{ services.count }}</td>
-      <td class="state--error alerts">{{ services.problems }}</td>
+      <td>{{totalServices}}</td>
+      <td class="state--error alerts">{{serviceProblems}}</td>
     </tr>
   </tbody>
 </table>
