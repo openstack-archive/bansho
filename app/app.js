@@ -16,6 +16,7 @@ angular.element(document).ready(function () {
 angular.module('adagios', [
     'ngRoute',
     'adagios.config',
+    'adagios.utils.promiseManager',
     'adagios.topbar',
     'adagios.sidebar',
     'adagios.host',
