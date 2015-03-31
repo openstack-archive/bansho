@@ -73,7 +73,7 @@ angular.module('adagios.live')
 
             return getObjects(fields, filters, apiName, additionnalQueryFields)
                 .error(function () {
-                    throw new Error('getObjects : GET Request failed');
+                    throw new Error('getHostOpenProblems : GET Request failed');
                 });
         }])
 
@@ -87,7 +87,7 @@ angular.module('adagios.live')
 
             return getObjects(fields, filters, apiName, additionnalQueryFields)
                 .error(function () {
-                    throw new Error('getObjects : GET Request failed');
+                    throw new Error('getServiceOpenProblems : GET Request failed');
                 });
         }])
 
@@ -101,7 +101,7 @@ angular.module('adagios.live')
 
             return getObjects(fields, filters, apiName, additionnalQueryFields)
                 .error(function () {
-                    throw new Error('getObjects : GET Request failed');
+                    throw new Error('getHostProblems : GET Request failed');
                 });
         }])
 
@@ -115,7 +115,35 @@ angular.module('adagios.live')
 
             return getObjects(fields, filters, apiName, additionnalQueryFields)
                 .error(function () {
-                    throw new Error('getObjects : GET Request failed');
+                    throw new Error('getServiceOpenProblems : GET Request failed');
+                });
+        }])
+
+    // This service is used to count the number of hosts
+    .service('getTotalHosts', ['$http', 'getObjects',
+        function ($http, getObjects) {
+            var fields = ['name'],
+                filters = {},
+                apiName = 'hosts',
+                additionnalQueryFields = {};
+
+            return getObjects(fields, filters, apiName, additionnalQueryFields)
+                .error(function () {
+                    throw new Error('getTotalHosts : GET Request failed');
+                });
+        }])
+
+    // This service is used to count the number of services
+    .service('getTotalServices', ['$http', 'getObjects',
+        function ($http, getObjects) {
+            var fields = ['name'],
+                filters = {},
+                apiName = 'services',
+                additionnalQueryFields = {};
+
+            return getObjects(fields, filters, apiName, additionnalQueryFields)
+                .error(function () {
+                    throw new Error('getTotalServices : GET Request failed');
                 });
         }])
 
