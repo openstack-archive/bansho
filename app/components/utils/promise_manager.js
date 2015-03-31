@@ -10,8 +10,8 @@ angular.module('adagios.utils.promiseManager', [])
         };
     }])
 
-    .service('clearAjaxPromises', ['$interval', 'ajaxPromises', function (ajaxPromises) {
-        return function ($interval) {
+    .service('clearAjaxPromises', ['$interval', 'ajaxPromises', function ($interval, ajaxPromises) {
+        return function () {
             angular.forEach(ajaxPromises, function (promise) {
                 $interval.cancel(promise);
             });
