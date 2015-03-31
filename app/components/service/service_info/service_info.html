@@ -1,2 +1,38 @@
 <div ng-controller="ServiceInfoCtrl">
+  <table>
+    <tbody>
+      <tr>
+        <td>Handled :</td>
+        <td>{{data.0.handled}}</td>
+      </tr>
+      <tr>
+        <td>Tags :</td>
+        <td>{{data.0.tags}}</td>
+      </tr>
+      <tr>
+        <td>Tags :</td>
+        <td>{{data.0.tags}}</td>
+      </tr>
+      <tr>
+        <td>Backend :</td>
+        <td>{{data.0.backend}}</td>
+      </tr>
+      <tr>
+        <td>Last check :</td>
+        <td>{{data.0.last_check|timeElapsed}}</td>
+      </tr>
+      <tr>
+        <td>Last state change :</td>
+        <td>{{data.0.last_state_change|timeElapsed}}</td>
+      </tr>
+      <tr>
+        <td>Tags :</td>
+        <td>{{data.0.tags}}</td>
+      </tr>
+      <tr>
+        <td>Acknowledged :</td>
+        <td>{{acknowledged}}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>

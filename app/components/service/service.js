@@ -15,7 +15,6 @@ angular.module('adagios.service', ['adagios.live',
 
             getService(hostName, description).success(function (data) {
                 $scope.data = data;
-                console.log($scope.data);
             });
         }])
 

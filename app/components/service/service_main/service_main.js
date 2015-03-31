@@ -3,6 +3,7 @@
 angular.module('adagios.service.main', [])
 
     .controller('ServiceMainCtrl', ['$scope', function ($scope) {
+        angular.noop();
     }])
 
     .directive('adgServiceMain', function () {
