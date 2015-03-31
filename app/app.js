@@ -19,10 +19,12 @@ angular.module('adagios', [
     'adagios.topbar',
     'adagios.sidebar',
     'adagios.host',
+    'adagios.service',
     'adagios.view',
     'adagios.view.dashboard',
     'adagios.view.singleTable',
-    'adagios.view.host'
+    'adagios.view.host',
+    'adagios.view.service'
 ])
 
     .config(['$routeProvider', function ($routeProvider) {
