@@ -1,4 +1,4 @@
-<table class="current-health" ng-app="adagios.tactical.current_health" ng-controller="TacticalCurrentHealth">
+<table ng-controller="TacticalCurrentHealth" class="current-health" ng-if="hostsRatio != 0 && servicesRatio != 0">
   <thead>
     <tr>
       <th>Current health</th>
@@ -8,10 +8,10 @@
   <tbody>
     <tr>
       <td class="layout__half">
-        <just-gage id="allservices" class="someClass" min=0 max=100 value=services title="ALL SERVICES"></just-gage>
+        <just-gage id="allservices" class="someClass" min=0 max=100 value=servicesRatio title="ALL SERVICES"></just-gage>
       </td>
       <td class="layout__half">
-        <just-gage id="allhosts" class="someClass" min=0 max=100 value=hosts title="ALL HOSTS"></just-gage>
+        <just-gage id="allhosts" class="someClass" min=0 max=100 value=hostsRatio title="ALL HOSTS"></just-gage>
       </td>
     </tr>
   </tbody>
