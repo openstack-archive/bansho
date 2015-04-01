@@ -44,18 +44,18 @@ angular.module('adagios.view.dashboard', ['ngRoute',
             getData = function () {
                 getHostOpenProblems().success(function (data) {
                     $scope.nbHostOpenProblems = data.length;
-                });
-
-                getServiceOpenProblems().success(function (data) {
-                    $scope.nbServiceOpenProblems = data.length;
+                    getServiceOpenProblems().success(function (data) {
+                        $scope.nbServiceOpenProblems = data.length;
+                        $scope.totalOpenProblems = $scope.nbServiceOpenProblems + $scope.nbHostOpenProblems;
+                    });
                 });
 
                 getHostProblems().success(function (data) {
                     $scope.nbHostProblems = data.length;
-                });
-
-                getServiceProblems().success(function (data) {
-                    $scope.nbServiceProblems = data.length;
+                    getServiceProblems().success(function (data) {
+                        $scope.nbServiceProblems = data.length;
+                        $scope.totalProblems = $scope.nbHostProblems + $scope.nbServiceProblems;
+                    });
                 });
             };
 
