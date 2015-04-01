@@ -18,7 +18,9 @@ angular.module('adagios.tactical', ['adagios.live',
 
     .controller('TacticalCtrl', ['$scope', '$interval', 'tacticalConfig', 'getHostProblems', 'getServiceProblems',
         'getTotalHosts', 'getTotalServices', 'addAjaxPromise',
-        function ($scope, $interval, tacticalConfig, getHostProblems, getServiceProblems, getTotalHosts, getTotalServices, addAjaxPromise) {
+        function ($scope, $interval, tacticalConfig, getHostProblems, getServiceProblems, getTotalHosts,
+            getTotalServices, addAjaxPromise) {
+
             var getData;
 
             $scope.statusOverview = tacticalConfig.statusOverview;
@@ -32,7 +34,7 @@ angular.module('adagios.tactical', ['adagios.live',
             $scope.serviceProblems = 0;
             $scope.totalServices = 0;
 
-            getData= function () {
+            getData = function () {
                 getHostProblems().success(function (data) {
                     $scope.hostProblems = data.length;
                     getTotalHosts().success(function (data) {
@@ -48,7 +50,7 @@ angular.module('adagios.tactical', ['adagios.live',
                         $scope.servicesRatio = ($scope.totalServices - $scope.serviceProblems) / $scope.totalServices * 100;
                     });
                 });
-            }
+            };
 
             if (tacticalConfig.refreshInterval !== 0) {
                 addAjaxPromise(

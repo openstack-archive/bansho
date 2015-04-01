@@ -3,7 +3,7 @@
 angular.module('adagios.service.info', [])
 
     .controller('ServiceInfoCtrl', ['$scope', function ($scope) {
-        $scope.acknowledged = $scope.data[0].acknowledged === "1" ? "Yes": "No";
+        $scope.acknowledged = $scope.data[0].acknowledged === "1" ? "Yes" : "No";
     }])
 
     .directive('adgServiceInfo', function () {

@@ -9,8 +9,7 @@ angular.module('adagios.service', ['adagios.live',
 
     .controller('ServiceCtrl', ['$scope', 'serviceConfig', 'getService',
         function ($scope, serviceConfig, getService) {
-            var objectType = 'service',
-                hostName = serviceConfig.hostName,
+            var hostName = serviceConfig.hostName,
                 description = serviceConfig.description;
 
             getService(hostName, description).success(function (data) {
