@@ -3,7 +3,7 @@
 angular.module('adagios.topbar', ['adagios.live'])
 
     .controller('TopBarCtrl', ['$scope', 'getServiceProblems', function ($scope, getServiceProblems) {
-        getServiceProblems.success(function (data) {
+        getServiceProblems().success(function (data) {
             $scope.serviceProblems = data.length;
         });
     }])

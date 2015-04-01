@@ -28,17 +28,17 @@ angular.module('adagios.tactical', ['adagios.tactical.status_overview',
             $scope.serviceProblems = 0;
             $scope.totalServices = 0;
 
-            getHostProblems.success(function (data) {
+            getHostProblems().success(function (data) {
                 $scope.hostProblems = data.length;
-                getTotalHosts.success(function (data) {
+                getTotalHosts().success(function (data) {
                     $scope.totalHosts = data.length;
                     $scope.hostsRatio = ($scope.totalHosts - $scope.hostProblems) / $scope.totalHosts * 100;
                 });
             });
 
-            getServiceProblems.success(function (data) {
+            getServiceProblems().success(function (data) {
                 $scope.serviceProblems = data.length;
-                getTotalServices.success(function (data) {
+                getTotalServices().success(function (data) {
                     $scope.totalServices = data.length;
                     $scope.servicesRatio = ($scope.totalServices - $scope.serviceProblems) / $scope.totalServices * 100;
                 });
@@ -49,7 +49,7 @@ angular.module('adagios.tactical', ['adagios.tactical.status_overview',
             $('a[data-toggle="tab"]').on('click', function (evt) {
                 evt.preventDefault();
             });
-    }])
+        }])
 
     .directive('adgTactical', ['tacticalConfig', function (tacticalConfig) {
         return {

@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('adagios.view.dashboard', ['ngRoute',
+                                          'adagios.utils.promiseManager',
                                           'adagios.tactical',
                                           'adagios.table',
                                           'adagios.live'
@@ -8,16 +9,17 @@ angular.module('adagios.view.dashboard', ['ngRoute',
 
     .value('dashboardConfig', {})
 
-    .controller('DashboardCtrl', ['$scope', '$routeParams', 'dashboardConfig', 'getObjects',
+    .controller('DashboardCtrl', ['$scope', '$routeParams', '$interval', 'dashboardConfig', 'getObjects',
         'TableConfigObj', 'TacticalConfigObj', 'getHostOpenProblems', 'getServiceOpenProblems', 'getHostProblems',
-        'getServiceProblems',
-        function ($scope, $routeParams, dashboardConfig, getObjects, TableConfigObj,
-            TacticalConfigObj, getHostOpenProblems, getServiceOpenProblems, getHostProblems, getServiceProblems) {
+        'getServiceProblems', 'addAjaxPromise',
+        function ($scope, $routeParams, $interval, dashboardConfig, getObjects, TableConfigObj, TacticalConfigObj, getHostOpenProblems,
+            getServiceOpenProblems, getHostProblems, getServiceProblems, addAjaxPromise) {
             var components = [],
                 component,
                 config,
                 viewName = $scope.viewName,
-                i = 0;
+                i = 0,
+                getData;
 
             $scope.dashboardTitle = dashboardConfig[viewName].title;
             $scope.dashboardTemplate = dashboardConfig[viewName].template;
@@ -39,21 +41,31 @@ angular.module('adagios.view.dashboard', ['ngRoute',
                 }
             }
 
-            getHostOpenProblems.success(function (data) {
-                $scope.nbHostOpenProblems = data.length;
-            });
+            getData = function () {
+                getHostOpenProblems().success(function (data) {
+                    $scope.nbHostOpenProblems = data.length;
+                });
 
-            getServiceOpenProblems.success(function (data) {
-                $scope.nbServiceOpenProblems = data.length;
-            });
+                getServiceOpenProblems().success(function (data) {
+                    $scope.nbServiceOpenProblems = data.length;
+                });
 
-            getHostProblems.success(function (data) {
-                $scope.nbHostProblems = data.length;
-            });
+                getHostProblems().success(function (data) {
+                    $scope.nbHostProblems = data.length;
+                });
 
-            getServiceProblems.success(function (data) {
-                $scope.nbServiceProblems = data.length;
-            });
+                getServiceProblems().success(function (data) {
+                    $scope.nbServiceProblems = data.length;
+                });
+            };
+
+            if ($scope.dashboardRefreshInterval !== 0) {
+                addAjaxPromise(
+                    $interval(getData, $scope.dashboardRefreshInterval * 1000)
+                );
+            }
+
+            getData();
         }])
 
     .run(['readConfig', 'dashboardConfig', function (readConfig, dashboardConfig) {
