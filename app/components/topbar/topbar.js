@@ -2,11 +2,26 @@
 
 angular.module('adagios.topbar', ['adagios.live'])
 
-    .controller('TopBarCtrl', ['$scope', 'getServiceProblems', function ($scope, getServiceProblems) {
-        getServiceProblems().success(function (data) {
-            $scope.serviceProblems = data.length;
-        });
-    }])
+    .controller('TopBarCtrl', ['$scope', '$interval', 'getServiceProblems', 'getHostProblems', 'addAjaxPromise',
+        function ($scope, $interval, getServiceProblems, getHostProblems, addAjaxPromise) {
+            var getData,
+                hostProblems,
+                serviceProblems;
+
+            getData = function () {
+                getServiceProblems().success(function (data) {
+                    serviceProblems = data.length;
+                    getHostProblems().success(function (data) {
+                        hostProblems = data.length;
+                        $scope.allProblems = serviceProblems + hostProblems;
+                    });
+                });
+            };
+
+            // TODO: Change hardcoded interval when the topbar dashboard will be implemented
+            addAjaxPromise($interval(getData, 10000));
+            getData();
+        }])
 
     .directive('adgTopbar', function () {
         return {
