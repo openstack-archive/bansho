@@ -3,7 +3,7 @@
 angular.module('adagios.live')
 
     .constant('filterSuffixes', { contains: '__contains',
-                                  has_fields: '__has_field',
+                                  has_field: '__has_field',
                                   startswith: '__startswith',
                                   endswith: '__endswith',
                                   exists: '__exists',
