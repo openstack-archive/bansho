@@ -3,15 +3,7 @@
 angular.module('adagios.tactical.status_overview', ['ngRoute' ])
 
     .controller('TacticalStatusOverViewCtrl', ['$scope', function ($scope) {
-        $scope.hosts = {
-            "count": 104,
-            "problems": 14
-        };
-
-        $scope.services = {
-            "count": 1126,
-            "problems": 42
-        };
+        angular.noop();
     }])
 
     .directive('adgStatusOverview', function () {

@@ -56,67 +56,107 @@ angular.module('adagios.live')
     .service('getService', ['$http',
         function ($http) {
             return function (hostName, description) {
-            return $http.get('/rest/status/json/services/?host_name=' + hostName + '&description=' + description)
-                .error(function () {
-                    throw new Error('getService : GET Request failed');
-                });
-            }
+                return $http.get('/rest/status/json/services/?host_name=' + hostName + '&description=' + description)
+                    .error(function () {
+                        throw new Error('getService : GET Request failed');
+                    });
+            };
         }])
 
     // This service is used to count the number of host open problems
     .service('getHostOpenProblems', ['$http', 'getObjects',
         function ($http, getObjects) {
-            var fields = ['state'],
-                filters = {},
-                apiName = 'hosts',
-                additionnalQueryFields = {'acknowledged': 0, 'state': 1};
+            return function () {
+                var fields = ['state'],
+                    filters = {},
+                    apiName = 'hosts',
+                    additionnalQueryFields = {'acknowledged': 0, 'state': 1};
 
-            return getObjects(fields, filters, apiName, additionnalQueryFields)
-                .error(function () {
-                    throw new Error('getObjects : GET Request failed');
-                });
+                return getObjects(fields, filters, apiName, additionnalQueryFields)
+                    .error(function () {
+                        throw new Error('getHostOpenProblems : GET Request failed');
+                    });
+            };
         }])
 
     // This service is used to count the number of service open problems
     .service('getServiceOpenProblems', ['$http', 'getObjects',
         function ($http, getObjects) {
-            var fields = ['state'],
-                filters = { "isnot": { "state": [ "0" ], "host_state": [ "2" ] }},
-                apiName = 'services',
-                additionnalQueryFields = {'acknowledged': 0};
+            return function () {
+                var fields = ['state'],
+                    filters = { "isnot": { "state": [ "0" ], "host_state": [ "2" ] }},
+                    apiName = 'services',
+                    additionnalQueryFields = {'acknowledged': 0};
 
-            return getObjects(fields, filters, apiName, additionnalQueryFields)
-                .error(function () {
-                    throw new Error('getObjects : GET Request failed');
-                });
+                return getObjects(fields, filters, apiName, additionnalQueryFields)
+                    .error(function () {
+                        throw new Error('getServiceOpenProblems : GET Request failed');
+                    });
+            };
         }])
 
     // This service is used to count the number of host problems
     .service('getHostProblems', ['$http', 'getObjects',
         function ($http, getObjects) {
-            var fields = ['state'],
-                filters = { 'isnot': {'state': [0]} },
-                apiName = 'hosts',
-                additionnalQueryFields = {};
+            return function () {
+                var fields = ['state'],
+                    filters = { 'isnot': {'state': [0]} },
+                    apiName = 'hosts',
+                    additionnalQueryFields = {};
 
-            return getObjects(fields, filters, apiName, additionnalQueryFields)
-                .error(function () {
-                    throw new Error('getObjects : GET Request failed');
-                });
+                return getObjects(fields, filters, apiName, additionnalQueryFields)
+                    .error(function () {
+                        throw new Error('getHostProblems : GET Request failed');
+                    });
+            };
         }])
 
     // This service is used to count the number of service problems
     .service('getServiceProblems', ['$http', 'getObjects',
         function ($http, getObjects) {
-            var fields = ['state'],
-                filters = { 'isnot': {'state': [0]} },
-                apiName = 'services',
-                additionnalQueryFields = {};
+            return function () {
+                var fields = ['state'],
+                    filters = { 'isnot': {'state': [0]} },
+                    apiName = 'services',
+                    additionnalQueryFields = {};
 
-            return getObjects(fields, filters, apiName, additionnalQueryFields)
-                .error(function () {
-                    throw new Error('getObjects : GET Request failed');
-                });
+                return getObjects(fields, filters, apiName, additionnalQueryFields)
+                    .error(function () {
+                        throw new Error('getServiceOpenProblems : GET Request failed');
+                    });
+            };
+        }])
+
+    // This service is used to count the number of hosts
+    .service('getTotalHosts', ['$http', 'getObjects',
+        function ($http, getObjects) {
+            return function () {
+                var fields = ['name'],
+                    filters = {},
+                    apiName = 'hosts',
+                    additionnalQueryFields = {};
+
+                return getObjects(fields, filters, apiName, additionnalQueryFields)
+                    .error(function () {
+                        throw new Error('getTotalHosts : GET Request failed');
+                    });
+            };
+        }])
+
+    // This service is used to count the number of services
+    .service('getTotalServices', ['$http', 'getObjects',
+        function ($http, getObjects) {
+            return function () {
+                var fields = ['name'],
+                    filters = {},
+                    apiName = 'services',
+                    additionnalQueryFields = {};
+
+                return getObjects(fields, filters, apiName, additionnalQueryFields)
+                    .error(function () {
+                        throw new Error('getTotalServices : GET Request failed');
+                    });
+            };
         }])
 
     .service('getObjectId', ['$http', function ($http) {

@@ -1,6 +1,8 @@
 'use strict';
 
-angular.module('adagios.tactical', ['adagios.tactical.status_overview',
+angular.module('adagios.tactical', ['adagios.live',
+                                    'adagios.utils.promiseManager',
+                                    'adagios.tactical.status_overview',
                                     'adagios.tactical.current_health',
                                     'adagios.tactical.top_alert_producers'
                                    ])
@@ -14,18 +16,56 @@ angular.module('adagios.tactical', ['adagios.tactical.status_overview',
         this.topAlertProducers = config.components.topAlertProducers;
     })
 
-    .controller('TacticalCtrl', ['$scope', 'tacticalConfig', function ($scope, tacticalConfig) {
+    .controller('TacticalCtrl', ['$scope', '$interval', 'tacticalConfig', 'getHostProblems', 'getServiceProblems',
+        'getTotalHosts', 'getTotalServices', 'addAjaxPromise',
+        function ($scope, $interval, tacticalConfig, getHostProblems, getServiceProblems, getTotalHosts,
+            getTotalServices, addAjaxPromise) {
 
-        $scope.statusOverview = tacticalConfig.statusOverview;
-        $scope.currentHealth = tacticalConfig.currentHealth;
-        $scope.topAlertProducers = tacticalConfig.topAlertProducers;
+            var getData;
 
-        // Togglable tabs
-        // Don't follow hyperlinks
-        $('a[data-toggle="tab"]').on('click', function (evt) {
-            evt.preventDefault();
-        });
-    }])
+            $scope.statusOverview = tacticalConfig.statusOverview;
+            $scope.currentHealth = tacticalConfig.currentHealth;
+            $scope.topAlertProducers = tacticalConfig.topAlertProducers;
+
+            $scope.hostsRatio = 0;
+            $scope.servicesRatio = 0;
+            $scope.hostProblems = 0;
+            $scope.totalHosts = 0;
+            $scope.serviceProblems = 0;
+            $scope.totalServices = 0;
+
+            getData = function () {
+                getHostProblems().success(function (data) {
+                    $scope.hostProblems = data.length;
+                    getTotalHosts().success(function (data) {
+                        $scope.totalHosts = data.length;
+                        $scope.hostsRatio = ($scope.totalHosts - $scope.hostProblems) / $scope.totalHosts * 100;
+                    });
+                });
+
+                getServiceProblems().success(function (data) {
+                    $scope.serviceProblems = data.length;
+                    getTotalServices().success(function (data) {
+                        $scope.totalServices = data.length;
+                        $scope.servicesRatio = ($scope.totalServices - $scope.serviceProblems) / $scope.totalServices * 100;
+                    });
+                });
+            };
+
+            if (tacticalConfig.refreshInterval !== 0) {
+                addAjaxPromise(
+                    $interval(getData, tacticalConfig.refreshInterval)
+                );
+            }
+
+            getData();
+
+            // Togglable tabs
+            // Don't follow hyperlinks
+            $('a[data-toggle="tab"]').on('click', function (evt) {
+                evt.preventDefault();
+            });
+        }])
 
     .directive('adgTactical', ['tacticalConfig', function (tacticalConfig) {
         return {
@@ -35,9 +75,10 @@ angular.module('adagios.tactical', ['adagios.tactical.status_overview',
                 return {
                     pre: function preLink(scope, iElement, iAttrs, controller) {
                         // This is the earliest phase during which attributes are evaluated
-                        tacticalConfig.statusOverview = JSON.parse(iAttrs.statusOverview.toLowerCase());
-                        tacticalConfig.currentHealth = JSON.parse(iAttrs.currentHealth.toLowerCase());
-                        tacticalConfig.topAlertProducers = JSON.parse(iAttrs.topAlertProducers.toLowerCase());
+                        tacticalConfig.statusOverview = JSON.parse(iAttrs.statusOverview);
+                        tacticalConfig.currentHealth = JSON.parse(iAttrs.currentHealth);
+                        tacticalConfig.topAlertProducers = JSON.parse(iAttrs.topAlertProducers);
+                        tacticalConfig.refreshInterval = parseInt(iAttrs.refreshInterval * 1000, 10);
                     }
                 };
             }

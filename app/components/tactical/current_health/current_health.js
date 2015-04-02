@@ -1,10 +1,10 @@
 'use strict';
 
-angular.module('adagios.tactical.current_health', ['ngRoute', 'ngJustGage' ])
+angular.module('adagios.tactical.current_health', ['adagios.live',
+                                                   'ngJustGage'])
 
     .controller('TacticalCurrentHealth', ['$scope', function ($scope) {
-        $scope.hosts =  75.2;
-        $scope.services = 94.4;
+        angular.noop();
     }])
 
     .directive('adgCurrentHealth', function () {

@@ -16,6 +16,7 @@ angular.element(document).ready(function () {
 angular.module('adagios', [
     'ngRoute',
     'adagios.config',
+    'adagios.utils.promiseManager',
     'adagios.topbar',
     'adagios.sidebar',
     'adagios.host',
@@ -32,8 +33,9 @@ angular.module('adagios', [
     }])
 
     // Reinitialise objects on url change
-    .run(['$rootScope', 'reinitTables', function ($rootScope, reinitTables) {
+    .run(['$rootScope', 'clearAjaxPromises', 'reinitTables', function ($rootScope, clearAjaxPromises, reinitTables) {
         $rootScope.$on('$locationChangeStart', function () {
             reinitTables();
+            clearAjaxPromises();
         });
     }]);

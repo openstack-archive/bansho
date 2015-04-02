@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('adagios.table', ['adagios.live',
+                                 'adagios.utils.promiseManager',
                                  'adagios.table.actionbar',
                                  'adagios.filters',
                                  'adagios.table.cell_host',
@@ -16,10 +17,9 @@ angular.module('adagios.table', ['adagios.live',
 
     .value('tablesConfig', [])
 
-    .value('ajaxQueries', [])
-
-    .controller('TableCtrl', ['$scope', '$interval', 'getObjects', 'tablesConfig', 'actionbarFilters', 'ajaxQueries', 'tableGlobalConfig',
-        function ($scope, $interval, getObjects, tablesConfig, actionbarFilters, ajaxQueries, tableGlobalConfig) {
+    .controller('TableCtrl', ['$scope', '$interval', 'getObjects', 'tablesConfig',
+        'actionbarFilters', 'addAjaxPromise', 'tableGlobalConfig',
+        function ($scope, $interval, getObjects, tablesConfig, actionbarFilters, addAjaxPromise, tableGlobalConfig) {
             var requestFields = [],
                 conf = tablesConfig[tableGlobalConfig.nextTableIndex],
                 getData,
@@ -49,7 +49,7 @@ angular.module('adagios.table', ['adagios.live',
             getData(requestFields, conf.filters, conf.apiName, conf.additionnalQueryFields);
 
             if (tableGlobalConfig.refreshInterval !== 0) {
-                ajaxQueries.push(
+                addAjaxPromise(
                     $interval(function () {
                         getData(requestFields, conf.filters, conf.apiName, conf.additionnalQueryFields);
                     }, tableGlobalConfig.refreshInterval)
@@ -138,14 +138,9 @@ angular.module('adagios.table', ['adagios.live',
         };
     }])
 
-    .service('reinitTables', ['$interval', 'ajaxQueries', 'tablesConfig', 'tableGlobalConfig',
-        function ($interval, ajaxQueries, tablesConfig, tableGlobalConfig) {
+    .service('reinitTables', ['$interval', 'tablesConfig', 'tableGlobalConfig',
+        function ($interval, tablesConfig, tableGlobalConfig) {
             return function () {
-                // Stop AJAX queries
-                angular.forEach(ajaxQueries, function (promise) {
-                    $interval.cancel(promise);
-                });
-
                 // Reinitialise table index
                 tableGlobalConfig.nextTableIndex = 0;
             };

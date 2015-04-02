@@ -3,6 +3,7 @@
 angular.module('adagios.service.metrics', [])
 
     .controller('ServiceMetricsCtrl', ['$scope', function ($scope) {
+        angular.noop();
     }])
 
     .directive('adgServiceMetrics', function () {
