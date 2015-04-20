@@ -20,11 +20,12 @@ COPY container/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 ADD container/000-default.conf etc/apache2/sites-enabled/000-default.conf
 ADD container/ports.conf etc/apache2/ports.conf
 
+ADD /package.json /opt/adagios-frontend/package.json
+RUN cd /opt/adagios-frontend/ && npm install
 ADD /.bowerrc /opt/adagios-frontend/.bowerrc
 ADD /.jshintrc /opt/adagios-frontend/.jshintrc
 ADD /Gruntfile.js /opt/adagios-frontend/Gruntfile.js
 ADD /bower.json /opt/adagios-frontend/bower.json
-ADD /package.json /opt/adagios-frontend/package.json
 ADD /app /opt/adagios-frontend/app
 
 RUN a2enmod proxy
