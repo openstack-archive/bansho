@@ -14,11 +14,19 @@ RUN gem install sass
 RUN mkdir -p /var/lock/apache2 /var/run/apache2 /var/run/sshd /var/log/supervisor
 
 # Add supervisor config files
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY container/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Configure Apache2 for reverse-proxying
-ADD 000-default.conf etc/apache2/sites-enabled/000-default.conf
-ADD ports.conf etc/apache2/ports.conf
+ADD container/000-default.conf etc/apache2/sites-enabled/000-default.conf
+ADD container/ports.conf etc/apache2/ports.conf
+
+ADD /.bowerrc /opt/adagios-frontend/.bowerrc
+ADD /.jshintrc /opt/adagios-frontend/.jshintrc
+ADD /Gruntfile.js /opt/adagios-frontend/Gruntfile.js
+ADD /bower.json /opt/adagios-frontend/bower.json
+ADD /package.json /opt/adagios-frontend/package.json
+ADD /app /opt/adagios-frontend/app
+
 RUN a2enmod proxy
 RUN a2enmod proxy_http
 
