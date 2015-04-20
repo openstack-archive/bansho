@@ -7,13 +7,10 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en  
 ENV LC_ALL en_US.UTF-8
 
-RUN apt-get update && apt-get install -yq git apache2 npm nodejs-legacy supervisor ruby
+RUN apt-get update && apt-get install -yq git apache2 npm nodejs-legacy ruby
 RUN npm install -g grunt-cli bower
 RUN gem install sass
-RUN mkdir -p /var/lock/apache2 /var/run/apache2 /var/run/sshd /var/log/supervisor
-
-# Add supervisor config files
-COPY container/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+RUN mkdir -p /var/lock/apache2 /var/run/apache2 /var/run/sshd
 
 # Configure Apache2 for reverse-proxying
 ADD container/000-default.conf etc/apache2/sites-enabled/000-default.conf
@@ -33,4 +30,5 @@ RUN a2enmod proxy_http
 # Expose appropriate ports
 EXPOSE 8080
 
-CMD ["/usr/bin/supervisord"]
+CMD ((cd /opt/adagios-frontend && grunt sass && grunt uglify && grunt) &) && \
+    bash -c "source /etc/apache2/envvars && exec /usr/sbin/apache2 -DFOREGROUND"
