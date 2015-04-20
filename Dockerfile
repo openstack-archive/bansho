@@ -27,8 +27,5 @@ ADD /app /opt/adagios-frontend/app
 RUN a2enmod proxy
 RUN a2enmod proxy_http
 
-# Expose appropriate ports
-EXPOSE 8080
-
 CMD ((cd /opt/adagios-frontend && grunt sass && grunt uglify && grunt) &) && \
     bash -c "source /etc/apache2/envvars && exec /usr/sbin/apache2 -DFOREGROUND"
