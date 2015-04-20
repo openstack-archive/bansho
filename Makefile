@@ -9,10 +9,10 @@ rebuild:
 	sudo docker build --no-cache -t adg-fe .
 
 interactive:
-	sudo docker run -p 8080:8080 -v ${PWD}:/opt/adagios-frontend -i -t --name adg-fe adg-fe bash
+	sudo docker run -p 8888:8888 --link surveil_surveil_1:surveil -v ${PWD}:/opt/adagios-frontend -i -t --name adg-fe adg-fe bash
 
 daemon:
-	sudo docker run -p 8080:8080 -v ${PWD}:/opt/adagios-frontend -d -t --name adg-fe adg-fe
+	sudo docker run -p 8888:8888 --link surveil_surveil_1:surveil -v ${PWD}:/opt/adagios-frontend -d -t --name adg-fe adg-fe
 
 kill:
 	sudo docker kill adg-fe
