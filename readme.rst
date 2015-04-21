@@ -31,11 +31,19 @@ To compile css files run :
 
     grunt sass
 
-To compile js files run :
+Adagios frontend now supports two backends : adagios and surveil.
+To compile js for adagios run :
 
 ::
 
-    grunt uglify
+    grunt uglify:adagios
+
+To compile js for surveil run :
+
+::
+
+    grunt uglify:surveil
+
 
 If you wish to develop in a docker container, here is how to proceed (assuming
 you already have docker installed) :
@@ -48,6 +56,7 @@ you already have docker installed) :
 
 You must leave grunt running in the background to automatically compile css
 and minify/compress js files when source code changes
+By default, grunt uses surveil backend
 
 ::
 

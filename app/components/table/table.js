@@ -8,7 +8,6 @@ angular.module('adagios.table', ['adagios.live',
                                  'adagios.table.cell_duration',
                                  'adagios.table.cell_service_check',
                                  'adagios.table.cell_last_check',
-                                 'adagios.table.cell_hosts_host',
                                  'adagios.table.cell_host_address',
                                  'adagios.table.cell_host_status'
                                 ])

@@ -41,7 +41,7 @@ module.exports = function (grunt) {
                     '!<%= project.build %>/**',
                     '!<%= project.assets %>/**'
                 ],
-                tasks: ['uglify:dev']
+                tasks: ['uglify:surveil']
             }
         },
 
@@ -92,7 +92,7 @@ module.exports = function (grunt) {
                         '<%= project.app %>/components/config/config.js',
                         '<%= project.app %>/components/utils/promise_manager.js',
                         '<%= project.app %>/components/live/live.js',
-                        '<%= project.app %>/components/live/get_objects.js',
+                        '<%= project.app %>/components/live/surveil.js',
                         '<%= project.app %>/components/ng-justgage/ng-justgage.js',
                         '<%= project.app %>/components/filters/filters.js',
                         '<%= project.app %>/components/sidebar/sidebar.js',
@@ -107,7 +107,6 @@ module.exports = function (grunt) {
                         '<%= project.app %>/components/table/cell_host/cell_host.js',
                         '<%= project.app %>/components/table/cell_last_check/cell_last_check.js',
                         '<%= project.app %>/components/table/cell_service_check/cell_service_check.js',
-                        '<%= project.app %>/components/table/cell_hosts_host/cell_hosts_host.js',
                         '<%= project.app %>/components/table/cell_host_address/cell_host_address.js',
                         '<%= project.app %>/components/table/cell_host_status/cell_host_status.js',
                         '<%= project.app %>/components/host/host.js',
@@ -131,14 +130,14 @@ module.exports = function (grunt) {
                     mangle: true
                 }
             },
-            dev: {
+            adagios: {
                 files: [
                     {
                         '<%= project.build %>/app.js': '<%= project.app %>/app.js',
                         '<%= project.build %>/components/config/config.js': '<%= project.app %>/components/config/config.js',
                         '<%= project.build %>/components/utils/promise_manager.js': '<%= project.app %>/components/utils/promise_manager.js',
                         '<%= project.build %>/components/live/live.js': '<%= project.app %>/components/live/live.js',
-                        '<%= project.build %>/components/live/get_objects.js': '<%= project.app %>/components/live/get_objects.js',
+                        '<%= project.build %>/components/live/surveil.js': '<%= project.app %>/components/live/surveil.js',
                         '<%= project.build %>/components/ng-justgage/ng-justgage.js': '<%= project.app %>/components/ng-justgage/ng-justgage.js',
                         '<%= project.build %>/components/filters/filters.js': '<%= project.app %>/components/filters/filters.js',
                         '<%= project.build %>/components/sidebar/sidebar.js': '<%= project.app %>/components/sidebar/sidebar.js',
@@ -153,7 +152,6 @@ module.exports = function (grunt) {
                         '<%= project.build %>/components/table/cell_host/cell_host.js': '<%= project.app %>/components/table/cell_host/cell_host.js',
                         '<%= project.build %>/components/table/cell_last_check/cell_last_check.js': '<%= project.app %>/components/table/cell_last_check/cell_last_check.js',
                         '<%= project.build %>/components/table/cell_service_check/cell_service_check.js': '<%= project.app %>/components/table/cell_service_check/cell_service_check.js',
-                        '<%= project.build %>/components/table/cell_hosts_host/cell_hosts_host.js': '<%= project.app %>/components/table/cell_hosts_host/cell_hosts_host.js',
                         '<%= project.build %>/components/table/cell_host_address/cell_host_address.js': '<%= project.app %>/components/table/cell_host_address/cell_host_address.js',
                         '<%= project.build %>/components/table/cell_host_status/cell_host_status.js': '<%= project.app %>/components/table/cell_host_status/cell_host_status.js',
 
@@ -180,7 +178,7 @@ module.exports = function (grunt) {
                             '<%= project.build %>/components/config/config.js',
                             '<%= project.build %>/components/utils/promise_manager.js',
                             '<%= project.build %>/components/live/live.js',
-                            '<%= project.build %>/components/live/get_objects.js',
+                            '<%= project.build %>/components/live/surveil.js',
                             '<%= project.build %>/components/ng-justgage/ng-justgage.js',
                             '<%= project.build %>/components/filters/filters.js',
                             '<%= project.build %>/components/sidebar/sidebar.js',
@@ -195,7 +193,94 @@ module.exports = function (grunt) {
                             '<%= project.build %>/components/table/cell_host/cell_host.js',
                             '<%= project.build %>/components/table/cell_last_check/cell_last_check.js',
                             '<%= project.build %>/components/table/cell_service_check/cell_service_check.js',
-                            '<%= project.build %>/components/table/cell_hosts_host/cell_hosts_host.js',
+                            '<%= project.build %>/components/table/cell_host_address/cell_host_address.js',
+                            '<%= project.build %>/components/table/cell_host_status/cell_host_status.js',
+                            '<%= project.build %>/components/host/host.js',
+                            '<%= project.build %>/components/host/host_cpu/host_cpu.js',
+                            '<%= project.build %>/components/host/host_info/host_info.js',
+                            '<%= project.build %>/components/host/host_load/host_load.js',
+                            '<%= project.build %>/components/host/host_main/host_main.js',
+                            '<%= project.build %>/components/host/host_services_list/host_services_list.js',
+                            '<%= project.build %>/components/service/service.js',
+                            '<%= project.build %>/components/service/service_main/service_main.js',
+                            '<%= project.build %>/components/service/service_info/service_info.js',
+                            '<%= project.build %>/components/service/service_metrics/service_metrics.js',
+                            '<%= project.build %>/routing_view/routing_view.js',
+                            '<%= project.build %>/templates/dashboard/dashboard.js',
+                            '<%= project.build %>/templates/single_table/single_table.js',
+                            '<%= project.build %>/templates/host/host.js',
+                            '<%= project.build %>/templates/service/service.js'
+                        ]
+                    }
+                ],
+                options: {
+                    mangle: false,
+                    beautify: true
+                }
+            },
+            surveil: {
+                files: [
+                    {
+                        '<%= project.build %>/app.js': '<%= project.app %>/app.js',
+                        '<%= project.build %>/components/config/config.js': '<%= project.app %>/components/config/config.js',
+                        '<%= project.build %>/components/utils/promise_manager.js': '<%= project.app %>/components/utils/promise_manager.js',
+                        '<%= project.build %>/components/live/live.js': '<%= project.app %>/components/live/live.js',
+                        '<%= project.build %>/components/live/surveil.js': '<%= project.app %>/components/live/surveil.js',
+                        '<%= project.build %>/components/ng-justgage/ng-justgage.js': '<%= project.app %>/components/ng-justgage/ng-justgage.js',
+                        '<%= project.build %>/components/filters/filters.js': '<%= project.app %>/components/filters/filters.js',
+                        '<%= project.build %>/components/sidebar/sidebar.js': '<%= project.app %>/components/sidebar/sidebar.js',
+                        '<%= project.build %>/components/topbar/topbar.js': '<%= project.app %>/components/topbar/topbar.js',
+                        '<%= project.build %>/components/tactical/tactical.js': '<%= project.app %>/components/tactical/tactical.js',
+                        '<%= project.build %>/components/tactical/status_overview/status_overview.js': '<%= project.app %>/components/tactical/status_overview/status_overview.js',
+                        '<%= project.build %>/components/tactical/current_health/current_health.js': '<%= project.app %>/components/tactical/current_health/current_health.js',
+                        '<%= project.build %>/components/tactical/top_alert_producers/top_alert_producers.js': '<%= project.app %>/components/tactical/top_alert_producers/top_alert_producers.js',
+                        '<%= project.build %>/components/table/actionbar/actionbar.js': '<%= project.app %>/components/table/actionbar/actionbar.js',
+                        '<%= project.build %>/components/table/table.js': '<%= project.app %>/components/table/table.js',
+                        '<%= project.build %>/components/table/cell_duration/cell_duration.js': '<%= project.app %>/components/table/cell_duration/cell_duration.js',
+                        '<%= project.build %>/components/table/cell_host/cell_host.js': '<%= project.app %>/components/table/cell_host/cell_host.js',
+                        '<%= project.build %>/components/table/cell_last_check/cell_last_check.js': '<%= project.app %>/components/table/cell_last_check/cell_last_check.js',
+                        '<%= project.build %>/components/table/cell_service_check/cell_service_check.js': '<%= project.app %>/components/table/cell_service_check/cell_service_check.js',
+                        '<%= project.build %>/components/table/cell_host_address/cell_host_address.js': '<%= project.app %>/components/table/cell_host_address/cell_host_address.js',
+                        '<%= project.build %>/components/table/cell_host_status/cell_host_status.js': '<%= project.app %>/components/table/cell_host_status/cell_host_status.js',
+
+                        '<%= project.build %>/components/host/host.js': '<%= project.app %>/components/host/host.js',
+                        '<%= project.build %>/components/host/host_cpu/host_cpu.js': '<%= project.app %>/components/host/host_cpu/host_cpu.js',
+                        '<%= project.build %>/components/host/host_info/host_info.js': '<%= project.app %>/components/host/host_info/host_info.js',
+                        '<%= project.build %>/components/host/host_load/host_load.js': '<%= project.app %>/components/host/host_load/host_load.js',
+                        '<%= project.build %>/components/host/host_main/host_main.js': '<%= project.app %>/components/host/host_main/host_main.js',
+                        '<%= project.build %>/components/host/host_services_list/host_services_list.js': '<%= project.app %>/components/host/host_services_list/host_services_list.js',
+                        '<%= project.build %>/components/service/service.js': '<%= project.app %>/components/service/service.js',
+                        '<%= project.build %>/components/service/service_main/service_main.js': '<%= project.app %>/components/service/service_main/service_main.js',
+                        '<%= project.build %>/components/service/service_info/service_info.js': '<%= project.app %>/components/service/service_info/service_info.js',
+                        '<%= project.build %>/components/service/service_metrics/service_metrics.js': '<%= project.app %>/components/service/service_metrics/service_metrics.js',
+
+                        '<%= project.build %>/routing_view/routing_view.js': '<%= project.app %>/routing_view/routing_view.js',
+                        '<%= project.build %>/templates/dashboard/dashboard.js': '<%= project.app %>/templates/dashboard/dashboard.js',
+                        '<%= project.build %>/templates/single_table/single_table.js' : '<%= project.app %>/templates/single_table/single_table.js',
+                        '<%= project.build %>/templates/host/host.js': '<%= project.app %>/templates/host/host.js',
+                        '<%= project.build %>/templates/service/service.js': '<%= project.app %>/templates/service/service.js'
+                    },
+                    {
+                        '<%= project.build %>/js/adagios.min.js' : [
+                            '<%= project.build %>/app.js',
+                            '<%= project.build %>/components/config/config.js',
+                            '<%= project.build %>/components/utils/promise_manager.js',
+                            '<%= project.build %>/components/live/live.js',
+                            '<%= project.build %>/components/live/surveil.js',
+                            '<%= project.build %>/components/ng-justgage/ng-justgage.js',
+                            '<%= project.build %>/components/filters/filters.js',
+                            '<%= project.build %>/components/sidebar/sidebar.js',
+                            '<%= project.build %>/components/topbar/topbar.js',
+                            '<%= project.build %>/components/tactical/tactical.js',
+                            '<%= project.build %>/components/tactical/status_overview/status_overview.js',
+                            '<%= project.build %>/components/tactical/current_health/current_health.js',
+                            '<%= project.build %>/components/tactical/top_alert_producers/top_alert_producers.js',
+                            '<%= project.build %>/components/table/actionbar/actionbar.js',
+                            '<%= project.build %>/components/table/table.js',
+                            '<%= project.build %>/components/table/cell_duration/cell_duration.js',
+                            '<%= project.build %>/components/table/cell_host/cell_host.js',
+                            '<%= project.build %>/components/table/cell_last_check/cell_last_check.js',
+                            '<%= project.build %>/components/table/cell_service_check/cell_service_check.js',
                             '<%= project.build %>/components/table/cell_host_address/cell_host_address.js',
                             '<%= project.build %>/components/table/cell_host_status/cell_host_status.js',
                             '<%= project.build %>/components/host/host.js',
