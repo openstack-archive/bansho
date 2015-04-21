@@ -12,9 +12,9 @@ angular.module('adagios.live')
                                   regex: '__regex'
                                 })
 
-    .service('getObjects', ['$http', 'filterSuffixes',
-        function ($http, filterSuffixes) {
-            return function (columns, filters, apiName, additionnalFields) {
+    .service('getObjects', ['$http', 'filterSuffixes', 'hostMiddleware',
+        function ($http, filterSuffixes, hostMiddleware) {
+            return function (fields, filters, apiName, additionnalFields) {
                 var filtersQuery = '',
                     additionnalQuery = '';
 
@@ -46,17 +46,35 @@ angular.module('adagios.live')
                 filtersQuery = createFiltersQuery(filters);
                 additionnalQuery = createAdditionnalQuery(additionnalFields);
 
-                return $http.get('/rest/status/json/' + apiName + '/?fields=' + columns + filtersQuery + additionnalQuery)
-                    .error(function () {
-                        throw new Error('getObjects : GET Request failed');
-                    });
+                function appendTransform(defaults, transform) {
+                    // We can't guarantee that the default transformation is an array
+                    defaults = angular.isArray(defaults) ? defaults : [defaults];
+
+                    return defaults.concat(transform);
+                };
+
+
+                function transformations(data) {
+                    if (apiName === 'hosts') {
+                        hostMiddleware(data);
+                    }
+                    return data;
+                }
+
+                return $http({
+                    url: '/adagios/rest/status/json/' + apiName + '/?fields=' + fields + filtersQuery + additionnalQuery,
+                    method: 'GET',
+                    transformResponse: appendTransform($http.defaults.transformResponse, transformations)
+                }).error(function () {
+                    throw new Error('getObjects : GET Request failed');
+                });
             };
         }])
 
     .service('getService', ['$http',
         function ($http) {
             return function (hostName, description) {
-                return $http.get('/rest/status/json/services/?host_name=' + hostName + '&description=' + description)
+                return $http.get('/adagios/rest/status/json/services/?host_name=' + hostName + '&description=' + description)
                     .error(function () {
                         throw new Error('getService : GET Request failed');
                     });
@@ -174,7 +192,7 @@ angular.module('adagios.live')
 
             req = {
                 method: 'POST',
-                url: '/rest/pynag/json/get_objects',
+                url: '/adagios/rest/pynag/json/get_objects',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
@@ -197,7 +215,7 @@ angular.module('adagios.live')
 
             req = {
                 method: 'POST',
-                url: '/rest/pynag/json/get_object',
+                url: '/adagios/rest/pynag/json/get_object',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
@@ -216,7 +234,7 @@ angular.module('adagios.live')
     .service('addObjectToScope', ['$http', 'getObjectId', 'getObjectById', function ($http, getObjectId, getObjectById) {
         return function (objectType, objectIdentifier, scope) {
             var objectData = {},
-                url = "/rest/status/json/",
+                url = "/adagios/rest/status/json/",
                 firstParameter = true,
                 endpoints = {
                     "host" : "hosts",
@@ -250,4 +268,24 @@ angular.module('adagios.live')
                         });
                 });
         };
-    }]);
+    }])
+
+    // Modify response object to conform to web ui
+    .service('hostMiddleware', function() {
+        return function(data) {
+            var i = 0,
+                conversions = {
+                    'name': 'host_name',
+                    'state': 'host_state'
+                };
+
+            for (i = 0; i < data.length; i += 1) {
+                angular.forEach(data[i], function (value, field) {
+                    if (field in conversions) {
+                        data[i][conversions[field]] = value;
+                        delete data[i][field];
+                    }
+                });
+            }
+       };
+    });

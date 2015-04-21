@@ -28,7 +28,7 @@
                             "Host status"
                         ],
                         "name": [
-                            "hosts_host",
+                            "host",
                             "host_address",
                             "duration",
                             "last_check",
@@ -93,7 +93,7 @@
                             "Host status"
                         ],
                         "name": [
-                            "hosts_host",
+                            "host",
                             "host_address",
                             "duration",
                             "last_check",
@@ -162,7 +162,7 @@
                             "Host status"
                         ],
                         "name": [
-                            "hosts_host",
+                            "host",
                             "host_address",
                             "duration",
                             "last_check",
