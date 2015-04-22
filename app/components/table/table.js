@@ -16,9 +16,9 @@ angular.module('adagios.table', ['adagios.live',
 
     .value('tablesConfig', [])
 
-    .controller('TableCtrl', ['$scope', '$interval', 'getObjects', 'tablesConfig',
+    .controller('TableCtrl', ['$scope', '$interval', 'getTableData', 'tablesConfig',
         'actionbarFilters', 'addAjaxPromise', 'tableGlobalConfig',
-        function ($scope, $interval, getObjects, tablesConfig, actionbarFilters, addAjaxPromise, tableGlobalConfig) {
+        function ($scope, $interval, getTableData, tablesConfig, actionbarFilters, addAjaxPromise, tableGlobalConfig) {
             var requestFields = [],
                 conf = tablesConfig[tableGlobalConfig.nextTableIndex],
                 getData,
@@ -39,10 +39,12 @@ angular.module('adagios.table', ['adagios.live',
             });
 
             getData = function (requestFields, filters, apiName, additionnalFields) {
-                getObjects(requestFields, filters, apiName, additionnalFields)
-                    .success(function (data) {
-                        $scope.entries = data;
-                    });
+                var promise = getTableData(requestFields, filters, apiName, additionnalFields);
+                promise.then(function (data) {
+                    $scope.entries = data;
+                }, function (reason) {
+                    throw new Error('getTableData : Query failed');
+                });
             };
 
             getData(requestFields, conf.filters, conf.apiName, conf.additionnalQueryFields);
