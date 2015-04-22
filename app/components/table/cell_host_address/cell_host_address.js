@@ -7,5 +7,5 @@ angular.module('adagios.table.cell_host_address', ['adagios.table'])
     }])
 
     .run(['tableGlobalConfig', function (tableGlobalConfig) {
-        tableGlobalConfig.cellToFieldsMap.host_address = ['host_address'];
+        tableGlobalConfig.cellToFieldsMap.host_address = ['address'];
     }]);

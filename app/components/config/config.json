@@ -66,10 +66,10 @@
                     "filters": {
                         "isnot": {
                             "state": [
-                                "0"
+                                0
                             ],
                             "host_state": [
-                                "2"
+                                2
                             ]
                         }
                     },
@@ -104,7 +104,7 @@
                     "filters": {
                         "isnot": {
                             "state": [
-                                "0"
+                                0
                             ]
                         }
                     },
@@ -134,7 +134,7 @@
                     "filters": {
                         "isnot": {
                             "state": [
-                                "0"
+                                0
                             ]
                         }
                     },

@@ -102,7 +102,7 @@ angular.module('adagios.live')
         function ($http, getObjects) {
             return function () {
                 var fields = ['state'],
-                    filters = { "isnot": { "state": [ "0" ], "host_state": [ "2" ] }},
+                    filters = { "isnot": { "state": [0], "host_state": [2] }},
                     apiName = 'services',
                     additionnalQueryFields = {'acknowledged': 0};
 
