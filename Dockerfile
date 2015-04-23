@@ -15,7 +15,13 @@ RUN mkdir -p /var/lock/apache2 /var/run/apache2 /var/run/sshd
 # Configure Apache2 for reverse-proxying
 ADD container/000-default.conf etc/apache2/sites-enabled/000-default.conf
 ADD container/ports.conf etc/apache2/ports.conf
+RUN a2enmod proxy
+RUN a2enmod proxy_http
 
+# configure script
+ADD container/configure.sh /configure.sh
+
+# Bansho files
 ADD /package.json /opt/adagios-frontend/package.json
 ADD /.bowerrc /opt/adagios-frontend/.bowerrc
 ADD /.jshintrc /opt/adagios-frontend/.jshintrc
@@ -24,8 +30,13 @@ ADD /bower.json /opt/adagios-frontend/bower.json
 RUN cd /opt/adagios-frontend/ && npm install --unsafe-perm
 ADD /app /opt/adagios-frontend/app
 
-RUN a2enmod proxy
-RUN a2enmod proxy_http
+# Override those variables at runtime to point Bansho to another backend
+ENV BANSHO_BACKEND surveil
+ENV BANSHO_SURVEIL_URL http://surveil:8080/
+ENV BANSHO_ADAGIOS_URL http://demo.kaji-project.org/
 
-CMD ((cd /opt/adagios-frontend && grunt sass && grunt uglify && grunt) &) && \
+CMD ./configure.sh && \
+    cd /opt/adagios-frontend && \
+    grunt sass && \
+    grunt uglify:${BANSHO_BACKEND} && \
     bash -c "source /etc/apache2/envvars && exec /usr/sbin/apache2 -DFOREGROUND"

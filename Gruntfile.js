@@ -314,5 +314,5 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-jslint');
 
-    grunt.registerTask('default', ['watch', 'jslint', 'uglify']);
+    grunt.registerTask('default', ['watch']);
 };
