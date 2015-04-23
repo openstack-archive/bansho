@@ -9,7 +9,7 @@ angular.module('adagios.host', ['adagios.live',
 
     .value('hostConfig', {})
 
-    .controller('HostCtrl', ['$scope', 'hostConfig', 'addObjectToScope', function ($scope, hostConfig, addObjectToScope) {
+    .controller('HostCtrl', ['$scope', 'hostConfig', 'getHost', function ($scope, hostConfig, getHost) {
         var objectType = 'host',
             objectIdentifier = {};
 
@@ -17,7 +17,9 @@ angular.module('adagios.host', ['adagios.live',
         $scope.hostName = hostConfig.hostName;
         $scope.data = {};
 
-        addObjectToScope(objectType, objectIdentifier, $scope);
+        getHost(objectType, objectIdentifier).then(function (data) {
+            $scope.data = data;
+        });
     }])
 
     .directive('adgHost', ['$http', '$compile', 'hostConfig',

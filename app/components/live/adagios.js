@@ -98,18 +98,24 @@ angular.module('adagios.live')
         }])
 
     // This service is used to count the number of service open problems
-    .service('getServiceOpenProblems', ['$http', 'getObjects',
-        function ($http, getObjects) {
+    .service('getServiceOpenProblems', ['$http', '$q', 'getObjects',
+        function ($http, $q, getObjects) {
             return function () {
                 var fields = ['state'],
                     filters = { "isnot": { "state": [0], "host_state": [2] }},
                     apiName = 'services',
-                    additionnalQueryFields = {'acknowledged': 0};
+                    additionnalQueryFields = {'acknowledged': 0},
+                    responsePromise = $q.defer();
 
-                return getObjects(fields, filters, apiName, additionnalQueryFields)
+                getObjects(fields, filters, apiName, additionnalQueryFields)
+                    .success(function (data) {
+                        responsePromise.resolve(data);
+                    })
                     .error(function () {
                         throw new Error('getServiceOpenProblems : GET Request failed');
                     });
+
+                return responsePromise.promise;
             };
         }])
 
@@ -231,43 +237,47 @@ angular.module('adagios.live')
     }])
 
     // Add object of specified type to $scope.data
-    .service('addObjectToScope', ['$http', 'getObjectId', 'getObjectById', function ($http, getObjectId, getObjectById) {
-        return function (objectType, objectIdentifier, scope) {
-            var objectData = {},
-                url = "/adagios/rest/status/json/",
-                firstParameter = true,
-                endpoints = {
-                    "host" : "hosts",
-                    "service" : "services"
-                };
+    .service('getHost', ['$http', '$q', 'getObjectId', 'getObjectById',
+        function ($http, $q, getObjectId, getObjectById) {
+            return function (objectType, objectIdentifier) {
+                var objectData = {},
+                    url = "/adagios/rest/status/json/",
+                    firstParameter = true,
+                    endpoints = {
+                        "host" : "hosts",
+                        "service" : "services"
+                    },
+                    response = {},
+                    responsePromise = $q.defer();
 
-            url += endpoints[objectType];
-            url += "/?";
+                url += endpoints[objectType];
+                url += "/?";
 
-            angular.forEach(objectIdentifier, function (value, key) {
-                if (!firstParameter) {
-                    url += "&";
-                }
-                url += key + "=" + value;
-                firstParameter = false;
+                angular.forEach(objectIdentifier, function (value, key) {
+                    if (!firstParameter) {
+                        url += "&";
+                    }
+                    url += key + "=" + value;
+                    firstParameter = false;
 
-            });
-
-            $http.get(url)
-                .success(function (data) {
-                    objectData.live = data[0];
-                    getObjectId(objectType, objectIdentifier)
-                        .success(function (data) {
-                            var objectId = data[0].id;
-                            scope.data.id = objectId;
-                            getObjectById(objectId)
-                                .success(function (data) {
-                                    objectData.config = data;
-                                    scope.data = objectData;
-                                });
-                        });
                 });
-        };
+
+                $http.get(url)
+                    .success(function (data) {
+                        response.live = data[0];
+                        getObjectId(objectType, objectIdentifier)
+                            .success(function (data) {
+                                var objectId = data[0].id;
+                                getObjectById(objectId)
+                                    .success(function (data) {
+                                        response.config = data;
+                                        responsePromise.resolve(response);
+                                    });
+                            });
+                    });
+
+                return responsePromise.promise;
+            };
     }])
 
     // Modify response object to conform to web ui

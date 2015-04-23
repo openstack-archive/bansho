@@ -2,10 +2,11 @@
 
 angular.module('adagios.live')
 
-    .service('getObjects', ['$http', 'hostQueryTransform',
-        function ($http, hostQueryTransform) {
+    .service('getObjects', ['$http', 'hostQueryTransform', 'hostMiddleware', 'serviceMiddleware',
+        function ($http, hostQueryTransform, hostMiddleware, serviceMiddleware) {
             return function (fields, filters, apiName, additionnalFields) {
-                var query = {};
+                var query = {},
+                    transformations;
                 
                 // Merges additionnalFields into filters as 'is' filter
                 angular.forEach(additionnalFields, function (value, key) {
@@ -27,12 +28,13 @@ angular.module('adagios.live')
                     return defaults.concat(transform);
                 };
 
-
-                function transformations(data) {
-                    // TODO: implement transformation
-                    return data;
+                if (apiName === 'hosts') {
+                    transformations = hostMiddleware;
+                } else if (apiName === 'services') {
+                    transformations = serviceMiddleware;
+                } else {
+                    throw new Error('getObjects : ' + apiName + ' API is not supported');
                 }
-
 
                 if (apiName === 'hosts') {
                     hostQueryTransform(fields, filters);
@@ -62,7 +64,7 @@ angular.module('adagios.live')
                     filters = {},
                     additionnalFields = { 'host_name': hostName, 'description': description };
 
-                return getObjects(fields, filters, additionnalFields)
+                return getObjects(fields, filters, 'services', additionnalFields)
                     .error(function () {
                         throw new Error('getService : POST Request failed');
                     });
@@ -187,96 +189,26 @@ angular.module('adagios.live')
             };
         }])
 
-    .service('getObjectId', ['$http', function ($http) {
+    .service('getHost', ['$http', '$q', function ($http, $q) {
         return function (objectType, objectIdentifier) {
-
-            var postString, req;
-
-            postString = "with_fields=id&object_type=" + objectType;
-            angular.forEach(objectIdentifier, function (value, key) {
-                if (key === "description") {
-                    key = "service_description";
-                }
-                postString += "&" + key + "=" + value;
-            });
-
-            req = {
-                method: 'POST',
-                url: '/rest/pynag/json/get_objects',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                data: postString
-            };
-
-            return $http(req)
-                .error(function () {
-                    throw new Error('getObjectId : POST Request failed');
-                });
-        };
-    }])
-
-    .service('getObjectById', ['$http', function ($http) {
-        return function (objectId) {
-
-            var postString, req;
-
-            postString = "with_fields=&id=" + objectId;
-
-            req = {
-                method: 'POST',
-                url: '/rest/pynag/json/get_object',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                data: postString
-            };
-
-
-            return $http(req)
-                .error(function () {
-                    throw new Error('getHostById : POST Request failed');
-                });
-        };
-    }])
-
-    // Add object of specified type to $scope.data
-    .service('addObjectToScope', ['$http', 'getObjectId', 'getObjectById', function ($http, getObjectId, getObjectById) {
-        return function (objectType, objectIdentifier, scope) {
             var objectData = {},
-                url = "/rest/status/json/",
-                firstParameter = true,
                 endpoints = {
                     "host" : "hosts",
                     "service" : "services"
-                };
+                },
+                liveUrl = '/surveil/v2/status/' + endpoints[objectType] + '/' + objectIdentifier.host_name + '/',
+                configUrl = '/surveil/v2/config/'+ endpoints[objectType] + '/' + objectIdentifier.host_name + '/',
+                responsePromise = $q.defer();
 
-            url += endpoints[objectType];
-            url += "/?";
-
-            angular.forEach(objectIdentifier, function (value, key) {
-                if (!firstParameter) {
-                    url += "&";
-                }
-                url += key + "=" + value;
-                firstParameter = false;
-
+            $http.get(liveUrl) .success(function (liveData) {
+                $http.get(configUrl).success(function (configData) {
+                    objectData.live = liveData;
+                    objectData.config = configData;
+                    responsePromise.resolve(objectData);
+                })
             });
 
-            $http.get(url)
-                .success(function (data) {
-                    objectData.live = data[0];
-                    getObjectId(objectType, objectIdentifier)
-                        .success(function (data) {
-                            var objectId = data[0].id;
-                            scope.data.id = objectId;
-                            getObjectById(objectId)
-                                .success(function (data) {
-                                    objectData.config = data;
-                                    scope.data = objectData;
-                                });
-                        });
-                });
+            return responsePromise.promise;
         };
     }])
 
@@ -297,7 +229,7 @@ angular.module('adagios.live')
 
     // Modify response object to conform to web ui
     .service('hostMiddleware', function() {
-        return function(data) {
+        return function (data) {
             var i = 0,
                 conversions = {
                     'state': 'host_state'
@@ -311,6 +243,32 @@ angular.module('adagios.live')
                     }
                 });
             }
+
+            return data;
+       };
+    })
+
+    // Modify response object to conform to web ui
+    .service('serviceMiddleware', function() {
+        return function (data) {
+            var i = 0,
+                conversions = {
+                };
+
+            if (jQuery.isEmptyObject(conversions)) {
+                return data;
+            }
+
+            for (i = 0; i < data.length; i += 1) {
+                angular.forEach(data[i], function (value, field) {
+                    if (field in conversions) {
+                        data[i][conversions[field]] = value;
+                        delete data[i][field];
+                    }
+                });
+            }
+
+            return data;
        };
     })
 
@@ -331,37 +289,29 @@ angular.module('adagios.live')
                     responsePromise = $q.defer(),
                     i,
                     found = false;
-                
-                for (i = 0; i < fields.length; i += 1) {
-                    if (fields[i] in hostKeys) {
-                        hostFields.push(hostKeys[fields[i]]);
-                    } else {
-                        serviceFields.push(fields[i]);
-                    }
+
+                if (apiName === 'hosts') {
+                    getObjects(fields, filters, 'hosts', additionnalFields)
+                        .success(function (data) {
+                            responsePromise.resolve(data);
+                        });
+                    return responsePromise.promise;
                 }
+                
+                angular.forEach(fields, function (field) {
+                    if (field in hostKeys) {
+                        hostFields.push(hostKeys[field]);
+                    } else {
+                        serviceFields.push(field);
+                    }
+                });
 
                 // Make sure that 'host_name' is in both queries as we
                 // use this field to merge data
-                for (i = 0; i < hostFields.length; i += 1) {
-                    if (hostFields[i] === 'host_name') {
-                        found = true;
-                        break;
-                    }
-                }
-
-                if (!found) {
+                if ($.inArray('host_name', hostFields) === -1) {
                     hostFields.push('host_name');
                 }
-
-                found = false;
-                for (i = 0; i < serviceFields.length; i += 1) {
-                    if (serviceFields[i] === 'host_name') {
-                        found = true;
-                        break;
-                    }
-                }
-
-                if (!found) {
+                if ($.inArray('host_name', serviceFields) === -1) {
                     serviceFields.push('host_name');
                 }
 
@@ -373,7 +323,6 @@ angular.module('adagios.live')
                     }
                 })
 
-                //{ 'isnot': {'state': [0]} },
                 angular.forEach(filters, function (filterData, filterName) {
                     angular.forEach(filterData, function (values, field) {
                         if (field in hostKeys) {
@@ -390,7 +339,7 @@ angular.module('adagios.live')
                     });
                 });
 
-                // Query host and service APIs and merges responses
+                // Queries host and service APIs and merges responses
                 getObjects(hostFields, hostFilters, 'hosts', hostAdditionnalFields)
                     .success(function (hostData) {
                         getObjects(serviceFields, serviceFilters, 'services', serviceAdditionnalFields)
@@ -402,30 +351,11 @@ angular.module('adagios.live')
                                     var host_name = hostData[i].host_name;
 
                                     angular.forEach(hostData[i], function (value, field) {
-                                        var field_ = undefined,
-                                            skip = false;
-
-                                        if (field === 'host_name') {
-                                            skip = true;
+                                        if (!(host_name in hostDict)) {
+                                            hostDict[host_name] = {};
                                         }
 
-                                        if (!skip) {
-                                            angular.forEach(hostKeys, function (value, key) {
-                                                if (value === field) {
-                                                    field_ = key;
-                                                }
-                                            });
-
-                                            if (field === undefined) {
-                                                field_ = field;
-                                            }
-
-                                            if (!(host_name in hostDict)) {
-                                                hostDict[host_name] = {};
-                                            }
-
-                                            hostDict[host_name][field_]  = value;
-                                        }
+                                        hostDict[host_name][field]  = value;
                                     });
                                 }
 
