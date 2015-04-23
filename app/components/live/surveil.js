@@ -86,20 +86,40 @@ angular.module('adagios.live')
         }])
 
     // This service is used to count the number of service open problems
-    .service('getServiceOpenProblems', ['$http', 'getObjects',
-        function ($http, getObjects) {
+    .service('getServiceOpenProblems', ['$http', '$q', 'getObjects',
+        function ($http, $q, getObjects) {
             return function () {
                 var serviceFields = ['host_name', 'state'],
                     serviceFilters = { 'isnot': { 'state': [0] } },
                     serviceAdditionnalFields = { 'acknowledged': 0 },
                     hostFields = ['host_name', 'state'],
                     hostFilters = { 'isnot': { 'state': [2] } },
-                    hostAdditionnalFields = {};
+                    hostAdditionnalFields = {},
+                    responsePromise = $q.defer();
 
-                return getObjects(fields, filters, apiName, additionnalFields)
-                    .error(function () {
-                        throw new Error('getServiceOpenProblems : POST Request failed');
+                getObjects(hostFields, hostFilters, 'hosts', hostAdditionnalFields)
+                    .success(function (hostData) {
+                        var hostsResult = {},
+                            i;
+
+                        // Creates a host dictionnary for performance
+                        for (i = 0; i < hostData.length; i += 1) {
+                            hostsResult[hostData[i].host_name] = '';
+                        }
+
+                        getObjects(serviceFields, serviceFilters, 'services', serviceAdditionnalFields)
+                            .success(function (serviceData) {
+                                var result = [];
+                                for (i = 0; i < serviceData.length; i += 1) {
+                                    if (serviceData[i].host_name in hostsResult) {
+                                        result.push(serviceData[i]);
+                                    }
+                                }
+                                responsePromise.resolve(result);
+                            });
                     });
+
+                return responsePromise.promise;
             };
         }])
 

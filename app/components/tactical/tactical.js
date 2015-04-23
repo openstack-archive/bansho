@@ -27,26 +27,26 @@ angular.module('adagios.tactical', ['adagios.live',
             $scope.currentHealth = tacticalConfig.currentHealth;
             $scope.topAlertProducers = tacticalConfig.topAlertProducers;
 
-            $scope.hostsRatio = 0;
-            $scope.servicesRatio = 0;
-            $scope.hostProblems = 0;
-            $scope.totalHosts = 0;
-            $scope.serviceProblems = 0;
-            $scope.totalServices = 0;
+            $scope.hostsRatio = undefined;
+            $scope.servicesRatio = undefined;
+            $scope.hostProblems = undefined;
+            $scope.totalHosts = undefined;
+            $scope.serviceProblems = undefined;
+            $scope.totalServices = undefined;
 
             getData = function () {
-                getHostProblems().success(function (data) {
-                    $scope.hostProblems = data.length;
-                    getTotalHosts().success(function (data) {
-                        $scope.totalHosts = data.length;
+                getHostProblems().success(function (hostProblems) {
+                    $scope.hostProblems = hostProblems.length;
+                    getTotalHosts().success(function (allHosts) {
+                        $scope.totalHosts = allHosts.length;
                         $scope.hostsRatio = ($scope.totalHosts - $scope.hostProblems) / $scope.totalHosts * 100;
                     });
                 });
 
-                getServiceProblems().success(function (data) {
-                    $scope.serviceProblems = data.length;
-                    getTotalServices().success(function (data) {
-                        $scope.totalServices = data.length;
+                getServiceProblems().success(function (serviceProblems) {
+                    $scope.serviceProblems = serviceProblems.length;
+                    getTotalServices().success(function (allServices) {
+                        $scope.totalServices = allServices.length;
                         $scope.servicesRatio = ($scope.totalServices - $scope.serviceProblems) / $scope.totalServices * 100;
                     });
                 });

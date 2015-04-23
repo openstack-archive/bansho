@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('adagios.tactical.status_overview', ['ngRoute' ])
+angular.module('adagios.tactical.status_overview', [])
 
     .controller('TacticalStatusOverViewCtrl', ['$scope', function ($scope) {
         angular.noop();

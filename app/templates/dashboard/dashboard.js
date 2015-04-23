@@ -44,8 +44,8 @@ angular.module('adagios.view.dashboard', ['ngRoute',
             getData = function () {
                 getHostOpenProblems().success(function (data) {
                     $scope.nbHostOpenProblems = data.length;
-                    getServiceOpenProblems().success(function (data) {
-                        $scope.nbServiceOpenProblems = data.length;
+                    getServiceOpenProblems().then(function (openProblems) {
+                        $scope.nbServiceOpenProblems = openProblems.length;
                         $scope.totalOpenProblems = $scope.nbServiceOpenProblems + $scope.nbHostOpenProblems;
                     });
                 });
