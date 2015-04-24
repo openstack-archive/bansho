@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('adagios.host.main', [])
+angular.module('bansho.host.main', [])
 
     .controller('HostMainCtrl', ['$scope', function ($scope) {
         angular.noop();

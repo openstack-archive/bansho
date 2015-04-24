@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('adagios.service', ['adagios.live',
-                                   'adagios.service.main',
-                                   'adagios.service.info',
-                                   'adagios.service.metrics'])
+angular.module('bansho.service', ['bansho.live',
+                                   'bansho.service.main',
+                                   'bansho.service.info',
+                                   'bansho.service.metrics'])
 
     .value('serviceConfig', {})
 

@@ -5,7 +5,7 @@ describe('In Table module', function () {
         $rootScope,
         $httpBackend;
 
-    beforeEach(module('adagios.table'));
+    beforeEach(module('bansho.table'));
 
     beforeEach(inject(function (_$compile_, _$rootScope_, _$httpBackend_) {
         $compile = _$compile_;

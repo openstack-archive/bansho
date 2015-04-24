@@ -2,7 +2,7 @@
 
 describe('Tactical module', function () {
 
-    beforeEach(module('adagios.tactical'));
+    beforeEach(module('bansho.tactical'));
 
     describe('TacticalCtrl', function () {
 

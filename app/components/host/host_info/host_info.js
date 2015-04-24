@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('adagios.host.info', [])
+angular.module('bansho.host.info', [])
 
     .controller('HostInfoCtrl', ['$scope', function ($scope) {
         $scope.active_checks = ($scope.data.live.active_checks_enabled === '1') ? 'Enabled' : 'Disabled';

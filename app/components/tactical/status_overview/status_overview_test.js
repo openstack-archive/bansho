@@ -6,7 +6,7 @@ describe('Status Overview tactical submodule', function () {
         $controller,
         $httpBackend;
 
-    beforeEach(module('adagios.tactical.status_overview'));
+    beforeEach(module('bansho.tactical.status_overview'));
 
     beforeEach(inject(function (_$compile_, _$rootScope_, _$controller_, _$httpBackend_) {
         $compile = _$compile_;

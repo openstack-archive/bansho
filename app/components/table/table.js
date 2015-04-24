@@ -1,15 +1,15 @@
 'use strict';
 
-angular.module('adagios.table', ['adagios.live',
-                                 'adagios.utils.promiseManager',
-                                 'adagios.table.actionbar',
-                                 'adagios.filters',
-                                 'adagios.table.cell_host',
-                                 'adagios.table.cell_duration',
-                                 'adagios.table.cell_service_check',
-                                 'adagios.table.cell_last_check',
-                                 'adagios.table.cell_host_address',
-                                 'adagios.table.cell_host_status'
+angular.module('bansho.table', ['bansho.live',
+                                 'bansho.utils.promiseManager',
+                                 'bansho.table.actionbar',
+                                 'bansho.filters',
+                                 'bansho.table.cell_host',
+                                 'bansho.table.cell_duration',
+                                 'bansho.table.cell_service_check',
+                                 'bansho.table.cell_last_check',
+                                 'bansho.table.cell_host_address',
+                                 'bansho.table.cell_host_status'
                                 ])
 
     .value('tableGlobalConfig', {'cellToFieldsMap': {}, 'cellWrappableField': {}, 'nextTableIndex': 0})

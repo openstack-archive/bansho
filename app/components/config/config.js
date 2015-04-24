@@ -5,7 +5,7 @@ function AdagiosConfig(data) {
     this.data = data;
 }
 
-angular.module('adagios.config', [])
+angular.module('bansho.config', [])
 
     .provider('readConfig', function ReadConfigProvider() {
 

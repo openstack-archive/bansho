@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('adagios.utils.promiseManager', [])
+angular.module('bansho.utils.promiseManager', [])
 
     .value('ajaxPromises', [])
 

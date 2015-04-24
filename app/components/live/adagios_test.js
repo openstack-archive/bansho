@@ -3,7 +3,7 @@
 describe('In Adagios Live', function () {
     var $httpBackend;
 
-    beforeEach(module('adagios.live'));
+    beforeEach(module('bansho.live'));
 
     beforeEach(inject(function (_$httpBackend_) {
         $httpBackend = _$httpBackend_;

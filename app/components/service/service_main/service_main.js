@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('adagios.service.main', [])
+angular.module('bansho.service.main', [])
 
     .controller('ServiceMainCtrl', ['$scope', function ($scope) {
         angular.noop();

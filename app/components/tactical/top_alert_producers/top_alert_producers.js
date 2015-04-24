@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('adagios.tactical.top_alert_producers', ['ngRoute' ])
+angular.module('bansho.tactical.top_alert_producers', ['ngRoute' ])
     .controller('TacticalTopAlertProducers', ['$scope', function ($scope) {
         $scope.hosts = [
             {

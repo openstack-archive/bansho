@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('adagios.host.load', [])
+angular.module('bansho.host.load', [])
 
     .controller('HostLoadCtrl', ['$scope', 'getObjects', function ($scope, getObjects) {
         var hostName = $scope.hostName,

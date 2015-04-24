@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("adagios.view.service", [ "adagios.live" ])
+angular.module("bansho.view.service", [ "bansho.live" ])
 
     .controller("ServiceViewCtrl", [ "$scope", "$routeParams",
         function ($scope, $routeParams) {

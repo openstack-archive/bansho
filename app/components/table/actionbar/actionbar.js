@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('adagios.table.actionbar', [])
+angular.module('bansho.table.actionbar', [])
 
     .factory('actionbarFilters', function () {
         var actionbarFilters = {

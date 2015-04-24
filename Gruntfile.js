@@ -82,11 +82,11 @@ module.exports = function (grunt) {
             }
         },
 
-        // Minify and concatenate adagios in one file
+        // Minify and concatenate bansho in one file
         uglify: {
             compress: {
                 files: [{
-                    '<%= project.build %>/js/adagios.min.js' : [
+                    '<%= project.build %>/js/bansho.min.js' : [
                         '<%= project.app %>/app.js',
                         '<%= project.app %>/app.js',
                         '<%= project.app %>/components/config/config.js',
@@ -173,7 +173,7 @@ module.exports = function (grunt) {
                         '<%= project.build %>/templates/service/service.js': '<%= project.app %>/templates/service/service.js'
                     },
                     {
-                        '<%= project.build %>/js/adagios.min.js' : [
+                        '<%= project.build %>/js/bansho.min.js' : [
                             '<%= project.build %>/app.js',
                             '<%= project.build %>/components/config/config.js',
                             '<%= project.build %>/components/utils/promise_manager.js',
@@ -261,7 +261,7 @@ module.exports = function (grunt) {
                         '<%= project.build %>/templates/service/service.js': '<%= project.app %>/templates/service/service.js'
                     },
                     {
-                        '<%= project.build %>/js/adagios.min.js' : [
+                        '<%= project.build %>/js/bansho.min.js' : [
                             '<%= project.build %>/app.js',
                             '<%= project.build %>/components/config/config.js',
                             '<%= project.build %>/components/utils/promise_manager.js',

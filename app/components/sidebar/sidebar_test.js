@@ -6,7 +6,7 @@ describe('Sidebar module', function () {
         $controller,
         $httpBackend;
 
-    beforeEach(module('adagios.sidebar'));
+    beforeEach(module('bansho.sidebar'));
 
     beforeEach(inject(function (_$compile_, _$rootScope_, _$controller_, _$httpBackend_) {
         $compile = _$compile_;

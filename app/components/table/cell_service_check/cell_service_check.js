@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('adagios.table.cell_service_check', ['adagios.table'])
+angular.module('bansho.table.cell_service_check', ['bansho.table'])
 
     .controller('CellServiceCheckCtrl', ['$scope', function ($scope) {
         if ($scope.entry.state === 0) {

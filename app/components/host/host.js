@@ -1,11 +1,11 @@
 'use strict';
 
-angular.module('adagios.host', ['adagios.live',
-                                'adagios.host.main',
-                                'adagios.host.load',
-                                'adagios.host.cpu',
-                                'adagios.host.info',
-                                'adagios.host.services_list'])
+angular.module('bansho.host', ['bansho.live',
+                                'bansho.host.main',
+                                'bansho.host.load',
+                                'bansho.host.cpu',
+                                'bansho.host.info',
+                                'bansho.host.services_list'])
 
     .value('hostConfig', {})
 

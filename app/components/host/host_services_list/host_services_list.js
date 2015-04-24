@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('adagios.host.services_list', [])
+angular.module('bansho.host.services_list', [])
 
     .controller('HostServicesListCtrl', ['$scope', function ($scope) {
         angular.noop();

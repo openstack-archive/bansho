@@ -6,7 +6,7 @@ describe('Current Health tactical submodule', function () {
         $controller,
         $httpBackend;
 
-    beforeEach(module('adagios.tactical.current_health'));
+    beforeEach(module('bansho.tactical.current_health'));
 
     beforeEach(inject(function (_$compile_, _$rootScope_, _$controller_, _$httpBackend_) {
         $compile = _$compile_;

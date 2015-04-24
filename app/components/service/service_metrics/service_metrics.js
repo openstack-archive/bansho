@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('adagios.service.metrics', [])
+angular.module('bansho.service.metrics', [])
 
     .controller('ServiceMetricsCtrl', ['$scope', function ($scope) {
         angular.noop();

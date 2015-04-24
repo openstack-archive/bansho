@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('adagios.live', []);
+angular.module('bansho.live', []);

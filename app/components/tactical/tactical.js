@@ -1,10 +1,10 @@
 'use strict';
 
-angular.module('adagios.tactical', ['adagios.live',
-                                    'adagios.utils.promiseManager',
-                                    'adagios.tactical.status_overview',
-                                    'adagios.tactical.current_health',
-                                    'adagios.tactical.top_alert_producers'
+angular.module('bansho.tactical', ['bansho.live',
+                                    'bansho.utils.promiseManager',
+                                    'bansho.tactical.status_overview',
+                                    'bansho.tactical.current_health',
+                                    'bansho.tactical.top_alert_producers'
                                    ])
 
     .value('tacticalConfig', {})

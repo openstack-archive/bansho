@@ -1,10 +1,10 @@
 'use strict';
 
-angular.module('adagios.view.singleTable', ['ngRoute',
-                                            'adagios.tactical.status_overview',
-                                            'adagios.tactical.current_health',
-                                            'adagios.tactical.top_alert_producers',
-                                            'adagios.table'
+angular.module('bansho.view.singleTable', ['ngRoute',
+                                            'bansho.tactical.status_overview',
+                                            'bansho.tactical.current_health',
+                                            'bansho.tactical.top_alert_producers',
+                                            'bansho.table'
                                            ])
 
     .value('singleTableConfig', {})

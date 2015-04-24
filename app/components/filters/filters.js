@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('adagios.filters', [])
+angular.module('bansho.filters', [])
 
     .filter('timeElapsed', [function () {
         return function (input) {

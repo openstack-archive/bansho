@@ -4,28 +4,28 @@ angular.element(document).ready(function () {
 
     $.get('components/config/config.json', function (data) {
 
-        angular.module('adagios.config').config(['readConfigProvider', function (readConfigProvider) {
+        angular.module('bansho.config').config(['readConfigProvider', function (readConfigProvider) {
             readConfigProvider.loadJSON(data);
         }]);
 
-        angular.bootstrap(document, ['adagios']);
+        angular.bootstrap(document, ['bansho']);
     }, "json");
 
 });
 
-angular.module('adagios', [
+angular.module('bansho', [
     'ngRoute',
-    'adagios.config',
-    'adagios.utils.promiseManager',
-    'adagios.topbar',
-    'adagios.sidebar',
-    'adagios.host',
-    'adagios.service',
-    'adagios.view',
-    'adagios.view.dashboard',
-    'adagios.view.singleTable',
-    'adagios.view.host',
-    'adagios.view.service'
+    'bansho.config',
+    'bansho.utils.promiseManager',
+    'bansho.topbar',
+    'bansho.sidebar',
+    'bansho.host',
+    'bansho.service',
+    'bansho.view',
+    'bansho.view.dashboard',
+    'bansho.view.singleTable',
+    'bansho.view.host',
+    'bansho.view.service'
 ])
 
     .config(['$routeProvider', function ($routeProvider) {

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('adagios.table.cell_duration', ['adagios.table'])
+angular.module('bansho.table.cell_duration', ['bansho.table'])
 
     .controller('CellDurationCtrl', [function () {
         angular.noop();

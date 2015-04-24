@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('adagios.view', ['ngRoute',
-                                'adagios.config'
+angular.module('bansho.view', ['ngRoute',
+                                'bansho.config'
                                ])
 
     .value('viewsTemplate', {})
