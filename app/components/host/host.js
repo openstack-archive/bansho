@@ -22,7 +22,7 @@ angular.module('adagios.host', ['adagios.live',
         });
     }])
 
-    .directive('adgHost', ['$http', '$compile', 'hostConfig',
+    .directive('banshoHost', ['$http', '$compile', 'hostConfig',
         function ($http, $compile, hostConfig) {
             return {
                 restrict: 'E',
@@ -32,7 +32,7 @@ angular.module('adagios.host', ['adagios.live',
                         var template = 'components/host/host.html';
 
                         if (!attrs.hostName) {
-                            throw new Error('<adg-host> "host-name" attribute must be defined');
+                            throw new Error('<bansho-host> "host-name" attribute must be defined');
                         }
 
                         hostConfig.hostName = {};

@@ -31,7 +31,7 @@ describe('Topbar module', function () {
     describe('Topbar directive', function () {
 
         it('should insert the number of warnings', function () {
-            var element = $compile('<adg-topbar></adg-topbar>')($rootScope);
+            var element = $compile('<bansho-topbar></bansho-topbar>')($rootScope);
             $httpBackend.flush();
             $rootScope.notifications = 44;
             $rootScope.$digest();

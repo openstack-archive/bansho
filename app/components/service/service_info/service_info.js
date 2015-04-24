@@ -6,7 +6,7 @@ angular.module('adagios.service.info', [])
         $scope.acknowledged = $scope.data[0].acknowledged === "1" ? "Yes" : "No";
     }])
 
-    .directive('adgServiceInfo', function () {
+    .directive('banshoServiceInfo', function () {
         return {
             restrict: 'E',
             templateUrl: 'components/service/service_info/service_info.html'

@@ -67,7 +67,7 @@ angular.module('adagios.tactical', ['adagios.live',
             });
         }])
 
-    .directive('adgTactical', ['tacticalConfig', function (tacticalConfig) {
+    .directive('banshoTactical', ['tacticalConfig', function (tacticalConfig) {
         return {
             restrict: 'E',
             templateUrl: 'components/tactical/tactical.html',

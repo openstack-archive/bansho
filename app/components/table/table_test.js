@@ -13,13 +13,13 @@ describe('In Table module', function () {
         $httpBackend = _$httpBackend_;
     }));
 
-    describe('adgCell directive', function () {
+    describe('banshoCell directive', function () {
 
         it('should send a get request to the proper cell template', function () {
             var cells = ['host', 'service_check', 'duration', 'last_check'];
 
             angular.forEach(cells, function (cell) {
-                var elem = angular.element('<td adg-cell cell-name="' + cell + '"></td>');
+                var elem = angular.element('<td bansho-cell cell-name="' + cell + '"></td>');
                 $compile(elem)($rootScope);
                 $httpBackend.expectGET('components/table/cell_' + cell + '/cell_' + cell + '.html').respond('');
                 $httpBackend.flush();
@@ -27,10 +27,10 @@ describe('In Table module', function () {
         });
     });
 
-    describe('adgTable directive', function () {
+    describe('banshoTable directive', function () {
 
         it('should request table/table.html template', function () {
-            var elem = angular.element('<adg-table cells-name="host,service_check,duration,last_check" cells-text="Host,Service Check,Duration,Last check" api-name="services" is-wrappable="true"></adg-table>');
+            var elem = angular.element('<bansho-table cells-name="host,service_check,duration,last_check" cells-text="Host,Service Check,Duration,Last check" api-name="services" is-wrappable="true"></bansho-table>');
             $compile(elem)($rootScope);
             $httpBackend.expectGET('components/table/table.html').respond('');
             $httpBackend.flush();

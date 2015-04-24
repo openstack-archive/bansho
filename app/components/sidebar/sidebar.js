@@ -14,7 +14,7 @@ angular.module('adagios.sidebar', [])
         };
     }])
 
-    .directive('adgSidebar', function () {
+    .directive('banshoSidebar', function () {
         return {
             restrict: 'E',
             templateUrl: "components/sidebar/sidebar.html"

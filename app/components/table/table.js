@@ -64,7 +64,7 @@ angular.module('adagios.table', ['adagios.live',
             tableGlobalConfig.nextTableIndex += 1;
         }])
 
-    .directive('adgTable', ['$http', '$compile', 'tablesConfig', 'tableGlobalConfig',
+    .directive('banshoTable', ['$http', '$compile', 'tablesConfig', 'tableGlobalConfig',
         function ($http, $compile, tablesConfig, tableGlobalConfig) {
             return {
                 restrict: 'E',
@@ -75,7 +75,7 @@ angular.module('adagios.table', ['adagios.live',
                             conf;
 
                         if (!attrs.cellsText || !attrs.cellsName || !attrs.apiName || !attrs.isWrappable) {
-                            throw new Error('<adg-table> "cells-text", "cells-name", "api-name"'
+                            throw new Error('<bansho-table> "cells-text", "cells-name", "api-name"'
                                             + ' and "is-wrappable" attributes must be defined');
                         }
 
@@ -117,13 +117,13 @@ angular.module('adagios.table', ['adagios.live',
             };
         }])
 
-    .directive('adgCell', ['$http', '$compile', function ($http, $compile) {
+    .directive('banshoCell', ['$http', '$compile', function ($http, $compile) {
         return {
             restrict: 'A',
             compile: function () {
                 return function (scope, element, attrs) {
                     if (!attrs.cellName) {
-                        throw new Error('<adg-cell> "cell-name" attribute must be defined');
+                        throw new Error('<bansho-cell> "cell-name" attribute must be defined');
                     }
 
                     var template = 'components/table/cell_' + attrs.cellName + '/cell_' + attrs.cellName + '.html';

@@ -23,7 +23,7 @@ angular.module('adagios.topbar', ['adagios.live'])
             getData();
         }])
 
-    .directive('adgTopbar', function () {
+    .directive('banshoTopbar', function () {
         return {
             restrict: 'E',
             templateUrl: 'components/topbar/topbar.html'

@@ -6,7 +6,7 @@ angular.module('adagios.host.main', [])
         angular.noop();
     }])
 
-    .directive('adgHostMain', function () {
+    .directive('banshoHostMain', function () {
         return {
             restrict: 'E',
             templateUrl: 'components/host/host_main/host_main.html'

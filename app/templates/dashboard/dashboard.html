@@ -2,10 +2,10 @@
   <header class="main__overview">
     <h2 class="main__overview__title">{{dashboardTactical[0].title}}</h2>
     
-    <adg-tactical status-overview="{{dashboardTactical[0].statusOverview}}"
+    <bansho-tactical status-overview="{{dashboardTactical[0].statusOverview}}"
                   current-health="{{dashboardTactical[0].currentHealth}}"
                   top-alert-producers="{{dashboardTactical[0].topAlertProducers}}"
-                  refresh-interval="{{dashboardRefreshInterval}}"></adg-tactical>
+                  refresh-interval="{{dashboardRefreshInterval}}"></bansho-tactical>
     
   </header>
   
@@ -35,7 +35,7 @@
       </ul>
     </nav>
     
-    <adg-table-actionbar></adg-table-actionbar>
+    <bansho-table-actionbar></bansho-table-actionbar>
     
     <div class="tab-content">
       <div role="tabpanel" class="problems tab-pane active" id="openProblems">
@@ -52,7 +52,7 @@
             </p>
           </header>
 
-          <adg-table cells-text="{{dashboardTables[0].CellsText}}"
+          <bansho-table cells-text="{{dashboardTables[0].CellsText}}"
                      cells-name="{{dashboardTables[0].CellsName}}"
                      api-name="{{dashboardTables[0].ApiName}}"
                      filters="{{dashboardTables[0].Filters}}"
@@ -60,7 +60,7 @@
                      no-repeat-cell="{{dashboardTables[0].NoRepeatCell}}"
                      refresh-interval="{{dashboardRefreshInterval}}"
                      additionnal-query-fields="{{dashboardTables[0].additionnalQueryFields}}"
-                     table-id="0"></adg-table>
+                     table-id="0"></bansho-table>
 
         </span>
 
@@ -77,7 +77,7 @@
             </p>
           </header>
 
-          <adg-table cells-text="{{dashboardTables[1].CellsText}}"
+          <bansho-table cells-text="{{dashboardTables[1].CellsText}}"
                      cells-name="{{dashboardTables[1].CellsName}}"
                      api-name="{{dashboardTables[1].ApiName}}"
                      filters="{{dashboardTables[1].Filters}}"
@@ -85,7 +85,7 @@
                      no-repeat-cell="{{dashboardTables[1].NoRepeatCell}}"
                      refresh-interval="{{dashboardRefreshInterval}}"
                      additionnal-query-fields="{{dashboardTables[1].additionnalQueryFields}}"
-                     table-id="1"></adg-table>
+                     table-id="1"></bansho-table>
           
         </span>
       </div>
@@ -104,14 +104,14 @@
             </p>
           </header>
 
-          <adg-table cells-text="{{dashboardTables[2].CellsText}}"
+          <bansho-table cells-text="{{dashboardTables[2].CellsText}}"
                      cells-name="{{dashboardTables[2].CellsName}}"
                      api-name="{{dashboardTables[2].ApiName}}"
                      filters="{{dashboardTables[2].Filters}}"
                      is-wrappable="{{dashboardTables[2].IsWrappable}}"
                      no-repeat-cell="{{dashboardTables[2].NoRepeatCell}}"
                      refresh-interval="{{dashboardRefreshInterval}}"
-                     table-id="2"></adg-table>
+                     table-id="2"></bansho-table>
         </span>
 
         <span ng-hide="nbServiceProblems == 0">
@@ -127,14 +127,14 @@
             </p>
           </header>
 
-          <adg-table cells-text="{{dashboardTables[3].CellsText}}"
+          <bansho-table cells-text="{{dashboardTables[3].CellsText}}"
                      cells-name="{{dashboardTables[3].CellsName}}"
                      api-name="{{dashboardTables[3].ApiName}}"
                      filters="{{dashboardTables[3].Filters}}"
                      is-wrappable="{{dashboardTables[3].IsWrappable}}"
                      no-repeat-cell="{{dashboardTables[3].NoRepeatCell}}"
                      refresh-interval="{{dashboardRefreshInterval}}"
-                     table-id="3"></adg-table>
+                     table-id="3"></bansho-table>
        </span>
       </div>
     </div>

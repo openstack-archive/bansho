@@ -16,7 +16,7 @@ angular.module('adagios.host.cpu', [])
             });
     }])
 
-    .directive('adgHostCpu', function () {
+    .directive('banshoHostCpu', function () {
         return {
             restrict: 'E',
             templateUrl: 'components/host/host_cpu/host_cpu.html'

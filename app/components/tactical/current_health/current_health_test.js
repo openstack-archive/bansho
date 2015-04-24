@@ -33,7 +33,7 @@ describe('Current Health tactical submodule', function () {
     describe('Current health directive', function () {
 
         it('should send a GET request', function () {
-            var element = $compile("<adg-current-health></adg-current-health>")($rootScope);
+            var element = $compile("<bansho-current-health></bansho-current-health>")($rootScope);
             $httpBackend.flush();
 
             expect(element.text()).toBe('Current Health');

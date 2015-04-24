@@ -17,7 +17,7 @@ angular.module('adagios.service', ['adagios.live',
             });
         }])
 
-    .directive('adgService', ['$http', '$compile', 'serviceConfig',
+    .directive('banshoService', ['$http', '$compile', 'serviceConfig',
         function ($http, $compile, serviceConfig) {
             return {
                 restrict: 'E',
@@ -27,7 +27,7 @@ angular.module('adagios.service', ['adagios.live',
                         var template = 'components/service/service.html';
 
                         if (!attrs.hostName && !!attrs.description) {
-                            throw new Error('<adg-service> "host-name" and "description" attributes must be defined');
+                            throw new Error('<bansho-service> "host-name" and "description" attributes must be defined');
                         }
 
                         serviceConfig.hostName = '';
