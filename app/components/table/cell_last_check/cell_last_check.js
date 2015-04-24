@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('adagios.table.cell_last_check', ['adagios.table'])
+angular.module('bansho.table.cell_last_check', ['bansho.table'])
 
     .controller('CellLastCheckCtrl', [function () {
         angular.noop();

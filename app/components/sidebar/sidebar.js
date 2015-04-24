@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('adagios.sidebar', [])
+angular.module('bansho.sidebar', [])
 
     .controller('SideBarCtrl', ['$scope', '$location', function ($scope, $location) {
         $scope.getClass = function (path) {
@@ -14,7 +14,7 @@ angular.module('adagios.sidebar', [])
         };
     }])
 
-    .directive('adgSidebar', function () {
+    .directive('banshoSidebar', function () {
         return {
             restrict: 'E',
             templateUrl: "components/sidebar/sidebar.html"

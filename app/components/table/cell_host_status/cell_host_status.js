@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('adagios.table.cell_host_status', ['adagios.table'])
+angular.module('bansho.table.cell_host_status', ['bansho.table'])
 
     .controller('CellHostStatusCtrl', ['$scope', function ($scope) {
         $scope.entry.host_status = "";

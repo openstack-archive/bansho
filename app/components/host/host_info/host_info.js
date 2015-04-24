@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('adagios.host.info', [])
+angular.module('bansho.host.info', [])
 
     .controller('HostInfoCtrl', ['$scope', function ($scope) {
         $scope.active_checks = ($scope.data.live.active_checks_enabled === '1') ? 'Enabled' : 'Disabled';
@@ -9,7 +9,7 @@ angular.module('adagios.host.info', [])
         $scope.flap_detection_enabled = ($scope.data.config.flap_detection_enabled === '1') ? 'Enabled' : 'Disabled';
     }])
 
-    .directive('adgHostInfo', function () {
+    .directive('banshoHostInfo', function () {
         return {
             restrict: 'E',
             templateUrl: 'components/host/host_info/host_info.html'

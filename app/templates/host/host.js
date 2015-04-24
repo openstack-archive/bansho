@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('adagios.view.host', ['adagios.live'])
+angular.module('bansho.view.host', ['bansho.live'])
 
     .controller('HostViewCtrl', ['$http', '$scope', '$routeParams',
         function ($http, $scope, $routeParams) {

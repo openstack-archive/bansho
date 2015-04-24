@@ -1,11 +1,11 @@
 'use strict';
 
-angular.module('adagios.host', ['adagios.live',
-                                'adagios.host.main',
-                                'adagios.host.load',
-                                'adagios.host.cpu',
-                                'adagios.host.info',
-                                'adagios.host.services_list'])
+angular.module('bansho.host', ['bansho.live',
+                                'bansho.host.main',
+                                'bansho.host.load',
+                                'bansho.host.cpu',
+                                'bansho.host.info',
+                                'bansho.host.services_list'])
 
     .value('hostConfig', {})
 
@@ -22,7 +22,7 @@ angular.module('adagios.host', ['adagios.live',
         });
     }])
 
-    .directive('adgHost', ['$http', '$compile', 'hostConfig',
+    .directive('banshoHost', ['$http', '$compile', 'hostConfig',
         function ($http, $compile, hostConfig) {
             return {
                 restrict: 'E',
@@ -32,7 +32,7 @@ angular.module('adagios.host', ['adagios.live',
                         var template = 'components/host/host.html';
 
                         if (!attrs.hostName) {
-                            throw new Error('<adg-host> "host-name" attribute must be defined');
+                            throw new Error('<bansho-host> "host-name" attribute must be defined');
                         }
 
                         hostConfig.hostName = {};

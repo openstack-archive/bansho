@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('adagios.host.cpu', [])
+angular.module('bansho.host.cpu', [])
 
     .controller('HostCpuCtrl', ['$scope', 'getObjects', function ($scope, getObjects) {
         var hostName = $scope.hostName,
@@ -16,7 +16,7 @@ angular.module('adagios.host.cpu', [])
             });
     }])
 
-    .directive('adgHostCpu', function () {
+    .directive('banshoHostCpu', function () {
         return {
             restrict: 'E',
             templateUrl: 'components/host/host_cpu/host_cpu.html'

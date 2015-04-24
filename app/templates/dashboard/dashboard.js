@@ -1,10 +1,10 @@
 'use strict';
 
-angular.module('adagios.view.dashboard', ['ngRoute',
-                                          'adagios.utils.promiseManager',
-                                          'adagios.tactical',
-                                          'adagios.table',
-                                          'adagios.live'
+angular.module('bansho.view.dashboard', ['ngRoute',
+                                          'bansho.utils.promiseManager',
+                                          'bansho.tactical',
+                                          'bansho.table',
+                                          'bansho.live'
                                          ])
 
     .value('dashboardConfig', {})

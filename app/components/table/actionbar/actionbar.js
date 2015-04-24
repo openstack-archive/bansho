@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('adagios.table.actionbar', [])
+angular.module('bansho.table.actionbar', [])
 
     .factory('actionbarFilters', function () {
         var actionbarFilters = {
@@ -68,7 +68,7 @@ angular.module('adagios.table.actionbar', [])
         };
     })
 
-    .directive('adgTableActionbar', function () {
+    .directive('banshoTableActionbar', function () {
         return {
             restrict: 'E',
             templateUrl: 'components/table/actionbar/actionbar.html'

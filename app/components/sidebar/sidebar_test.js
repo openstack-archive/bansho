@@ -6,7 +6,7 @@ describe('Sidebar module', function () {
         $controller,
         $httpBackend;
 
-    beforeEach(module('adagios.sidebar'));
+    beforeEach(module('bansho.sidebar'));
 
     beforeEach(inject(function (_$compile_, _$rootScope_, _$controller_, _$httpBackend_) {
         $compile = _$compile_;
@@ -31,7 +31,7 @@ describe('Sidebar module', function () {
     describe('Sidebar directive', function () {
 
         it('should send a GET request', function () {
-            var element = $compile('<adg-sidebar></adg-sidebar>')($rootScope);
+            var element = $compile('<bansho-sidebar></bansho-sidebar>')($rootScope);
             $httpBackend.flush();
 
             expect(element.html()).toBe('<li></li>');

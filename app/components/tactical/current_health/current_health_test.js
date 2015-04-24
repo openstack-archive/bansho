@@ -6,7 +6,7 @@ describe('Current Health tactical submodule', function () {
         $controller,
         $httpBackend;
 
-    beforeEach(module('adagios.tactical.current_health'));
+    beforeEach(module('bansho.tactical.current_health'));
 
     beforeEach(inject(function (_$compile_, _$rootScope_, _$controller_, _$httpBackend_) {
         $compile = _$compile_;
@@ -33,7 +33,7 @@ describe('Current Health tactical submodule', function () {
     describe('Current health directive', function () {
 
         it('should send a GET request', function () {
-            var element = $compile("<adg-current-health></adg-current-health>")($rootScope);
+            var element = $compile("<bansho-current-health></bansho-current-health>")($rootScope);
             $httpBackend.flush();
 
             expect(element.text()).toBe('Current Health');

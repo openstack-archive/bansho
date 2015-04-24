@@ -1,13 +1,13 @@
 'use strict';
 
-angular.module('adagios.tactical.current_health', ['adagios.live',
+angular.module('bansho.tactical.current_health', ['bansho.live',
                                                    'ngJustGage'])
 
     .controller('TacticalCurrentHealth', ['$scope', function ($scope) {
         angular.noop();
     }])
 
-    .directive('adgCurrentHealth', function () {
+    .directive('banshoCurrentHealth', function () {
         return {
             restrict: 'E',
             templateUrl: 'components/tactical/current_health/current_health.html'

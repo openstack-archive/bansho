@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('adagios.table.cell_host', ['adagios.table'])
+angular.module('bansho.table.cell_host', ['bansho.table'])
 
     .controller('CellHostCtrl', ['$scope', function ($scope) {
         $scope.cell_name = 'host';

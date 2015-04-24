@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('adagios.topbar', ['adagios.live'])
+angular.module('bansho.topbar', ['bansho.live'])
 
     .controller('TopBarCtrl', ['$scope', '$interval', 'getServiceProblems', 'getHostProblems', 'addAjaxPromise',
         function ($scope, $interval, getServiceProblems, getHostProblems, addAjaxPromise) {
@@ -23,7 +23,7 @@ angular.module('adagios.topbar', ['adagios.live'])
             getData();
         }])
 
-    .directive('adgTopbar', function () {
+    .directive('banshoTopbar', function () {
         return {
             restrict: 'E',
             templateUrl: 'components/topbar/topbar.html'

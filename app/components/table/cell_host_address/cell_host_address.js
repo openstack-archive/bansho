@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('adagios.table.cell_host_address', ['adagios.table'])
+angular.module('bansho.table.cell_host_address', ['bansho.table'])
 
     .controller('CellHostAddressCtrl', [function () {
         angular.noop();

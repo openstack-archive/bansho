@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('adagios.host.load', [])
+angular.module('bansho.host.load', [])
 
     .controller('HostLoadCtrl', ['$scope', 'getObjects', function ($scope, getObjects) {
         var hostName = $scope.hostName,
@@ -16,7 +16,7 @@ angular.module('adagios.host.load', [])
             });
     }])
 
-    .directive('adgHostLoad', function () {
+    .directive('banshoHostLoad', function () {
         return {
             restrict: 'E',
             templateUrl: 'components/host/host_load/host_load.html'

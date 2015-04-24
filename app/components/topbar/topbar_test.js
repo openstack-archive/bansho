@@ -6,7 +6,7 @@ describe('Topbar module', function () {
         $controller,
         $httpBackend;
 
-    beforeEach(module('adagios.topbar'));
+    beforeEach(module('bansho.topbar'));
 
     beforeEach(inject(function (_$compile_, _$rootScope_, _$controller_, _$httpBackend_) {
         $compile = _$compile_;
@@ -31,7 +31,7 @@ describe('Topbar module', function () {
     describe('Topbar directive', function () {
 
         it('should insert the number of warnings', function () {
-            var element = $compile('<adg-topbar></adg-topbar>')($rootScope);
+            var element = $compile('<bansho-topbar></bansho-topbar>')($rootScope);
             $httpBackend.flush();
             $rootScope.notifications = 44;
             $rootScope.$digest();

@@ -6,7 +6,7 @@ describe('Top Alert Producer tactical submodule', function () {
         $controller,
         $httpBackend;
 
-    beforeEach(module('adagios.tactical.top_alert_producers'));
+    beforeEach(module('bansho.tactical.top_alert_producers'));
 
     beforeEach(inject(function (_$compile_, _$rootScope_, _$controller_, _$httpBackend_) {
         $compile = _$compile_;
@@ -33,7 +33,7 @@ describe('Top Alert Producer tactical submodule', function () {
     describe('Status overview directive', function () {
 
         it('should insert the number of warnings', function () {
-            var element = $compile('<adg-top-alert-producers></adg-top-alert-producers>')($rootScope);
+            var element = $compile('<bansho-top-alert-producers></bansho-top-alert-producers>')($rootScope);
             $httpBackend.flush();
             $rootScope.problems = 31;
             $rootScope.$digest();

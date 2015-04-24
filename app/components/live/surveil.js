@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('adagios.live')
+angular.module('bansho.live')
 
     .service('getObjects', ['$http', 'hostQueryTransform', 'hostMiddleware', 'serviceMiddleware',
         function ($http, hostQueryTransform, hostMiddleware, serviceMiddleware) {
