@@ -1,6 +1,6 @@
-================
-Adagios FrontEnd
-================
+======
+Bansho
+======
 
 
 
@@ -10,8 +10,8 @@ Installation
 ::
 
     sudo apt-get install npm nodejs-legacy ruby
-    git clone https://github.com/titilambert/adagios-frontend.git
-    cd adagios-frontend
+    git clone https://github.com/savoirfairelinux/bansho
+    cd bansho
     npm install
     gem install sass
 
@@ -52,7 +52,7 @@ you already have docker installed) :
 
     make build
     make daemon
-    curl http://localhost:8080/app
+    curl http://localhost:8888/app
 
 You must leave grunt running in the background to automatically compile css
 and minify/compress js files when source code changes
@@ -94,7 +94,7 @@ Launch
     npm start
 
 
-Now, go on http://127.0.0.1:8080
+Now, go on http://127.0.0.1:8000/app/
 
 Contributing
 ============
@@ -105,7 +105,7 @@ and then open a pull-request to this repo's master branch.
 ::
 
     <fork this repo on github>
-    git clone your-repo/adagios-frontend
+    git clone your-repo/bansho
     git checkout -b dev-new-feature-xx
     git commit ...
     git push origin dev-new-feature-xx
@@ -115,7 +115,7 @@ Good practices before opening a pull request:
 
     - Run tests with `npm test`
     - Lint your .js files with `grunt jslint`
-    - Make sure your directives are prefixed with `adg`
+    - Make sure your directives are prefixed with `bansho`
     - Make sure your controllers are suffixed with `Ctrl`
     - Resolve merge conflicts locally
 
