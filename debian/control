@@ -1,0 +1,14 @@
+Source: bansho
+Maintainer: Thibault Cohen <titilambert@gmail.com>
+Section: net
+Priority: extra
+Vcs-Git: https://github.com/savoirfairelinux/bansho.git
+Vcs-Browser: https://github.com/savoirfairelinux/bansho
+Standards-Version: 3.9.6
+XS-Python-Version: >= 2.5, << 2.8
+Build-Depends: debhelper (>= 9), quilt, npm, ruby-sass
+Homepage: https://github.com/savoirfairelinux/bansho
+
+Package: bansho
+Architecture: any
+Description: Bansho is a web interface for Surveil

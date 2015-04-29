@@ -1,0 +1,20 @@
+#!/usr/bin/make -f
+
+
+%:
+	dh $@
+
+override_dh_auto_clean:
+    
+
+override_dh_auto_build:
+	$(shell bash -c "source dev_virtualenv")
+	npm install grunt
+	npm install
+	$(shell bash -c "source dev_virtualenv")
+	node_modules/grunt-cli/bin/grunt uglify
+	node_modules/grunt-cli/bin/grunt sass
+	rm -rf node_modules
+
+override_dh_install:
+	dh_install
