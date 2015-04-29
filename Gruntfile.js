@@ -2,15 +2,66 @@
 
 module.exports = function (grunt) {
 
+    require('load-grunt-tasks')(grunt);
+
     grunt.initConfig({
 
         pkg: grunt.file.readJSON('package.json'),
 
         project: {
-            app: ['app'],
-            assets: ['<%= project.app %>/assets'],
-            css: ['<%= project.assets %>/sass/app.scss'],
-            build: ['<%= project.app %>/build/']
+            app: 'app',
+            assets: '<%= project.app %>/assets',
+            scss: '<%= project.assets %>/sass/app.scss',
+            tmp: '.tmp',
+            dist: 'dist'
+        },
+
+        clean: {
+            dist: ['<%= project.dist %>/'],
+            tmp: ['<%= project.tmp %>/']
+        },
+
+        copy: {
+            prod: {
+                files: [
+                    {
+                        cwd: '<%= project.assets %>/css/',
+                        expand: true,
+                        src: ['**.*'],
+                        dest: '<%= project.dist %>/assets/css/'
+                    },
+                    {
+                        cwd: '<%= project.app %>/',
+                        expand: true,
+                        src: ['**/*.html'],
+                        dest: '<%= project.dist %>/'
+                    },
+                    {
+                        src: '<%= project.app %>/components/config/config.json',
+                        dest: '<%= project.dist %>/components/config/config.json'
+                    },
+                    {
+                        src: '<%= project.app %>/index.html',
+                        dest: '<%= project.dist %>/index.html'
+                    }
+                ]
+            },
+            adagios: {
+                files: [
+                    {
+                        dest: '<%= project.app %>/components/live/live.js',
+                        src: '<%= project.app %>/components/live/adagios.js'
+                    }
+                ]
+            },
+            surveil: {
+                files: [
+                    {
+                        dest: '<%= project.app %>/components/live/live.js',
+                        src: '<%= project.app %>/components/live/surveil.js'
+                    }
+                ]
+            }
         },
 
         sass: {
@@ -20,28 +71,8 @@ module.exports = function (grunt) {
                     compass: false
                 },
                 files: {
-                    '<%= project.assets %>/css/app.css' : '<%= project.css %>'
+                    '<%= project.assets %>/css/app.css': '<%= project.scss %>'
                 }
-            }
-        },
-
-        watch: {
-            sass: {
-                files: [
-                    '<%= project.assets %>/sass/{,*/}*.{scss,sass}',
-                    '<%= project.app %>/{,*/}*/{,*/}*.{scss,sass}'
-                ],
-                tasks: ['sass:dev']
-            },
-            uglify: {
-                files: [
-                    '<%= project.app %>/**/*.js',
-                    '<%= project.app %>/**/*_test.js',
-                    '!<%= project.app %>/bower_components/**',
-                    '!<%= project.build %>/**',
-                    '!<%= project.assets %>/**'
-                ],
-                tasks: ['uglify:surveil']
             }
         },
 
@@ -82,237 +113,70 @@ module.exports = function (grunt) {
             }
         },
 
+        useminPrepare: {
+            html: {
+                src: ['<%= project.app %>/index.html']
+            },
+            options: {
+                dest: '<%= project.dist %>/'
+            }
+        },
+
+        usemin: {
+            html: '<%= project.dist %>/index.html'
+        },
+
+        concat: {
+            generated: {
+                nonull: true
+            }
+        },
+
         // Minify and concatenate bansho in one file
         uglify: {
-            compress: {
-                files: [{
-                    '<%= project.build %>/js/bansho.min.js' : [
-                        '<%= project.app %>/app.js',
-                        '<%= project.app %>/app.js',
-                        '<%= project.app %>/components/config/config.js',
-                        '<%= project.app %>/components/utils/promise_manager.js',
-                        '<%= project.app %>/components/live/live.js',
-                        '<%= project.app %>/components/live/surveil.js',
-                        '<%= project.app %>/components/ng-justgage/ng-justgage.js',
-                        '<%= project.app %>/components/filters/filters.js',
-                        '<%= project.app %>/components/sidebar/sidebar.js',
-                        '<%= project.app %>/components/topbar/topbar.js',
-                        '<%= project.app %>/components/tactical/tactical.js',
-                        '<%= project.app %>/components/tactical/status_overview/status_overview.js',
-                        '<%= project.app %>/components/tactical/current_health/current_health.js',
-                        '<%= project.app %>/components/tactical/top_alert_producers/top_alert_producers.js',
-                        '<%= project.app %>/components/table/actionbar/actionbar.js',
-                        '<%= project.app %>/components/table/table.js',
-                        '<%= project.app %>/components/table/cell_duration/cell_duration.js',
-                        '<%= project.app %>/components/table/cell_host/cell_host.js',
-                        '<%= project.app %>/components/table/cell_last_check/cell_last_check.js',
-                        '<%= project.app %>/components/table/cell_service_check/cell_service_check.js',
-                        '<%= project.app %>/components/table/cell_host_address/cell_host_address.js',
-                        '<%= project.app %>/components/table/cell_host_status/cell_host_status.js',
-                        '<%= project.app %>/components/host/host.js',
-                        '<%= project.app %>/components/host/host_cpu/host_cpu.js',
-                        '<%= project.app %>/components/host/host_info/host_info.js',
-                        '<%= project.app %>/components/host/host_load/host_load.js',
-                        '<%= project.app %>/components/host/host_main/host_main.js',
-                        '<%= project.app %>/components/host/host_services_list/host_services_list.js',
-                        '<%= project.app %>/components/service/service.js',
-                        '<%= project.app %>/components/service/service_main/service_main.js',
-                        '<%= project.app %>/components/service/service_info/service_info.js',
-                        '<%= project.app %>/components/service/service_metrics/service_metrics.js',
-                        '<%= project.app %>/routing_view/routing_view.js',
-                        '<%= project.app %>/templates/dashboard/dashboard.js',
-                        '<%= project.app %>/templates/single_table/single_table.js',
-                        '<%= project.app %>/templates/host/host.js',
-                        '<%= project.app %>/templates/service/service.js'
-                    ]
-                }],
-                options: {
-                    mangle: true
-                }
+            generated: {
+                nonull: true
             },
+            options: {
+                mangle: true
+            }
+        },
+
+        watch: {
             adagios: {
                 files: [
-                    {
-                        '<%= project.build %>/app.js': '<%= project.app %>/app.js',
-                        '<%= project.build %>/components/config/config.js': '<%= project.app %>/components/config/config.js',
-                        '<%= project.build %>/components/utils/promise_manager.js': '<%= project.app %>/components/utils/promise_manager.js',
-                        '<%= project.build %>/components/live/live.js': '<%= project.app %>/components/live/live.js',
-                        '<%= project.build %>/components/live/adagios.js': '<%= project.app %>/components/live/adagios.js',
-                        '<%= project.build %>/components/ng-justgage/ng-justgage.js': '<%= project.app %>/components/ng-justgage/ng-justgage.js',
-                        '<%= project.build %>/components/filters/filters.js': '<%= project.app %>/components/filters/filters.js',
-                        '<%= project.build %>/components/sidebar/sidebar.js': '<%= project.app %>/components/sidebar/sidebar.js',
-                        '<%= project.build %>/components/topbar/topbar.js': '<%= project.app %>/components/topbar/topbar.js',
-                        '<%= project.build %>/components/tactical/tactical.js': '<%= project.app %>/components/tactical/tactical.js',
-                        '<%= project.build %>/components/tactical/status_overview/status_overview.js': '<%= project.app %>/components/tactical/status_overview/status_overview.js',
-                        '<%= project.build %>/components/tactical/current_health/current_health.js': '<%= project.app %>/components/tactical/current_health/current_health.js',
-                        '<%= project.build %>/components/tactical/top_alert_producers/top_alert_producers.js': '<%= project.app %>/components/tactical/top_alert_producers/top_alert_producers.js',
-                        '<%= project.build %>/components/table/actionbar/actionbar.js': '<%= project.app %>/components/table/actionbar/actionbar.js',
-                        '<%= project.build %>/components/table/table.js': '<%= project.app %>/components/table/table.js',
-                        '<%= project.build %>/components/table/cell_duration/cell_duration.js': '<%= project.app %>/components/table/cell_duration/cell_duration.js',
-                        '<%= project.build %>/components/table/cell_host/cell_host.js': '<%= project.app %>/components/table/cell_host/cell_host.js',
-                        '<%= project.build %>/components/table/cell_last_check/cell_last_check.js': '<%= project.app %>/components/table/cell_last_check/cell_last_check.js',
-                        '<%= project.build %>/components/table/cell_service_check/cell_service_check.js': '<%= project.app %>/components/table/cell_service_check/cell_service_check.js',
-                        '<%= project.build %>/components/table/cell_host_address/cell_host_address.js': '<%= project.app %>/components/table/cell_host_address/cell_host_address.js',
-                        '<%= project.build %>/components/table/cell_host_status/cell_host_status.js': '<%= project.app %>/components/table/cell_host_status/cell_host_status.js',
-
-                        '<%= project.build %>/components/host/host.js': '<%= project.app %>/components/host/host.js',
-                        '<%= project.build %>/components/host/host_cpu/host_cpu.js': '<%= project.app %>/components/host/host_cpu/host_cpu.js',
-                        '<%= project.build %>/components/host/host_info/host_info.js': '<%= project.app %>/components/host/host_info/host_info.js',
-                        '<%= project.build %>/components/host/host_load/host_load.js': '<%= project.app %>/components/host/host_load/host_load.js',
-                        '<%= project.build %>/components/host/host_main/host_main.js': '<%= project.app %>/components/host/host_main/host_main.js',
-                        '<%= project.build %>/components/host/host_services_list/host_services_list.js': '<%= project.app %>/components/host/host_services_list/host_services_list.js',
-                        '<%= project.build %>/components/service/service.js': '<%= project.app %>/components/service/service.js',
-                        '<%= project.build %>/components/service/service_main/service_main.js': '<%= project.app %>/components/service/service_main/service_main.js',
-                        '<%= project.build %>/components/service/service_info/service_info.js': '<%= project.app %>/components/service/service_info/service_info.js',
-                        '<%= project.build %>/components/service/service_metrics/service_metrics.js': '<%= project.app %>/components/service/service_metrics/service_metrics.js',
-
-                        '<%= project.build %>/routing_view/routing_view.js': '<%= project.app %>/routing_view/routing_view.js',
-                        '<%= project.build %>/templates/dashboard/dashboard.js': '<%= project.app %>/templates/dashboard/dashboard.js',
-                        '<%= project.build %>/templates/single_table/single_table.js' : '<%= project.app %>/templates/single_table/single_table.js',
-                        '<%= project.build %>/templates/host/host.js': '<%= project.app %>/templates/host/host.js',
-                        '<%= project.build %>/templates/service/service.js': '<%= project.app %>/templates/service/service.js'
-                    },
-                    {
-                        '<%= project.build %>/js/bansho.min.js' : [
-                            '<%= project.build %>/app.js',
-                            '<%= project.build %>/components/config/config.js',
-                            '<%= project.build %>/components/utils/promise_manager.js',
-                            '<%= project.build %>/components/live/live.js',
-                            '<%= project.build %>/components/live/adagios.js',
-                            '<%= project.build %>/components/ng-justgage/ng-justgage.js',
-                            '<%= project.build %>/components/filters/filters.js',
-                            '<%= project.build %>/components/sidebar/sidebar.js',
-                            '<%= project.build %>/components/topbar/topbar.js',
-                            '<%= project.build %>/components/tactical/tactical.js',
-                            '<%= project.build %>/components/tactical/status_overview/status_overview.js',
-                            '<%= project.build %>/components/tactical/current_health/current_health.js',
-                            '<%= project.build %>/components/tactical/top_alert_producers/top_alert_producers.js',
-                            '<%= project.build %>/components/table/actionbar/actionbar.js',
-                            '<%= project.build %>/components/table/table.js',
-                            '<%= project.build %>/components/table/cell_duration/cell_duration.js',
-                            '<%= project.build %>/components/table/cell_host/cell_host.js',
-                            '<%= project.build %>/components/table/cell_last_check/cell_last_check.js',
-                            '<%= project.build %>/components/table/cell_service_check/cell_service_check.js',
-                            '<%= project.build %>/components/table/cell_host_address/cell_host_address.js',
-                            '<%= project.build %>/components/table/cell_host_status/cell_host_status.js',
-                            '<%= project.build %>/components/host/host.js',
-                            '<%= project.build %>/components/host/host_cpu/host_cpu.js',
-                            '<%= project.build %>/components/host/host_info/host_info.js',
-                            '<%= project.build %>/components/host/host_load/host_load.js',
-                            '<%= project.build %>/components/host/host_main/host_main.js',
-                            '<%= project.build %>/components/host/host_services_list/host_services_list.js',
-                            '<%= project.build %>/components/service/service.js',
-                            '<%= project.build %>/components/service/service_main/service_main.js',
-                            '<%= project.build %>/components/service/service_info/service_info.js',
-                            '<%= project.build %>/components/service/service_metrics/service_metrics.js',
-                            '<%= project.build %>/routing_view/routing_view.js',
-                            '<%= project.build %>/templates/dashboard/dashboard.js',
-                            '<%= project.build %>/templates/single_table/single_table.js',
-                            '<%= project.build %>/templates/host/host.js',
-                            '<%= project.build %>/templates/service/service.js'
-                        ]
-                    }
+                    '<%= project.app %>/components/live/adagios.js',
+                    '<%= project.assets %>/sass/{,*/}*.{scss,sass}'
                 ],
-                options: {
-                    mangle: false,
-                    beautify: true
-                }
+                tasks: ['copy:adagios', 'sass:dev']
             },
             surveil: {
                 files: [
-                    {
-                        '<%= project.build %>/app.js': '<%= project.app %>/app.js',
-                        '<%= project.build %>/components/config/config.js': '<%= project.app %>/components/config/config.js',
-                        '<%= project.build %>/components/utils/promise_manager.js': '<%= project.app %>/components/utils/promise_manager.js',
-                        '<%= project.build %>/components/live/live.js': '<%= project.app %>/components/live/live.js',
-                        '<%= project.build %>/components/live/surveil.js': '<%= project.app %>/components/live/surveil.js',
-                        '<%= project.build %>/components/ng-justgage/ng-justgage.js': '<%= project.app %>/components/ng-justgage/ng-justgage.js',
-                        '<%= project.build %>/components/filters/filters.js': '<%= project.app %>/components/filters/filters.js',
-                        '<%= project.build %>/components/sidebar/sidebar.js': '<%= project.app %>/components/sidebar/sidebar.js',
-                        '<%= project.build %>/components/topbar/topbar.js': '<%= project.app %>/components/topbar/topbar.js',
-                        '<%= project.build %>/components/tactical/tactical.js': '<%= project.app %>/components/tactical/tactical.js',
-                        '<%= project.build %>/components/tactical/status_overview/status_overview.js': '<%= project.app %>/components/tactical/status_overview/status_overview.js',
-                        '<%= project.build %>/components/tactical/current_health/current_health.js': '<%= project.app %>/components/tactical/current_health/current_health.js',
-                        '<%= project.build %>/components/tactical/top_alert_producers/top_alert_producers.js': '<%= project.app %>/components/tactical/top_alert_producers/top_alert_producers.js',
-                        '<%= project.build %>/components/table/actionbar/actionbar.js': '<%= project.app %>/components/table/actionbar/actionbar.js',
-                        '<%= project.build %>/components/table/table.js': '<%= project.app %>/components/table/table.js',
-                        '<%= project.build %>/components/table/cell_duration/cell_duration.js': '<%= project.app %>/components/table/cell_duration/cell_duration.js',
-                        '<%= project.build %>/components/table/cell_host/cell_host.js': '<%= project.app %>/components/table/cell_host/cell_host.js',
-                        '<%= project.build %>/components/table/cell_last_check/cell_last_check.js': '<%= project.app %>/components/table/cell_last_check/cell_last_check.js',
-                        '<%= project.build %>/components/table/cell_service_check/cell_service_check.js': '<%= project.app %>/components/table/cell_service_check/cell_service_check.js',
-                        '<%= project.build %>/components/table/cell_host_address/cell_host_address.js': '<%= project.app %>/components/table/cell_host_address/cell_host_address.js',
-                        '<%= project.build %>/components/table/cell_host_status/cell_host_status.js': '<%= project.app %>/components/table/cell_host_status/cell_host_status.js',
-
-                        '<%= project.build %>/components/host/host.js': '<%= project.app %>/components/host/host.js',
-                        '<%= project.build %>/components/host/host_cpu/host_cpu.js': '<%= project.app %>/components/host/host_cpu/host_cpu.js',
-                        '<%= project.build %>/components/host/host_info/host_info.js': '<%= project.app %>/components/host/host_info/host_info.js',
-                        '<%= project.build %>/components/host/host_load/host_load.js': '<%= project.app %>/components/host/host_load/host_load.js',
-                        '<%= project.build %>/components/host/host_main/host_main.js': '<%= project.app %>/components/host/host_main/host_main.js',
-                        '<%= project.build %>/components/host/host_services_list/host_services_list.js': '<%= project.app %>/components/host/host_services_list/host_services_list.js',
-                        '<%= project.build %>/components/service/service.js': '<%= project.app %>/components/service/service.js',
-                        '<%= project.build %>/components/service/service_main/service_main.js': '<%= project.app %>/components/service/service_main/service_main.js',
-                        '<%= project.build %>/components/service/service_info/service_info.js': '<%= project.app %>/components/service/service_info/service_info.js',
-                        '<%= project.build %>/components/service/service_metrics/service_metrics.js': '<%= project.app %>/components/service/service_metrics/service_metrics.js',
-
-                        '<%= project.build %>/routing_view/routing_view.js': '<%= project.app %>/routing_view/routing_view.js',
-                        '<%= project.build %>/templates/dashboard/dashboard.js': '<%= project.app %>/templates/dashboard/dashboard.js',
-                        '<%= project.build %>/templates/single_table/single_table.js' : '<%= project.app %>/templates/single_table/single_table.js',
-                        '<%= project.build %>/templates/host/host.js': '<%= project.app %>/templates/host/host.js',
-                        '<%= project.build %>/templates/service/service.js': '<%= project.app %>/templates/service/service.js'
-                    },
-                    {
-                        '<%= project.build %>/js/bansho.min.js' : [
-                            '<%= project.build %>/app.js',
-                            '<%= project.build %>/components/config/config.js',
-                            '<%= project.build %>/components/utils/promise_manager.js',
-                            '<%= project.build %>/components/live/live.js',
-                            '<%= project.build %>/components/live/surveil.js',
-                            '<%= project.build %>/components/ng-justgage/ng-justgage.js',
-                            '<%= project.build %>/components/filters/filters.js',
-                            '<%= project.build %>/components/sidebar/sidebar.js',
-                            '<%= project.build %>/components/topbar/topbar.js',
-                            '<%= project.build %>/components/tactical/tactical.js',
-                            '<%= project.build %>/components/tactical/status_overview/status_overview.js',
-                            '<%= project.build %>/components/tactical/current_health/current_health.js',
-                            '<%= project.build %>/components/tactical/top_alert_producers/top_alert_producers.js',
-                            '<%= project.build %>/components/table/actionbar/actionbar.js',
-                            '<%= project.build %>/components/table/table.js',
-                            '<%= project.build %>/components/table/cell_duration/cell_duration.js',
-                            '<%= project.build %>/components/table/cell_host/cell_host.js',
-                            '<%= project.build %>/components/table/cell_last_check/cell_last_check.js',
-                            '<%= project.build %>/components/table/cell_service_check/cell_service_check.js',
-                            '<%= project.build %>/components/table/cell_host_address/cell_host_address.js',
-                            '<%= project.build %>/components/table/cell_host_status/cell_host_status.js',
-                            '<%= project.build %>/components/host/host.js',
-                            '<%= project.build %>/components/host/host_cpu/host_cpu.js',
-                            '<%= project.build %>/components/host/host_info/host_info.js',
-                            '<%= project.build %>/components/host/host_load/host_load.js',
-                            '<%= project.build %>/components/host/host_main/host_main.js',
-                            '<%= project.build %>/components/host/host_services_list/host_services_list.js',
-                            '<%= project.build %>/components/service/service.js',
-                            '<%= project.build %>/components/service/service_main/service_main.js',
-                            '<%= project.build %>/components/service/service_info/service_info.js',
-                            '<%= project.build %>/components/service/service_metrics/service_metrics.js',
-                            '<%= project.build %>/routing_view/routing_view.js',
-                            '<%= project.build %>/templates/dashboard/dashboard.js',
-                            '<%= project.build %>/templates/single_table/single_table.js',
-                            '<%= project.build %>/templates/host/host.js',
-                            '<%= project.build %>/templates/service/service.js'
-                        ]
-                    }
+                    '<%= project.app %>/components/live/surveil.js',
+                    '<%= project.assets %>/sass/{,*/}*.{scss,sass}'
                 ],
-                options: {
-                    mangle: false,
-                    beautify: true
-                }
+                tasks: ['copy:surveil', 'sass:dev']
             }
         }
     });
 
-    grunt.loadNpmTasks('grunt-contrib-sass');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-jslint');
-
     grunt.registerTask('default', ['watch']);
+
+    grunt.registerTask('development:adagios', [
+        'sass', 'copy:adagios', 'watch:adagios'
+    ]);
+
+    grunt.registerTask('development:surveil', [
+        'sass', 'copy:surveil', 'watch:surveil'
+    ]);
+
+    grunt.registerTask('production:adagios', [
+        'clean', 'sass', 'copy:prod', 'useminPrepare:html', 'concat:generated',
+        'copy:adagios',
+        'uglify:generated', 'usemin:html']);
+
+    grunt.registerTask('production:surveil', [
+        'clean', 'sass', 'copy:prod', 'useminPrepare:html', 'concat:generated',
+        'copy:surveil',
+        'uglify:generated', 'usemin:html']);
 };

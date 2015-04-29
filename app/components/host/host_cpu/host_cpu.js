@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('bansho.host.cpu', [])
+angular.module('bansho.host.cpu', ['bansho.live'])
 
     .controller('HostCpuCtrl', ['$scope', 'getObjects', function ($scope, getObjects) {
         var hostName = $scope.hostName,
