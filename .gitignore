@@ -14,4 +14,9 @@ tmp
 app/assets/css
 .sass-cache/
 out/
-build/
+
+# Grunt generated files
+dist/
+.tmp/
+
+app/components/live/live.js
