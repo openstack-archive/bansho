@@ -12,9 +12,57 @@
 
     <link rel="stylesheet" href="assets/css/app.css">
     <meta name="description" content="">
+
+  <!-- build:js js/app.min.js -->
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="bower_components/moment/moment.js"></script>
+  <script src="bower_components/raphael/raphael-min.js"></script>
+  <script src="bower_components/justgage-toorshia/justgage.js"></script>
+  <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+  <script src="assets/js/scripts.js"></script>
+  <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
+
+  <script src="app.js"></script>
+  <script src="components/config/config.js"></script>
+  <script src="components/utils/promise_manager.js"></script>
+  <script src="components/live/live.js"></script>
+  <script src="components/ng-justgage/ng-justgage.js"></script>
+  <script src="components/filters/filters.js"></script>
+  <script src="components/sidebar/sidebar.js"></script>
+  <script src="components/topbar/topbar.js"></script>
+  <script src="components/tactical/tactical.js"></script>
+  <script src="components/tactical/status_overview/status_overview.js"></script>
+  <script src="components/tactical/current_health/current_health.js"></script>
+  <script src="components/tactical/top_alert_producers/top_alert_producers.js"></script>
+  <script src="components/table/actionbar/actionbar.js"></script>
+  <script src="components/table/table.js"></script>
+  <script src="components/table/cell_duration/cell_duration.js"></script>
+  <script src="components/table/cell_host/cell_host.js"></script>
+  <script src="components/table/cell_last_check/cell_last_check.js"></script>
+  <script src="components/table/cell_service_check/cell_service_check.js"></script>
+  <script src="components/table/cell_host_address/cell_host_address.js"></script>
+  <script src="components/table/cell_host_status/cell_host_status.js"></script>
+  <script src="components/host/host.js"></script>
+  <script src="components/host/host_cpu/host_cpu.js"></script>
+  <script src="components/host/host_info/host_info.js"></script>
+  <script src="components/host/host_load/host_load.js"></script>
+  <script src="components/host/host_main/host_main.js"></script>
+  <script src="components/host/host_services_list/host_services_list.js"></script>
+  <script src="components/service/service.js"></script>
+  <script src="components/service/service_main/service_main.js"></script>
+  <script src="components/service/service_info/service_info.js"></script>
+  <script src="components/service/service_metrics/service_metrics.js"></script>
+  <script src="routing_view/routing_view.js"></script>
+  <script src="templates/dashboard/dashboard.js"></script>
+  <script src="templates/single_table/single_table.js"></script>
+  <script src="templates/host/host.js"></script>
+  <script src="templates/service/service.js"></script>
+  <!-- endbuild -->
   </head>
 
-  <body class="layout color-scheme--dark">
+  <body class="layout color-scheme--dark" ng-strict-di>
     <!--[if lt IE 7]> <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p> <![endif]-->
     <div class="layout__container">
       <aside class="layout__aside sidebar-wrapper collapse" id="sidebarWrapper">
@@ -30,59 +78,5 @@
         <footer class="footer" role="contentinfo">...</footer>
       </div>
     </div>
-
-    <!-- build:js js/app.min.js -->
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/moment/moment.js"></script>
-    <script src="bower_components/raphael/raphael-min.js"></script>
-    <script src="bower_components/justgage-toorshia/justgage.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
-    <script src="assets/js/scripts.js"></script>
-    <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
-
-    <script src="app.js"></script>
-    <script src="components/config/config.js"></script>
-    <script src="components/utils/promise_manager.js"></script>
-
-    <script src="components/live/live.js"></script>
-    <script src="components/ng-justgage/ng-justgage.js"></script>
-    <script src="components/filters/filters.js"></script>
-    <script src="components/sidebar/sidebar.js"></script>
-    <script src="components/topbar/topbar.js"></script>
-    <script src="components/tactical/tactical.js"></script>
-    <script src="components/tactical/status_overview/status_overview.js"></script>
-    <script src="components/tactical/current_health/current_health.js"></script>
-    <script src="components/tactical/top_alert_producers/top_alert_producers.js"></script>
-    <script src="components/table/actionbar/actionbar.js"></script>
-    <script src="components/table/table.js"></script>
-    <script src="components/table/cell_duration/cell_duration.js"></script>
-    <script src="components/table/cell_host/cell_host.js"></script>
-    <script src="components/table/cell_last_check/cell_last_check.js"></script>
-    <script src="components/table/cell_service_check/cell_service_check.js"></script>
-    <script src="components/table/cell_host_address/cell_host_address.js"></script>
-    <script src="components/table/cell_host_status/cell_host_status.js"></script>
-    <script src="components/host/host.js"></script>
-    <script src="components/host/host_cpu/host_cpu.js"></script>
-    <script src="components/host/host_info/host_info.js"></script>
-    <script src="components/host/host_load/host_load.js"></script>
-    <script src="components/host/host_main/host_main.js"></script>
-    <script src="components/host/host_services_list/host_services_list.js"></script>
-    <script src="components/service/service.js"></script>
-    <script src="components/service/service_main/service_main.js"></script>
-    <script src="components/service/service_info/service_info.js"></script>
-    <script src="components/service/service_metrics/service_metrics.js"></script>
-    <script src="routing_view/routing_view.js"></script>
-    <script src="templates/dashboard/dashboard.js"></script>
-    <script src="templates/single_table/single_table.js"></script>
-    <script src="templates/host/host.js"></script>
-    <script src="templates/service/service.js"></script>
-
-    <!-- endbuild -->
-
-    <!-- build:dev surveil -->
-    <script src="components/live/surveil.js"></script>
-    <!-- endbuild -->
   </body>
 </html>

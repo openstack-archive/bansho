@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('bansho.live')
+angular.module('bansho.live', [])
 
     .constant('filterSuffixes', { contains: '__contains',
                                   has_field: '__has_field',
