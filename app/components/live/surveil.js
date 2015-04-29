@@ -373,3 +373,23 @@ angular.module('bansho.live', [])
                 return responsePromise.promise;
             };
         }])
+
+    .service('acknowledge', ['$http', function($http) {
+        return function (host_name, service_description) {
+            var data = {};
+
+            data.host_name = host_name;
+
+            if (service_description !== undefined) {
+                data.service_description = service_description;
+            }
+
+            return $http({
+                url: '/surveil/v2/actions/acknowledge/',
+                method: 'POST',
+                data: data,
+            }).error(function () {
+                throw new Error('acknowledge : POST Request failed');
+            });
+       };
+    }])
