@@ -1,3 +1,5 @@
+// Deprecated!
+// To support this backend format to the same format as the surveil.js to inject a backendClient.
 'use strict';
 
 angular.module('bansho.live', [])
