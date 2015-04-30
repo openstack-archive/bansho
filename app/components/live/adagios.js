@@ -12,6 +12,64 @@ angular.module('bansho.live', [])
                                   regex: '__regex'
                                 })
 
+    .service('backendClient', ['$http', 'filterSuffixes', 'hostMiddleware', function ($http, filterSuffixes, hostMiddleware) {
+        this.getObjects = function (fields, filters, apiName, additionnalFields) {
+                var filtersQuery = '',
+                    additionnalQuery = '';
+
+                function createFiltersQuery(filters) {
+                    var builtQuery = '';
+                    angular.forEach(filters, function (value, key) {
+                        var filterType = filterSuffixes[key];
+                        angular.forEach(value, function (fieldValues, fieldName) {
+                            var filter = fieldName + filterType;
+                            angular.forEach(fieldValues, function (_value) {
+                                var filterQuery = '&' + filter + '=' + _value;
+                                builtQuery += filterQuery;
+                            });
+                        });
+                    });
+
+                    return builtQuery;
+                }
+
+                function createAdditionnalQuery(additionnalFields) {
+                    var query = '';
+                    angular.forEach(additionnalFields, function (value, key) {
+                        query += '&' + key + '=' + value;
+                    });
+
+                    return query;
+                }
+
+                filtersQuery = createFiltersQuery(filters);
+                additionnalQuery = createAdditionnalQuery(additionnalFields);
+
+                function appendTransform(defaults, transform) {
+                    // We can't guarantee that the default transformation is an array
+                    defaults = angular.isArray(defaults) ? defaults : [defaults];
+
+                    return defaults.concat(transform);
+                };
+
+
+                function transformations(data) {
+                    if (apiName === 'hosts') {
+                        hostMiddleware(data);
+                    }
+                    return data;
+                }
+
+                return $http({
+                    url: '/adagios/rest/status/json/' + apiName + '/?fields=' + fields + filtersQuery + additionnalQuery,
+                    method: 'GET',
+                    transformResponse: appendTransform($http.defaults.transformResponse, transformations)
+                }).error(function () {
+                    throw new Error('getObjects : GET Request failed');
+                });
+            };
+    }])
+
     .service('getObjects', ['$http', 'filterSuffixes', 'hostMiddleware',
         function ($http, filterSuffixes, hostMiddleware) {
             return function (fields, filters, apiName, additionnalFields) {

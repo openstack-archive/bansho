@@ -16,9 +16,9 @@ angular.module('bansho.table', ['bansho.live',
 
     .value('tablesConfig', [])
 
-    .controller('TableCtrl', ['$scope', '$interval', 'getTableData', 'tablesConfig',
+    .controller('TableCtrl', ['$scope', '$interval', 'backendClient', 'tablesConfig',
         'actionbarFilters', 'promisesManager', 'tableGlobalConfig',
-        function ($scope, $interval, getTableData, tablesConfig, actionbarFilters, promisesManager, tableGlobalConfig) {
+        function ($scope, $interval, backendClient, tablesConfig, actionbarFilters, promisesManager, tableGlobalConfig) {
             var requestFields = [],
                 conf = tablesConfig[tableGlobalConfig.nextTableIndex],
                 getData,
@@ -39,7 +39,7 @@ angular.module('bansho.table', ['bansho.live',
             });
 
             getData = function (requestFields, filters, apiName, additionnalFields) {
-                var promise = getTableData(requestFields, filters, apiName, additionnalFields);
+                var promise = backendClient.getTableData(requestFields, filters, apiName, additionnalFields);
                 promise.then(function (data) {
                     $scope.entries = data;
                     conf.entries = data;

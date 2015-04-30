@@ -1,13 +1,12 @@
 'use strict';
 
 angular.module('bansho.live', [])
-
-    .service('getObjects', ['$http', 'hostQueryTransform', 'hostMiddleware', 'serviceMiddleware',
-        function ($http, hostQueryTransform, hostMiddleware, serviceMiddleware) {
-            return function (fields, filters, apiName, additionnalFields) {
+    .service('backendClient', ['$http', '$q',
+        function ($http, $q) {
+            var getObjects = function (fields, filters, apiName, additionnalFields) {
                 var query = {},
                     transformations;
-                
+
                 // Merges additionnalFields into filters as 'is' filter
                 angular.forEach(additionnalFields, function (value, key) {
                     if (!('is' in filters)) {
@@ -19,7 +18,7 @@ angular.module('bansho.live', [])
                     }
 
                     filters.is[key].push(value);
-                })
+                });
 
                 function appendTransform(defaults, transform) {
                     // We can't guarantee that the default transformation is an array
@@ -55,26 +54,20 @@ angular.module('bansho.live', [])
                     throw new Error('getObjects : POST Request failed');
                 });
             };
-        }])
 
-    .service('getService', ['$http', 'getObjects',
-        function ($http, getObjects) {
-            return function (hostName, description) {
+
+            var getService = function (hostName, description) {
                 var fields = [],
                     filters = {},
-                    additionnalFields = { 'host_name': hostName, 'description': description };
+                    additionnalFields = {'host_name': hostName, 'description': description};
 
-                return getObjects(fields, filters, 'services', additionnalFields)
+                return this.getObjects(fields, filters, 'services', additionnalFields)
                     .error(function () {
                         throw new Error('getService : POST Request failed');
                     });
             };
-        }])
 
-    // This service is used to count the number of host open problems
-    .service('getHostOpenProblems', ['$http', 'getObjects',
-        function ($http, getObjects) {
-            return function () {
+            var getHostOpenProblems = function () {
                 var fields = ['state'],
                     filters = {},
                     apiName = 'hosts',
@@ -85,17 +78,13 @@ angular.module('bansho.live', [])
                         throw new Error('getHostOpenProblems : POST Request failed');
                     });
             };
-        }])
 
-    // This service is used to count the number of service open problems
-    .service('getServiceOpenProblems', ['$http', '$q', 'getObjects',
-        function ($http, $q, getObjects) {
-            return function () {
+            var getServiceOpenProblems = function () {
                 var serviceFields = ['host_name', 'state'],
-                    serviceFilters = { 'isnot': { 'state': [0] } },
-                    serviceAdditionnalFields = { 'acknowledged': 0 },
+                    serviceFilters = {'isnot': {'state': [0]}},
+                    serviceAdditionnalFields = {'acknowledged': 0},
                     hostFields = ['host_name', 'state'],
-                    hostFilters = { 'isnot': { 'state': [2] } },
+                    hostFilters = {'isnot': {'state': [2]}},
                     hostAdditionnalFields = {},
                     responsePromise = $q.defer();
 
@@ -113,7 +102,7 @@ angular.module('bansho.live', [])
                             .success(function (serviceData) {
                                 var result = [];
                                 for (i = 0; i < serviceData.length; i += 1) {
-                                    if (serviceData[i].host_name in hostsResult) {
+                                    if (serviceData[i].host_name in hostsResult) {
                                         result.push(serviceData[i]);
                                     }
                                 }
@@ -122,15 +111,11 @@ angular.module('bansho.live', [])
                     });
 
                 return responsePromise.promise;
-            };
-        }])
+            }
 
-    // This service is used to count the number of host problems
-    .service('getHostProblems', ['$http', 'getObjects',
-        function ($http, getObjects) {
-            return function () {
+            var getHostProblems = function () {
                 var fields = ['state'],
-                    filters = { 'isnot': {'state': [0]} },
+                    filters = {'isnot': {'state': [0]}},
                     apiName = 'hosts',
                     additionnalFields = {};
 
@@ -139,14 +124,11 @@ angular.module('bansho.live', [])
                         throw new Error('getHostProblems : POST Request failed');
                     });
             };
-        }])
 
-    // This service is used to count the number of service problems
-    .service('getServiceProblems', ['$http', 'getObjects',
-        function ($http, getObjects) {
-            return function () {
+            // This service is used to count the number of service problems
+            var getServiceProblems = function () {
                 var fields = ['state'],
-                    filters = { 'isnot': {'state': [0]} },
+                    filters = {'isnot': {'state': [0]}},
                     apiName = 'services',
                     additionnalFields = {};
 
@@ -154,13 +136,10 @@ angular.module('bansho.live', [])
                     .error(function () {
                         throw new Error('getServiceOpenProblems : POST Request failed');
                     });
-            };
-        }])
+            }
 
-    // This service is used to count the number of hosts
-    .service('getTotalHosts', ['$http', 'getObjects',
-        function ($http, getObjects) {
-            return function () {
+            // This service is used to count the number of hosts
+            var getTotalHosts = function () {
                 var fields = ['host_name'],
                     filters = {},
                     apiName = 'hosts',
@@ -170,13 +149,10 @@ angular.module('bansho.live', [])
                     .error(function () {
                         throw new Error('getTotalHosts : POST Request failed');
                     });
-            };
-        }])
+            }
 
-    // This service is used to count the number of services
-    .service('getTotalServices', ['$http', 'getObjects',
-        function ($http, getObjects) {
-            return function () {
+            // This service is used to count the number of services
+            var getTotalServices = function () {
                 var fields = ['host_name'],
                     filters = {},
                     apiName = 'services',
@@ -186,95 +162,83 @@ angular.module('bansho.live', [])
                     .error(function () {
                         throw new Error('getTotalServices : POST Request failed');
                     });
-            };
-        }])
+            }
 
-    .service('getHost', ['$http', '$q', function ($http, $q) {
-        return function (objectType, objectIdentifier) {
-            var objectData = {},
-                endpoints = {
-                    "host" : "hosts",
-                    "service" : "services"
-                },
-                liveUrl = '/surveil/v2/status/' + endpoints[objectType] + '/' + objectIdentifier.host_name + '/',
-                configUrl = '/surveil/v2/config/'+ endpoints[objectType] + '/' + objectIdentifier.host_name + '/',
-                responsePromise = $q.defer();
+            var getHost = function (objectType, objectIdentifier) {
+                var objectData = {},
+                    endpoints = {
+                        "host": "hosts",
+                        "service": "services"
+                    },
+                    liveUrl = '/surveil/v2/status/' + endpoints[objectType] + '/' + objectIdentifier.host_name + '/',
+                    configUrl = '/surveil/v2/config/' + endpoints[objectType] + '/' + objectIdentifier.host_name + '/',
+                    responsePromise = $q.defer();
 
-            $http.get(liveUrl) .success(function (liveData) {
-                $http.get(configUrl).success(function (configData) {
-                    objectData.live = liveData;
-                    objectData.config = configData;
-                    responsePromise.resolve(objectData);
-                })
-            });
+                $http.get(liveUrl).success(function (liveData) {
+                    $http.get(configUrl).success(function (configData) {
+                        objectData.live = liveData;
+                        objectData.config = configData;
+                        responsePromise.resolve(objectData);
+                    })
+                });
 
-            return responsePromise.promise;
-        };
-    }])
+                return responsePromise.promise;
+            }
 
-    .service('hostQueryTransform', function () {
-        return function (fields, filters) {
-            var i,
-                transformations = {
-                    'host_state': 'state',
-                };
+            var hostQueryTransform = function (fields, filters) {
+                var i,
+                    transformations = {
+                        'host_state': 'state',
+                    };
 
-            for (i = 0; i < fields.length; i += 1) {
-                if (fields[i] in transformations) {
-                    fields[i] = transformations[fields[i]];
+                for (i = 0; i < fields.length; i += 1) {
+                    if (fields[i] in transformations) {
+                        fields[i] = transformations[fields[i]];
+                    }
                 }
             }
-        }
-    })
 
-    // Modify response object to conform to web ui
-    .service('hostMiddleware', function() {
-        return function (data) {
-            var i = 0,
-                conversions = {
-                    'state': 'host_state'
-                };
+            // Modify response object to conform to web ui
+            var hostMiddleware = function (data) {
+                var i = 0,
+                    conversions = {
+                        'state': 'host_state'
+                    };
 
-            for (i = 0; i < data.length; i += 1) {
-                angular.forEach(data[i], function (value, field) {
-                    if (field in conversions) {
-                        data[i][conversions[field]] = value;
-                        delete data[i][field];
-                    }
-                });
-            }
+                for (i = 0; i < data.length; i += 1) {
+                    angular.forEach(data[i], function (value, field) {
+                        if (field in conversions) {
+                            data[i][conversions[field]] = value;
+                            delete data[i][field];
+                        }
+                    });
+                }
 
-            return data;
-       };
-    })
-
-    // Modify response object to conform to web ui
-    .service('serviceMiddleware', function() {
-        return function (data) {
-            var i = 0,
-                conversions = {
-                };
-
-            if (jQuery.isEmptyObject(conversions)) {
                 return data;
             }
 
-            for (i = 0; i < data.length; i += 1) {
-                angular.forEach(data[i], function (value, field) {
-                    if (field in conversions) {
-                        data[i][conversions[field]] = value;
-                        delete data[i][field];
-                    }
-                });
-            }
+            // Modify response object to conform to web ui
+            var serviceMiddleware = function (data) {
+                var i = 0,
+                    conversions = {};
 
-            return data;
-       };
-    })
+                if (jQuery.isEmptyObject(conversions)) {
+                    return data;
+                }
 
-    .service('getTableData', ['$q', 'getObjects',
-        function ($q, getObjects) {
-            return function (fields, filters, apiName, additionnalFields) {
+                for (i = 0; i < data.length; i += 1) {
+                    angular.forEach(data[i], function (value, field) {
+                        if (field in conversions) {
+                            data[i][conversions[field]] = value;
+                            delete data[i][field];
+                        }
+                    });
+                }
+
+                return data;
+            };
+
+            var getTableData = function (fields, filters, apiName, additionnalFields) {
                 var hostFields = [],
                     serviceFields = [],
                     hostFilters = {},
@@ -291,13 +255,13 @@ angular.module('bansho.live', [])
                     found = false;
 
                 if (apiName === 'hosts') {
-                    getObjects(fields, filters, 'hosts', additionnalFields)
+                    this.getObjects(fields, filters, 'hosts', additionnalFields)
                         .success(function (data) {
                             responsePromise.resolve(data);
                         });
                     return responsePromise.promise;
                 }
-                
+
                 angular.forEach(fields, function (field) {
                     if (field in hostKeys) {
                         hostFields.push(hostKeys[field]);
@@ -355,7 +319,7 @@ angular.module('bansho.live', [])
                                             hostDict[host_name] = {};
                                         }
 
-                                        hostDict[host_name][field]  = value;
+                                        hostDict[host_name][field] = value;
                                     });
                                 }
 
@@ -371,30 +335,45 @@ angular.module('bansho.live', [])
                     });
 
                 return responsePromise.promise;
-            };
-        }])
-
-    .service('acknowledge', ['$http', function($http) {
-        return function (host_name, service_description, attrs) {
-            var data = {};
-
-            data.host_name = host_name;
-            data.author = attrs.author;
-            data.comment = attrs.comment;
-            data.sticky = parseInt(attrs.sticky, 10);
-            data.notify = parseInt(attrs.notify, 10);
-            data.persistent = parseInt(attrs.persistent, 10);
-
-            if (service_description !== undefined) {
-                data.service_description = service_description;
             }
 
-            return $http({
-                url: '/surveil/v2/actions/acknowledge/',
-                method: 'POST',
-                data: data,
-            }).error(function () {
-                throw new Error('acknowledge : POST Request failed');
-            });
-       };
-    }])
+            var acknowledge = function (host_name, service_description, attrs) {
+                var data = {};
+
+                data.host_name = host_name;
+                data.author = attrs.author;
+                data.comment = attrs.comment;
+                data.sticky = parseInt(attrs.sticky, 10);
+                data.notify = parseInt(attrs.notify, 10);
+                data.persistent = parseInt(attrs.persistent, 10);
+
+                if (service_description !== undefined) {
+                    data.service_description = service_description;
+                }
+
+                return $http({
+                    url: '/surveil/v2/actions/acknowledge/',
+                    method: 'POST',
+                    data: data
+                }).error(function () {
+                    throw new Error('acknowledge : POST Request failed');
+                });
+            }
+
+            return {
+                getHost: getHost,
+                getObjects : getObjects,
+                getService : getService,
+                hostQueryTransform: hostQueryTransform,
+                acknowledge: acknowledge,
+                getHostOpenProblems: getHostOpenProblems,
+                hostMiddleware: hostMiddleware,
+                getServiceProblems: getServiceProblems,
+                getServiceOpenProblems: getServiceOpenProblems,
+                getHostProblems: getHostProblems,
+                getTableData: getTableData,
+                getTotalHosts: getTotalHosts,
+                getTotalServices: getTotalServices
+
+            }
+        }]);

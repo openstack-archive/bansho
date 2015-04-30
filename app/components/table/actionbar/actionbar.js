@@ -28,8 +28,8 @@ angular.module('bansho.table.actionbar', ['bansho.table',
         return actionbarFilters;
     })
 
-    .controller('TableActionbarCtrl', ['$scope', '$filter', 'acknowledge', 'actionbarFilters', 'tablesConfig',
-        function ($scope, $filter, acknowledge, actionbarFilters, tablesConfig, actionbarSelectFilter) {
+    .controller('TableActionbarCtrl', ['$scope', '$filter', 'backendClient', 'actionbarFilters', 'tablesConfig',
+        function ($scope, $filter, backendClient, actionbarFilters, tablesConfig, actionbarSelectFilter) {
             $scope.actionbarFilters = actionbarFilters;
             $scope.actionbarFilters.activeFilter = $scope.actionbarFilters.possibleFilters[0];
             $scope.ackFormIsOpen = false;
@@ -54,7 +54,7 @@ angular.module('bansho.table.actionbar', ['bansho.table',
                                 service_description = entry.description;
                             }
 
-                            acknowledge(entry.host_name, service_description, $scope.acknowledgeData)
+                            backendClient.acknowledge(entry.host_name, service_description, $scope.acknowledgeData)
                                 .error(function (data) {
                                     throw new Error('Acknowledge request failed');
                                 });

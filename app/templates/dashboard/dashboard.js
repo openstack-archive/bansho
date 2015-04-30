@@ -9,11 +9,10 @@ angular.module('bansho.view.dashboard', ['ngRoute',
 
     .value('dashboardConfig', {})
 
-    .controller('DashboardCtrl', ['$scope', '$routeParams', '$interval', 'dashboardConfig', 'getObjects',
-        'TableConfigObj', 'TacticalConfigObj', 'getHostOpenProblems', 'getServiceOpenProblems', 'getHostProblems',
-        'getServiceProblems', 'promisesManager',
-        function ($scope, $routeParams, $interval, dashboardConfig, getObjects, TableConfigObj, TacticalConfigObj, getHostOpenProblems,
-            getServiceOpenProblems, getHostProblems, getServiceProblems, promisesManager) {
+    .controller('DashboardCtrl', ['$scope', '$routeParams', '$interval', 'dashboardConfig',
+        'TableConfigObj', 'TacticalConfigObj', 'backendClient', 'promisesManager',
+        function ($scope, $routeParams, $interval, dashboardConfig, TableConfigObj, TacticalConfigObj,
+            backendClient, promisesManager) {
             var components = [],
                 component,
                 config,
@@ -42,17 +41,17 @@ angular.module('bansho.view.dashboard', ['ngRoute',
             }
 
             getData = function () {
-                getHostOpenProblems().success(function (data) {
+                backendClient.getHostOpenProblems().success(function (data) {
                     $scope.nbHostOpenProblems = data.length;
-                    getServiceOpenProblems().then(function (openProblems) {
+                    backendClient.getServiceOpenProblems().then(function (openProblems) {
                         $scope.nbServiceOpenProblems = openProblems.length;
                         $scope.totalOpenProblems = $scope.nbServiceOpenProblems + $scope.nbHostOpenProblems;
                     });
                 });
 
-                getHostProblems().success(function (data) {
+                backendClient.getHostProblems().success(function (data) {
                     $scope.nbHostProblems = data.length;
-                    getServiceProblems().success(function (data) {
+                    backendClient.getServiceProblems().success(function (data) {
                         $scope.nbServiceProblems = data.length;
                         $scope.totalProblems = $scope.nbHostProblems + $scope.nbServiceProblems;
                     });

@@ -16,10 +16,8 @@ angular.module('bansho.tactical', ['bansho.live',
         this.topAlertProducers = config.components.topAlertProducers;
     })
 
-    .controller('TacticalCtrl', ['$scope', '$interval', 'tacticalConfig', 'getHostProblems', 'getServiceProblems',
-        'getTotalHosts', 'getTotalServices', 'promisesManager',
-        function ($scope, $interval, tacticalConfig, getHostProblems, getServiceProblems, getTotalHosts,
-            getTotalServices, promisesManager) {
+    .controller('TacticalCtrl', ['$scope', '$interval', 'tacticalConfig', 'backendClient', 'promisesManager',
+        function ($scope, $interval, tacticalConfig, backendClient, promisesManager) {
 
             var getData;
 
@@ -35,17 +33,17 @@ angular.module('bansho.tactical', ['bansho.live',
             $scope.totalServices = undefined;
 
             getData = function () {
-                getHostProblems().success(function (hostProblems) {
+                backendClient.getHostProblems().success(function (hostProblems) {
                     $scope.hostProblems = hostProblems.length;
-                    getTotalHosts().success(function (allHosts) {
+                    backendClient.getTotalHosts().success(function (allHosts) {
                         $scope.totalHosts = allHosts.length;
                         $scope.hostsRatio = ($scope.totalHosts - $scope.hostProblems) / $scope.totalHosts * 100;
                     });
                 });
 
-                getServiceProblems().success(function (serviceProblems) {
+                backendClient.getServiceProblems().success(function (serviceProblems) {
                     $scope.serviceProblems = serviceProblems.length;
-                    getTotalServices().success(function (allServices) {
+                    backendClient.getTotalServices().success(function (allServices) {
                         $scope.totalServices = allServices.length;
                         $scope.servicesRatio = ($scope.totalServices - $scope.serviceProblems) / $scope.totalServices * 100;
                     });

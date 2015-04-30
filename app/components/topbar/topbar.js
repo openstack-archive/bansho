@@ -2,16 +2,16 @@
 
 angular.module('bansho.topbar', ['bansho.live'])
 
-    .controller('TopBarCtrl', ['$scope', '$interval', 'getServiceProblems', 'getHostProblems', 'promisesManager',
-        function ($scope, $interval, getServiceProblems, getHostProblems, promisesManager) {
+    .controller('TopBarCtrl', ['$scope', '$interval', 'backendClient', 'promisesManager',
+        function ($scope, $interval, backendClient, promisesManager) {
             var getData,
                 hostProblems,
                 serviceProblems;
 
             getData = function () {
-                getServiceProblems().success(function (data) {
+                backendClient.getServiceProblems().success(function (data) {
                     serviceProblems = data.length;
-                    getHostProblems().success(function (data) {
+                    backendClient.getHostProblems().success(function (data) {
                         hostProblems = data.length;
                         $scope.allProblems = serviceProblems + hostProblems;
                     });
