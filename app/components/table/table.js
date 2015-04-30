@@ -42,6 +42,7 @@ angular.module('bansho.table', ['bansho.live',
                 var promise = getTableData(requestFields, filters, apiName, additionnalFields);
                 promise.then(function (data) {
                     $scope.entries = data;
+                    conf.entries = data;
                 }, function (reason) {
                     throw new Error('getTableData : Query failed');
                 });
