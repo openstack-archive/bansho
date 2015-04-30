@@ -17,9 +17,9 @@ angular.module('bansho.tactical', ['bansho.live',
     })
 
     .controller('TacticalCtrl', ['$scope', '$interval', 'tacticalConfig', 'getHostProblems', 'getServiceProblems',
-        'getTotalHosts', 'getTotalServices', 'addAjaxPromise',
+        'getTotalHosts', 'getTotalServices', 'promisesManager',
         function ($scope, $interval, tacticalConfig, getHostProblems, getServiceProblems, getTotalHosts,
-            getTotalServices, addAjaxPromise) {
+            getTotalServices, promisesManager) {
 
             var getData;
 
@@ -53,7 +53,7 @@ angular.module('bansho.tactical', ['bansho.live',
             };
 
             if (tacticalConfig.refreshInterval !== 0) {
-                addAjaxPromise(
+                promisesManager.addAjaxPromise(
                     $interval(getData, tacticalConfig.refreshInterval)
                 );
             }

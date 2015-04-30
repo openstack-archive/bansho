@@ -11,9 +11,9 @@ angular.module('bansho.view.dashboard', ['ngRoute',
 
     .controller('DashboardCtrl', ['$scope', '$routeParams', '$interval', 'dashboardConfig', 'getObjects',
         'TableConfigObj', 'TacticalConfigObj', 'getHostOpenProblems', 'getServiceOpenProblems', 'getHostProblems',
-        'getServiceProblems', 'addAjaxPromise',
+        'getServiceProblems', 'promisesManager',
         function ($scope, $routeParams, $interval, dashboardConfig, getObjects, TableConfigObj, TacticalConfigObj, getHostOpenProblems,
-            getServiceOpenProblems, getHostProblems, getServiceProblems, addAjaxPromise) {
+            getServiceOpenProblems, getHostProblems, getServiceProblems, promisesManager) {
             var components = [],
                 component,
                 config,
@@ -60,7 +60,7 @@ angular.module('bansho.view.dashboard', ['ngRoute',
             };
 
             if ($scope.dashboardRefreshInterval !== 0) {
-                addAjaxPromise(
+                promisesManager.addAjaxPromise(
                     $interval(getData, $scope.dashboardRefreshInterval * 1000)
                 );
             }

@@ -17,8 +17,8 @@ angular.module('bansho.table', ['bansho.live',
     .value('tablesConfig', [])
 
     .controller('TableCtrl', ['$scope', '$interval', 'getTableData', 'tablesConfig',
-        'actionbarFilters', 'addAjaxPromise', 'tableGlobalConfig',
-        function ($scope, $interval, getTableData, tablesConfig, actionbarFilters, addAjaxPromise, tableGlobalConfig) {
+        'actionbarFilters', 'promisesManager', 'tableGlobalConfig',
+        function ($scope, $interval, getTableData, tablesConfig, actionbarFilters, promisesManager, tableGlobalConfig) {
             var requestFields = [],
                 conf = tablesConfig[tableGlobalConfig.nextTableIndex],
                 getData,
@@ -51,7 +51,7 @@ angular.module('bansho.table', ['bansho.live',
             getData(requestFields, conf.filters, conf.apiName, conf.additionnalQueryFields);
 
             if (tableGlobalConfig.refreshInterval !== 0) {
-                addAjaxPromise(
+                promisesManager.addAjaxPromise(
                     $interval(function () {
                         getData(requestFields, conf.filters, conf.apiName, conf.additionnalQueryFields);
                     }, tableGlobalConfig.refreshInterval)
