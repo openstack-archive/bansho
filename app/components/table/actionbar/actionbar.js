@@ -66,6 +66,8 @@ angular.module('bansho.table.actionbar', ['bansho.table',
             $scope.activateFilter = function (item) {
                 $scope.actionbarFilters.activeFilter = $scope.actionbarFilters.possibleFilters[item];
             };
+
+            $scope.isDowntimeShown = true;
         }])
 
     .filter('actionbarSelectFilter', function () {
@@ -104,5 +106,19 @@ angular.module('bansho.table.actionbar', ['bansho.table',
         return {
             restrict: 'E',
             templateUrl: 'components/table/actionbar/actionbar.html'
+        };
+    })
+
+    .directive('banshoDowntimeForm', function () {
+        return {
+            restrict: 'E',
+            templateUrl: 'components/table/actionbar/downtime_form.html',
+            scope: {
+                isShown: '=',
+                selectedHosts: '='
+            },
+            controller: function ($scope) {
+                console.log($scope.isShown)
+            }
         };
     });

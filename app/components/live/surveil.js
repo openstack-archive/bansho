@@ -358,7 +358,15 @@ angular.module('bansho.live', [])
                 }).error(function () {
                     throw new Error('acknowledge : POST Request failed');
                 });
-            }
+            };
+
+            var downtime = function (host_name, service_description, attrs) {
+                var data = {};
+
+                angular.forEach(attrs, function (key, value) {
+                    console.log(key + "; " + value);
+                });
+            };
 
             return {
                 getHost: getHost,
@@ -373,7 +381,7 @@ angular.module('bansho.live', [])
                 getHostProblems: getHostProblems,
                 getTableData: getTableData,
                 getTotalHosts: getTotalHosts,
-                getTotalServices: getTotalServices
-
-            }
+                getTotalServices: getTotalServices,
+                downtime: downtime
+            };
         }]);

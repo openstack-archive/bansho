@@ -134,5 +134,8 @@
       <button type="button" ng-click="ackFormIsOpen = !ackFormIsOpen">Close</button>
       <button type="button" ng-click="acknowledgeProblems()">Send</button>
     </div>
+
   </div>
+
+  <bansho-downtime_form data-ng-show="isDowntimeShown" is-shown="isDowntimeShown" selected-hosts="selected"></bansho-downtime_form>
 </menu>
