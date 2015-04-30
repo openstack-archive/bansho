@@ -9,5 +9,5 @@ Build-Depends: debhelper (>= 9), quilt, npm, ruby-sass
 Homepage: https://github.com/savoirfairelinux/bansho
 
 Package: bansho
-Architecture: all
+Architecture: any
 Description: Bansho is a web interface for Surveil
