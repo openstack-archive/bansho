@@ -29,7 +29,7 @@ angular.module('bansho', [
 ])
 
     .config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.otherwise({redirectTo: '/'});
+        $routeProvider.otherwise({redirectTo: '/view'});
     }])
 
     // Reinitialise objects on url change

@@ -6,7 +6,7 @@ angular.module('bansho.sidebar', [])
         $scope.getClass = function (path) {
             var class_name = "";
 
-            if ($location.url().substr(0, path.length) === path) {
+            if ($location.url() === path) {
                 class_name = "state--current";
             }
 

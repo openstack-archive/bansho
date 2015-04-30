@@ -15,16 +15,17 @@ angular.module('bansho.view', ['ngRoute',
 
     .controller('ViewCtrl', ['$scope', '$routeParams', 'viewsTemplate',
         function ($scope, $routeParams, viewsTemplate) {
-            var templateName = viewsTemplate[$routeParams.view],
-                templateUrl = 'templates/' + templateName + '/' + templateName + '.html';
+            var templateName,
+                templateUrl;
 
             if (!!$routeParams.view) {
                 $scope.viewName = $routeParams.view;
             } else {
-                throw new Error("ERROR : 'view' GET parameter must be the custom view name");
+                $scope.viewName = $routeParams.view = 'dashboardConfig';
             }
 
-            $scope.templateUrl = templateUrl;
+            templateName = viewsTemplate[$scope.viewName],
+            $scope.templateUrl = 'templates/' + templateName + '/' + templateName + '.html';
         }])
 
     .run(['readConfig', 'viewsTemplate', function (readConfig, viewsTemplate) {
