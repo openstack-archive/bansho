@@ -145,6 +145,7 @@ module.exports = function (grunt) {
         watch: {
             adagios: {
                 files: [
+                    '<%= project.app %>/**/*.html',
                     '<%= project.app %>/components/live/adagios.js',
                     '<%= project.assets %>/sass/{,*/}*.{scss,sass}'
                 ],
@@ -152,10 +153,14 @@ module.exports = function (grunt) {
             },
             surveil: {
                 files: [
+                    '<%= project.app %>/**/*.html',
                     '<%= project.app %>/components/live/surveil.js',
                     '<%= project.assets %>/sass/{,*/}*.{scss,sass}'
                 ],
                 tasks: ['copy:surveil', 'sass:dev']
+            },
+            options: {
+                livereload: true
             }
         }
     });
