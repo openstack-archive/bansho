@@ -8,10 +8,8 @@ override_dh_auto_clean:
     
 
 override_dh_auto_build:
-	$(shell bash -c "source dev_virtualenv")
 	npm install grunt-cli
 	npm install
-	$(shell bash -c "source dev_virtualenv")
 	node_modules/grunt-cli/bin/grunt production:surveil
 
 override_dh_install:
