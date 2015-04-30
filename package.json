@@ -1,9 +1,9 @@
 {
-  "name": "adagios",
+  "name": "Bansho",
   "private": true,
   "version": "0.1.0",
-  "description": "Adagios front-end",
-  "repository": "https://github.com/titilambert/adagios-frontend",
+  "description": "Web UI for Monitoring tools",
+  "repository": "https://github.com/savoirfairelinux/bansho",
   "license": "AGPLv3",
   "devDependencies": {
     "bower": "^1.3.1",

@@ -49,16 +49,16 @@ module.exports = function (grunt) {
             adagios: {
                 files: [
                     {
-                        dest: '<%= project.app %>/components/live/live.js',
-                        src: '<%= project.app %>/components/live/adagios.js'
+                        src: '<%= project.app %>/components/live/adagios.js',
+                        dest: '<%= project.app %>/components/live/live.js'
                     }
                 ]
             },
             surveil: {
                 files: [
                     {
-                        dest: '<%= project.app %>/components/live/live.js',
-                        src: '<%= project.app %>/components/live/surveil.js'
+                        src: '<%= project.app %>/components/live/surveil.js',
+                        dest: '<%= project.app %>/components/live/live.js'
                     }
                 ]
             }
@@ -171,12 +171,8 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('production:adagios', [
-        'clean', 'sass', 'copy:prod', 'useminPrepare:html', 'concat:generated',
-        'copy:adagios',
-        'uglify:generated', 'usemin:html']);
+        'clean', 'sass', 'copy:prod','copy:adagios', 'useminPrepare:html', 'concat:generated', 'uglify:generated', 'usemin:html']);
 
     grunt.registerTask('production:surveil', [
-        'clean', 'sass', 'copy:prod', 'useminPrepare:html', 'concat:generated',
-        'copy:surveil',
-        'uglify:generated', 'usemin:html']);
+        'clean', 'sass', 'copy:prod', 'copy:surveil', 'useminPrepare:html', 'concat:generated', 'uglify:generated', 'usemin:html']);
 };
