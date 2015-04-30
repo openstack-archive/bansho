@@ -2,7 +2,7 @@
   "name": "Bansho",
   "private": true,
   "version": "0.1.0",
-  "description": "Web UI for Monitoring tool",
+  "description": "Web UI for Monitoring tools",
   "repository": "https://github.com/savoirfairelinux/bansho",
   "license": "AGPLv3",
   "devDependencies": {
