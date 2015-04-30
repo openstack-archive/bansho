@@ -9,22 +9,16 @@ angular.module('bansho.view.singleTable', ['ngRoute',
 
     .value('singleTableConfig', {})
 
-    .controller('SingleTableCtrl', ['$scope', '$routeParams', 'singleTableConfig', 'TableConfigObj',
-        function ($scope, $routeParams, singleTableConfig, TableConfigObj) {
+    .controller('SingleTableCtrl', ['$scope', '$routeParams', 'singleTableConfig', 'TableConfigObj', 'configManager',
+        function ($scope, $routeParams, singleTableConfig, TableConfigObj, configManager) {
             var viewName = $scope.viewName;
+
+            if (jQuery.isEmptyObject(singleTableConfig)) {
+                configManager.loadByTemplate('single_table', singleTableConfig);
+            }
 
             $scope.tableConfig = new TableConfigObj(singleTableConfig[viewName].components[0].config);
 
             $scope.singleTableTitle = singleTableConfig[viewName].title;
             $scope.singleTableRefreshInterval = singleTableConfig[viewName].refreshInterval;
-        }])
-
-    .run(['readConfig', 'singleTableConfig', function (readConfig, singleTableConfig) {
-        var viewsConfig = readConfig.data;
-
-        angular.forEach(viewsConfig, function (config, view) {
-            if (config.template === 'single_table') {
-                singleTableConfig[view] = config;
-            }
-        });
-    }]);
+        }]);

@@ -18,4 +18,17 @@ angular.module('bansho.config', [])
         this.$get = [function () {
             return new AdagiosConfig(data);
         }];
-    });
+    })
+
+    .service('configManager', ['readConfig', function (readConfig) {
+
+        this.loadByTemplate = function (templateName, destination) {
+            var viewsConfig = readConfig.data;
+
+            angular.forEach(viewsConfig, function (config, view) {
+                if (config.template === templateName) {
+                    destination[view] = config;
+                }
+            });
+        }
+    }]);

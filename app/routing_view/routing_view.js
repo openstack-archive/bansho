@@ -13,10 +13,14 @@ angular.module('bansho.view', ['ngRoute',
         });
     }])
 
-    .controller('ViewCtrl', ['$scope', '$routeParams', 'viewsTemplate',
-        function ($scope, $routeParams, viewsTemplate) {
+    .controller('ViewCtrl', ['$scope', '$routeParams', 'viewsTemplate', 'loadConfig',
+        function ($scope, $routeParams, viewsTemplate, loadConfig) {
             var templateName,
                 templateUrl;
+
+            if (jQuery.isEmptyObject(viewsTemplate)) {
+                loadConfig
+            }
 
             if (!!$routeParams.view) {
                 $scope.viewName = $routeParams.view;
@@ -28,7 +32,7 @@ angular.module('bansho.view', ['ngRoute',
             $scope.templateUrl = 'templates/' + templateName + '/' + templateName + '.html';
         }])
 
-    .run(['readConfig', 'viewsTemplate', function (readConfig, viewsTemplate) {
+    .service('loadConfig', ['readConfig', 'viewsTemplate', function (readConfig, viewsTemplate) {
         var viewsConfig = readConfig.data;
 
         angular.forEach(viewsConfig, function (config, view) {

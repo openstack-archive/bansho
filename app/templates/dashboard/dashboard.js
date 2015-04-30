@@ -1,18 +1,18 @@
 'use strict';
 
 angular.module('bansho.view.dashboard', ['ngRoute',
-                                          'bansho.utils.promiseManager',
-                                          'bansho.tactical',
-                                          'bansho.table',
-                                          'bansho.live'
-                                         ])
+                                         'bansho.utils.promiseManager',
+                                         'bansho.tactical',
+                                         'bansho.table',
+                                         'bansho.live'
+                                        ])
 
     .value('dashboardConfig', {})
 
-    .controller('DashboardCtrl', ['$scope', '$routeParams', '$interval', 'dashboardConfig', 'getObjects',
+    .controller('DashboardCtrl', ['$scope', '$routeParams', '$interval', 'configManager', 'dashboardConfig', 'getObjects',
         'TableConfigObj', 'TacticalConfigObj', 'getHostOpenProblems', 'getServiceOpenProblems', 'getHostProblems',
         'getServiceProblems', 'addAjaxPromise',
-        function ($scope, $routeParams, $interval, dashboardConfig, getObjects, TableConfigObj, TacticalConfigObj, getHostOpenProblems,
+        function ($scope, $routeParams, $interval, configManager, dashboardConfig, getObjects, TableConfigObj, TacticalConfigObj, getHostOpenProblems,
             getServiceOpenProblems, getHostProblems, getServiceProblems, addAjaxPromise) {
             var components = [],
                 component,
@@ -20,6 +20,10 @@ angular.module('bansho.view.dashboard', ['ngRoute',
                 viewName = $scope.viewName,
                 i = 0,
                 getData;
+
+            if (jQuery.isEmptyObject(dashboardConfig)) {
+                configManager.loadByTemplate('dashboard', dashboardConfig);
+            }
 
             $scope.dashboardTitle = dashboardConfig[viewName].title;
             $scope.dashboardTemplate = dashboardConfig[viewName].template;
@@ -66,14 +70,4 @@ angular.module('bansho.view.dashboard', ['ngRoute',
             }
 
             getData();
-        }])
-
-    .run(['readConfig', 'dashboardConfig', function (readConfig, dashboardConfig) {
-        var viewsConfig = readConfig.data;
-
-        angular.forEach(viewsConfig, function (config, view) {
-            if (config.template === 'dashboard') {
-                dashboardConfig[view] = config;
-            }
-        });
-    }]);
+        }]);
