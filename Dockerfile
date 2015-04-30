@@ -22,13 +22,13 @@ RUN a2enmod proxy_http
 ADD container/configure.sh /configure.sh
 
 # Bansho files
-ADD /package.json /opt/adagios-frontend/package.json
-ADD /.bowerrc /opt/adagios-frontend/.bowerrc
-ADD /.jshintrc /opt/adagios-frontend/.jshintrc
-ADD /Gruntfile.js /opt/adagios-frontend/Gruntfile.js
-ADD /bower.json /opt/adagios-frontend/bower.json
-RUN cd /opt/adagios-frontend/ && npm install --unsafe-perm
-ADD /app /opt/adagios-frontend/app
+ADD /package.json /opt/bansho/package.json
+ADD /.bowerrc /opt/bansho/.bowerrc
+ADD /.jshintrc /opt/bansho/.jshintrc
+ADD /Gruntfile.js /opt/bansho/Gruntfile.js
+ADD /bower.json /opt/bansho/bower.json
+RUN cd /opt/bansho/ && npm install --unsafe-perm
+ADD /app /opt/bansho/app
 
 # Override those variables at runtime to point Bansho to another backend
 ENV BANSHO_BACKEND surveil
@@ -37,6 +37,6 @@ ENV BANSHO_SURVEIL_URL http://surveil:8080/
 ENV BANSHO_ADAGIOS_URL http://demo.kaji-project.org/
 
 CMD ./configure.sh && \
-    cd /opt/adagios-frontend && \
+    cd /opt/bansho && \
     bash -c "if [ $BANSHO_PROD = true ] ; then grunt production:$BANSHO_BACKEND ; fi" && \
     bash -c "source /etc/apache2/envvars && exec /usr/sbin/apache2 -DFOREGROUND"
