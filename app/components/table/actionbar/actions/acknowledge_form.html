@@ -1,0 +1,39 @@
+<h4 id="acknowledgeModalLabel">Acknowlege</h4>
+<form data-ng-submit="acknowledgeProblems()">
+	<div>
+		<label for="author">Author :</label>
+		<input type="text" id="acknowledge-author" ng-model="acknowledgeData.author">
+	</div>
+	<div>
+		<label for="sticky">Sticky :</label>
+		<input type="checkbox"
+		id="acknowledge-sticky"
+		ng-model="acknowledgeData.sticky"
+		ng-true-value="1"
+		ng-false-value="0">
+	</div>
+	<div>
+		<label for="notify">Notify :</label>
+		<input type="checkbox"
+		id="acknowledge-notify"
+		ng-model="acknowledgeData.notify"
+		ng-true-value="1"
+		ng-false-value="0">
+	</div >
+	<div>
+		<label for="persistent">Persistent :</label>
+		<input type="checkbox"
+		id="acknowledge-persistent"
+		ng-model="acknowledgeData.persistent"
+		ng-true-value="1"
+		ng-false-value="0">
+	</div>
+	<div>
+		<label for="comment">Comment :</label>
+		<input type="message-text" id="acknowledge-comment" ng-model="acknowledgeData.comment">
+	</div>
+	<div>
+		<button type="button" ng-click="isShown = !isShown">Close</button>
+		<button type="button" ng-click="acknowledgeProblems()">Send</button>
+	</div>
+</form>

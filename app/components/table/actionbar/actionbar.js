@@ -29,43 +29,27 @@ angular.module('bansho.table.actionbar', ['bansho.table', 'bansho.live'])
 
     .controller('TableActionbarCtrl', ['$scope', '$filter', 'backendClient', 'actionbarFilters', 'tablesConfig',
         function ($scope, $filter, backendClient, actionbarFilters, tablesConfig, actionbarSelectFilter) {
+            $scope.isDowntimeShown = false;
+			$scope.isAcknowledgeShown = false;
+
+			$scope.switchDowntimeForm = function () {
+				$scope.isAcknowledgeShown = false;
+
+				$scope.isDowntimeShown = !$scope.isDowntimeShown;
+			}
+
+			$scope.switchAcknowledgeForm = function () {
+				$scope.isDowntimeShown = false;
+
+				$scope.isAcknowledgeShown = !$scope.isAcknowledgeShown;
+			}
+
             $scope.actionbarFilters = actionbarFilters;
             $scope.actionbarFilters.activeFilter = $scope.actionbarFilters.possibleFilters[0];
-            $scope.ackFormIsOpen = false;
-
-            $scope.acknowledgeData = {};
-            $scope.acknowledgeData.author = 'anonymous';
-            $scope.acknowledgeData.comment = 'No comment';
-            $scope.acknowledgeData.sticky = '1';
-            $scope.acknowledgeData.notify = '0';
-            $scope.acknowledgeData.persistent = '1';
-
-            $scope.acknowledgeProblems = function () {
-                angular.forEach(tablesConfig, function (tableConfig) {
-                    var entries = $filter('filter')(tableConfig.entries,
-                                                    $scope.actionbarFilters.searchFilter);
-
-                    angular.forEach(entries, function (entry) {
-                        var service_description = undefined;
-
-                        if (entry.is_checked) {
-                            if ('description' in entry) {
-                                service_description = entry.description;
-                            }
-
-                            backendClient.acknowledge(entry.host_name, service_description, $scope.acknowledgeData).error(function (data) {
-                                    throw new Error('Acknowledge request failed');
-                                });
-                        }
-                    });
-                });
-            };
 
             $scope.activateFilter = function (item) {
                 $scope.actionbarFilters.activeFilter = $scope.actionbarFilters.possibleFilters[item];
             };
-
-            $scope.isDowntimeShown = true;
         }])
 
     .filter('actionbarSelectFilter', function () {
