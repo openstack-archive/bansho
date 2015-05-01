@@ -27,6 +27,7 @@
     <script src="components/config/config.js"></script>
     <script src="components/utils/promise_manager.js"></script>
     <script src="components/live/live.js"></script>
+    <script src="components/authentication/authentication.js"></script>
     <script src="components/ng-justgage/ng-justgage.js"></script>
     <script src="components/filters/filters.js"></script>
     <script src="components/sidebar/sidebar.js"></script>
@@ -65,16 +66,16 @@
     <!--[if lt IE 7]> <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p> <![endif]-->
     <div class="layout__container">
       <aside class="layout__aside sidebar-wrapper collapse" id="sidebarWrapper">
-        <bansho-sidebar></bansho-sidebar>
+        <bansho-sidebar ng-show="isAuthenticated"></bansho-sidebar>
       </aside>
 
       <div class="layout__main">
         <div class="topbar-wrapper clearfix">
-          <bansho-topbar></bansho-topbar>
+          <bansho-topbar ng-show="isAuthenticated"></bansho-topbar>
         </div>
 
         <main ng-view id="page" class="main" role="main"></main>
-        <footer class="footer" role="contentinfo">...</footer>
+        <footer class="footer" role="contentinfo"></footer>
       </div>
     </div>
   </body>

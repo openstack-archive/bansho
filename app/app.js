@@ -16,6 +16,7 @@ angular.element(document).ready(function () {
 angular.module('bansho', [
     'ngRoute',
     'bansho.config',
+    'bansho.authentication',
     'bansho.utils.promiseManager',
     'bansho.topbar',
     'bansho.sidebar',

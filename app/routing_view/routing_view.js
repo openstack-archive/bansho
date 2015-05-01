@@ -10,13 +10,20 @@ angular.module('bansho.view', ['ngRoute',
         $routeProvider.when('/view', {
             controller: 'ViewCtrl',
             template: '<div ng-include="templateUrl">Loading...</div>'
+        })
+        .when('/login', {
+            templateUrl: 'components/authentication/authentication.html'
         });
     }])
 
-    .controller('ViewCtrl', ['$scope', '$routeParams', 'viewsTemplate', 'loadConfig',
-        function ($scope, $routeParams, viewsTemplate, loadConfig) {
+    .controller('ViewCtrl', ['$scope', '$rootScope',  '$location', '$routeParams', 'viewsTemplate', 'loadConfig', 'authService',
+        function ($scope, $rootScope, $location, $routeParams, viewsTemplate, loadConfig, authService) {
             var templateName,
                 templateUrl;
+
+            if (!$rootScope.isAuthenticated) {
+                $location.path('/login');
+            }
 
             if (jQuery.isEmptyObject(viewsTemplate)) {
                 loadConfig
