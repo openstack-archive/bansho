@@ -16,17 +16,18 @@ angular.module('bansho.view', ['ngRoute',
         });
     }])
 
-    .controller('ViewCtrl', ['$scope', '$rootScope',  '$location', '$routeParams', 'viewsTemplate', 'loadConfig', 'authService',
-        function ($scope, $rootScope, $location, $routeParams, viewsTemplate, loadConfig, authService) {
+    .controller('ViewCtrl', ['$scope', '$rootScope',  '$location', '$routeParams', '$window', '$timeout', 'viewsTemplate', 'loadConfig', 'authService', 'configManager',
+        function ($scope, $rootScope, $location, $routeParams, $window, $timeout, viewsTemplate, loadConfig, authService, configManager) {
             var templateName,
                 templateUrl;
 
             if (!$rootScope.isAuthenticated) {
                 $location.path('/login');
+                return;
             }
 
             if (jQuery.isEmptyObject(viewsTemplate)) {
-                loadConfig
+                loadConfig()
             }
 
             if (!!$routeParams.view) {
@@ -35,14 +36,16 @@ angular.module('bansho.view', ['ngRoute',
                 $scope.viewName = $routeParams.view = 'dashboardConfig';
             }
 
-            templateName = viewsTemplate[$scope.viewName],
+            templateName = viewsTemplate[$scope.viewName];
             $scope.templateUrl = 'templates/' + templateName + '/' + templateName + '.html';
         }])
 
-    .service('loadConfig', ['readConfig', 'viewsTemplate', function (readConfig, viewsTemplate) {
-        var viewsConfig = readConfig.data;
+    .service('loadConfig', ['configManager', 'viewsTemplate', function (configManager, viewsTemplate) {
+        return function () {
+            var viewsConfig = configManager.readConfig();
 
-        angular.forEach(viewsConfig, function (config, view) {
-            viewsTemplate[view] = config.template;
-        });
+            angular.forEach(viewsConfig, function (config, view) {
+                viewsTemplate[view] = config.template;
+            });
+        }
     }]);

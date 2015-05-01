@@ -1,18 +1,5 @@
 'use strict';
 
-angular.element(document).ready(function () {
-
-    $.get('components/config/config.json', function (data) {
-
-        angular.module('bansho.config').config(['readConfigProvider', function (readConfigProvider) {
-            readConfigProvider.loadJSON(data);
-        }]);
-
-        angular.bootstrap(document, ['bansho']);
-    }, "json");
-
-});
-
 angular.module('bansho', [
     'ngRoute',
     'bansho.config',

@@ -24,7 +24,7 @@ angular.module('bansho.authentication', [])
         };
     })
 
-    .factory('authService', ['$http', '$location', '$rootScope', 'session', function ($http, $location, $rootScope, session) {
+    .factory('authService', ['$http', '$location', '$rootScope', 'session', 'configManager',  function ($http, $location, $rootScope, session, configManager) {
         var authService = {};
 
         authService.login = function (credentials) {
@@ -32,9 +32,15 @@ angular.module('bansho.authentication', [])
                 .post('/surveil/v2/auth/tokens/', credentials)
                 .success(function (data) {
                     $rootScope.isAuthenticated = true;
-                    $location.path('/view');
                     session.create(data.access.token.id, data.access.token.expires);
                     $http.defaults.headers.common['X-Auth-Token'] = session.sessionId;
+
+                    configManager.fetchConfig().then(function () {
+                            $location.path('/view');
+                        }, function (message) {
+                            throw new Error(message);
+                        });
+
                 })
                 .error(function () {
                     alert('Login failed!');

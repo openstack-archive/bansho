@@ -1,34 +1,56 @@
 'use strict';
 
 
-function AdagiosConfig(data) {
-    this.data = data;
-}
-
 angular.module('bansho.config', [])
 
-    .provider('readConfig', function ReadConfigProvider() {
-
-        var data = {};
-
-        this.loadJSON = function (value) {
-            data = value;
-        };
-
-        this.$get = [function () {
-            return new AdagiosConfig(data);
-        }];
-    })
-
-    .service('configManager', ['readConfig', function (readConfig) {
+    .service('configManager', ['$http', '$q', function ($http, $q) {
+        var config = {};
 
         this.loadByTemplate = function (templateName, destination) {
-            var viewsConfig = readConfig.data;
+            var viewsConfig = config.data;
 
-            angular.forEach(viewsConfig, function (config, view) {
-                if (config.template === templateName) {
-                    destination[view] = config;
+            angular.forEach(viewsConfig, function (conf, view) {
+                if (conf.template === templateName) {
+                    destination[view] = conf;
                 }
             });
-        }
-    }]);
+        };
+
+        this.readConfig = function () {
+            return config.data;
+        };
+
+        this.fetchConfig = function () {
+            var responsePromise = $q.defer();
+
+            $http.get('surveil/v2/bansho/config')
+                .success(function (conf) {
+                    if (jQuery.isEmptyObject(conf))  {
+
+                        $http.get('components/config/config.json')
+                            .success(function (conf) {
+                                config.data = conf;
+
+                                $http.post('surveil/v2/bansho/config', JSON.stringify(conf))
+                                    .success(function () {
+                                        responsePromise.resolve();
+                                    })
+                                    .error(function () {
+                                        responsePromise.reject('Failed to send config to server');
+                                    });
+                            })
+                            .error(function () {
+                                responsePromise.reject('Failed to fetch default config');
+                            });
+                    } else {
+                        config.data = conf;
+                        responsePromise.resolve();
+                    }
+                })
+                .error(function () {
+                    responsePromise.reject('Failed to fetch config');
+                });
+
+                return responsePromise.promise;
+            };
+        }]);
