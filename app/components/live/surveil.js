@@ -361,11 +361,16 @@ angular.module('bansho.live', [])
             };
 
             var downtime = function (host_name, service_description, attrs) {
-                var data = {};
+				attrs.host_name = host_name;
+                if (service_description !== undefined) {
+                    attrs.service_description = service_description;
+                }
 
-                angular.forEach(attrs, function (key, value) {
-                    console.log(key + "; " + value);
-                });
+				return $http({
+					url: '/surveil/v2/actions/downtime/',
+					method: 'POST',
+					data: attrs
+				});
             };
 
             return {

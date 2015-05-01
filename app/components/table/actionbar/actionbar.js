@@ -1,9 +1,8 @@
 'use strict';
 
-angular.module('bansho.table.actionbar', ['bansho.table',
-                                          'bansho.live'])
+angular.module('bansho.table.actionbar', ['bansho.table', 'bansho.live'])
 
-    .factory('actionbarFilters', function () {
+    .service('actionbarFilters', function () {
         var actionbarFilters = {
             activeFilter: {},
             possibleFilters: [
@@ -54,8 +53,7 @@ angular.module('bansho.table.actionbar', ['bansho.table',
                                 service_description = entry.description;
                             }
 
-                            backendClient.acknowledge(entry.host_name, service_description, $scope.acknowledgeData)
-                                .error(function (data) {
+                            backendClient.acknowledge(entry.host_name, service_description, $scope.acknowledgeData).error(function (data) {
                                     throw new Error('Acknowledge request failed');
                                 });
                         }
@@ -106,19 +104,5 @@ angular.module('bansho.table.actionbar', ['bansho.table',
         return {
             restrict: 'E',
             templateUrl: 'components/table/actionbar/actionbar.html'
-        };
-    })
-
-    .directive('banshoDowntimeForm', function () {
-        return {
-            restrict: 'E',
-            templateUrl: 'components/table/actionbar/downtime_form.html',
-            scope: {
-                isShown: '=',
-                selectedHosts: '='
-            },
-            controller: function ($scope) {
-                console.log($scope.isShown)
-            }
         };
     });

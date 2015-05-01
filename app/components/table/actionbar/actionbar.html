@@ -1,141 +1,139 @@
 <menu class="filters" ng-controller="TableActionbarCtrl">
-  <ul class="filters__list clearfix">
-    <li class="filters__item filters__item--problems">
-      <button class="filters__button"
-              type="button"
-              data-toggle="collapse"
-              data-target="#filtersProblems"
-              aria-expanded="false"
-              aria-controls="filtersProblems">
-        <span>{{ actionbarFilters.activeFilter.text }}</span>
-        <i class="ico-down-dir"></i>
-      </button>
-      
-      <div class="filters__panel collapse" id="filtersProblems">
-        <ul class="filters__sublist">
-          <li class="filters__subitem" ng-repeat="actionbarFilter in actionbarFilters.possibleFilters" ng-click="activateFilter($index)">
-            <a class="filters__link state--current" ng-if="actionbarFilter === actionbarFilters.activeFilter">{{ actionbarFilter.text }}</a>
-            <a class="filters__link" ng-if="actionbarFilter !== actionbarFilters.activeFilter">{{ actionbarFilter.text }}</a>
-          </li>
-        </ul>
-      </div>
-    </li>
-    <li class="filters__item filters__item--recheck">
-      <button class="filters__button" type="button">
-        <span class="visuallyhidden">Recheck</span>
-        <i class="ico-arrows-cw"></i>
-      </button>
-    </li>
-    <li class="filters__item filters__item--acknowledge"
-        data-mover="true">
-        <button class="filters__button" type="button" ng-click="ackFormIsOpen = !ackFormIsOpen">
-        <span class="visuallyhidden">Acknowledge</span>
-        <i class="ico-thumbs-up"></i>
-      </button>
-    </li>
-    <li class="filters__item filters__item--downtime"
-        data-mover="true">
-      <button class="filters__button" type="button">
-        <span class="visuallyhidden">Downtime</span>
-        <i class="ico-clock"></i>
-      </button>
-    </li>
-    <li class="filters__item filters__item--more clearfix">
-      <button class="filters__button"
-              type="button"
-              data-toggle="collapse"
-              data-target="#filtersMore"
-              aria-expanded="false"
-              aria-controls="filtersMore">
-        <span>More</span>
-        <i class="ico-down-dir"></i>
-      </button>
-      
-      <div class="filters__panel collapse" id="filtersMore">
-        <ul class="filters__sublist">
-          <li class="filters__subitem">
-            <a class="filters__link" href="#">More I</a>
-          </li>
-          <li class="filters__subitem">
-            <a class="filters__link" href="#">More II</a>
-          </li>
-          <li class="filters__subitem">
-            <a class="filters__link" href="#">More III</a>
-          </li>
-        </ul>
-      </div>
-    </li>
-    <li class="filters__item clearfix">
-      <input id=filter__search" type="search" ng-model="actionbarFilters.searchFilter"/>{{ actionbarFilters.searchFilter }}
-    </li>
-    <li class="filters__item filters__item--settings">
-      <button class="filters__button"
-              type="button"
-              data-toggle="collapse"
-              data-target="#filtersSettings"
-              aria-expanded="false"
-              aria-controls="filtersSettings">
-        <span class="visuallyhidden">Filters Settings</span>
-        <i class="ico-cog"></i>
-      </button>
-      
-      <div class="filters__panel collapse" id="filtersSettings">
-        <ul class="filters__sublist">
-          <li>...</li>
-          <li>...</li>
-          <li>...</li>
-        </ul>
-      </div>
-    </li>
-  </ul>
+	<ul class="filters__list clearfix">
+		<li class="filters__item filters__item--problems">
+		<button class="filters__button"
+			type="button"
+			data-toggle="collapse"
+			data-target="#filtersProblems"
+			aria-expanded="false"
+			aria-controls="filtersProblems">
+			<span>{{ actionbarFilters.activeFilter.text }}</span>
+			<i class="ico-down-dir"></i>
+		</button>
 
-  <!-- Acknowledgement form  -->
-  <div ng-show="ackFormIsOpen">
-    <div>
-      <h4 id="acknowledgeModalLabel">Acknowlege</h4>
-    </div>
-    <div>
-      <form>
-        <div>
-          <label for="author">Author :</label>
-          <input type="text" id="acknowledge-author" ng-model="acknowledgeData.author">
-        </div>
-        <div>
-          <label for="sticky">Sticky :</label>
-          <input type="checkbox"
-                 id="acknowledge-sticky"
-                 ng-model="acknowledgeData.sticky"
-                 ng-true-value="1"
-                 ng-false-value="0">
-        </div>
-        <div>
-          <label for="notify">Notify :</label>
-          <input type="checkbox"
-                 id="acknowledge-notify"
-                 ng-model="acknowledgeData.notify"
-                 ng-true-value="1"
-                 ng-false-value="0">
-        </div >
-        <div>
-          <label for="persistent">Persistent :</label>
-          <input type="checkbox"
-                 id="acknowledge-persistent"
-                 ng-model="acknowledgeData.persistent"
-                 ng-true-value="1"
-                 ng-false-value="0">
-        </div>
-        <div>
-          <label for="comment">Comment :</label>
-          <input type="message-text" id="acknowledge-comment" ng-model="acknowledgeData.comment">
-        </div>
-      </form>
-    </div>
-    <div>
-      <button type="button" ng-click="ackFormIsOpen = !ackFormIsOpen">Close</button>
-      <button type="button" ng-click="acknowledgeProblems()">Send</button>
-    </div>
+		<div class="filters__panel collapse" id="filtersProblems">
+			<ul class="filters__sublist">
+				<li class="filters__subitem" ng-repeat="actionbarFilter in actionbarFilters.possibleFilters" ng-click="activateFilter($index)">
+				<a class="filters__link state--current" ng-if="actionbarFilter === actionbarFilters.activeFilter">{{ actionbarFilter.text }}</a>
+				<a class="filters__link" ng-if="actionbarFilter !== actionbarFilters.activeFilter">{{ actionbarFilter.text }}</a>
+				</li>
+			</ul>
+		</div>
+		</li>
+		<li class="filters__item filters__item--recheck">
+		<button class="filters__button" type="button">
+			<span class="visuallyhidden">Recheck</span>
+			<i class="ico-arrows-cw"></i>
+		</button>
+		</li>
+		<li class="filters__item filters__item--acknowledge" data-mover="true">
+		<button class="filters__button" type="button" ng-click="ackFormIsOpen = !ackFormIsOpen">
+			<span class="visuallyhidden">Acknowledge</span>
+			<i class="ico-thumbs-up"></i>
+		</button>
+		</li>
+		<li class="filters__item filters__item--downtime" data-mover="true">
+		<button class="filters__button" type="button" ng-click="isDowntimeShown = !isDowntimeShown">
+			<span class="visuallyhidden">Downtime</span>
+			<i class="ico-clock"></i>
+		</button>
+		</li>
+		<li class="filters__item filters__item--more clearfix">
+		<button class="filters__button"
+			type="button"
+			data-toggle="collapse"
+			data-target="#filtersMore"
+			aria-expanded="false"
+			aria-controls="filtersMore">
+			<span>More</span>
+			<i class="ico-down-dir"></i>
+		</button>
 
-  </div>
+		<div class="filters__panel collapse" id="filtersMore">
+			<ul class="filters__sublist">
+				<li class="filters__subitem">
+				<a class="filters__link" href="#">More I</a>
+				</li>
+				<li class="filters__subitem">
+				<a class="filters__link" href="#">More II</a>
+				</li>
+				<li class="filters__subitem">
+				<a class="filters__link" href="#">More III</a>
+				</li>
+			</ul>
+		</div>
+		</li>
+		<li class="filters__item clearfix">
+		<input id=filter__search" type="search" ng-model="actionbarFilters.searchFilter"/>{{ actionbarFilters.searchFilter }}
+		</li>
+		<li class="filters__item filters__item--settings">
+		<button class="filters__button"
+			type="button"
+			data-toggle="collapse"
+			data-target="#filtersSettings"
+			aria-expanded="false"
+			aria-controls="filtersSettings">
+			<span class="visuallyhidden">Filters Settings</span>
+			<i class="ico-cog"></i>
+		</button>
 
-  <bansho-downtime_form data-ng-show="isDowntimeShown" is-shown="isDowntimeShown" selected-hosts="selected"></bansho-downtime_form>
+		<div class="filters__panel collapse" id="filtersSettings">
+			<ul class="filters__sublist">
+				<li>...</li>
+				<li>...</li>
+				<li>...</li>
+			</ul>
+		</div>
+		</li>
+	</ul>
+
+	<!-- Acknowledgement form  -->
+	<div ng-show="ackFormIsOpen">
+		<div>
+			<h4 id="acknowledgeModalLabel">Acknowlege</h4>
+		</div>
+		<div>
+			<form>
+				<div>
+					<label for="author">Author :</label>
+					<input type="text" id="acknowledge-author" ng-model="acknowledgeData.author">
+				</div>
+				<div>
+					<label for="sticky">Sticky :</label>
+					<input type="checkbox"
+					id="acknowledge-sticky"
+					ng-model="acknowledgeData.sticky"
+					ng-true-value="1"
+					ng-false-value="0">
+				</div>
+				<div>
+					<label for="notify">Notify :</label>
+					<input type="checkbox"
+					id="acknowledge-notify"
+					ng-model="acknowledgeData.notify"
+					ng-true-value="1"
+					ng-false-value="0">
+				</div >
+				<div>
+					<label for="persistent">Persistent :</label>
+					<input type="checkbox"
+					id="acknowledge-persistent"
+					ng-model="acknowledgeData.persistent"
+					ng-true-value="1"
+					ng-false-value="0">
+				</div>
+				<div>
+					<label for="comment">Comment :</label>
+					<input type="message-text" id="acknowledge-comment" ng-model="acknowledgeData.comment">
+				</div>
+			</form>
+		</div>
+		<div>
+			<button type="button" ng-click="ackFormIsOpen = !ackFormIsOpen">Close</button>
+			<button type="button" ng-click="acknowledgeProblems()">Send</button>
+		</div>
+
+	</div>
+
+	<bansho-downtime-form ng-show="isDowntimeShown" is-shown="isDowntimeShown" selected-hosts="selected"> </bansho-downtime_form>
 </menu>
