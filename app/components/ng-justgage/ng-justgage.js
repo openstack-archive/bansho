@@ -1,3 +1,4 @@
+/*global JustGage */
 'use strict';
 
 angular.module("ngJustGage", [])

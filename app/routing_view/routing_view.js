@@ -27,7 +27,7 @@ angular.module('bansho.view', ['ngRoute',
             }
 
             if (jQuery.isEmptyObject(viewsTemplate)) {
-                loadConfig()
+                loadConfig();
             }
 
             if (!!$routeParams.view) {
@@ -47,5 +47,5 @@ angular.module('bansho.view', ['ngRoute',
             angular.forEach(viewsConfig, function (config, view) {
                 viewsTemplate[view] = config.template;
             });
-        }
+        };
     }]);

@@ -76,41 +76,32 @@ module.exports = function (grunt) {
             }
         },
 
-        jslint: { // configure the task
-
-            client: {
-                src: [
-                    'karma.conf.js',
-                    'Gruntfile.js',
-                    '<%= project.app %>/app.js',
-                    '<%= project.app %>/**/*.js'
-                ],
-                exclude: [
-                    '<%= project.app %>/bower_components/**/*.js',
-                    '<%= project.assets %>/**',
-                    '<%= project.build %>/**'
-                ],
-                directives: {
-                    node: true,
-                    nomen: true,
-                    unparam: true,
-                    predef: [ // Global variables
-                        'document', '$', '$get',
-                        'angular', 'inject', 'JustGage',
-                        'describe', 'beforeEach', 'it', 'expect',
-                        'moment'
-                    ]
-                },
-                options: {
-                    edition: 'latest', // specify an edition of jslint or use 'dir/mycustom-jslint.js' for own path
-                    junit: 'out/client-junit.xml', // write the output to a JUnit XML
-                    log: 'out/client-lint.log',
-                    jslintXml: 'out/client-jslint.xml',
-                    errorsOnly: true, // only display errors
-                    failOnError: false, // defaults to true
-                    checkstyle: 'out/client-checkstyle.xml' // write a checkstyle-XML
-                }
-            }
+        jshint: { // configure the task
+			options: {
+				node: true,
+				loopfunc: true,
+				globals: {
+					document: true,
+					angular: true,
+					jQuery: true,
+					$: true,
+					describe: true,
+					it: true,
+					expect: true,
+					beforeEach: true,
+					inject: true
+				},
+				force: true
+			},
+			all: [
+				'karma.conf.js',
+				'Gruntfile.js',
+				'<%= project.app %>/app.js',
+				'<%= project.app %>/**/*.js',
+				'!<%= project.app %>/bower_components/**',
+				'!<%= project.app %>/**/live.js',
+				'!<%= project.app %>/**/adagios.js'
+			]
         },
 
         useminPrepare: {
@@ -145,17 +136,24 @@ module.exports = function (grunt) {
         watch: {
             adagios: {
                 files: [
+                    '<%= project.app %>/**/*.js',
+                    '<%= project.app %>/**/*.html',
                     '<%= project.app %>/components/live/adagios.js',
                     '<%= project.assets %>/sass/{,*/}*.{scss,sass}'
                 ],
-                tasks: ['copy:adagios', 'sass:dev']
+                tasks: ['copy:adagios', 'sass:dev', 'jshint:all']
             },
             surveil: {
                 files: [
+                    '<%= project.app %>/**/*.js',
+                    '<%= project.app %>/**/*.html',
                     '<%= project.app %>/components/live/surveil.js',
                     '<%= project.assets %>/sass/{,*/}*.{scss,sass}'
                 ],
-                tasks: ['copy:surveil', 'sass:dev']
+                tasks: ['copy:surveil', 'sass:dev', 'jshint:all']
+            },
+            options: {
+                livereload: true
             }
         }
     });
@@ -163,11 +161,11 @@ module.exports = function (grunt) {
     grunt.registerTask('default', ['watch']);
 
     grunt.registerTask('development:adagios', [
-        'sass', 'copy:adagios', 'watch:adagios'
+        'sass', 'copy:adagios', 'jshint:all', 'watch:adagios'
     ]);
 
     grunt.registerTask('development:surveil', [
-        'sass', 'copy:surveil', 'watch:surveil'
+        'sass', 'copy:surveil', 'jshint:all', 'watch:surveil'
     ]);
 
     grunt.registerTask('production:adagios', [

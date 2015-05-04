@@ -9,7 +9,7 @@ angular.module('bansho.host', ['bansho.live',
 
     .value('hostConfig', {})
 
-    .controller('HostCtrl', ['$scope', 'hostConfig', 'getHost', function ($scope, hostConfig, getHost) {
+    .controller('HostCtrl', ['$scope', 'hostConfig', 'backendClient', function ($scope, hostConfig, backendClient) {
         var objectType = 'host',
             objectIdentifier = {};
 
@@ -17,7 +17,7 @@ angular.module('bansho.host', ['bansho.live',
         $scope.hostName = hostConfig.hostName;
         $scope.data = {};
 
-        getHost(objectType, objectIdentifier).then(function (data) {
+        backendClient.getHost(objectType, objectIdentifier).then(function (data) {
             $scope.data = data;
         });
     }])

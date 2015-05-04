@@ -16,9 +16,9 @@ angular.module('bansho.table', ['bansho.live',
 
     .value('tablesConfig', [])
 
-    .controller('TableCtrl', ['$scope', '$interval', 'getTableData', 'tablesConfig',
-        'actionbarFilters', 'addAjaxPromise', 'tableGlobalConfig',
-        function ($scope, $interval, getTableData, tablesConfig, actionbarFilters, addAjaxPromise, tableGlobalConfig) {
+    .controller('TableCtrl', ['$scope', '$interval', 'backendClient', 'tablesConfig',
+        'actionbarFilters', 'promisesManager', 'tableGlobalConfig',
+        function ($scope, $interval, backendClient, tablesConfig, actionbarFilters, promisesManager, tableGlobalConfig) {
             var requestFields = [],
                 conf = tablesConfig[tableGlobalConfig.nextTableIndex],
                 getData,
@@ -39,7 +39,7 @@ angular.module('bansho.table', ['bansho.live',
             });
 
             getData = function (requestFields, filters, apiName, additionnalFields) {
-                var promise = getTableData(requestFields, filters, apiName, additionnalFields);
+                var promise = backendClient.getTableData(requestFields, filters, apiName, additionnalFields);
                 promise.then(function (data) {
                     $scope.entries = data;
                     conf.entries = data;
@@ -51,7 +51,7 @@ angular.module('bansho.table', ['bansho.live',
             getData(requestFields, conf.filters, conf.apiName, conf.additionnalQueryFields);
 
             if (tableGlobalConfig.refreshInterval !== 0) {
-                addAjaxPromise(
+                promisesManager.addAjaxPromise(
                     $interval(function () {
                         getData(requestFields, conf.filters, conf.apiName, conf.additionnalQueryFields);
                     }, tableGlobalConfig.refreshInterval)
@@ -76,8 +76,7 @@ angular.module('bansho.table', ['bansho.live',
                             conf;
 
                         if (!attrs.cellsText || !attrs.cellsName || !attrs.apiName || !attrs.isWrappable) {
-                            throw new Error('<bansho-table> "cells-text", "cells-name", "api-name"'
-                                            + ' and "is-wrappable" attributes must be defined');
+                            throw new Error('<bansho-table> "cells-text", "cells-name", "api-name" and "is-wrappable" attributes must be defined');
                         }
 
                         tablesConfig[attrs.tableId] = {};

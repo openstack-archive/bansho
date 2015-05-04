@@ -2,25 +2,27 @@
 
 angular.module('bansho.utils.promiseManager', [])
 
-    .value('ajaxPromises', [])
+    .service('promisesManager', ['$interval', function ($interval) {
+        var ajaxPromises = [];
 
-    .service('addAjaxPromise', ['ajaxPromises', function (ajaxPromises) {
-        return function (promise) {
-            ajaxPromises.push(promise);
-        };
-    }])
-
-    .service('clearAjaxPromises', ['$interval', 'ajaxPromises', function ($interval, ajaxPromises) {
-        return function () {
+        function clearAjaxPromises () {
             angular.forEach(ajaxPromises, function (promise) {
                 $interval.cancel(promise);
             });
-        };
-    }])
+        }
 
-    .service('clearAllPromises', ['ajaxPromises', 'clearAjaxPromises',
-        function (ajaxPromises, clearAjaxPromises) {
-            return function () {
-                clearAjaxPromises();
-            };
-        }]);
+        /**
+         * Add a new promise to check
+         * @param promise
+         */
+        this.addAjaxPromise = function (promise) {
+            ajaxPromises.push(promise);
+        };
+
+        /**
+         * Clear all types of promises
+         */
+        this.clearAllPromises = function () {
+            clearAjaxPromises();
+        };
+    }]);

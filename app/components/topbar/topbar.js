@@ -2,16 +2,16 @@
 
 angular.module('bansho.topbar', ['bansho.live'])
 
-    .controller('TopBarCtrl', ['$scope', '$interval', 'getServiceProblems', 'getHostProblems', 'addAjaxPromise',
-        function ($scope, $interval, getServiceProblems, getHostProblems, addAjaxPromise) {
+    .controller('TopBarCtrl', ['$scope', '$interval', 'backendClient', 'promisesManager',
+        function ($scope, $interval, backendClient, promisesManager) {
             var getData,
                 hostProblems,
                 serviceProblems;
 
             getData = function () {
-                getServiceProblems().success(function (data) {
+                backendClient.getServiceProblems().success(function (data) {
                     serviceProblems = data.length;
-                    getHostProblems().success(function (data) {
+                    backendClient.getHostProblems().success(function (data) {
                         hostProblems = data.length;
                         $scope.allProblems = serviceProblems + hostProblems;
                     });
@@ -19,7 +19,7 @@ angular.module('bansho.topbar', ['bansho.live'])
             };
 
             // TODO: Change hardcoded interval when the topbar dashboard will be implemented
-            addAjaxPromise($interval(getData, 10000));
+            promisesManager.addAjaxPromise($interval(getData, 10000));
             getData();
         }])
 

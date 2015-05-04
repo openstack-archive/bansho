@@ -1,3 +1,4 @@
+/* global alert */
 'use strict';
 
 angular.module('bansho.authentication', [])
@@ -17,7 +18,7 @@ angular.module('bansho.authentication', [])
                     'password': ''
                 }
             }
-        }
+        };
 
         $scope.login = function (credentials) {
             authService.login(credentials);

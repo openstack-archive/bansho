@@ -2,7 +2,7 @@
 
 angular.module('bansho.host.cpu', ['bansho.live'])
 
-    .controller('HostCpuCtrl', ['$scope', 'getObjects', function ($scope, getObjects) {
+    .controller('HostCpuCtrl', ['$scope', 'backendClient', function ($scope, backendClient) {
         var hostName = $scope.hostName,
             service = 'cpu',
             fields = ['state', 'description', 'plugin_output'],
@@ -10,7 +10,7 @@ angular.module('bansho.host.cpu', ['bansho.live'])
             apiName = 'services',
             additionnalFields = {'host_name': hostName, 'description': service};
 
-        getObjects(fields, filters, apiName, additionnalFields)
+        backendClient.getObjects(fields, filters, apiName, additionnalFields)
             .success(function (data) {
                 $scope.cpuData = data[0];
             });
