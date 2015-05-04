@@ -1,6 +1,7 @@
 'use strict';
 
-angular.module('bansho.table.actionbar', [])
+angular.module('bansho.table.actionbar', ['bansho.table',
+                                          'bansho.live'])
 
     .factory('actionbarFilters', function () {
         var actionbarFilters = {
@@ -27,14 +28,45 @@ angular.module('bansho.table.actionbar', [])
         return actionbarFilters;
     })
 
-    .controller('TableActionbarCtrl', ['$scope', 'actionbarFilters', function ($scope, actionbarFilters) {
-        $scope.actionbarFilters = actionbarFilters;
-        $scope.actionbarFilters.activeFilter = $scope.actionbarFilters.possibleFilters[0];
+    .controller('TableActionbarCtrl', ['$scope', '$filter', 'acknowledge', 'actionbarFilters', 'tablesConfig',
+        function ($scope, $filter, acknowledge, actionbarFilters, tablesConfig, actionbarSelectFilter) {
+            $scope.actionbarFilters = actionbarFilters;
+            $scope.actionbarFilters.activeFilter = $scope.actionbarFilters.possibleFilters[0];
+            $scope.ackFormIsOpen = false;
 
-        $scope.activateFilter = function (item) {
-            $scope.actionbarFilters.activeFilter = $scope.actionbarFilters.possibleFilters[item];
-        };
-    }])
+            $scope.acknowledgeData = {};
+            $scope.acknowledgeData.author = 'anonymous';
+            $scope.acknowledgeData.comment = 'No comment';
+            $scope.acknowledgeData.sticky = '1';
+            $scope.acknowledgeData.notify = '0';
+            $scope.acknowledgeData.persistent = '1';
+
+            $scope.acknowledgeProblems = function () {
+                angular.forEach(tablesConfig, function (tableConfig) {
+                    var entries = $filter('filter')(tableConfig.entries,
+                                                    $scope.actionbarFilters.searchFilter);
+
+                    angular.forEach(entries, function (entry) {
+                        var service_description = undefined;
+
+                        if (entry.is_checked) {
+                            if ('description' in entry) {
+                                service_description = entry.description;
+                            }
+
+                            acknowledge(entry.host_name, service_description, $scope.acknowledgeData)
+                                .error(function (data) {
+                                    throw new Error('Acknowledge request failed');
+                                });
+                        }
+                    });
+                });
+            };
+
+            $scope.activateFilter = function (item) {
+                $scope.actionbarFilters.activeFilter = $scope.actionbarFilters.possibleFilters[item];
+            };
+        }])
 
     .filter('actionbarSelectFilter', function () {
         return function (items, activeFilter) {
