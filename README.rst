@@ -35,10 +35,16 @@ Install development dependencies :
 
 ::
 
-    sudo apt-get install npm nodejs-legacy ruby-sass docker.io
+    sudo apt-get install npm nodejs-legacy ruby docker.io
     npm install grunt-cli
     npm install
+    gem install sass
     make build
+
+
+Start the Docker container (be sure to have a surveil container available at this link: https://github.com/stackforge/surveil )
+
+::
     make daemon
 
 
