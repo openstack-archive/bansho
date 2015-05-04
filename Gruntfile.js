@@ -78,10 +78,19 @@ module.exports = function (grunt) {
 
         jshint: { // configure the task
 			options: {
+				node: true,
+				loopfunc: true,
 				globals: {
+					document: true,
 					angular: true,
-					jQuery: true
-					},
+					jQuery: true,
+					$: true,
+					describe: true,
+					it: true,
+					expect: true,
+					beforeEach: true,
+					inject: true
+				},
 				force: true
 			},
 			all: [
@@ -89,7 +98,9 @@ module.exports = function (grunt) {
 				'Gruntfile.js',
 				'<%= project.app %>/app.js',
 				'<%= project.app %>/**/*.js',
-				'!<%= project.app %>/bower_components/**'
+				'!<%= project.app %>/bower_components/**',
+				'!<%= project.app %>/**/live.js',
+				'!<%= project.app %>/**/adagios.js'
 			]
         },
 
@@ -130,7 +141,7 @@ module.exports = function (grunt) {
                     '<%= project.app %>/components/live/adagios.js',
                     '<%= project.assets %>/sass/{,*/}*.{scss,sass}'
                 ],
-                tasks: ['copy:adagios', 'sass:dev']
+                tasks: ['copy:adagios', 'sass:dev', 'jshint:all']
             },
             surveil: {
                 files: [
@@ -139,7 +150,7 @@ module.exports = function (grunt) {
                     '<%= project.app %>/components/live/surveil.js',
                     '<%= project.assets %>/sass/{,*/}*.{scss,sass}'
                 ],
-                tasks: ['copy:surveil', 'sass:dev']
+                tasks: ['copy:surveil', 'sass:dev', 'jshint:all']
             },
             options: {
                 livereload: true

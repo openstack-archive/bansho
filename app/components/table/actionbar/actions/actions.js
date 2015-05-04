@@ -19,7 +19,7 @@ angular.module('bansho.table.actionbar')
 							actionbarFilters.searchFilter);
 
 						angular.forEach(entries, function (entry) {
-							var service_description = undefined;
+							var service_description;
 
 							if (entry.is_checked) {
 								if ('description' in entry) {
@@ -34,7 +34,7 @@ angular.module('bansho.table.actionbar')
 					});
 				};
 			}
-		}
+		};
 	}])
 
 	.directive('banshoDowntimeForm',
@@ -55,7 +55,7 @@ angular.module('bansho.table.actionbar')
 						var entries = $filter('filter')(table.entries, actionbarFilters.searchFilter);
 
 						angular.forEach(entries, function (entry) {
-							var service_description = undefined;
+							var service_description;
 
 							if (entry.is_checked) {
 								if ('description' in entry) {
@@ -78,7 +78,7 @@ angular.module('bansho.table.actionbar')
 							}
 						});
 					});
-				}
+				};
 			}
-		}
+		};
 	}]);

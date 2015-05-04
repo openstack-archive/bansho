@@ -76,8 +76,7 @@ angular.module('bansho.table', ['bansho.live',
                             conf;
 
                         if (!attrs.cellsText || !attrs.cellsName || !attrs.apiName || !attrs.isWrappable) {
-                            throw new Error('<bansho-table> "cells-text", "cells-name", "api-name"'
-                                            + ' and "is-wrappable" attributes must be defined');
+                            throw new Error('<bansho-table> "cells-text", "cells-name", "api-name" and "is-wrappable" attributes must be defined');
                         }
 
                         tablesConfig[attrs.tableId] = {};

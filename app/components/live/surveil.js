@@ -25,7 +25,7 @@ angular.module('bansho.live', [])
                     defaults = angular.isArray(defaults) ? defaults : [defaults];
 
                     return defaults.concat(transform);
-                };
+                }
 
                 if (apiName === 'hosts') {
                     transformations = hostMiddleware;
@@ -111,7 +111,7 @@ angular.module('bansho.live', [])
                     });
 
                 return responsePromise.promise;
-            }
+            };
 
             var getHostProblems = function () {
                 var fields = ['state'],
@@ -136,7 +136,7 @@ angular.module('bansho.live', [])
                     .error(function () {
                         throw new Error('getServiceOpenProblems : POST Request failed');
                     });
-            }
+            };
 
             // This service is used to count the number of hosts
             var getTotalHosts = function () {
@@ -149,7 +149,7 @@ angular.module('bansho.live', [])
                     .error(function () {
                         throw new Error('getTotalHosts : POST Request failed');
                     });
-            }
+            };
 
             // This service is used to count the number of services
             var getTotalServices = function () {
@@ -162,7 +162,7 @@ angular.module('bansho.live', [])
                     .error(function () {
                         throw new Error('getTotalServices : POST Request failed');
                     });
-            }
+            };
 
             var getHost = function (objectType, objectIdentifier) {
                 var objectData = {},
@@ -179,11 +179,11 @@ angular.module('bansho.live', [])
                         objectData.live = liveData;
                         objectData.config = configData;
                         responsePromise.resolve(objectData);
-                    })
+                    });
                 });
 
                 return responsePromise.promise;
-            }
+            };
 
             var hostQueryTransform = function (fields, filters) {
                 var i,
@@ -196,7 +196,7 @@ angular.module('bansho.live', [])
                         fields[i] = transformations[fields[i]];
                     }
                 }
-            }
+            };
 
             // Modify response object to conform to web ui
             var hostMiddleware = function (data) {
@@ -215,7 +215,7 @@ angular.module('bansho.live', [])
                 }
 
                 return data;
-            }
+            };
 
             // Modify response object to conform to web ui
             var serviceMiddleware = function (data) {
@@ -285,7 +285,7 @@ angular.module('bansho.live', [])
                     } else {
                         serviceAdditionnalFields[field] = value;
                     }
-                })
+                });
 
                 angular.forEach(filters, function (filterData, filterName) {
                     angular.forEach(filterData, function (values, field) {
@@ -335,7 +335,7 @@ angular.module('bansho.live', [])
                     });
 
                 return responsePromise.promise;
-            }
+            };
 
             var acknowledge = function (host_name, service_description, attrs) {
                 var data = {};

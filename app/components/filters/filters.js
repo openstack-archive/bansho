@@ -1,3 +1,4 @@
+/*global moment */
 'use strict';
 
 angular.module('bansho.filters', [])

@@ -36,13 +36,13 @@ angular.module('bansho.table.actionbar', ['bansho.table', 'bansho.live'])
 				$scope.isAcknowledgeShown = false;
 
 				$scope.isDowntimeShown = !$scope.isDowntimeShown;
-			}
+			};
 
 			$scope.switchAcknowledgeForm = function () {
 				$scope.isDowntimeShown = false;
 
 				$scope.isAcknowledgeShown = !$scope.isAcknowledgeShown;
-			}
+			};
 
             $scope.actionbarFilters = actionbarFilters;
             $scope.actionbarFilters.activeFilter = $scope.actionbarFilters.possibleFilters[0];
