@@ -7,12 +7,12 @@ angular.module('bansho.service', ['bansho.live',
 
     .value('serviceConfig', {})
 
-    .controller('ServiceCtrl', ['$scope', 'serviceConfig', 'getService',
-        function ($scope, serviceConfig, getService) {
+    .controller('ServiceCtrl', ['$scope', 'serviceConfig', 'backendClient',
+        function ($scope, serviceConfig, backendClient) {
             var hostName = serviceConfig.hostName,
                 description = serviceConfig.description;
 
-            getService(hostName, description).success(function (data) {
+            backendClient.getService(hostName, description).success(function (data) {
                 $scope.data = data;
             });
         }])

@@ -2,7 +2,7 @@
 
 angular.module('bansho.host.load', [])
 
-    .controller('HostLoadCtrl', ['$scope', 'getObjects', function ($scope, getObjects) {
+    .controller('HostLoadCtrl', ['$scope', 'backendClient', function ($scope, backendClient) {
         var hostName = $scope.hostName,
             service = 'load',
             fields = ['state', 'description', 'plugin_output'],
@@ -10,7 +10,7 @@ angular.module('bansho.host.load', [])
             apiName = 'services',
             additionnalFields = {'host_name': hostName, 'description': service};
 
-        getObjects(fields, filters, apiName, additionnalFields)
+        backendClient.getObjects(fields, filters, apiName, additionnalFields)
             .success(function (data) {
                 $scope.loadData = data[0];
             });
