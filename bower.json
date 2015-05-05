@@ -1,7 +1,6 @@
 {
   "name": "Bansho",
   "description": "Web UI for Monitoring tools",
-  "version": "0.1.0",
   "homepage": "https://github.com/savoirfairelinux/bansho",
   "license": "AGPLv3",
   "private": true,
