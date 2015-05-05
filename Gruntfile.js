@@ -17,7 +17,14 @@ module.exports = function (grunt) {
         },
 
         clean: {
-            dist: ['<%= project.dist %>/'],
+            dist: [
+				'<%= project.dist %>/assets/',
+				'<%= project.dist %>/bower_components/',
+				'<%= project.dist %>/components/',
+				'<%= project.dist %>/js/',
+				'<%= project.dist %>/templates/',
+				'<%= project.dist %>/index.html'
+			],
             tmp: ['<%= project.tmp %>/']
         },
 
@@ -152,6 +159,15 @@ module.exports = function (grunt) {
                 ],
                 tasks: ['copy:surveil', 'sass:dev', 'jshint:all']
             },
+            staging: {
+                files: [
+                    '<%= project.app %>/**/*.js',
+                    '<%= project.app %>/**/*.html',
+                    '<%= project.app %>/components/live/surveil.js',
+                    '<%= project.assets %>/sass/{,*/}*.{scss,sass}'
+                ],
+				tasks: ['production:surveil']
+			},
             options: {
                 livereload: true
             }
@@ -168,8 +184,11 @@ module.exports = function (grunt) {
         'sass', 'copy:surveil', 'jshint:all', 'watch:surveil'
     ]);
 
+    grunt.registerTask('staging:surveil', [
+        'production:surveil', 'watch:staging']);
+
     grunt.registerTask('production:adagios', [
-        'clean', 'sass', 'copy:prod','copy:adagios', 'useminPrepare:html', 'concat:generated', 'uglify:generated', 'usemin:html']);
+        'clean', 'sass', 'copy:prod', 'copy:adagios', 'useminPrepare:html', 'concat:generated', 'uglify:generated', 'usemin:html']);
 
     grunt.registerTask('production:surveil', [
         'clean', 'sass', 'copy:prod', 'copy:surveil', 'useminPrepare:html', 'concat:generated', 'uglify:generated', 'usemin:html']);

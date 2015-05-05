@@ -9,7 +9,7 @@ angular.module('bansho.authentication', [])
         });
     }])
 
-    .controller('LoginController', function ($scope, $rootScope, $location, authService) {
+    .controller('LoginController', ['$scope', '$rootScope', '$location', 'authService', function ($scope, $rootScope, $location, authService) {
         $scope.credentials = {
             'auth': {
                 'tenantName': '',
@@ -23,7 +23,7 @@ angular.module('bansho.authentication', [])
         $scope.login = function (credentials) {
             authService.login(credentials);
         };
-    })
+    }])
 
     .factory('authService', ['$http', '$location', '$rootScope', 'session', 'configManager',  function ($http, $location, $rootScope, session, configManager) {
         var authService = {};

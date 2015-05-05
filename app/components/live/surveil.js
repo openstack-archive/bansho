@@ -338,14 +338,20 @@ angular.module('bansho.live', [])
             };
 
             var acknowledge = function (host_name, service_description, attrs) {
-                var data = {};
+				var data = {};
 
                 data.host_name = host_name;
-                data.author = attrs.author;
-                data.comment = attrs.comment;
-                data.sticky = parseInt(attrs.sticky, 10);
-                data.notify = parseInt(attrs.notify, 10);
-                data.persistent = parseInt(attrs.persistent, 10);
+				if (attrs.sticky) {
+					data.sticky = parseInt(attrs.sticky, 10);
+				}
+
+				if (attrs.notify) {
+					data.notify = parseInt(attrs.notify, 10);
+				}
+
+				if (attrs.persistent) {
+					data.persistent = parseInt(attrs.persistent, 10);
+				}
 
                 if (service_description !== undefined) {
                     data.service_description = service_description;
