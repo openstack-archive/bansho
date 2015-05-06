@@ -45,6 +45,7 @@ Install development dependencies :
 Start the Docker container (be sure to have a surveil container available at this link: https://github.com/stackforge/surveil )
 
 ::
+
     make daemon
 
 
@@ -60,8 +61,6 @@ If you wish to develop in a docker container, here is how to proceed (assuming
 you already have docker installed) :
 
 ::
-
-
 
     curl http://localhost:8888/
 
@@ -81,7 +80,7 @@ Run the linter as follows:
 
 ::
 
-    grunt jslint
+    grunt jshint
 
 Tests
 =====
