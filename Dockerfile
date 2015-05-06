@@ -35,6 +35,7 @@ ENV BANSHO_BACKEND surveil
 ENV BANSHO_PROD true
 ENV BANSHO_SURVEIL_URL http://surveil:8080/
 ENV BANSHO_ADAGIOS_URL http://demo.kaji-project.org/
+ENV BANSHO_AUTH_URL http://surveil:8080/v2/auth/
 
 CMD ./configure.sh && \
     cd /opt/bansho && \
