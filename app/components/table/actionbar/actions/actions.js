@@ -84,4 +84,4 @@ angular.module('bansho.table.actionbar')
 				});
 			});
 		};
-	}])
+	}]);
