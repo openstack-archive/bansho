@@ -2,7 +2,9 @@
 Bansho
 ======
 
-
+* Bug tracker: https://launchpad.net/bansho
+* Open Gerrit changesets: https://review.openstack.org/#/q/status:open+bansho,n,z
+* Surveil: https://github.com/stackforge/surveil
 
 Production
 ==========
