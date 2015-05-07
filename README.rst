@@ -13,7 +13,7 @@ Production
 ::
 
     sudo apt-get install docker.io
-    git clone https://github.com/savoirfairelinux/bansho
+    git clone https://github.com/stackforge/bansho
     cd bansho
     make build
     make production
@@ -29,7 +29,7 @@ Clone project :
 
 ::
 
-    git clone https://github.com/savoirfairelinux/bansho
+    git clone https://github.com/stackforge/bansho
     cd bansho
 
 
