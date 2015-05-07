@@ -2,7 +2,7 @@
 Bansho
 ======
 
-
+* Bug tracker: https://launchpad.net/bansho
 
 Production
 ==========
