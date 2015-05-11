@@ -40,7 +40,7 @@ angular.module('bansho.live', [])
                 }
 
                 if (fields.length > 0) {
-                    query.fields = JSON.stringify(fields);
+                    query.fields = fields;
                 }
 
                 query.filters = JSON.stringify(filters);
