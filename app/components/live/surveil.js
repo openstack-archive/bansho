@@ -40,7 +40,7 @@ angular.module('bansho.live', [])
                 }
 
                 if (fields.length > 0) {
-                    query.fields = JSON.stringify(fields);
+                    query.fields = fields;
                 }
 
                 query.filters = JSON.stringify(filters);
@@ -69,9 +69,9 @@ angular.module('bansho.live', [])
 
             var getHostOpenProblems = function () {
                 var fields = ['state'],
-                    filters = {},
+                    filters = {'is': {'state': ['DOWN', 'UNREACHABLE']}},
                     apiName = 'hosts',
-                    additionnalFields = {'acknowledged': 0, 'state': 1};
+                    additionnalFields = {'acknowledged': false};
 
                 return getObjects(fields, filters, apiName, additionnalFields)
                     .error(function () {
@@ -81,10 +81,10 @@ angular.module('bansho.live', [])
 
             var getServiceOpenProblems = function () {
                 var serviceFields = ['host_name', 'state'],
-                    serviceFilters = {'isnot': {'state': [0]}},
-                    serviceAdditionnalFields = {'acknowledged': 0},
+                    serviceFilters = {'isnot': {'state': ['OK']}},
+                    serviceAdditionnalFields = {'acknowledged': false},
                     hostFields = ['host_name', 'state'],
-                    hostFilters = {'isnot': {'state': [2]}},
+                    hostFilters = {'isnot': {'state': ['CRITICAL']}},
                     hostAdditionnalFields = {},
                     responsePromise = $q.defer();
 
@@ -115,7 +115,7 @@ angular.module('bansho.live', [])
 
             var getHostProblems = function () {
                 var fields = ['state'],
-                    filters = {'isnot': {'state': [0]}},
+                    filters = {'isnot': {'state': ['UP']}},
                     apiName = 'hosts',
                     additionnalFields = {};
 
@@ -128,7 +128,7 @@ angular.module('bansho.live', [])
             // This service is used to count the number of service problems
             var getServiceProblems = function () {
                 var fields = ['state'],
-                    filters = {'isnot': {'state': [0]}},
+                    filters = {'isnot': {'state': ['OK']}},
                     apiName = 'services',
                     additionnalFields = {};
 
@@ -239,6 +239,8 @@ angular.module('bansho.live', [])
             };
 
             var getTableData = function (fields, filters, apiName, additionnalFields) {
+                console.log(filters)
+                console.log(additionnalFields)
                 var hostFields = [],
                     serviceFields = [],
                     hostFilters = {},

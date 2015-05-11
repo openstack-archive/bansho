@@ -18,7 +18,7 @@
             {
                 "type": "table",
                 "config": {
-                    "title": "Hosts",
+                    "title": "Hosts problems",
                     "cells": {
                         "text": [
                             "Host",
@@ -37,8 +37,8 @@
                     },
                     "apiName": "hosts",
                     "additionnalQueryFields": {
-                        "acknowledged": 0,
-                        "state": 1
+                        "acknowledged": false,
+                        "state": "DOWN"
                     },
                     "isWrappable": false,
                     "noRepeatCell": ""
@@ -66,15 +66,16 @@
                     "filters": {
                         "isnot": {
                             "state": [
-                                0
+                                "OK"
                             ],
                             "host_state": [
-                                2
+                                "DOWN",
+                                "UNREACHABLE"
                             ]
                         }
                     },
                     "additionnalQueryFields": {
-                        "acknowledged": 0
+                        "acknowledged": false
                     },
                     "isWrappable": true,
                     "noRepeatCell": "host"
@@ -104,7 +105,7 @@
                     "filters": {
                         "isnot": {
                             "state": [
-                                0
+                                "UP"
                             ]
                         }
                     },
@@ -134,7 +135,7 @@
                     "filters": {
                         "isnot": {
                             "state": [
-                                0
+                                "OK"
                             ]
                         }
                     },

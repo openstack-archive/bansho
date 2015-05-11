@@ -3,9 +3,9 @@
 angular.module('bansho.table.cell_service_check', ['bansho.table'])
 
     .controller('CellServiceCheckCtrl', ['$scope', function ($scope) {
-        if ($scope.entry.state === 0) {
+        if ($scope.entry.state === 'OK') {
             $scope.state = 'state--ok';
-        } else if ($scope.entry.state === 1) {
+        } else if ($scope.entry.state === 'WARNING') {
             $scope.state = 'state--warning';
         } else {
             $scope.state = 'state--error';
@@ -13,5 +13,5 @@ angular.module('bansho.table.cell_service_check', ['bansho.table'])
     }])
 
     .run(['tableGlobalConfig', function (tableGlobalConfig) {
-        tableGlobalConfig.cellToFieldsMap.service_check = ['state', 'description', 'plugin_output'];
+        tableGlobalConfig.cellToFieldsMap.service_check = ['state', 'service_description', 'plugin_output'];
     }]);
