@@ -5,9 +5,9 @@ angular.module('bansho.table.cell_host', ['bansho.table'])
     .controller('CellHostCtrl', ['$scope', function ($scope) {
         $scope.cell_name = 'host';
 
-        if ($scope.entry.host_state === 0) {
+        if ($scope.entry.host_state === 'UP') {
             $scope.state = 'state--ok';
-        } else if ($scope.entry.host_state === 1) {
+        } else if ($scope.entry.host_state === 'WARNING') {
             $scope.state = 'state--warning';
         } else if ($scope.entry.host_state === '') {
             $scope.state = '';
