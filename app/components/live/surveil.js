@@ -3,15 +3,9 @@
 angular.module('bansho.live', [])
     .service('backendClient', ['$http', '$q',
         function ($http, $q) {
-            var getObjects = function (fields, filters, apiName, additionnalFields) {
+            var getObjects = function (fields, filters, apiName) {
                 var query = {},
                     transformations;
-
-                // Merges additionnalFields into filters as 'is' filter
-                angular.forEach(additionnalFields, function (value, key) {
-                    if (!('is' in filters)) {
-                        filters.is = {};
-                    }
 
                     if (!(key in filters.is)) {
                         filters.is[key] = [];
@@ -63,10 +57,9 @@ angular.module('bansho.live', [])
                             'host_name': [hostName],
                             'description': [description]
                         }
-                    },
-                    additionnalFields = {};
+                    };
 
-                return this.getObjects(fields, filters, 'services', additionnalFields)
+                return this.getObjects(fields, filters, 'services')
                     .error(function () {
                         throw new Error('getService : POST Request failed');
                     });
@@ -80,10 +73,9 @@ angular.module('bansho.live', [])
                             'acknowledged': [false]
                         }
                     },
-                    apiName = 'hosts',
-                    additionnalFields = {};
+                    apiName = 'hosts';
 
-                return getObjects(fields, filters, apiName, additionnalFields)
+                return getObjects(fields, filters, apiName)
                     .error(function () {
                         throw new Error('getHostOpenProblems : POST Request failed');
                     });
@@ -99,13 +91,11 @@ angular.module('bansho.live', [])
                             'acknowledged': [false]
                         }
                     },
-                    serviceAdditionnalFields = {},
                     hostFields = ['host_name', 'state'],
                     hostFilters = {'isnot': {'state': ['DOWN', 'UNREACHABLE']}},
-                    hostAdditionnalFields = {},
                     responsePromise = $q.defer();
 
-                getObjects(hostFields, hostFilters, 'hosts', hostAdditionnalFields)
+                getObjects(hostFields, hostFilters, 'hosts')
                     .success(function (hostData) {
                         var hostsResult = {},
                             i;
@@ -115,7 +105,7 @@ angular.module('bansho.live', [])
                             hostsResult[hostData[i].host_name] = '';
                         }
 
-                        getObjects(serviceFields, serviceFilters, 'services', serviceAdditionnalFields)
+                        getObjects(serviceFields, serviceFilters, 'services')
                             .success(function (serviceData) {
                                 var result = [];
                                 for (i = 0; i < serviceData.length; i += 1) {
@@ -133,10 +123,9 @@ angular.module('bansho.live', [])
             var getHostProblems = function () {
                 var fields = ['state'],
                     filters = {'isnot': {'state': ['UP']}},
-                    apiName = 'hosts',
-                    additionnalFields = {};
+                    apiName = 'hosts';
 
-                return getObjects(fields, filters, apiName, additionnalFields)
+                return getObjects(fields, filters, apiName)
                     .error(function () {
                         throw new Error('getHostProblems : POST Request failed');
                     });
@@ -146,10 +135,9 @@ angular.module('bansho.live', [])
             var getServiceProblems = function () {
                 var fields = ['state'],
                     filters = {'isnot': {'state': ['OK']}},
-                    apiName = 'services',
-                    additionnalFields = {};
+                    apiName = 'services';
 
-                return getObjects(fields, filters, apiName, additionnalFields)
+                return getObjects(fields, filters, apiName)
                     .error(function () {
                         throw new Error('getServiceOpenProblems : POST Request failed');
                     });
@@ -159,10 +147,9 @@ angular.module('bansho.live', [])
             var getTotalHosts = function () {
                 var fields = ['host_name'],
                     filters = {},
-                    apiName = 'hosts',
-                    additionnalFields = {};
+                    apiName = 'hosts';
 
-                return getObjects(fields, filters, apiName, additionnalFields)
+                return getObjects(fields, filters, apiName)
                     .error(function () {
                         throw new Error('getTotalHosts : POST Request failed');
                     });
@@ -172,10 +159,9 @@ angular.module('bansho.live', [])
             var getTotalServices = function () {
                 var fields = ['host_name'],
                     filters = {},
-                    apiName = 'services',
-                    additionnalFields = {};
+                    apiName = 'services';
 
-                return getObjects(fields, filters, apiName, additionnalFields)
+                return getObjects(fields, filters, apiName)
                     .error(function () {
                         throw new Error('getTotalServices : POST Request failed');
                     });
@@ -255,13 +241,11 @@ angular.module('bansho.live', [])
                 return data;
             };
 
-            var getTableData = function (fields, filters, apiName, additionnalFields) {
+            var getTableData = function (fields, filters, apiName) {
                 var hostFields = [],
                     serviceFields = [],
                     hostFilters = {},
                     serviceFilters = {},
-                    hostAdditionnalFields = {},
-                    serviceAdditionnalFields = {},
                     hostKeys = {
                         'host_state': 'state',
                         'address': 'address',
@@ -272,7 +256,7 @@ angular.module('bansho.live', [])
                     found = false;
 
                 if (apiName === 'hosts') {
-                    this.getObjects(fields, filters, 'hosts', additionnalFields)
+                    this.getObjects(fields, filters, 'hosts')
                         .success(function (data) {
                             responsePromise.resolve(data);
                         });
@@ -296,14 +280,6 @@ angular.module('bansho.live', [])
                     serviceFields.push('host_name');
                 }
 
-                angular.forEach(additionnalFields, function (value, field) {
-                    if (field in hostKeys) {
-                        hostAdditionnalFields[hostKeys[field]] = value;
-                    } else {
-                        serviceAdditionnalFields[field] = value;
-                    }
-                });
-
                 angular.forEach(filters, function (filterData, filterName) {
                     angular.forEach(filterData, function (values, field) {
                         if (field in hostKeys) {
@@ -321,9 +297,9 @@ angular.module('bansho.live', [])
                 });
 
                 // Queries host and service APIs and merges responses
-                getObjects(hostFields, hostFilters, 'hosts', hostAdditionnalFields)
+                getObjects(hostFields, hostFilters, 'hosts')
                     .success(function (hostData) {
-                        getObjects(serviceFields, serviceFilters, 'services', serviceAdditionnalFields)
+                        getObjects(serviceFields, serviceFilters, 'services')
                             .success(function (serviceData) {
                                 var hostDict = {};
 
