@@ -1,0 +1,40 @@
+<article ng-controller="DrupalDashboardViewCtrl">
+  <h1 class="drupal__dashboard__title">Drupal dashboard</h1>
+
+  <span ng-repeat="host in data">
+    <a href="#/view?view=drupal&id=Drupal">
+      <div class="tile__main">
+        <h3>{{host.host_text}}</h3>
+        <label ng-repeat="service in data[0].services"
+               ng-hide="{{service.hide}}"
+               class="btn {{service.state}}">{{service.description}}
+        </label>
+      </div>
+    </a>
+  </span>
+
+  <a href="#/view?view=drupal&id=Drupal">
+    <div class="tile__main">
+      <h3>Site B</h3>
+      <label class="btn btn-success">Bandwith Ok</label>
+      <label class="btn btn-warning">Cache Warning</label>
+      <label class="btn btn-danger">Security update Critical</label>
+    </div>
+  </a>
+  <a href="#/view?view=drupal&id=Drupal">
+    <div class="tile__main">
+      <h3>Site C</h3>
+      <label class="btn btn-success">Bandwith Ok</label>
+      <label class="btn btn-warning">Cache Warning</label>
+      <label class="btn btn-danger">Security update Critical</label>
+    </div>
+  </a>
+  <a href="#/view?view=drupal&id=Drupal">
+    <div class="tile__main">
+      <h3>Site D</h3>
+      <label class="btn btn-success">Bandwith Ok</label>
+      <label class="btn btn-warning">Cache Warning</label>
+      <label class="btn btn-danger">Security update Critical</label>
+    </div>
+  </a>
+</article>
