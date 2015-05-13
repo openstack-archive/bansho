@@ -1,0 +1,218 @@
+<style>
+  .drupal-box {
+    border-radius: 25px;
+    padding: 10px;
+    margin: 20px;
+    border: 2px solid #252c35;
+    float: left;
+    text-align: center;
+  }
+
+  .drupal-box label {
+    color: #FFFFFF;
+    width: 100%;
+  }
+
+  .btn-success {
+      background-color: #5cb85c;
+      border-color: #4cae4c;
+      color: #fff;
+  }
+
+  .btn-warning {
+      background-color: #f0ad4e;
+      border-color: #eea236;
+      color: #fff;
+  }
+
+  .btn-danger {
+      background-color: #d9534f;
+      border-color: #d43f3a;
+      color: #fff;
+  }
+
+  .btn {
+      -moz-user-select: none;
+      background-image: none;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.42857;
+      margin-bottom: 0;
+      margin: 2px;
+      text-align: center;
+      vertical-align: middle;
+      white-space: nowrap;
+  }
+
+  .drupal-warn {
+    background-color: #eea236;
+  }
+
+  .drupal-ok {
+    background-color: #4cae4c;
+  }
+
+  .drupal-critical {
+    background-color: #d43f3a;
+  }
+
+  .drupal__dashboard__title {
+    margin-bottom: 15px;
+    margin-left: 15px;
+    padding: 0 15px;
+    color: #FFFFFF;
+  }
+</style>
+<article ng-controller="DrupalViewCtrl">
+  <h1 class="drupal__dashboard__title">{{drupal_id}}</h1>
+  <div ng-controller="HostInfoCtrl">
+
+    <div class="drupal-box">
+      <h1>General informations</h1>
+      <table class="data-table">
+        <tbody>
+          <tr>
+            <td>Core version :</td>
+            <td>7.37</td>
+          </tr>
+          <tr>
+            <td>Core up-to-date :</td>
+            <td>YES</td>
+          </tr>
+          <tr>
+            <td>Vulnerable core :</td>
+            <td>NO</td>
+          </tr>
+          <tr>
+            <td>JQuery version:</td>
+            <td>2.1.4</td>
+          </tr>
+          <tr>
+            <td>Database :</td>
+            <td>MySQL</td>
+          </tr>
+          <tr>
+            <td>Database version :</td>
+            <td>5.6.23</td>
+          </tr>
+          <tr>
+            <td>Database state :</td>
+            <td>OK</td>
+          </tr>
+          <tr>
+            <td>Cache activated :</td>
+            <td>YES</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="drupal-box">
+      <caption>Database</caption>
+      <label class="btn btn-success">100%</label>
+      <table class="data-table">
+        <tbody>
+          <tr>
+            <td>Total size</td>
+            <td>35.54 Mb</td>
+          </tr>
+          <tr>
+            <td>Collations</td>
+            <td>Every tables are using UTF-8</td>
+          </tr>
+          <tr>
+            <td>Storage Engines</td>
+            <td>All tables are using innoDB</td>
+          </tr>
+          <tr>
+            <td>Tables over 1000 rows</td>
+            <td>20</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="drupal-box">
+      <caption>Cache</caption>
+      <label class="btn btn-danger">17%</label>
+      <table class="data-table">
+        <tbody>
+          <tr>
+            <td>Anonymous caching</td>
+            <td>Not enabled</td>
+          </tr>
+          <tr>
+            <td>Minimum cache lifetime</td>
+            <td>None</td>
+          </tr>
+          <tr>
+            <td>Expiration of cached pages</td>
+            <td>Not set</td>
+          </tr>
+          <tr>
+            <td>Aggregate and compress CSS</td>
+            <td>Not enabled</td>
+          </tr>
+          <tr>
+            <td>Aggregate Javascript</td>
+            <td>Not enabled</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+    <div class="drupal-box">
+      <caption>Cache</caption>
+      <label class="btn btn-danger">17%</label>
+      <table class="data-table">
+        <tbody>
+          <tr>
+            <td>Total size</td>
+            <td>35.54 Mb</td>
+          </tr>
+          <tr>
+            <td>Collations</td>
+            <td>Every tables are using UTF-8</td>
+          </tr>
+          <tr>
+            <td>Storage Engines</td>
+            <td>All tables are using innoDB</td>
+          </tr>
+          <tr>
+            <td>Tables over 1000 rows</td>
+            <td>20</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="drupal-box">
+      <caption>Cache</caption>
+      <label class="btn btn-success">100%</label>
+      <table class="data-table">
+        <tbody>
+          <tr>
+            <td>Total size</td>
+            <td>35.54 Mb</td>
+          </tr>
+          <tr>
+            <td>Collations</td>
+            <td>Every tables are using UTF-8</td>
+          </tr>
+          <tr>
+            <td>Storage Engines</td>
+            <td>All tables are using innoDB</td>
+          </tr>
+          <tr>
+            <td>Tables over 1000 rows</td>
+            <td>20</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</article>

@@ -1,0 +1,107 @@
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">-->
+<style>
+  .drupal-box {
+    border-radius: 25px;
+    padding: 10px;
+    margin: 20px;
+    width: 200px;
+    height: 150px; 
+    border: 2px solid #252c35;
+    float: left;
+    text-align: center;
+  }
+
+  .drupal-box label {
+    color: #FFFFFF;
+    width: 100%;
+  }
+
+  .btn-success {
+      background-color: #5cb85c;
+      border-color: #4cae4c;
+      color: #fff;
+  }
+
+  .btn-warning {
+      background-color: #f0ad4e;
+      border-color: #eea236;
+      color: #fff;
+  }
+
+  .btn-danger {
+      background-color: #d9534f;
+      border-color: #d43f3a;
+      color: #fff;
+  }
+
+  .btn {
+      -moz-user-select: none;
+      background-image: none;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.42857;
+      margin-bottom: 0;
+      margin: 2px;
+      text-align: center;
+      vertical-align: middle;
+      white-space: nowrap;
+  }
+
+  .drupal-warn {
+    background-color: #eea236;
+  }
+
+  .drupal-ok {
+    background-color: #4cae4c;
+  }
+
+  .drupal-critical {
+    background-color: #d43f3a;
+  }
+
+  .drupal__dashboard__title {
+    margin-bottom: 15px;
+    margin-left: 15px;
+    padding: 0 15px;
+    color: #FFFFFF;
+  }
+</style>
+
+<article ng-controller="DrupalDashboardViewCtrl">
+  <h1 class="drupal__dashboard__title">Drupal dashboard</h1>
+  <a href="#/view?view=drupal&id=Drupal">
+    <div class="drupal-box">
+      <h3>Site A</h3>
+      <label class="btn btn-success">Bandwith Ok</label>
+      <label class="btn btn-warning">Cache Warning</label>
+      <label class="btn btn-danger">Security update Critical</label>
+    </div>
+  </a>
+  <a href="#/view?view=drupal&id=Drupal">
+    <div class="drupal-box">
+      <h3>Site B</h3>
+      <label class="btn btn-success">Bandwith Ok</label>
+      <label class="btn btn-warning">Cache Warning</label>
+      <label class="btn btn-danger">Security update Critical</label>
+    </div>
+  </a>
+  <a href="#/view?view=drupal&id=Drupal">
+    <div class="drupal-box">
+      <h3>Site C</h3>
+      <label class="btn btn-success">Bandwith Ok</label>
+      <label class="btn btn-warning">Cache Warning</label>
+      <label class="btn btn-danger">Security update Critical</label>
+    </div>
+  </a>
+  <a href="#/view?view=drupal&id=Drupal">
+    <div class="drupal-box">
+      <h3>Site D</h3>
+      <label class="btn btn-success">Bandwith Ok</label>
+      <label class="btn btn-warning">Cache Warning</label>
+      <label class="btn btn-danger">Security update Critical</label>
+    </div>
+  </a>
+</article>

@@ -209,13 +209,23 @@
         ]
     },
     "host": {
-	"title": "Host",
-	"refreshInterval": 0,
-	"template": "host"
+        "title": "Host",
+        "refreshInterval": 0,
+        "template": "host"
     },
     "service": {
-	"title": "Service",
-	"refreshInterval": 0,
-	"template": "service"
+        "title": "Service",
+        "refreshInterval": 0,
+        "template": "service"
+    },
+    "drupal": {
+        "title": "Drupal",
+        "refreshInterval": 0,
+        "template": "drupal"
+    },
+    "drupalDashboard": {
+        "title": "Drupal dashboard",
+        "refreshInterval": 0,
+        "template": "drupal_dashboard"
     }
 }

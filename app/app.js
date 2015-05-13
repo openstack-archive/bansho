@@ -13,7 +13,9 @@ angular.module('bansho', [
     'bansho.view.dashboard',
     'bansho.view.singleTable',
     'bansho.view.host',
-    'bansho.view.service'
+    'bansho.view.service',
+    'bansho.view.drupalDashboard',
+    'bansho.view.drupal'
 ])
 
     .config(['$routeProvider', function ($routeProvider) {
