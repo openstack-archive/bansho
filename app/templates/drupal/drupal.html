@@ -1,0 +1,116 @@
+<article ng-controller="DrupalViewCtrl">
+  <h1 class="drupal__dashboard__title">{{drupal_id}}</h1>
+  <div>
+    <div class="tile__main">
+      <h1>General informations</h1>
+      <table class="data-table">
+        <tbody>
+          <tr>
+            <td>Core version :</td>
+            <td>7.37</td>
+          </tr>
+          <tr>
+            <td>Core up-to-date :</td>
+            <td>YES</td>
+          </tr>
+          <tr class="btn-success">
+            <td>Vulnerable core :</td>
+            <td>NO</td>
+          </tr>
+          <tr>
+            <td>JQuery version:</td>
+            <td>2.1.4</td>
+          </tr>
+          <tr>
+            <td>Database :</td>
+            <td>MySQL</td>
+          </tr>
+          <tr>
+            <td>Database version :</td>
+            <td>5.6.23</td>
+          </tr>
+          <tr>
+            <td>Database state :</td>
+            <td>OK</td>
+          </tr>
+          <tr>
+            <td>Cache activated :</td>
+            <td>YES</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tile__main">
+      <h1>Database <span class="btn-success">100%</span></h1>
+      <table class="data-table">
+        <tbody>
+          <tr>
+            <td>Total size</td>
+            <td>35.54 Mb</td>
+          </tr>
+          <tr>
+            <td>Collations</td>
+            <td>Every tables are using UTF-8</td>
+          </tr>
+          <tr>
+            <td>Storage Engines</td>
+            <td>All tables are using innoDB</td>
+          </tr>
+          <tr>
+            <td>Tables over 1000 rows</td>
+            <td>20</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tile__main">
+      <h1>Cache <span class="btn-danger">17%</span></h1>
+      <table class="data-table">
+        <tbody>
+          <tr class="btn-danger">
+            <td>Anonymous caching</td>
+            <td>Not enabled</td>
+          </tr>
+          <tr>
+            <td>Minimum cache lifetime</td>
+            <td>None</td>
+          </tr>
+          <tr class="btn-danger">
+            <td>Expiration of cached pages</td>
+            <td>Not set</td>
+          </tr>
+          <tr class="btn-danger">
+            <td>Aggregate and compress CSS</td>
+            <td>Not enabled</td>
+          </tr>
+          <tr class="btn-danger">
+            <td>Aggregate Javascript</td>
+            <td>Not enabled</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tile__main">
+      <h1>Cron jobs <span class="btn-success">100%</span></h1>
+      <table class="data-table">
+        <tbody>
+          <tr>
+            <td>Crontab status</td>
+            <td>Enabled</td>
+          </tr>
+          <tr>
+            <td>Running</td>
+            <td>No</td>
+          </tr>
+          <tr>
+            <td>Last run</td>
+            <td>24 min 51 sec ago</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</article>
