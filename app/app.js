@@ -13,7 +13,8 @@ angular.module('bansho', [
     'bansho.view.dashboard',
     'bansho.view.singleTable',
     'bansho.view.host',
-    'bansho.view.service'
+    'bansho.view.service',
+    'angular.filter'
 ])
 
     .config(['$routeProvider', function ($routeProvider) {
