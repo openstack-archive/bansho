@@ -52,7 +52,8 @@
             </p>
           </header>
 
-          <bansho-table cells-text="{{dashboardTables[0].CellsText}}"
+          <bansho-table ng-controller='TableCtrl'
+                     cells-text="{{dashboardTables[0].CellsText}}"
                      cells-name="{{dashboardTables[0].CellsName}}"
                      api-name="{{dashboardTables[0].ApiName}}"
                      filters="{{dashboardTables[0].Filters}}"

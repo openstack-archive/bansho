@@ -24,6 +24,8 @@ angular.module('bansho.table', ['bansho.live',
                 getData,
                 i;
 
+            $scope.groupBy = (conf.groupBy) ? conf.groupBy : 'nothing';
+            console.log(conf);
             $scope.cellsName = conf.cells.name;
             $scope.cellsText = conf.cells.text;
             $scope.cellIndexes = [];

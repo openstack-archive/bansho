@@ -93,7 +93,7 @@
             {
                 "type": "table",
                 "config": {
-                    "title": "Hosts problems",
+                    "title": "All Hosts problems",
                     "cells": {
                         "text": [
                             "Host",
@@ -125,7 +125,7 @@
             {
                 "type": "table",
                 "config": {
-                    "title": "Services problems",
+                    "title": "All Services problems",
                     "cells": {
                         "text": [
                             "Host",
@@ -208,7 +208,8 @@
                             "service_check",
                             "duration",
                             "last_check"
-                        ]
+                        ],
+                        "groupBy": "host_name"
                     },
                     "apiName": "services",
                     "filters": {},
