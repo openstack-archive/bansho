@@ -73,6 +73,7 @@ angular.module('bansho.table.actionbar')
 								text: entry.host_name + " success ",
 								type: "success"
 							});
+							$scope.isShown = false;
 						},
 						function (error) {
 							$scope.messages.push({
