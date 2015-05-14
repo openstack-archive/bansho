@@ -85,4 +85,51 @@ angular.module('bansho.table.actionbar')
 				});
 			});
 		};
+	}])
+
+	.directive('banshoRecheckButton', function () {
+		return {
+			restrict: 'E',
+			templateUrl: 'components/table/actionbar/actions/recheck_button.html',
+			scope: {
+				isShown: '='
+			},
+			controller: 'banshoRecheckButtonCtrl'
+		};
+	})
+
+	.controller('banshoRecheckButtonCtrl',
+		['$scope', '$filter', 'tablesConfig', 'actionbarFilters', 'backendClient',
+		function ($scope, $filter, tablesConfig, actionbarFilters, backendClient) {
+
+		$scope.messages = [];
+
+		$scope.sendRecheck = function () {
+			angular.forEach(tablesConfig, function (table) {
+				var entries = $filter('filter')(table.entries, actionbarFilters.searchFilter);
+
+				angular.forEach(entries, function (entry) {
+					var service_description;
+
+					if (entry.is_checked) {
+						if ('description' in entry) {
+							service_description = entry.description;
+						}
+
+						backendClient.recheck(entry.host_name, service_description).then(function (data) {
+							$scope.messages.push({
+								text: entry.host_name + " success ",
+								type: "success"
+							});
+						},
+						function (error) {
+							$scope.messages.push({
+								text: entry.host_name + " error",
+								type: "error"
+							});
+						});
+					}
+				});
+			});
+		};
 	}]);

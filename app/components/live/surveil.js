@@ -365,20 +365,35 @@ angular.module('bansho.live', [])
 				});
             };
 
-            return {
-                getHost: getHost,
-                getObjects : getObjects,
-                getService : getService,
-                hostQueryTransform: hostQueryTransform,
-                acknowledge: acknowledge,
-                getHostOpenProblems: getHostOpenProblems,
-                hostMiddleware: hostMiddleware,
-                getServiceProblems: getServiceProblems,
-                getServiceOpenProblems: getServiceOpenProblems,
-                getHostProblems: getHostProblems,
-                getTableData: getTableData,
-                getTotalHosts: getTotalHosts,
-                getTotalServices: getTotalServices,
-                downtime: downtime
+            var recheck = function (host_name, service_description) {
+				var attrs = {};
+				attrs.host_name = host_name;
+                if (service_description !== undefined) {
+                    attrs.service_description = service_description;
+                }
+
+				return $http({
+					url: '/surveil/v2/actions/recheck/',
+					method: 'POST',
+					data: attrs
+				});
+            };
+
+			return {
+				getHost: getHost,
+				getObjects : getObjects,
+				getService : getService,
+				hostQueryTransform: hostQueryTransform,
+				acknowledge: acknowledge,
+				getHostOpenProblems: getHostOpenProblems,
+				hostMiddleware: hostMiddleware,
+				getServiceProblems: getServiceProblems,
+				getServiceOpenProblems: getServiceOpenProblems,
+				getHostProblems: getHostProblems,
+				getTableData: getTableData,
+				getTotalHosts: getTotalHosts,
+				getTotalServices: getTotalServices,
+				downtime: downtime,
+				recheck: recheck
             };
         }]);
