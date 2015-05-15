@@ -1,0 +1,32 @@
+.centered {
+    position: fixed;
+    margin-top: 15px;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.bansho-title {
+	color: #ddd;
+	font-size: 300%;
+	padding-bottom: 0px;
+	margin-bottom: 0px;
+}
+
+.form-group {
+	padding-top: 5px;
+	padding-bottom: 15px;
+}
+
+.form-control {
+	width: 500px;
+}
+
+.field {
+	float: right;
+	width: 400px;
+}
+
+.label {
+	width: 85px;
+	padding-right: 15px;
+}

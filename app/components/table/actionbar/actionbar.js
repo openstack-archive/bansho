@@ -30,19 +30,19 @@ angular.module('bansho.table.actionbar', ['bansho.table', 'bansho.live'])
     .controller('TableActionbarCtrl', ['$scope', '$filter', 'backendClient', 'actionbarFilters', 'tablesConfig',
         function ($scope, $filter, backendClient, actionbarFilters, tablesConfig, actionbarSelectFilter) {
             $scope.isDowntimeShown = false;
-			$scope.isAcknowledgeShown = false;
+            $scope.isAcknowledgeShown = false;
 
-			$scope.switchDowntimeForm = function () {
-				$scope.isAcknowledgeShown = false;
+            $scope.switchDowntimeForm = function () {
+                $scope.isAcknowledgeShown = false;
 
-				$scope.isDowntimeShown = !$scope.isDowntimeShown;
-			};
+                $scope.isDowntimeShown = !$scope.isDowntimeShown;
+            };
 
-			$scope.switchAcknowledgeForm = function () {
-				$scope.isDowntimeShown = false;
+            $scope.switchAcknowledgeForm = function () {
+                $scope.isDowntimeShown = false;
 
-				$scope.isAcknowledgeShown = !$scope.isAcknowledgeShown;
-			};
+                $scope.isAcknowledgeShown = !$scope.isAcknowledgeShown;
+            };
 
             $scope.actionbarFilters = actionbarFilters;
             $scope.actionbarFilters.activeFilter = $scope.actionbarFilters.possibleFilters[0];
