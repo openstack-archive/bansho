@@ -22,8 +22,8 @@ angular.module('bansho.host', ['bansho.live',
         });
     }])
 
-    .directive('banshoHost', ['$http', '$compile', 'hostConfig',
-        function ($http, $compile, hostConfig) {
+    .directive('banshoHost', ['$http', '$compile', 'backendClient', 'hostConfig',
+        function ($http, $compile, backendClient, hostConfig) {
             return {
                 restrict: 'E',
                 compile: function () {
