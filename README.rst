@@ -2,9 +2,14 @@
 Bansho
 ======
 
+Web Interface for Surveil
+
 * Bug tracker: https://launchpad.net/bansho
 * Open Gerrit changesets: https://review.openstack.org/#/q/status:open+bansho,n,z
 * Surveil: https://github.com/stackforge/surveil
+
+.. image:: https://github.com/stackforge/surveil-specs/raw/master/bansho.png
+      :alt: Bansho interface picture
 
 Production
 ==========
