@@ -58,6 +58,20 @@ angular.module('bansho.live', [])
                     });
             };
 
+            var getServicesByHost = function (hostName) {
+                var fields = [],
+                    filters = {
+                        'is': {
+                            'host_name': [hostName]
+                        }
+                    };
+
+                return this.getObjects(fields, filters, 'services')
+                    .error(function () {
+                        throw new Error('getService : POST Request failed');
+                    });
+            }
+
             var getHostOpenProblems = function () {
                 var fields = ['state'],
                     filters = {
@@ -394,6 +408,7 @@ angular.module('bansho.live', [])
                 getTotalHosts: getTotalHosts,
                 getTotalServices: getTotalServices,
                 downtime: downtime,
-                recheck: recheck
+                recheck: recheck,
+                getServicesByHost: getServicesByHost
             };
         }]);
