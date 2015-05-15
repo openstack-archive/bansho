@@ -1,5 +1,8 @@
-<div>
-  <ul>
-    <li ng-repeat="service in data.live.services">{{service}}</li>
-  </ul>
+<div ng-hide="services.length === 0">
+  <h2>Services</h2>
+  <div>
+    <ul>
+      <li ng-repeat="service in services">{{service}}</li>
+    </ul>
+  </div>
 </div>
