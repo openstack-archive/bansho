@@ -1,8 +1,6 @@
 <div ng-hide="services.length === 0">
   <h2>Services</h2>
-  <div>
-    <ul>
-      <li ng-repeat="service in services">{{service}}</li>
-    </ul>
+  <div ng-repeat="service in services">
+      <p>{{service.service_description}} - state: {{service.state}} - acknowledge: {{service.acknowledged}}</td>
   </div>
 </div>
