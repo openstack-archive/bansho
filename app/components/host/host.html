@@ -1,9 +1,16 @@
 <article ng-controller="HostCtrl">
   <section class="main__content tabpanel" ng-if="data.live && data.config">
-    <bansho-host-main></bansho-host-main>
-    <bansho-host-services-list></bansho-host-services-list>
-    <bansho-host-load></bansho-host-load>
-    <bansho-host-cpu></bansho-host-cpu>
-    <bansho-host-info></bansho-host-info>
-  </section>
+     <h1>{{hostName}}</h1>
+     <bansho-host-main hostName="{{hostName}}"></bansho-host-main>
+     <bansho-host-services-list hostName="{{hostName}}"></bansho-host-services-list>
+
+     <h2>Cpu</h2>
+     <bansho-host-cpu></bansho-host-cpu>
+
+     <h2>Load</h2>
+     <bansho-host-load></bansho-host-load>
+
+     <h2>Info</h2>
+     <bansho-host-info></bansho-host-info>
+    </section>
 </article>
