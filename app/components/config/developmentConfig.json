@@ -1,5 +1,5 @@
 {
-	"env": "development",
-	"username":"",
-	"password":""
+    "env": "production",
+    "username":"",
+    "password":""
 }
