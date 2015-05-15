@@ -10,7 +10,7 @@ angular.module('bansho.authentication', [])
     }])
 
     .controller('LoginController', ['$scope', '$rootScope', '$location', 'authService', 'configManager', function ($scope, $rootScope, $location, authService, configManager) {
-		var login = function (credentials) {
+        var login = function (credentials) {
             authService.login(credentials);
         };
 
@@ -25,27 +25,31 @@ angular.module('bansho.authentication', [])
         };
 
         $scope.login = function() {
-			login($scope.credentials);
-		};
-		
-		configManager.loadDevelopmentConfig().then(function () {
-			var devConfig = configManager.getDevelopmentConfig();
-			if (devConfig.env === 'development') {
-				login({
-					'auth': {
-						'tenantName': '',
-						'passwordCredentials': {
-							'username': devConfig.username,
-							'password': devConfig.password
-						}
-					}
-				});
-			}
+            login($scope.credentials);
+        };
 
-		}, function () {
-			// Development config failed
-		});
-		
+        if (authService.isAuthenticated()) {
+            login($scope.credentials);
+        }
+
+        configManager.loadDevelopmentConfig().then(function () {
+            var devConfig = configManager.getDevelopmentConfig();
+            if (devConfig.env === 'development') {
+                login({
+                    'auth': {
+                        'tenantName': '',
+                        'passwordCredentials': {
+                            'username': devConfig.username,
+                            'password': devConfig.password
+                        }
+                    }
+                });
+            }
+
+        }, function () {
+        // Development config failed
+        });
+ 
     }])
 
     .factory('authService', ['$http', '$location', '$rootScope', 'session', 'configManager',  function ($http, $location, $rootScope, session, configManager) {
@@ -73,21 +77,34 @@ angular.module('bansho.authentication', [])
         };
 
         authService.isAuthenticated = function () {
-            return !!session.sessionId;
+            return !!session.isUserConnected();
         };
+
+        authService.logout = function () {
+            $rootScope.isAuthenticated = false;
+            session.destroy();
+            $location.path('/login');
+        };
+
 
         return authService;
     }])
 
-    .service('session', function () {
+    .service('session', ['$cookies', function ($cookies) {
+        this.isUserConnected = function () {
+            return $cookies.connected === 'true';
+        };
 
         this.create = function (sessionId, expirationTime) {
             this.sessionId = sessionId;
             this.expirationTime = expirationTime;
+            $cookies.connected = 'true';
         };
 
         this.destroy = function () {
             this.sessionId = null;
             this.expirationTime = null;
+            console.log('trest')
+            $cookies.connected = 'false';
         };
-    });
+    }]);
