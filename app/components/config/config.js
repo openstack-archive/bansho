@@ -5,26 +5,26 @@ angular.module('bansho.config', [])
 
     .service('configManager', ['$http', '$q', function ($http, $q) {
         var config = {},
-			developmentConfig = {};
+            developmentConfig = {};
 
-		this.loadDevelopmentConfig = function() {
-			var promise = $q.defer();
+        this.loadDevelopmentConfig = function() {
+            var promise = $q.defer();
 
-			$http.get('components/config/developmentConfig.json')
-				.success(function (config) {
-					developmentConfig = config;
-					promise.resolve();
-				})
-				.error(function() {
-					promise.reject();
-				});
+            $http.get('components/config/developmentConfig.json')
+                .success(function (config) {
+                    developmentConfig = config;
+                    promise.resolve();
+                })
+                .error(function() {
+                    promise.reject();
+                });
 
-			return promise.promise;
-		};
+            return promise.promise;
+        };
 
-		this.getDevelopmentConfig = function () {
-			return developmentConfig;
-		};
+        this.getDevelopmentConfig = function () {
+            return developmentConfig;
+        };
 
         this.loadByTemplate = function (templateName, destination) {
             var viewsConfig = config.data;

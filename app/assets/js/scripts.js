@@ -1,22 +1,22 @@
 var AdagiosUI = (function() {
     "use strict";
 
-	// States for UI modifications
-	var state = {
-		visible: 'state--visible',
-		hidden: 'state--hidden',
-		current: 'state--current',
-		open: 'state--open',
-		fadeIn: 'state--fadein',
-		fadeOut: 'state--fadeout',
-		hasChild: 'state--haschild'
-	};
+    // States for UI modifications
+    var state = {
+        visible: 'state--visible',
+        hidden: 'state--hidden',
+        current: 'state--current',
+        open: 'state--open',
+        fadeIn: 'state--fadein',
+        fadeOut: 'state--fadeout',
+        hasChild: 'state--haschild'
+    };
 
-	// Breakpoints for the responsive web design
-	var mquery = {
-		phone: 480,
-		tablet: 959
-	};
+    // Breakpoints for the responsive web design
+    var mquery = {
+        phone: 480,
+        tablet: 959
+    };
 
     var test = function() {
         console.log();
@@ -37,12 +37,12 @@ var AdagiosUI = (function() {
         });
     };
 
-	return {
-		state: state,
-		test: test,
-		mquery: mquery,
+    return {
+        state: state,
+        test: test,
+        mquery: mquery,
         syncBkgCheckbox : syncBkgCheckbox,
         closeSidebar : closeSidebar
-	};
+    };
     
 })();
