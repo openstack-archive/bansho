@@ -18,13 +18,13 @@ module.exports = function (grunt) {
 
         clean: {
             dist: [
-				'<%= project.dist %>/assets/',
-				'<%= project.dist %>/bower_components/',
-				'<%= project.dist %>/components/',
-				'<%= project.dist %>/js/',
-				'<%= project.dist %>/templates/',
-				'<%= project.dist %>/index.html'
-			],
+                '<%= project.dist %>/assets/',
+                '<%= project.dist %>/bower_components/',
+                '<%= project.dist %>/components/',
+                '<%= project.dist %>/js/',
+                '<%= project.dist %>/templates/',
+                '<%= project.dist %>/index.html'
+            ],
             tmp: ['<%= project.tmp %>/']
         },
 
@@ -84,31 +84,31 @@ module.exports = function (grunt) {
         },
 
         jshint: { // configure the task
-			options: {
-				node: true,
-				loopfunc: true,
-				globals: {
-					document: true,
-					angular: true,
-					jQuery: true,
-					$: true,
-					describe: true,
-					it: true,
-					expect: true,
-					beforeEach: true,
-					inject: true
-				},
-				force: true
-			},
-			all: [
-				'karma.conf.js',
-				'Gruntfile.js',
-				'<%= project.app %>/app.js',
-				'<%= project.app %>/**/*.js',
-				'!<%= project.app %>/bower_components/**',
-				'!<%= project.app %>/**/live.js',
-				'!<%= project.app %>/**/adagios.js'
-			]
+            options: {
+                node: true,
+                loopfunc: true,
+                globals: {
+                    document: true,
+                    angular: true,
+                    jQuery: true,
+                    $: true,
+                    describe: true,
+                    it: true,
+                    expect: true,
+                    beforeEach: true,
+                    inject: true
+                },
+                force: true
+            },
+            all: [
+                'karma.conf.js',
+                'Gruntfile.js',
+                '<%= project.app %>/app.js',
+                '<%= project.app %>/**/*.js',
+                '!<%= project.app %>/bower_components/**',
+                '!<%= project.app %>/**/live.js',
+                '!<%= project.app %>/**/adagios.js'
+            ]
         },
 
         useminPrepare: {
@@ -166,8 +166,8 @@ module.exports = function (grunt) {
                     '<%= project.app %>/components/live/surveil.js',
                     '<%= project.assets %>/sass/{,*/}*.{scss,sass}'
                 ],
-				tasks: ['production:surveil']
-			},
+                tasks: ['production:surveil']
+            },
             options: {
                 livereload: true
             }
