@@ -324,20 +324,20 @@ angular.module('bansho.live', [])
             };
 
             var acknowledge = function (host_name, service_description, attrs) {
-				var data = {};
+                var data = {};
 
                 data.host_name = host_name;
-				if (attrs.sticky) {
-					data.sticky = parseInt(attrs.sticky, 10);
-				}
+                if (attrs.sticky) {
+                    data.sticky = parseInt(attrs.sticky, 10);
+                }
 
-				if (attrs.notify) {
-					data.notify = parseInt(attrs.notify, 10);
-				}
+                if (attrs.notify) {
+                    data.notify = parseInt(attrs.notify, 10);
+                }
 
-				if (attrs.persistent) {
-					data.persistent = parseInt(attrs.persistent, 10);
-				}
+                if (attrs.persistent) {
+                    data.persistent = parseInt(attrs.persistent, 10);
+                }
 
                 if (service_description !== undefined) {
                     data.service_description = service_description;
@@ -353,47 +353,47 @@ angular.module('bansho.live', [])
             };
 
             var downtime = function (host_name, service_description, attrs) {
-				attrs.host_name = host_name;
+                attrs.host_name = host_name;
                 if (service_description !== undefined) {
                     attrs.service_description = service_description;
                 }
 
-				return $http({
-					url: '/surveil/v2/actions/downtime/',
-					method: 'POST',
-					data: attrs
-				});
+                return $http({
+                    url: '/surveil/v2/actions/downtime/',
+                    method: 'POST',
+                    data: attrs
+                });
             };
 
             var recheck = function (host_name, service_description) {
-				var attrs = {};
-				attrs.host_name = host_name;
+                var attrs = {};
+                attrs.host_name = host_name;
                 if (service_description !== undefined) {
                     attrs.service_description = service_description;
                 }
 
-				return $http({
-					url: '/surveil/v2/actions/recheck/',
-					method: 'POST',
-					data: attrs
-				});
+                return $http({
+                    url: '/surveil/v2/actions/recheck/',
+                    method: 'POST',
+                    data: attrs
+                });
             };
 
-			return {
-				getHost: getHost,
-				getObjects : getObjects,
-				getService : getService,
-				hostQueryTransform: hostQueryTransform,
-				acknowledge: acknowledge,
-				getHostOpenProblems: getHostOpenProblems,
-				hostMiddleware: hostMiddleware,
-				getServiceProblems: getServiceProblems,
-				getServiceOpenProblems: getServiceOpenProblems,
-				getHostProblems: getHostProblems,
-				getTableData: getTableData,
-				getTotalHosts: getTotalHosts,
-				getTotalServices: getTotalServices,
-				downtime: downtime,
-				recheck: recheck
+            return {
+                getHost: getHost,
+                getObjects : getObjects,
+                getService : getService,
+                hostQueryTransform: hostQueryTransform,
+                acknowledge: acknowledge,
+                getHostOpenProblems: getHostOpenProblems,
+                hostMiddleware: hostMiddleware,
+                getServiceProblems: getServiceProblems,
+                getServiceOpenProblems: getServiceOpenProblems,
+                getHostProblems: getHostProblems,
+                getTableData: getTableData,
+                getTotalHosts: getTotalHosts,
+                getTotalServices: getTotalServices,
+                downtime: downtime,
+                recheck: recheck
             };
         }]);

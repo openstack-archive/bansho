@@ -1,19 +1,31 @@
-<form name="loginForm"
-      ng-controller="LoginController"
-      ng-submit="login(credentials)" novalidate>
+<div class="centered">
+    <h1 class="bansho-title">Bansho</h1>
+    <p>Web client for Surveil</p>
 
-  <label for="username">Username:</label>
-  <input type="text" id="username"
-         ng-model="credentials.auth.passwordCredentials.username">
+    <h2>Login</h2>
+    <br>
+    <form name="loginForm"
+       ng-controller="LoginController"
+    ng-submit="login(credentials)" novalidate>
 
-  <label for="password">Password:</label>
-  <input type="password" id="password"
-         ng-model="credentials.auth.passwordCredentials.password">
+        <div class="form-group">
+            <label for="username" class="label">Username:</label>
+            <input type="text" id="username" class="form-control field"
+                      ng-model="credentials.auth.passwordCredentials.username">
+        </div>
 
-  <label for="tenantName">Tenant Name:</label>
-  <input type="text" id="tenant-name"
-         ng-model="credentials.auth.tenantName">
+        <div class="form-group">
+            <label for="password" class="label">Password:</label>
+            <input type="password" class="form-control field" id="password"
+                          ng-model="credentials.auth.passwordCredentials.password">
+        </div>
 
-  <button type="submit">Login</button>
+        <div class="form-group">
+            <label for="tenantName" class="label">Tenant Name:</label>
+            <input type="text" id="tenant-name"class="form-control field"
+                      ng-model="credentials.auth.tenantName">
+        </div>
 
-</form>
+        <button type="submit">Login</button>
+    </form>
+</div>
