@@ -9,8 +9,8 @@
       </tr>
   </thead>
 
-  <tbody class="{{entry.child_class}}" ng-repeat="entry in entries | actionbarSelectFilter:actionbarFilters.activeFilter | filter:actionbarFilters.searchFilter | noRepeat:this | wrappableStyle:this">
-    <tr>
+  <tbody class="{{entry.child_class}}" ng-repeat="(groupByKey, groupByItems) in entries | groupBy:'host_name'">
+    <tr ng-repeat="entry in groupByItems | actionbarSelectFilter:actionbarFilters.activeFilter | filter:actionbarFilters.searchFilter | noRepeat:this | wrappableStyle:this">
       <td><input type="checkbox" ng-model="entry.is_checked"></td>
       <td bansho-cell cell-name="{{cell}}" ng-repeat="cell in cellsName"></td>
     </tr>
