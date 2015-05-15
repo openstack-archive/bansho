@@ -2,6 +2,7 @@
 
 angular.module('bansho', [
     'ngRoute',
+    'ngCookies',
 	'angular.filter',
     'bansho.config',
     'bansho.authentication',

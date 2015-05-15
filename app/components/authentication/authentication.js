@@ -28,6 +28,10 @@ angular.module('bansho.authentication', [])
 			login($scope.credentials);
 		};
 		
+		if (authService.isAuthenticated()) {
+			login($scope.credentials);
+		}
+
 		configManager.loadDevelopmentConfig().then(function () {
 			var devConfig = configManager.getDevelopmentConfig();
 			if (devConfig.env === 'development') {
@@ -43,7 +47,7 @@ angular.module('bansho.authentication', [])
 			}
 
 		}, function () {
-			// Development config failed
+		// Development config failed
 		});
 		
     }])
@@ -73,21 +77,34 @@ angular.module('bansho.authentication', [])
         };
 
         authService.isAuthenticated = function () {
-            return !!session.sessionId;
+            return !!session.isUserConnected();
         };
+
+		authService.logout = function () {
+			$rootScope.isAuthenticated = false;
+			session.destroy();
+			$location.path('/login');
+		};
+
 
         return authService;
     }])
 
-    .service('session', function () {
+    .service('session', ['$cookies', function ($cookies) {
+		this.isUserConnected = function () {
+			return $cookies.connected === 'true';
+		};
 
         this.create = function (sessionId, expirationTime) {
             this.sessionId = sessionId;
             this.expirationTime = expirationTime;
+			$cookies.connected = 'true';
         };
 
         this.destroy = function () {
             this.sessionId = null;
             this.expirationTime = null;
+			console.log('trest')
+			$cookies.connected = 'false';
         };
-    });
+    }]);
