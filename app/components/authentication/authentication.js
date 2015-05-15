@@ -9,7 +9,11 @@ angular.module('bansho.authentication', [])
         });
     }])
 
-    .controller('LoginController', ['$scope', '$rootScope', '$location', 'authService', function ($scope, $rootScope, $location, authService) {
+    .controller('LoginController', ['$scope', '$rootScope', '$location', 'authService', 'configManager', function ($scope, $rootScope, $location, authService, configManager) {
+		var login = function (credentials) {
+            authService.login(credentials);
+        };
+
         $scope.credentials = {
             'auth': {
                 'tenantName': '',
@@ -20,9 +24,28 @@ angular.module('bansho.authentication', [])
             }
         };
 
-        $scope.login = function (credentials) {
-            authService.login(credentials);
-        };
+        $scope.login = function() {
+			login($scope.credentials);
+		};
+		
+		configManager.loadDevelopmentConfig().then(function () {
+			var devConfig = configManager.getDevelopmentConfig();
+			if (devConfig.env === 'development') {
+				login({
+					'auth': {
+						'tenantName': '',
+						'passwordCredentials': {
+							'username': devConfig.username,
+							'password': devConfig.password
+						}
+					}
+				});
+			}
+
+		}, function () {
+			// Development config failed
+		});
+		
     }])
 
     .factory('authService', ['$http', '$location', '$rootScope', 'session', 'configManager',  function ($http, $location, $rootScope, session, configManager) {

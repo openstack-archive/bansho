@@ -20,3 +20,5 @@ dist/
 .tmp/
 
 app/components/live/live.js
+
+app/components/config/developmentConfig.json

@@ -4,7 +4,27 @@
 angular.module('bansho.config', [])
 
     .service('configManager', ['$http', '$q', function ($http, $q) {
-        var config = {};
+        var config = {},
+			developmentConfig = {};
+
+		this.loadDevelopmentConfig = function() {
+			var promise = $q.defer();
+
+			$http.get('components/config/developmentConfig.json')
+				.success(function (config) {
+					developmentConfig = config;
+					promise.resolve();
+				})
+				.error(function() {
+					promise.reject();
+				});
+
+			return promise.promise;
+		};
+
+		this.getDevelopmentConfig = function () {
+			return developmentConfig;
+		};
 
         this.loadByTemplate = function (templateName, destination) {
             var viewsConfig = config.data;
