@@ -43,7 +43,7 @@ Install development dependencies :
 ::
 
     sudo apt-get install npm nodejs-legacy ruby docker.io
-    npm install grunt-cli
+    npm install grunt-cli bower
     npm install
     gem install sass
     make build
