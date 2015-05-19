@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('bansho.table.actionbar', ['bansho.table', 'bansho.live'])
+angular.module('bansho.table.actionbar', ['bansho.table', 'bansho.live', 'bansho.notifications'])
 
     .service('actionbarFilters', function () {
         var actionbarFilters = {
