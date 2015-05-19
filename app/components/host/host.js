@@ -14,11 +14,31 @@ angular.module('bansho.host', ['bansho.live',
             objectIdentifier = {};
 
         objectIdentifier.host_name = hostConfig.hostName;
-        $scope.hostName = hostConfig.hostName;
-        $scope.data = {};
-
         backendClient.getHost(objectType, objectIdentifier).then(function (data) {
+            $scope.host = data;
             $scope.data = data;
+
+            backendClient.getServicesByHost($scope.hostName).success(function (data) {
+                var i,
+                    service;
+
+                $scope.host.services = data;
+
+                for (i = 0; i < $scope.host.services.length;) {
+                    service = $scope.host.services[i];
+                    if (service.service_description === "cpu") {
+                        $scope.host.cpuService = service;
+                        $scope.host.services.splice(i, 1);
+                        console.log(i)
+                    } else if (service.service_description === "load") {
+                        $scope.host.loadService = service;
+                        $scope.host.services.splice(i, 1);
+                        console.log(i)
+                    } else {
+                        ++i;
+                    }
+                }
+            });
         });
     }])
 
