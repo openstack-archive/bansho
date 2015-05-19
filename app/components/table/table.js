@@ -28,6 +28,20 @@ angular.module('bansho.table', ['bansho.live',
             $scope.cellsText = conf.cells.text;
             $scope.cellIndexes = [];
 
+            $scope.$watch(function () {
+                return conf.isCheckAll;
+            }, function () {
+                $scope.isCheckAll = conf.isCheckAll;
+            });
+
+            $scope.onCheckChange = function(){
+                conf.isCheckAll = $scope.isCheckAll;
+                angular.forEach(conf.entries, function (entry) {
+                    entry.is_checked = $scope.isCheckAll;
+                });
+            };
+
+
             for (i = 0; i < $scope.cellsName.length; i += 1) {
                 $scope.cellIndexes.push(i);
             }
