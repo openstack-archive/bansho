@@ -10,7 +10,7 @@ angular.module('bansho.host.main', [])
         return {
             restrict: 'E',
             compile: function (scope, element, attrs) {
-                scope.hostName = attrs.hostName;
+                scope.host = attrs.host;
             },
             templateUrl: 'components/host/host_main/host_main.html'
         };
