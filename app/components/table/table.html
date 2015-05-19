@@ -1,7 +1,7 @@
 <table class="data-table" ng-controller="TableCtrl">
   <thead>
       <tr>
-        <th class="data-table__checkbox"><input type="checkbox"></th>
+        <th class="data-table__checkbox"><input type="checkbox" ng-click="onCheckChange()" ng-model="isCheckAll"></th>
         <th ng-repeat="i in cellIndexes" class="data-table__{{cellsName[i]}}">
           {{cellsText[i]}}
           <i class="ico-up-dir"></i>
