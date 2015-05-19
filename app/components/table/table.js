@@ -17,8 +17,8 @@ angular.module('bansho.table', ['bansho.live',
     .value('tablesConfig', [])
 
     .controller('TableCtrl', ['$scope', '$interval', 'backendClient', 'tablesConfig',
-        'actionbarFilters', 'promisesManager', 'tableGlobalConfig',
-        function ($scope, $interval, backendClient, tablesConfig, actionbarFilters, promisesManager, tableGlobalConfig) {
+        'actionbarFilters', 'promisesManager', 'tableGlobalConfig', '$filter',
+        function ($scope, $interval, backendClient, tablesConfig, actionbarFilters, promisesManager, tableGlobalConfig, $filter) {
             var requestFields = [],
                 conf = tablesConfig[tableGlobalConfig.nextTableIndex],
                 getData,
@@ -27,6 +27,16 @@ angular.module('bansho.table', ['bansho.live',
             $scope.cellsName = conf.cells.name;
             $scope.cellsText = conf.cells.text;
             $scope.cellIndexes = [];
+
+            $scope.checkAll = function(){
+                angular.forEach(tablesConfig, function (table) {
+                    var entries = $filter('filter')(table.entries, actionbarFilters.searchFilter);
+                    angular.forEach(entries, function (entry) {
+                        entry.is_checked = $scope.isCheckAll;
+                    });
+                });
+            };
+
 
             for (i = 0; i < $scope.cellsName.length; i += 1) {
                 $scope.cellIndexes.push(i);
