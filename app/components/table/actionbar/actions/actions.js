@@ -14,8 +14,8 @@ angular.module('bansho.table.actionbar')
     })
 
     .controller('banshoAcknowledgeFormCtrl',
-        ['$scope', '$filter', 'tablesConfig', 'actionbarFilters', 'backendClient',
-        function ($scope, $filter, tablesConfig, actionbarFilters, backendClient) {
+        ['$scope', '$filter', 'tablesConfig', 'actionbarFilters', 'backendClient', 'notifications',
+        function ($scope, $filter, tablesConfig, actionbarFilters, backendClient, notifications) {
 
         $scope.acknowledgeProblems = function () {
             angular.forEach(tablesConfig, function (tableConfig) {
@@ -30,11 +30,16 @@ angular.module('bansho.table.actionbar')
                             service_description = entry.description;
                         }
 
-                        backendClient.acknowledge(entry.host_name, service_description, $scope.attrs).error(function (data) {
-                                throw new Error('Acknowledge request failed');
-                            });
+                        backendClient.acknowledge(entry.host_name, service_description, $scope.attrs).then(function (data) {
+                            notifications.push('success', 'Acknowledgement', 'Acknowledged ' + entry.host_name);
+                            entry.is_checked = false;
+                        },
+                        function (error) {
+                            notifications.push('error', 'Acknowledgement', 'Could not acknowledge ' + entry.host_name);
+                        });
                     }
                 });
+                $scope.isShown = false;
             });
         };
     }])
@@ -51,10 +56,8 @@ angular.module('bansho.table.actionbar')
     })
 
     .controller('banshoDowntimeFormCtrl',
-        ['$scope', '$filter', 'tablesConfig', 'actionbarFilters', 'backendClient',
-        function ($scope, $filter, tablesConfig, actionbarFilters, backendClient) {
-
-        $scope.messages = [];
+        ['$scope', '$filter', 'tablesConfig', 'actionbarFilters', 'backendClient', 'notifications',
+        function ($scope, $filter, tablesConfig, actionbarFilters, backendClient, notifications) {
 
         $scope.sendDowntime = function () {
             angular.forEach(tablesConfig, function (table) {
@@ -69,20 +72,15 @@ angular.module('bansho.table.actionbar')
                         }
 
                         backendClient.downtime(entry.host_name, service_description, $scope.attrs).then(function (data) {
-                            $scope.messages.push({
-                                text: entry.host_name + " success ",
-                                type: "success"
-                            });
-                            $scope.isShown = false;
+                            notifications.push('success', 'Downtime', 'Added downtime for ' + entry.host_name);
+                            entry.is_checked = false;
                         },
                         function (error) {
-                            $scope.messages.push({
-                                text: entry.host_name + " error",
-                                type: "error"
-                            });
+                            notifications.push('error', 'Downtime', 'Could not add downtime for ' + entry.host_name);
                         });
                     }
                 });
+                $scope.isShown = false;
             });
         };
     }])
@@ -99,14 +97,14 @@ angular.module('bansho.table.actionbar')
     })
 
     .controller('banshoRecheckButtonCtrl',
-        ['$scope', '$filter', 'tablesConfig', 'actionbarFilters', 'backendClient',
-        function ($scope, $filter, tablesConfig, actionbarFilters, backendClient) {
-
-        $scope.messages = [];
+        ['$scope', '$filter', 'tablesConfig', 'actionbarFilters', 'backendClient', 'notifications',
+        function ($scope, $filter, tablesConfig, actionbarFilters, backendClient, notifications) {
 
         $scope.sendRecheck = function () {
             angular.forEach(tablesConfig, function (table) {
                 var entries = $filter('filter')(table.entries, actionbarFilters.searchFilter);
+                
+                table.isCheckAll = false;
 
                 angular.forEach(entries, function (entry) {
                     var service_description;
@@ -117,19 +115,15 @@ angular.module('bansho.table.actionbar')
                         }
 
                         backendClient.recheck(entry.host_name, service_description).then(function (data) {
-                            $scope.messages.push({
-                                text: entry.host_name + " success ",
-                                type: "success"
-                            });
+                            notifications.push('success', 'Recheck', 'Scheduled recheck for ' + entry.host_name);
+                            entry.is_checked = false;
                         },
                         function (error) {
-                            $scope.messages.push({
-                                text: entry.host_name + " error",
-                                type: "error"
-                            });
+                            notifications.push('error', 'Recheck', 'Could not schedule recheck for ' + entry.host_name);
                         });
                     }
                 });
+                $scope.isShown = false;
             });
         };
     }]);

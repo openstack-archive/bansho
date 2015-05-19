@@ -17,16 +17,32 @@ angular.module('bansho.table', ['bansho.live',
     .value('tablesConfig', [])
 
     .controller('TableCtrl', ['$scope', '$interval', 'backendClient', 'tablesConfig',
-        'actionbarFilters', 'promisesManager', 'tableGlobalConfig',
-        function ($scope, $interval, backendClient, tablesConfig, actionbarFilters, promisesManager, tableGlobalConfig) {
+        'actionbarFilters', 'promisesManager', 'tableGlobalConfig', '$filter',
+        function ($scope, $interval, backendClient, tablesConfig, actionbarFilters, promisesManager, tableGlobalConfig, $filter) {
             var requestFields = [],
-                conf = tablesConfig[tableGlobalConfig.nextTableIndex],
+                index = tableGlobalConfig.nextTableIndex,
+                conf = tablesConfig[index],
                 getData,
                 i;
 
             $scope.cellsName = conf.cells.name;
             $scope.cellsText = conf.cells.text;
             $scope.cellIndexes = [];
+
+            $scope.$watch(function () {
+                return tablesConfig[index].isCheckAll;
+            }, function () {
+                console.log('test' + tablesConfig[index].isCheckAll)
+                $scope.isCheckAll = tablesConfig[index].isCheckAll;
+            });
+
+            $scope.onCheckChange = function(){
+                tablesConfig[index].isCheckAll = $scope.isCheckAll;
+                angular.forEach(conf.entries, function (entry) {
+                    entry.is_checked = $scope.isCheckAll;
+                });
+            };
+
 
             for (i = 0; i < $scope.cellsName.length; i += 1) {
                 $scope.cellIndexes.push(i);
