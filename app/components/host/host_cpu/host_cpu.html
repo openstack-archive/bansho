@@ -1,7 +1,5 @@
-<div ng-controller="HostCpuCtrl">
-  <ul>
-    <li>{{cpuData.state}}</li>
-    <li>{{cpuData.description}}</li>
-    <li>{{cpuData.plugin_output}}</li>
-  </ul>
+<div>
+    <p>{{host.cpu_service}}</p>
+    <p>State: <bansho-table-state-icon host-state="{{host.cpu_service.state}}"></bansho-table-state-icon> {{host.cpu_service.state}}</p>
+    <p>Plugin output: {{host.cpu_service.plugin_output}}</p>
 </div>

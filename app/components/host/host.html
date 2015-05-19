@@ -1,7 +1,8 @@
 <article ng-controller="HostCtrl">
   <section class="main__content tabpanel" ng-if="data.live && data.config">
-     <h1>{{hostName}}</h1>
-     <bansho-host-main hostName="{{hostName}}"></bansho-host-main>
+     host information: {{host}}
+     <h1>{{host.config.host_name}}</h1>
+     <bansho-host-main host="{{host}}"></bansho-host-main>
      <bansho-host-services-list hostName="{{hostName}}"></bansho-host-services-list>
 
      <h2>Cpu</h2>

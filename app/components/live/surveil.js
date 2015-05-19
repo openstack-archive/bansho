@@ -70,8 +70,8 @@ angular.module('bansho.live', [])
                     .error(function () {
                         throw new Error('getService : POST Request failed');
                     });
-            }
-
+            };
+            
             var getHostOpenProblems = function () {
                 var fields = ['state'],
                     filters = {

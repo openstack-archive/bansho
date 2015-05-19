@@ -13,12 +13,25 @@ angular.module('bansho.host', ['bansho.live',
         var objectType = 'host',
             objectIdentifier = {};
 
+        $scope.host = "test";
+
         objectIdentifier.host_name = hostConfig.hostName;
         $scope.hostName = hostConfig.hostName;
         $scope.data = {};
 
         backendClient.getHost(objectType, objectIdentifier).then(function (data) {
+            $scope.host = data;
             $scope.data = data;
+
+            backendClient.getServicesByHost($scope.hostName).success(function (data) {
+                $scope.host.services = data;
+
+                angular.forEach($scope.host.services, function (service, index) {
+                    if (service.service_description === "cpu") {
+                        $scope.host.cpu_service = service;
+                    }
+                });
+            });
         });
     }])
 
