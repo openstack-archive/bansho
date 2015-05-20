@@ -1,7 +1,4 @@
-<div ng-controller="HostLoadCtrl">
-  <ul>
-    <li>{{loadData.state}}</li>
-    <li>{{loadData.description}}</li>
-    <li>{{loadData.plugin_output}}</li>
-  </ul>
+<div>
+ <p>State: <bansho-service-state-icon state="host.loadService.state"></bansho-service-state-icon> {{host.loadService.state}}</p>
+ <p>Plugin output: {{host.loadService.plugin_output}}</p>
 </div>
