@@ -3,7 +3,7 @@
 //----------------------------------*/
 .sidebar-wrapper {
     @extend %colorBkgPanel;
-    padding-bottom:em(72+$_space, $_base_font_size);    
+    padding-bottom:em(72+$_space, $_base_font_size);
 }
 
 //.sidebar {}

@@ -87,7 +87,7 @@
     &.topbar__button--hover {
         transition-duration: 0.5s;
         transition-property: color, background-color;
-        
+
         &[aria-expanded="true"],
         &:hover {
             .color-scheme--dark & {
@@ -128,9 +128,9 @@
 }
 
 .topbar__notifications {
-        
+
     .ico-bell-alt {
-        
+
         &:after {
             background:$_color_error;
             border-radius:100%;
@@ -169,7 +169,7 @@
     }
 }
 
-.topbar__settings {    
+.topbar__settings {
 
     .ico-sliders:before {
         @include vendor(transform, rotate(90deg));

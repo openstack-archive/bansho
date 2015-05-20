@@ -3,7 +3,7 @@
 //----------------------------------*/
 .panes {
     //background:aquamarine;
-    //border:5px solid red;    
+    //border:5px solid red;
     display:block;
     overflow-x:auto;
     width:auto;
@@ -26,15 +26,15 @@
 }
 
 .panes__container {
-    //background:indigo;    
-    display:table;    
+    //background:indigo;
+    display:table;
     width:auto;
     width:840px;
 
     @include medium-and-up-screen {
         display:table-row;
         min-width:0;
-        position:static;    
+        position:static;
     }
 }
 

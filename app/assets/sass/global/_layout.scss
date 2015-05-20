@@ -19,7 +19,7 @@
 
 .layout__main {
     width:100%;
-    
+
     @include medium-and-up-screen {
         display:table-cell;
         vertical-align:top;

@@ -10,7 +10,7 @@
 
 // Dark Scheme
 //----------------------------------*/
-.color-scheme--dark {    
+.color-scheme--dark {
     %colorTxtCurrent {
         color:$_color_dark_delta;
     }
@@ -41,12 +41,12 @@
     %colorBkgTopbar {
         background:$_color_dark_beta;
     }
-    
+
     %colorBkgTopbarPanel {
         background:$_color_dark_alpha;
     }
 
     %colorBkgTopbarButton {
-        background:$_color_dark_beta;        
+        background:$_color_dark_beta;
     }
 }

@@ -22,7 +22,7 @@
         <span class="visuallyhidden">Voir les notifications</span>
         <i class="ico-bell-alt" data-notifications="{{allProblems}}"></i>
       </button>
-      
+
       <div class="topbar__panel--fromleft collapse" id="notificationsPanel">
         <div class="topbar__panel__content tabpanel">
           <ul class="tablist clearfix">
@@ -47,13 +47,13 @@
               </a>
             </li>
           </ul>
-          
+
           <div class="tab-content">
             <div role="tabpanel" class="problems tab-pane active" id="topOpenProblems">
               <ol class="problems__list">
                 <li class="problems__item">
                   <strong class="problems__host state--ok">localhost</strong>
-                  
+
                   <dl class="problems__desclist">
                     <dt class="problems__name state--warning">
                       <span>Root partition</span>
@@ -64,7 +64,7 @@
                 </li>
                 <li class="problems__item">
                   <strong class="problems__host state--warning">www.theatlantic.com</strong>
-                  
+
                   <dl class="problems__desclist">
                     <dt class="problems__name state--warning">
                       <span>HTTP www.theatlantic.com</span>
@@ -75,20 +75,20 @@
                 </li>
                 <li class="problems__item">
                   <strong class="problems__host state--error">www.savoirfairelinux.com</strong>
-                  
+
                   <dl class="problems__desclist">
                     <dt class="problems__name state--warning">
                       <span>Verbis se superiores opere enim</span>
                       <small class="problems__duration">8 days, 5 hours</small>
                     </dt>
                     <dd class="problems__description">Check_http: invalid onedirection option - $</dd>
-                    
+
                     <dt class="problems__name state--error">
                       <span>CPU utilization</span>
                       <small class="problems__duration">1 days, 3 hours</small>
                     </dt>
                     <dd class="problems__description">NRPE: Command checkCPU not defined</dd>
-                    
+
                     <dt class="problems__name state--ok">
                       <span>Runnning services</span>
                       <small class="problems__duration">1 days, 12 hours</small>
@@ -97,10 +97,10 @@
                   </dl>
                 </li>
               </ol>
-              
+
               <button class="problems__viewall" type="button">View all open problems</button>
             </div>
-            
+
             <div role="tabpanel" class="tab-pane" id="topAllProblems">
               ALL PROBLEMS
             </div>
@@ -108,7 +108,7 @@
         </div>
     </li>
   </ul>
-  
+
   <ul class="topbar__list topbar__list--right">
     <li class="topbar__item topbar__settings">
       <button class="topbar__button topbar__button--hover"
@@ -120,13 +120,13 @@
         <span class="visuallyhidden">Afficher la liste des paramètres</span>
         <i class="ico-sliders"></i>
       </button>
-      
+
       <div class="topbar__panel--fromright collapse" id="settingsPanel">
         <nav class="topbar__panel__content" role="navigation">
           <ul class="topbar__settings__list">
             <li class="topbar__settings__item">
               <span class="topbar__settings__category">Bansho</span>
-              
+
               <ul class="topbar__settings__sublist">
                 <li class="topbar__settings__subitem"><a href="#">Missing Plugins</a></li>
                 <li class="topbar__settings__subitem"><a href="#">Object History</a></li>
@@ -144,7 +144,7 @@
           <span class="visuallyhidden">Lancer une recherche</span>
           <i class="ico-search"></i>
         </button>
-        
+
         <label class="visuallyhidden" for="searchfield">Recherche</label>
         <input id="searchfield" type="search" class="topbar__searchfield form-control" placeholder="Search hosts, services, ...">
       </form>

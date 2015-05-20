@@ -28,11 +28,11 @@ var AdagiosUI = (function() {
 
         $activeHostCell
             .prev('th')
-            .css('background-color', activeHostCell_bkgColor);      
+            .css('background-color', activeHostCell_bkgColor);
     };
 
     var closeSidebar = function() {
-        $('.sidebar__close').on('click', function() {      
+        $('.sidebar__close').on('click', function() {
             $('.topbar__toggle-sidebar').find('.topbar__button').trigger('click');
         });
     };
@@ -44,5 +44,5 @@ var AdagiosUI = (function() {
         syncBkgCheckbox : syncBkgCheckbox,
         closeSidebar : closeSidebar
     };
-    
+
 })();
