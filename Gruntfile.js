@@ -53,22 +53,6 @@ module.exports = function (grunt) {
                     }
                 ]
             },
-            adagios: {
-                files: [
-                    {
-                        src: '<%= project.app %>/components/live/adagios.js',
-                        dest: '<%= project.app %>/components/live/live.js'
-                    }
-                ]
-            },
-            surveil: {
-                files: [
-                    {
-                        src: '<%= project.app %>/components/live/surveil.js',
-                        dest: '<%= project.app %>/components/live/live.js'
-                    }
-                ]
-            }
         },
 
         sass: {
@@ -106,8 +90,6 @@ module.exports = function (grunt) {
                 '<%= project.app %>/app.js',
                 '<%= project.app %>/**/*.js',
                 '!<%= project.app %>/bower_components/**',
-                '!<%= project.app %>/**/live.js',
-                '!<%= project.app %>/**/adagios.js'
             ]
         },
 
@@ -141,32 +123,21 @@ module.exports = function (grunt) {
         },
 
         watch: {
-            adagios: {
+            development: {
                 files: [
                     '<%= project.app %>/**/*.js',
                     '<%= project.app %>/**/*.html',
-                    '<%= project.app %>/components/live/adagios.js',
                     '<%= project.assets %>/sass/{,*/}*.{scss,sass}'
                 ],
-                tasks: ['copy:adagios', 'sass:dev', 'jshint:all']
-            },
-            surveil: {
-                files: [
-                    '<%= project.app %>/**/*.js',
-                    '<%= project.app %>/**/*.html',
-                    '<%= project.app %>/components/live/surveil.js',
-                    '<%= project.assets %>/sass/{,*/}*.{scss,sass}'
-                ],
-                tasks: ['copy:surveil', 'sass:dev', 'jshint:all']
+                tasks: ['sass:dev', 'jshint:all']
             },
             staging: {
                 files: [
                     '<%= project.app %>/**/*.js',
                     '<%= project.app %>/**/*.html',
-                    '<%= project.app %>/components/live/surveil.js',
                     '<%= project.assets %>/sass/{,*/}*.{scss,sass}'
                 ],
-                tasks: ['production:surveil']
+                tasks: ['production']
             },
             options: {
                 livereload: true
@@ -174,22 +145,26 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.registerTask('default', ['watch']);
+    grunt.registerTask('default', ['development']);
 
-    grunt.registerTask('development:adagios', [
-        'sass', 'copy:adagios', 'jshint:all', 'watch:adagios'
+    grunt.registerTask('development', [
+        'sass',
+        'jshint:all',
+        'watch:development'
     ]);
 
-    grunt.registerTask('development:surveil', [
-        'sass', 'copy:surveil', 'jshint:all', 'watch:surveil'
+    grunt.registerTask('staging', [
+        'production',
+        'watch:development'
     ]);
 
-    grunt.registerTask('staging:surveil', [
-        'production:surveil', 'watch:staging']);
-
-    grunt.registerTask('production:adagios', [
-        'clean', 'sass', 'copy:prod', 'copy:adagios', 'useminPrepare:html', 'concat:generated', 'uglify:generated', 'usemin:html']);
-
-    grunt.registerTask('production:surveil', [
-        'clean', 'sass', 'copy:prod', 'copy:surveil', 'useminPrepare:html', 'concat:generated', 'uglify:generated', 'usemin:html']);
+    grunt.registerTask('production', [
+        'clean',
+        'sass',
+        'copy:prod' ,
+        'useminPrepare:html',
+        'concat:generated',
+        'uglify:generated',
+        'usemin:html'
+    ]);
 };

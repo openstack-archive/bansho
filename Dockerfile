@@ -31,13 +31,11 @@ RUN cd /opt/bansho/ && npm install --unsafe-perm
 ADD /app /opt/bansho/app
 
 # Override those variables at runtime to point Bansho to another backend
-ENV BANSHO_BACKEND surveil
 ENV BANSHO_PROD true
 ENV BANSHO_SURVEIL_URL http://surveil:8080/
-ENV BANSHO_ADAGIOS_URL http://demo.kaji-project.org/
 ENV BANSHO_AUTH_URL http://surveil:8080/v2/auth/
 
 CMD ./configure.sh && \
     cd /opt/bansho && \
-    bash -c "if [ $BANSHO_PROD = true ] ; then grunt production:$BANSHO_BACKEND ; fi" && \
+    bash -c "if [ $BANSHO_PROD = true ] ; then grunt production ; fi" && \
     bash -c "source /etc/apache2/envvars && exec /usr/sbin/apache2 -DFOREGROUND"
