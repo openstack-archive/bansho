@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('bansho.host.cpu', ['bansho.live'])
+angular.module('bansho.host.cpu', ['bansho.surveil'])
     .directive('banshoHostCpu', function () {
         return {
             restrict: 'E',

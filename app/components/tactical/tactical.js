@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('bansho.tactical', ['bansho.live',
+angular.module('bansho.tactical', ['bansho.surveil',
                                     'bansho.utils.promiseManager',
                                     'bansho.tactical.status_overview',
                                     'bansho.tactical.current_health',
@@ -16,8 +16,8 @@ angular.module('bansho.tactical', ['bansho.live',
         this.topAlertProducers = config.components.topAlertProducers;
     })
 
-    .controller('TacticalCtrl', ['$scope', '$interval', 'tacticalConfig', 'backendClient', 'promisesManager',
-        function ($scope, $interval, tacticalConfig, backendClient, promisesManager) {
+    .controller('TacticalCtrl', ['$scope', '$interval', 'tacticalConfig', 'surveilLive', 'promisesManager',
+        function ($scope, $interval, tacticalConfig, surveilLive, promisesManager) {
 
             var getData;
 
@@ -33,17 +33,17 @@ angular.module('bansho.tactical', ['bansho.live',
             $scope.totalServices = undefined;
 
             getData = function () {
-                backendClient.getHostProblems().success(function (hostProblems) {
+                surveilLive.getHostProblems().success(function (hostProblems) {
                     $scope.hostProblems = hostProblems.length;
-                    backendClient.getTotalHosts().success(function (allHosts) {
+                    surveilLive.getTotalHosts().success(function (allHosts) {
                         $scope.totalHosts = allHosts.length;
                         $scope.hostsRatio = ($scope.totalHosts - $scope.hostProblems) / $scope.totalHosts * 100;
                     });
                 });
 
-                backendClient.getServiceProblems().success(function (serviceProblems) {
+                surveilLive.getServiceProblems().success(function (serviceProblems) {
                     $scope.serviceProblems = serviceProblems.length;
-                    backendClient.getTotalServices().success(function (allServices) {
+                    surveilLive.getTotalServices().success(function (allServices) {
                         $scope.totalServices = allServices.length;
                         $scope.servicesRatio = ($scope.totalServices - $scope.serviceProblems) / $scope.totalServices * 100;
                     });

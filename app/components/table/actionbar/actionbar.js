@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('bansho.table.actionbar', ['bansho.table', 'bansho.live', 'bansho.notifications'])
+angular.module('bansho.table.actionbar', ['bansho.table', 'bansho.surveil', 'bansho.notifications'])
 
     .service('actionbarFilters', function () {
         var actionbarFilters = {
@@ -27,8 +27,8 @@ angular.module('bansho.table.actionbar', ['bansho.table', 'bansho.live', 'bansho
         return actionbarFilters;
     })
 
-    .controller('TableActionbarCtrl', ['$scope', '$filter', 'backendClient', 'actionbarFilters', 'tablesConfig',
-        function ($scope, $filter, backendClient, actionbarFilters, tablesConfig, actionbarSelectFilter) {
+    .controller('TableActionbarCtrl', ['$scope', '$filter', 'surveilLive', 'actionbarFilters', 'tablesConfig',
+        function ($scope, $filter, surveilLive, actionbarFilters, tablesConfig, actionbarSelectFilter) {
             $scope.isDowntimeShown = false;
             $scope.isAcknowledgeShown = false;
 

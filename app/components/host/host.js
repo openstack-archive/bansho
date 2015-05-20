@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('bansho.host', ['bansho.live',
+angular.module('bansho.host', ['bansho.surveil',
                                 'bansho.host.main',
                                 'bansho.host.load',
                                 'bansho.host.cpu',
@@ -9,16 +9,16 @@ angular.module('bansho.host', ['bansho.live',
 
     .value('hostConfig', {})
 
-    .controller('HostCtrl', ['$scope', 'hostConfig', 'backendClient', function ($scope, hostConfig, backendClient) {
+    .controller('HostCtrl', ['$scope', 'hostConfig', 'surveilLive', function ($scope, hostConfig, surveilLive) {
         var objectType = 'host',
             objectIdentifier = {};
 
         objectIdentifier.host_name = hostConfig.hostName;
-        backendClient.getHost(objectType, objectIdentifier).then(function (data) {
+        surveilLive.getHost(objectType, objectIdentifier).then(function (data) {
             $scope.host = data;
             $scope.data = data;
 
-            backendClient.getServicesByHost($scope.hostName).success(function (data) {
+            surveilLive.getServicesByHost($scope.hostName).success(function (data) {
                 var i,
                     service;
 
@@ -40,8 +40,8 @@ angular.module('bansho.host', ['bansho.live',
         });
     }])
 
-    .directive('banshoHost', ['$http', '$compile', 'backendClient', 'hostConfig',
-        function ($http, $compile, backendClient, hostConfig) {
+    .directive('banshoHost', ['$http', '$compile', 'surveilLive', 'hostConfig',
+        function ($http, $compile, surveilLive, hostConfig) {
             return {
                 restrict: 'E',
                 compile: function () {
