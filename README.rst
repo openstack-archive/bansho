@@ -56,14 +56,6 @@ Start the Docker container (be sure to have a surveil container available at thi
     make daemon
 
 
-Bansho supports only surveil.
-To select the proper backend and compile sass for surveil run :
-
-::
-
-    grunt development:surveil
-
-
 If you wish to develop in a docker container, here is how to proceed (assuming
 you already have docker installed) :
 
