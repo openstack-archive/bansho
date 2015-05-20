@@ -24,7 +24,8 @@ angular.module("ngJustGage", [])
                         min: scope.min,
                         max: scope.max,
                         title: scope.title,
-                        value: scope.value
+                        value: scope.value,
+                        donut: true
                     };
 
                     if (scope.options) {
