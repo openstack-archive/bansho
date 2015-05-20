@@ -9,11 +9,13 @@ angular.module('bansho.service', ['bansho.live',
 
     .controller('ServiceCtrl', ['$scope', 'serviceConfig', 'backendClient',
         function ($scope, serviceConfig, backendClient) {
+          console.log(serviceConfig);
             var hostName = serviceConfig.hostName,
                 description = serviceConfig.description;
 
             backendClient.getService(hostName, description).success(function (data) {
-                $scope.data = data;
+                $scope.service = data[0];
+                console.log(data);
             });
         }])
 

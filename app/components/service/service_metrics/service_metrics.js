@@ -9,6 +9,9 @@ angular.module('bansho.service.metrics', [])
     .directive('banshoServiceMetrics', function () {
         return {
             restrict: 'E',
+            scope: {
+              service: '=service'
+            },
             templateUrl: 'components/service/service_metrics/service_metrics.html'
         };
     });

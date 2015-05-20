@@ -1,10 +1,8 @@
 <div ng-controller="ServiceMainCtrl">
-  <ul>
-    <li>{{data.0.host_name}}</li>
-    <li>{{data.0.description}}</li>
-    <li>{{data.0.state}}</li>
-    <li>{{data.0.plugin_output}}</li>
-    <li>{{data.0.backend}}</li>
-    <li>{{data.0.status}}</li>
-  </ul>
+
+    <p>Host Name: {{service.host_name}}</p>
+    <p>Current state: <bansho-table-state-icon service-state="{{service.state}}"></bansho-table-state-icon>{{service.state}}
+    <p>Live plugin output: {{service.plugin_output}}</p>    
+    <p>Current service status: {{service.status}}</p>
+
 </div>

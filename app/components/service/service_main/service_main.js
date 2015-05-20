@@ -9,6 +9,11 @@ angular.module('bansho.service.main', [])
     .directive('banshoServiceMain', function () {
         return {
             restrict: 'E',
-            templateUrl: 'components/service/service_main/service_main.html'
+            scope: {
+              service: '=service'
+            },
+            templateUrl: 'components/service/service_main/service_main.html',
+            controller: 'ServiceMainCtrl'
+
         };
     });
