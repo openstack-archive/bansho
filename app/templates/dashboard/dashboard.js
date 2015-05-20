@@ -1,3 +1,5 @@
+/*global jQuery */
+
 'use strict';
 
 angular.module('bansho.view.dashboard', ['ngRoute',

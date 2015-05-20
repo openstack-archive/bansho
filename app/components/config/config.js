@@ -1,5 +1,6 @@
-'use strict';
+/*global jQuery */
 
+'use strict';
 
 angular.module('bansho.config', [])
 

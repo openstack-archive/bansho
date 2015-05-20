@@ -29,11 +29,9 @@ angular.module('bansho.host', ['bansho.live',
                     if (service.service_description === "cpu") {
                         $scope.host.cpuService = service;
                         $scope.host.services.splice(i, 1);
-                        console.log(i)
                     } else if (service.service_description === "load") {
                         $scope.host.loadService = service;
                         $scope.host.services.splice(i, 1);
-                        console.log(i)
                     } else {
                         ++i;
                     }
