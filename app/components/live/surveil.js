@@ -361,8 +361,6 @@ angular.module('bansho.live', [])
                     url: '/surveil/v2/actions/acknowledge/',
                     method: 'POST',
                     data: data
-                }).error(function () {
-                    throw new Error('acknowledge : POST Request failed');
                 });
             };
 
