@@ -19,7 +19,7 @@ angular.module('bansho.table.state_icon', [])
                     $scope.stateClass = 'state--error';
                 }
             }]
-        }
+        };
     })
 
     .directive('banshoServiceStateIcon', function () {
@@ -40,5 +40,5 @@ angular.module('bansho.table.state_icon', [])
                     $scope.stateClass = 'state--error';
                 }
             }]
-        }
+        };
     });

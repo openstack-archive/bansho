@@ -1,3 +1,5 @@
+/*global PNotify */
+
 'use strict';
 
 angular.module('bansho.notifications', [])
