@@ -40,12 +40,12 @@ angular.module('bansho.config', [])
             return config.data;
         };
 
-        this.fetchConfig = function () {
+        this.fetchConfig = function (useServerConfig) {
             var responsePromise = $q.defer();
 
             $http.get('surveil/v2/bansho/config')
                 .success(function (conf) {
-                    if (jQuery.isEmptyObject(conf))  {
+                    if (!useServerConfig || jQuery.isEmptyObject(conf))  {
 
                         $http.get('components/config/config.json')
                             .success(function (conf) {
