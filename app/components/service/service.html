@@ -1,8 +1,10 @@
 <article ng-controller="ServiceCtrl">
-  <h2>Service</h2>
-  <section class="main__content tabpanel" ng-if="data">
-    <bansho-service-main></bansho-service-main>
-    <bansho-service-info></bansho-service-info>
-    <bansho-service-metrics></bansho-service-metrics>
+  <section class="main__content tabpanel">
+    <h1>{{service.service_description}}</h1>
+    <bansho-service-main service='service'></bansho-service-main>
+    <h2> Info</h2>
+    <bansho-service-info service='service'></bansho-service-info>
+    <h2> Metrics</h2>
+    <bansho-service-metrics service='service'></bansho-service-metrics>
   </section>
 </article>

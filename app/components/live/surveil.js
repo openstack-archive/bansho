@@ -48,7 +48,7 @@ angular.module('bansho.live', [])
                     filters = {
                         'is': {
                             'host_name': [hostName],
-                            'description': [description]
+                            'service_description': [description]
                         }
                     };
 
@@ -70,7 +70,7 @@ angular.module('bansho.live', [])
                     .error(function () {
                         throw new Error('getService : POST Request failed');
                     });
-            }
+            };
 
             var getHostOpenProblems = function () {
                 var fields = ['state'],

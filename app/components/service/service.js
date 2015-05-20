@@ -13,7 +13,7 @@ angular.module('bansho.service', ['bansho.live',
                 description = serviceConfig.description;
 
             backendClient.getService(hostName, description).success(function (data) {
-                $scope.data = data;
+                $scope.service = data[0];
             });
         }])
 
