@@ -52,8 +52,8 @@ angular.module('bansho.table', ['bansho.live',
                 });
             });
 
-            getData = function (requestFields, filters, apiName, additionnalFields) {
-                var promise = backendClient.getTableData(requestFields, filters, apiName, additionnalFields);
+            getData = function (requestFields, filters, apiName) {
+                var promise = backendClient.getTableData(requestFields, filters, apiName);
                 promise.then(function (data) {
                     $scope.entries = data;
                     conf.entries = data;
@@ -62,12 +62,12 @@ angular.module('bansho.table', ['bansho.live',
                 });
             };
 
-            getData(requestFields, conf.filters, conf.apiName, conf.additionnalQueryFields);
+            getData(requestFields, conf.filters, conf.apiName);
 
             if (tableGlobalConfig.refreshInterval !== 0) {
                 promisesManager.addAjaxPromise(
                     $interval(function () {
-                        getData(requestFields, conf.filters, conf.apiName, conf.additionnalQueryFields);
+                        getData(requestFields, conf.filters, conf.apiName);
                     }, tableGlobalConfig.refreshInterval)
                 );
             }
@@ -96,7 +96,6 @@ angular.module('bansho.table', ['bansho.live',
                         tablesConfig[attrs.tableId] = {};
                         conf = tablesConfig[attrs.tableId];
                         conf.filters = {};
-                        conf.additionnalQueryFields = {};
 
                         conf.cells = { 'text': [], 'name': [] };
                         conf.cells.text = attrs.cellsText.split(',');
@@ -110,10 +109,6 @@ angular.module('bansho.table', ['bansho.live',
 
                         if (!!attrs.filters) {
                             conf.filters = JSON.parse(attrs.filters);
-                        }
-
-                        if (!!attrs.additionnalQueryFields) {
-                            conf.additionnalQueryFields = JSON.parse(attrs.additionnalQueryFields);
                         }
 
                         if (!!attrs.refreshInterval) {
@@ -169,7 +164,6 @@ angular.module('bansho.table', ['bansho.live',
         this.Filters = config.filters;
         this.IsWrappable = config.isWrappable;
         this.NoRepeatCell = config.noRepeatCell;
-        this.additionnalQueryFields = config.additionnalQueryFields;
     })
 
     .filter('wrappableStyle', ['tablesConfig', 'tableGlobalConfig', function (tablesConfig, tableGlobalConfig) {
