@@ -1,18 +1,18 @@
 'use strict';
 
-angular.module('bansho.topbar', ['bansho.live'])
+angular.module('bansho.topbar', ['bansho.surveil'])
 
-    .controller('TopBarCtrl', ['$rootScope', '$scope', '$interval', 'backendClient', 'promisesManager', 'authService',
-        function ($rootScope, $scope, $interval, backendClient, promisesManager, authService) {
+    .controller('TopBarCtrl', ['$rootScope', '$scope', '$interval', 'surveilStatus', 'promisesManager', 'authService',
+        function ($rootScope, $scope, $interval, surveilStatus, promisesManager, authService) {
             var getData,
                 hostProblems,
                 serviceProblems;
 
             getData = function () {
                 if ($rootScope.isAuthenticated) {
-                    backendClient.getServiceProblems().success(function (data) {
+                    surveilStatus.getServiceProblems().success(function (data) {
                         serviceProblems = data.length;
-                        backendClient.getHostProblems().success(function (data) {
+                        surveilStatus.getHostProblems().success(function (data) {
                             hostProblems = data.length;
                             $scope.allProblems = serviceProblems + hostProblems;
                         });

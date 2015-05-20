@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('bansho.table', ['bansho.live',
+angular.module('bansho.table', ['bansho.surveil',
                                  'bansho.utils.promiseManager',
                                  'bansho.table.actionbar',
                                  'bansho.filters',
@@ -16,9 +16,9 @@ angular.module('bansho.table', ['bansho.live',
 
     .value('tablesConfig', [])
 
-    .controller('TableCtrl', ['$scope', '$interval', 'backendClient', 'tablesConfig',
+    .controller('TableCtrl', ['$scope', '$interval', 'surveilStatus', 'tablesConfig',
         'actionbarFilters', 'promisesManager', 'tableGlobalConfig',
-        function ($scope, $interval, backendClient, tablesConfig, actionbarFilters, promisesManager, tableGlobalConfig) {
+        function ($scope, $interval, surveilStatus, tablesConfig, actionbarFilters, promisesManager, tableGlobalConfig) {
             var requestFields = [],
                 conf = tablesConfig[tableGlobalConfig.nextTableIndex],
                 getData,
@@ -53,7 +53,7 @@ angular.module('bansho.table', ['bansho.live',
             });
 
             getData = function (requestFields, filters, apiName) {
-                var promise = backendClient.getTableData(requestFields, filters, apiName);
+                var promise = surveilStatus.getTableData(requestFields, filters, apiName);
                 promise.then(function (data) {
                     $scope.entries = data;
                     conf.entries = data;

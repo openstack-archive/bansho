@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('bansho.tactical.current_health', ['bansho.live',
+angular.module('bansho.tactical.current_health', ['bansho.surveil',
                                                    'ngJustGage'])
 
     .controller('TacticalCurrentHealth', ['$scope', function ($scope) {

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('bansho.service', ['bansho.live',
+angular.module('bansho.service', ['bansho.surveil',
                                    'bansho.service.main',
                                    'bansho.service.info',
                                    'bansho.service.metrics',
@@ -8,12 +8,12 @@ angular.module('bansho.service', ['bansho.live',
 
     .value('serviceConfig', {})
 
-    .controller('ServiceCtrl', ['$scope', 'serviceConfig', 'backendClient',
-        function ($scope, serviceConfig, backendClient) {
+    .controller('ServiceCtrl', ['$scope', 'serviceConfig', 'surveilStatus',
+        function ($scope, serviceConfig, surveilStatus) {
             var hostName = serviceConfig.hostName,
                 description = serviceConfig.description;
 
-            backendClient.getService(hostName, description).success(function (data) {
+                surveilStatus.getService(hostName, description).success(function (data) {
                 $scope.service = data[0];
             });
         }])
