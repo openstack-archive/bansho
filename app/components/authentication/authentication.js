@@ -63,7 +63,7 @@ angular.module('bansho.authentication', [])
                     session.create(data.access.token.id, data.access.token.expires);
                     $http.defaults.headers.common['X-Auth-Token'] = session.sessionId;
 
-                    configManager.fetchConfig().then(function () {
+                    configManager.fetchConfig(configManager.getDevelopmentConfig().useStoredConfig).then(function () {
                             $location.path('/view');
                         }, function (message) {
                             throw new Error(message);
