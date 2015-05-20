@@ -13,14 +13,14 @@ interactive:
 
 daemon:
 	sudo docker run -p 8888:8888 --link surveil_surveil_1:surveil -v $(shell pwd)/app:/opt/bansho/dist -e BANSHO_PROD=false -d -t --name bansho bansho
-	grunt development:surveil
+	grunt development
 
 production:
 	sudo docker run -p 8888:8888 --link surveil_surveil_1:surveil -d -t --name bansho bansho
 
 staging:
 	sudo docker run -p 8888:8888 --link surveil_surveil_1:surveil -v $(shell pwd)/dist:/opt/bansho/dist -e BANSHO_PROD=false -d -t --name bansho bansho
-	grunt staging:surveil
+	grunt staging
 
 kill:
 	sudo docker kill bansho
