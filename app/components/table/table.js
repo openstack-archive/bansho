@@ -22,7 +22,12 @@ angular.module('bansho.table', ['bansho.surveil',
             var requestFields = [],
                 conf = tablesConfig[tableGlobalConfig.nextTableIndex],
                 getData,
-                i;
+                i,
+                inputSourceServices;
+
+            inputSourceServices = {
+                surveilStatus: surveilStatus
+            };
 
             $scope.cellsName = conf.cells.name;
             $scope.cellsText = conf.cells.text;
@@ -52,8 +57,8 @@ angular.module('bansho.table', ['bansho.surveil',
                 });
             });
 
-            getData = function (requestFields, filters, apiName) {
-                var promise = surveilStatus.getTableData(requestFields, filters, apiName);
+            getData = function (requestFields, inputSource) {
+                var promise = inputSourceServices[inputSource.service].getTableData(requestFields, inputSource.config);
                 promise.then(function (data) {
                     $scope.entries = data;
                     conf.entries = data;
@@ -62,12 +67,12 @@ angular.module('bansho.table', ['bansho.surveil',
                 });
             };
 
-            getData(requestFields, conf.filters, conf.apiName);
+            getData(requestFields, conf.inputSource);
 
             if (tableGlobalConfig.refreshInterval !== 0) {
                 promisesManager.addAjaxPromise(
                     $interval(function () {
-                        getData(requestFields, conf.filters, conf.apiName);
+                        getData(requestFields, conf.inputSource);
                     }, tableGlobalConfig.refreshInterval)
                 );
             }
@@ -89,27 +94,23 @@ angular.module('bansho.table', ['bansho.surveil',
                         var template = 'components/table/table.html',
                             conf;
 
-                        if (!attrs.cellsText || !attrs.cellsName || !attrs.apiName || !attrs.isWrappable) {
-                            throw new Error('<bansho-table> "cells-text", "cells-name", "api-name" and "is-wrappable" attributes must be defined');
+
+                        if (!attrs.cellsText || !attrs.cellsName || !attrs.inputSource || !attrs.isWrappable) {
+                            throw new Error('<bansho-table> "cells-text", "cells-name", "inputSource" and "is-wrappable" attributes must be defined');
                         }
 
                         tablesConfig[attrs.tableId] = {};
                         conf = tablesConfig[attrs.tableId];
-                        conf.filters = {};
 
                         conf.cells = { 'text': [], 'name': [] };
                         conf.cells.text = attrs.cellsText.split(',');
                         conf.cells.name = attrs.cellsName.split(',');
 
-                        conf.apiName = attrs.apiName;
+                        conf.inputSource = JSON.parse(attrs.inputSource);
 
                         conf.isWrappable = JSON.parse(attrs.isWrappable);
                         conf.noRepeatCell = attrs.noRepeatCell;
                         tableGlobalConfig.tableId = attrs.tableId;
-
-                        if (!!attrs.filters) {
-                            conf.filters = JSON.parse(attrs.filters);
-                        }
 
                         if (!!attrs.refreshInterval) {
                             tableGlobalConfig.refreshInterval = parseInt(attrs.refreshInterval * 1000, 10);
@@ -160,8 +161,7 @@ angular.module('bansho.table', ['bansho.surveil',
         this.title = config.title;
         this.CellsText = config.cells.text.join();
         this.CellsName = config.cells.name.join();
-        this.ApiName = config.apiName;
-        this.Filters = config.filters;
+        this.InputSource = config.inputSource;
         this.IsWrappable = config.isWrappable;
         this.NoRepeatCell = config.noRepeatCell;
     })

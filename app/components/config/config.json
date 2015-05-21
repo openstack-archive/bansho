@@ -35,16 +35,21 @@
                             "status_host_status"
                         ]
                     },
-                    "apiName": "hosts",
-                    "filters": {
-                        "is": {
-                            "acknowledged": [
-                                false
-                            ],
-                            "state": [
-                                "DOWN",
-                                "UNREACHABLE"
-                            ]
+                    "inputSource": {
+                        "service": "surveilStatus",
+                        "config": {
+                            "apiName": "hosts",
+                            "filters": {
+                                "is": {
+                                    "acknowledged": [
+                                        false
+                                    ],
+                                    "state": [
+                                        "DOWN",
+                                        "UNREACHABLE"
+                                    ]
+                                }
+                            }
                         }
                     },
                     "isWrappable": false,
@@ -69,21 +74,26 @@
                             "status_last_check"
                         ]
                     },
-                    "apiName": "services",
-                    "filters": {
-                        "isnot": {
-                            "state": [
-                                "OK"
-                            ],
-                            "host_state": [
-                                "DOWN",
-                                "UNREACHABLE"
-                            ]
-                        },
-                        "is": {
-                            "acknowledged": [
-                                false
-                            ]
+                    "inputSource": {
+                        "service": "surveilStatus",
+                        "config": {
+                            "apiName": "services",
+                            "filters": {
+                                "isnot": {
+                                    "state": [
+                                        "OK"
+                                    ],
+                                    "host_state": [
+                                        "DOWN",
+                                        "UNREACHABLE"
+                                    ]
+                                },
+                                "is": {
+                                    "acknowledged": [
+                                        false
+                                    ]
+                                }
+                            }
                         }
                     },
                     "isWrappable": true,
@@ -110,12 +120,17 @@
                             "status_host_status"
                         ]
                     },
-                    "apiName": "hosts",
-                    "filters": {
-                        "isnot": {
-                            "state": [
-                                "UP"
-                            ]
+                    "inputSource": {
+                        "service": "surveilStatus",
+                        "config": {
+                            "apiName": "hosts",
+                            "filters": {
+                                "isnot": {
+                                    "state": [
+                                        "UP"
+                                    ]
+                                }
+                            }
                         }
                     },
                     "isWrappable": false,
@@ -140,12 +155,17 @@
                             "status_last_check"
                         ]
                     },
-                    "apiName": "services",
-                    "filters": {
-                        "isnot": {
-                            "state": [
-                                "OK"
-                            ]
+                    "inputSource": {
+                        "service": "surveilStatus",
+                        "config": {
+                            "apiName": "services",
+                            "filters": {
+                                "isnot": {
+                                    "state": [
+                                        "OK"
+                                    ]
+                                }
+                            }
                         }
                     },
                     "isWrappable": true,
@@ -179,8 +199,13 @@
                             "status_host_status"
                         ]
                     },
-                    "apiName": "hosts",
-                    "filters": {},
+                    "inputSource": {
+                        "service": "surveilStatus",
+                        "config": {
+                            "apiName": "hosts",
+                            "filters": {}
+                        }
+                    },
                     "isWrappable": false,
                     "noRepeatCell": ""
                 }
@@ -210,8 +235,13 @@
                             "status_last_check"
                         ]
                     },
-                    "apiName": "services",
-                    "filters": {},
+                    "inputSource": {
+                        "service": "surveilStatus",
+                        "config": {
+                            "apiName": "services",
+                            "filters": {}
+                        }
+                    },
                     "isWrappable": false,
                     "noRepeatCell": "host"
                 }
