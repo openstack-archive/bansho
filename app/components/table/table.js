@@ -4,12 +4,12 @@ angular.module('bansho.table', ['bansho.surveil',
                                  'bansho.utils.promiseManager',
                                  'bansho.table.actionbar',
                                  'bansho.filters',
-                                 'bansho.table.cell_host',
-                                 'bansho.table.cell_duration',
-                                 'bansho.table.cell_service_check',
-                                 'bansho.table.cell_last_check',
-                                 'bansho.table.cell_host_address',
-                                 'bansho.table.cell_host_status'
+                                 'bansho.table.cell_status_host',
+                                 'bansho.table.cell_status_duration',
+                                 'bansho.table.cell_status_service_check',
+                                 'bansho.table.cell_status_last_check',
+                                 'bansho.table.cell_status_host_address',
+                                 'bansho.table.cell_status_host_status'
                                 ])
 
     .value('tableGlobalConfig', {'cellToFieldsMap': {}, 'cellWrappableField': {}, 'nextTableIndex': 0})
