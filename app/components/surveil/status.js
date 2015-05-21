@@ -250,7 +250,7 @@ angular.module('bansho.surveil')
                 return data;
             };
 
-            var getTableData = function (fields, filters, apiName) {
+            var getTableData = function (fields, filters, inputSourceConfig) {
                 var hostFields = [],
                     serviceFields = [],
                     hostFilters = {},
@@ -264,7 +264,7 @@ angular.module('bansho.surveil')
                     i,
                     found = false;
 
-                if (apiName === 'hosts') {
+                if (inputSourceConfig.apiName === 'hosts') {
                     this.getObjects(fields, filters, 'hosts')
                         .success(function (data) {
                             responsePromise.resolve(data);
