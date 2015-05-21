@@ -28,11 +28,11 @@
                             "Host status"
                         ],
                         "name": [
-                            "host",
-                            "host_address",
-                            "duration",
-                            "last_check",
-                            "host_status"
+                            "status_host",
+                            "status_host_address",
+                            "status_duration",
+                            "status_last_check",
+                            "status_host_status"
                         ]
                     },
                     "apiName": "hosts",
@@ -63,10 +63,10 @@
                             "Last check"
                         ],
                         "name": [
-                            "host",
-                            "service_check",
-                            "duration",
-                            "last_check"
+                            "status_host",
+                            "status_service_check",
+                            "status_duration",
+                            "status_last_check"
                         ]
                     },
                     "apiName": "services",
@@ -103,11 +103,11 @@
                             "Host status"
                         ],
                         "name": [
-                            "host",
-                            "host_address",
-                            "duration",
-                            "last_check",
-                            "host_status"
+                            "status_host",
+                            "status_host_address",
+                            "status_duration",
+                            "status_last_check",
+                            "status_host_status"
                         ]
                     },
                     "apiName": "hosts",
@@ -134,10 +134,10 @@
                             "Last check"
                         ],
                         "name": [
-                            "host",
-                            "service_check",
-                            "duration",
-                            "last_check"
+                            "status_host",
+                            "status_service_check",
+                            "status_duration",
+                            "status_last_check"
                         ]
                     },
                     "apiName": "services",
@@ -172,11 +172,11 @@
                             "Host status"
                         ],
                         "name": [
-                            "host",
-                            "host_address",
-                            "duration",
-                            "last_check",
-                            "host_status"
+                            "status_host",
+                            "status_host_address",
+                            "status_duration",
+                            "status_last_check",
+                            "status_host_status"
                         ]
                     },
                     "apiName": "hosts",
@@ -204,10 +204,10 @@
                             "Last check"
                         ],
                         "name": [
-                            "host",
-                            "service_check",
-                            "duration",
-                            "last_check"
+                            "status_host",
+                            "status_service_check",
+                            "status_duration",
+                            "status_last_check"
                         ]
                     },
                     "apiName": "services",
