@@ -250,7 +250,7 @@ angular.module('bansho.surveil')
                 return data;
             };
 
-            var getTableData = function (fields, filters, apiName) {
+            var getTableData = function (fields, inputSourceConfig) {
                 var hostFields = [],
                     serviceFields = [],
                     hostFilters = {},
@@ -264,8 +264,8 @@ angular.module('bansho.surveil')
                     i,
                     found = false;
 
-                if (apiName === 'hosts') {
-                    this.getObjects(fields, filters, 'hosts')
+                if (inputSourceConfig.apiName === 'hosts') {
+                    this.getObjects(fields, inputSourceConfig.filters, 'hosts')
                         .success(function (data) {
                             responsePromise.resolve(data);
                         });
@@ -289,7 +289,7 @@ angular.module('bansho.surveil')
                     serviceFields.push('host_name');
                 }
 
-                angular.forEach(filters, function (filterData, filterName) {
+                angular.forEach(inputSourceConfig.filters, function (filterData, filterName) {
                     angular.forEach(filterData, function (values, field) {
                         if (field in hostKeys) {
                             if (!(filterData in hostFilters)) {
