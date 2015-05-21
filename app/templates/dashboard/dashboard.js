@@ -6,13 +6,13 @@ angular.module('bansho.view.dashboard', ['ngRoute',
                                          'bansho.utils.promiseManager',
                                          'bansho.tactical',
                                          'bansho.table',
-                                         'bansho.live'
+                                         'bansho.surveil'
                                         ])
 
     .value('dashboardConfig', {})
 
-    .controller('DashboardCtrl', ['$scope', '$routeParams', '$interval', 'configManager', 'dashboardConfig', 'TableConfigObj', 'TacticalConfigObj', 'backendClient', 'promisesManager',
-        function ($scope, $routeParams, $interval, configManager, dashboardConfig, TableConfigObj, TacticalConfigObj, backendClient, promisesManager) {
+    .controller('DashboardCtrl', ['$scope', '$routeParams', '$interval', 'configManager', 'dashboardConfig', 'TableConfigObj', 'TacticalConfigObj', 'surveilStatus', 'promisesManager',
+        function ($scope, $routeParams, $interval, configManager, dashboardConfig, TableConfigObj, TacticalConfigObj, surveilStatus, promisesManager) {
             var components = [],
                 component,
                 config,
@@ -45,17 +45,17 @@ angular.module('bansho.view.dashboard', ['ngRoute',
             }
 
             getData = function () {
-                backendClient.getHostOpenProblems().success(function (data) {
+                surveilStatus.getHostOpenProblems().success(function (data) {
                     $scope.nbHostOpenProblems = data.length;
-                    backendClient.getServiceOpenProblems().then(function (openProblems) {
+                    surveilStatus.getServiceOpenProblems().then(function (openProblems) {
                         $scope.nbServiceOpenProblems = openProblems.length;
                         $scope.totalOpenProblems = $scope.nbServiceOpenProblems + $scope.nbHostOpenProblems;
                     });
                 });
 
-                backendClient.getHostProblems().success(function (data) {
+                surveilStatus.getHostProblems().success(function (data) {
                     $scope.nbHostProblems = data.length;
-                    backendClient.getServiceProblems().success(function (data) {
+                    surveilStatus.getServiceProblems().success(function (data) {
                         $scope.nbServiceProblems = data.length;
                         $scope.totalProblems = $scope.nbHostProblems + $scope.nbServiceProblems;
                     });

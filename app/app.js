@@ -9,6 +9,7 @@ angular.module('bansho', [
     'bansho.utils.promiseManager',
     'bansho.topbar',
     'bansho.sidebar',
+    'bansho.surveil',
     'bansho.host',
     'bansho.service',
     'bansho.view',

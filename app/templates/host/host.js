@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('bansho.view.host', ['bansho.live'])
+angular.module('bansho.view.host', ['bansho.surveil'])
 
     .controller('HostViewCtrl', ['$http', '$scope', '$routeParams',
         function ($http, $scope, $routeParams) {

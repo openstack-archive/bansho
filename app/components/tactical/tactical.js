@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('bansho.tactical', ['bansho.live',
+angular.module('bansho.tactical', ['bansho.surveil',
                                     'bansho.utils.promiseManager',
                                     'bansho.tactical.status_overview',
                                     'bansho.tactical.current_health',
@@ -16,8 +16,8 @@ angular.module('bansho.tactical', ['bansho.live',
         this.topAlertProducers = config.components.topAlertProducers;
     })
 
-    .controller('TacticalCtrl', ['$scope', '$interval', 'tacticalConfig', 'backendClient', 'promisesManager',
-        function ($scope, $interval, tacticalConfig, backendClient, promisesManager) {
+    .controller('TacticalCtrl', ['$scope', '$interval', 'tacticalConfig', 'surveilStatus', 'promisesManager',
+        function ($scope, $interval, tacticalConfig, surveilStatus, promisesManager) {
 
             var getData;
 
@@ -33,17 +33,17 @@ angular.module('bansho.tactical', ['bansho.live',
             $scope.totalServices = undefined;
 
             getData = function () {
-                backendClient.getHostProblems().success(function (hostProblems) {
+                surveilStatus.getHostProblems().success(function (hostProblems) {
                     $scope.hostProblems = hostProblems.length;
-                    backendClient.getTotalHosts().success(function (allHosts) {
+                    surveilStatus.getTotalHosts().success(function (allHosts) {
                         $scope.totalHosts = allHosts.length;
                         $scope.hostsRatio = ($scope.totalHosts - $scope.hostProblems) / $scope.totalHosts * 100;
                     });
                 });
 
-                backendClient.getServiceProblems().success(function (serviceProblems) {
+                surveilStatus.getServiceProblems().success(function (serviceProblems) {
                     $scope.serviceProblems = serviceProblems.length;
-                    backendClient.getTotalServices().success(function (allServices) {
+                    surveilStatus.getTotalServices().success(function (allServices) {
                         $scope.totalServices = allServices.length;
                         $scope.servicesRatio = ($scope.totalServices - $scope.serviceProblems) / $scope.totalServices * 100;
                     });

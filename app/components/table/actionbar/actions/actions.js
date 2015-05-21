@@ -14,8 +14,8 @@ angular.module('bansho.table.actionbar')
     })
 
     .controller('banshoAcknowledgeFormCtrl',
-        ['$scope', '$filter', 'tablesConfig', 'actionbarFilters', 'backendClient', 'notifications',
-        function ($scope, $filter, tablesConfig, actionbarFilters, backendClient, notifications) {
+        ['$scope', '$filter', 'tablesConfig', 'actionbarFilters', 'surveilActions', 'notifications',
+        function ($scope, $filter, tablesConfig, actionbarFilters, surveilActions, notifications) {
 
         $scope.acknowledgeProblems = function () {
             angular.forEach(tablesConfig, function (table) {
@@ -32,7 +32,7 @@ angular.module('bansho.table.actionbar')
                             service_description = entry.description;
                         }
 
-                        backendClient.acknowledge(entry.host_name, service_description, $scope.attrs).then(function (data) {
+                        surveilActions.acknowledge(entry.host_name, service_description, $scope.attrs).then(function (data) {
                             notifications.push('success', 'Acknowledgement', 'Acknowledged ' + entry.host_name);
                         },
                         function (error) {
@@ -57,8 +57,8 @@ angular.module('bansho.table.actionbar')
     })
 
     .controller('banshoDowntimeFormCtrl',
-        ['$scope', '$filter', 'tablesConfig', 'actionbarFilters', 'backendClient', 'notifications',
-        function ($scope, $filter, tablesConfig, actionbarFilters, backendClient, notifications) {
+        ['$scope', '$filter', 'tablesConfig', 'actionbarFilters', 'surveilActions', 'notifications',
+        function ($scope, $filter, tablesConfig, actionbarFilters, surveilActions, notifications) {
 
         $scope.sendDowntime = function () {
             angular.forEach(tablesConfig, function (table) {
@@ -74,7 +74,7 @@ angular.module('bansho.table.actionbar')
                             service_description = entry.description;
                         }
 
-                        backendClient.downtime(entry.host_name, service_description, $scope.attrs).then(function (data) {
+                        surveilActions.downtime(entry.host_name, service_description, $scope.attrs).then(function (data) {
                             notifications.push('success', 'Downtime', 'Added downtime for ' + entry.host_name);
                         },
                         function (error) {
@@ -96,8 +96,8 @@ angular.module('bansho.table.actionbar')
     })
 
     .controller('banshoRecheckButtonCtrl',
-        ['$scope', '$filter', 'tablesConfig', 'actionbarFilters', 'backendClient', 'notifications',
-        function ($scope, $filter, tablesConfig, actionbarFilters, backendClient, notifications) {
+        ['$scope', '$filter', 'tablesConfig', 'actionbarFilters', 'surveilActions', 'notifications',
+        function ($scope, $filter, tablesConfig, actionbarFilters, surveilActions, notifications) {
 
         $scope.sendRecheck = function () {
             angular.forEach(tablesConfig, function (table) {
@@ -113,7 +113,7 @@ angular.module('bansho.table.actionbar')
                             service_description = entry.description;
                         }
 
-                        backendClient.recheck(entry.host_name, service_description).then(function (data) {
+                        surveilActions.recheck(entry.host_name, service_description).then(function (data) {
                             notifications.push('success', 'Recheck', 'Scheduled recheck for ' + entry.host_name);
                         },
                         function (error) {
