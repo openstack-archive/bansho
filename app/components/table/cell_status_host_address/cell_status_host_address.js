@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('bansho.table.cell_host_address', ['bansho.table'])
+angular.module('bansho.table.cell_status_host_address', ['bansho.table'])
 
-    .controller('CellHostAddressCtrl', [function () {
+    .controller('CellStatusHostAddressCtrl', [function () {
         angular.noop();
     }])
 

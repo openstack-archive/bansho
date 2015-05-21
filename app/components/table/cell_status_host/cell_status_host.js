@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('bansho.table.cell_host', ['bansho.table'])
+angular.module('bansho.table.cell_status_host', ['bansho.table'])
 
-    .controller('CellHostCtrl', ['$scope', function ($scope) {
+    .controller('CellStatusHostCtrl', ['$scope', function ($scope) {
         $scope.cell_name = 'host';
 
         if ($scope.entry.host_state === 'UP') {

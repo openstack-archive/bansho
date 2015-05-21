@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('bansho.table.cell_last_check', ['bansho.table'])
+angular.module('bansho.table.cell_status_last_check', ['bansho.table'])
 
-    .controller('CellLastCheckCtrl', [function () {
+    .controller('CellStatusLastCheckCtrl', [function () {
         angular.noop();
     }])
 
