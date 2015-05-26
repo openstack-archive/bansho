@@ -44,6 +44,25 @@ angular.module('bansho.surveil')
                 });
             };
 
+            var getMetric = function (host, service, metric) {
+                var url = '/surveil/v2/status/hosts/' + host,
+                    responsePromise = $q.defer();
+
+                if (service !== undefined) {
+                    url += '/services/' + service;
+                }
+
+                url += '/metrics/' + metric;
+
+                $http.get(url).success(function (metric) {
+                    responsePromise.resolve(metric);
+                })
+                .error(function () {
+                    throw new Error('getMetric: GET Request failed');
+                });
+
+                return responsePromise.promise;
+            };
 
             var getService = function (hostName, description) {
                 var fields = [],
@@ -195,6 +214,14 @@ angular.module('bansho.surveil')
                 });
 
                 return responsePromise.promise;
+            };
+
+            var getHostMetric = function (host, metric) {
+                return getMetric(host, undefined, metric);
+            };
+
+            var getServiceMetric = function (host, service, metric) {
+                return getMetric(host, service, metric);
             };
 
             var hostQueryTransform = function (fields, filters) {
@@ -352,6 +379,8 @@ angular.module('bansho.surveil')
                 getTableData: getTableData,
                 getTotalHosts: getTotalHosts,
                 getTotalServices: getTotalServices,
-                getServicesByHost: getServicesByHost
+                getServicesByHost: getServicesByHost,
+                getHostMetric: getHostMetric,
+                getServiceMetric: getServiceMetric
             };
         }]);
