@@ -10,4 +10,5 @@ Homepage: https://github.com/savoirfairelinux/bansho
 
 Package: bansho
 Architecture: any
-Description: Bansho is a web interface for Surveil
+Depends: ${misc:Depends},
+Description: Surveil Web Interface
