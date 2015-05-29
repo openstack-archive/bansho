@@ -13,6 +13,22 @@
     width: 100%;
 }
 
+.tile__score-critical {
+    background-color: #d9534f;
+    border-color: #d43f3a;
+    border-radius: 5px;
+    color: #fff;
+    padding: 5px;
+}
+
+.tile__score-warning {
+    background-color: #f0ad4e;
+    border-color: #eea236;
+    color: #fff;
+    border-radius: 5px;
+    padding: 5px;
+}
+
 .btn-success {
     background-color: #5cb85c;
     border-color: #4cae4c;
@@ -45,7 +61,6 @@
     margin: 2px;
     text-align: center;
     vertical-align: middle;
-    white-space: nowrap;
 }
 
 .drupal-warn {
