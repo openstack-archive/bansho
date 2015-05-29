@@ -12,6 +12,7 @@ angular.module('bansho', [
     'bansho.surveil',
     'bansho.host',
     'bansho.service',
+    'bansho.drupal',
     'bansho.view',
     'bansho.view.dashboard',
     'bansho.view.singleTable',
