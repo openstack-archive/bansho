@@ -2,6 +2,7 @@
 
 angular.module('bansho.host', ['bansho.surveil',
                                 'bansho.host.main',
+                                'bansho.host.live',
                                 'bansho.host.load',
                                 'bansho.host.cpu',
                                 'bansho.host.info',

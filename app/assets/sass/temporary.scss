@@ -30,3 +30,76 @@
     width: 85px;
     padding-right: 15px;
 }
+
+// host/service status page
+
+.data-table thead th:first-child + th {
+  padding-left: 15px;
+}
+
+.subcomponent__live {
+    background-color: #252C35;
+    //background-color: #353D48;
+
+    padding: 0px 15px;
+    float: left;
+    margin: 20px;
+}
+
+.subcomponent__live .data-table thead th:first-child {
+    border-width: 0 0 0 0px;
+}
+
+.subcomponent__live table {
+    background-color: #49515C;
+}
+.subcomponent__live h2 {
+    margin: 15px 0px 20px 0px;
+    color: #FFFFFF;
+}
+
+.subcomponent__live p {
+    color: #FFFFFF;
+}
+
+.subcomponent__live label {
+    color: #A2AAB4;
+}
+
+.subcomponent__title {
+    width: 94%;
+    clear: both;
+    background-color: #49515C;
+}
+
+.subcomponent__title h1 {
+    font-size: 2em;
+    color: #FFFFFF;
+}
+
+.subcomponent__title h1 span {
+    font-size: 20px;
+    color: #A2AAB4;
+}
+
+.subcomponent__small {
+    min-height: 160px;
+}
+
+
+.subcomponent__medium {
+    min-height: 300px;
+}
+
+.subcomponent__live .state--error .data-table__data:before,
+.subcomponent__live .state--warning .data-table__data:before,
+.subcomponent__live .state--ok .data-table__data:before {
+    position: relative;
+    left: -10px;
+}
+
+bansho-host-services-list .subcomponent__live {
+    min-width: 700px;
+}
+
+

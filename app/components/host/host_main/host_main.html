@@ -1,7 +1,7 @@
-<div ng-controller="HostMainCtrl">
-  <p>
-    Current state: <bansho-host-state-icon state="host.live.state"></bansho-host-state-icon> {{host.live.state}}
-  </p>
-  <p>Alias: <span ng-show="!host.config.alias">No alias</span></p>
-  <p>Live plugin output: {{host.live.plugin_output}}</p>
+<div ng-controller="HostMainCtrl" class="subcomponent__live subcomponent__title">
+  <h1>
+    {{host.config.host_name}}
+    <span class="subtitle"ng-show="host.config.alias">(host.config.alias)</span>
+    <span class="subtitle">{{host.config.address}}</span>
+  </h1>
 </div>

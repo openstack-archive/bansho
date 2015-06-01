@@ -1,4 +1,5 @@
-<div>
- <p>State: <bansho-service-state-icon state="host.loadService.state"></bansho-service-state-icon> {{host.loadService.state}}</p>
- <p>Plugin output: {{host.loadService.plugin_output}}</p>
+<div class="subcomponent__live subcomponent__small">
+ <h2>Load</h2>
+ <p><label>State: </label><bansho-service-state-icon state="host.loadService.state"></bansho-service-state-icon> {{host.loadService.state}}</p>
+ <p><label>Output: </label>{{host.loadService.plugin_output}}</p>
 </div>
