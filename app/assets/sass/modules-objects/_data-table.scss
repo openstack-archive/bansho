@@ -51,7 +51,7 @@
         }
 
         .color-scheme--light & {
-            border-color:$_color_light_beta;
+            border-color:$_color_light_epsilon;
         }
     }
 
@@ -83,7 +83,7 @@
         }
 
         .color-scheme--light & {
-            border-color:$_color_light_beta;
+            border-color:$_color_light_epsilon;
         }
 
         /* &:before { */
@@ -128,8 +128,8 @@
             }
 
             .color-scheme--light & {
-                background:$_color_light_beta;
-                border-color:$_color_light_gamma;
+                background:$_color_light_alpha;
+                border-color:$_color_light_epsilon;
 
                 &.state--asc,
                 &.state--desc {background:$_color_light_alpha;}

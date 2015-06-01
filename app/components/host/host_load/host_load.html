@@ -1,5 +1,15 @@
 <div class="subcomponent__live subcomponent__small">
- <h2>Load</h2>
- <p><label>State: </label><bansho-service-state-icon state="host.loadService.state"></bansho-service-state-icon> {{host.loadService.state}}</p>
- <p><label>Output: </label>{{host.loadService.plugin_output}}</p>
+  <h2>Load</h2>
+  <table class="data-table">
+    <tbody>
+      <tr>
+        <td>State</td>
+        <td><bansho-service-state-icon state="host.loadService.state"></bansho-service-state-icon> {{host.loadService.state}}</td>
+      </tr>
+      <tr>
+        <td>Output</td>
+        <td>{{host.loadService.plugin_output}}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>

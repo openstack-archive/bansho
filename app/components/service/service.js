@@ -2,6 +2,7 @@
 
 angular.module('bansho.service', ['bansho.surveil',
                                    'bansho.service.main',
+                                   'bansho.service.live',
                                    'bansho.service.info',
                                    'bansho.service.metrics',
                                    'bansho.table.state_icon'])

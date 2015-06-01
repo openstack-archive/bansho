@@ -60,7 +60,7 @@
     }
 
     .color-scheme--light & {
-        color:$_color_light_gamma;
+        color:$_color_light_epsilon;
     }
 }
 
@@ -76,7 +76,7 @@
     }
 
     .color-scheme--light & {
-        border-top-color:$_color_light_gamma;
+        border-top-color:$_color_light_epsilon;
     }
 
     &:first-child {border:0;}
@@ -103,7 +103,7 @@
     }
 
     .color-scheme--light & {
-        color:$_color_light_gamma;
+        color:$_color_light_epsilon;
     }
 
     .sidebar__item:first-child & {padding-top:0;}
@@ -130,11 +130,18 @@
     }
 
     .color-scheme--light & {
-        color:$_color_light_gamma;
+        color:$_color_light_epsilon;
     }
 
     &:focus,
-    &:hover {color:$_color_omega;}
+    &:hover {
+        .color-scheme--dark & {
+            color:$_color_omega;
+        }
+        .color-scheme--light & {
+            color:$_color_alpha;
+        }
+    }
 
     &:before {margin:0;}
 
@@ -154,7 +161,13 @@
     margin-top:$_space;
 
     .state--current {
-        color:$_color_omega;
+        .color-scheme--dark & {
+            color:$_color_omega;
+        }
+        .color-scheme--light & {
+            color:$_color_alpha;
+        }
+
         position:relative;
 
         &:before {
@@ -186,7 +199,7 @@
     }
 
     .color-scheme--light & {
-        background:$_color_light_beta;
+        background:$_color_light_epsilon;
     }
 
     .sidebar__profile__toggle {
@@ -211,7 +224,7 @@
             }
 
             .color-scheme--light & {
-                background:$_color_alpha;
+                color:$_color_alpha;
             }
         }
     }
@@ -257,7 +270,7 @@
             }
 
             .color-scheme--light & {
-                color:$_color_light_alpha;
+                color:$_color_light_delta;
             }
         }
 

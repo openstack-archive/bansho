@@ -1,6 +1,7 @@
-<div ng-controller="ServiceMainCtrl">
-  <p>Description: {{service.description}}</p>
-  <p>Host Name: {{service.host_name}}</p>
-  <p>Current state: <bansho-table-state-icon service-state="{{service.state}}"></bansho-table-state-icon>{{service.state}}
-  <p>Live plugin output: {{service.plugin_output}}</p>
+<div ng-controller="ServiceMainCtrl" class="subcomponent__live subcomponent__title">
+  <h1>{{service.service_description}}
+    <span class="subtitle">
+      <a class="data-table__data" href="#/view?view=host&host_name={{service.host_name}}">{{service.host_name}}</a>
+    </span>
+  </h1>
 </div>

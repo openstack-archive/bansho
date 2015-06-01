@@ -38,8 +38,14 @@
 }
 
 .subcomponent__live {
-    background-color: #252C35;
-    //background-color: #353D48;
+
+    .color-scheme--dark & {
+        background-color:$_color_dark_alpha;
+    }
+
+    .color-scheme--light & {
+        background-color:$_color_light_alpha;
+    }
 
     padding: 0px 15px;
     float: left;
@@ -51,39 +57,89 @@
 }
 
 .subcomponent__live table {
-    background-color: #49515C;
+    .color-scheme--dark & {
+        background-color:$_color_dark_gamma;
+    }
+
+    .color-scheme--light & {
+        background-color:$_color_light_gamma;
+    }
+
 }
 .subcomponent__live h2 {
     margin: 15px 0px 20px 0px;
-    color: #FFFFFF;
+    .color-scheme--dark & {
+        color:$_color_omega;
+    }
+
+    .color-scheme--light & {
+        color:$_color_alpha;
+    }
 }
 
 .subcomponent__live p {
-    color: #FFFFFF;
+    .color-scheme--dark & {
+        background-color:$_color_dark_gamma;
+    }
+
+    .color-scheme--light & {
+        background-color:$_color_light_gamma;
+    }
 }
 
 .subcomponent__live label {
-    color: #A2AAB4;
+    .color-scheme--dark & {
+        background-color:$_color_dark_delta;
+    }
+
+    .color-scheme--light & {
+        background-color:$_color_light_delta;
+    }
 }
 
 .subcomponent__title {
     width: 94%;
     clear: both;
-    background-color: #49515C;
+    .color-scheme--dark & {
+        background-color:$_color_dark_gamma;
+    }
+
+    .color-scheme--light & {
+        background-color:$_color_light_gamma;
+    }
+
 }
 
 .subcomponent__title h1 {
     font-size: 2em;
-    color: #FFFFFF;
+    .color-scheme--dark & {
+        color:$_color_omega;
+    }
+
+    .color-scheme--light & {
+        color:$_color_alpha;
+    }
+
 }
 
 .subcomponent__title h1 span {
     font-size: 20px;
-    color: #A2AAB4;
+    .color-scheme--dark & {
+        color:$_color_dark_delta;
+    }
+
+    .color-scheme--light & {
+        color:$_color_light_delta;
+    }
+
+}
+
+.subcomponent__title h1 span a {
+    text-decoration: none;
 }
 
 .subcomponent__small {
-    min-height: 160px;
+    min-height: 190px;
 }
 
 
