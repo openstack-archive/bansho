@@ -1,0 +1,15 @@
+<div ng-controller="ServiceLiveCtrl" class="subcomponent__live subcomponent__small">
+  <h2>Status</h2>
+  <table class="data-table">
+    <tbody>
+      <tr>
+        <td>State</td>
+        <td><bansho-host-state-icon state="service.state"></bansho-host-state-icon> {{service.state}}</td>
+      </tr>
+      <tr>
+        <td>Output</td>
+        <td>{{service.plugin_output}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

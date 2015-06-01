@@ -1,5 +1,19 @@
-<div ng-controller="ServiceInfoCtrl">
-  <p>Last check: {{service.last_check|timeElapsed}}</p>
-  <p>Last state change: {{service.last_state_change|timeElapsed}}</p>
-  <p>Acknowledged: {{isAcknowledged}}</p>
+<div ng-controller="ServiceInfoCtrl" class="subcomponent__live">
+  <h2>Info</h2>
+  <table class="data-table">
+    <tbody>
+      <tr>
+        <td>Last check</td>
+        <td>{{service.last_check|timeElapsed}}</td>
+      </tr>
+      <tr>
+        <td>Last state change</td>
+        <td>{{service.last_state_change|timeElapsed}}</td>
+      </tr>
+      <tr>
+        <td>Acknowledged</td>
+        <td>{{isAcknowledged}}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>

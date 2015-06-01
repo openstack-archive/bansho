@@ -6,6 +6,44 @@
 //----------------------------------*/
 .color-scheme--light {
     // Light scheme is not ready for now.
+    %colorTxtCurrent {
+        color:$_color_light_delta;
+    }
+
+    %colorHightContrast {
+        color:$_color_alpha;
+    }
+
+    // For panel and the sidebar
+    %colorBkgPanel {
+        background:$_color_light_beta;
+    }
+
+    %colorLink {
+        color:$_color_light_delta;
+        transition-duration: 0.5s;
+        transition-property: color;
+
+        &:hover {
+            color:$_color_alpha;
+        }
+    }
+
+    %colorBorderThin {
+        border-color:$_color_light_epsilon;
+    }
+
+    %colorBkgTopbar {
+        background:$_color_light_alpha;
+    }
+
+    %colorBkgTopbarPanel {
+        background:$_color_light_beta;
+    }
+
+    %colorBkgTopbarButton {
+        background:$_color_light_alpha;
+    }
 }
 
 // Dark Scheme

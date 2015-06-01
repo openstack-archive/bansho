@@ -21,7 +21,7 @@
     }
 
     .color-scheme--light & {
-        background:$_color_light_gamma;
+        background:$_color_light_alpha;
     }
 }
 
@@ -56,7 +56,7 @@
     }
 
     .color-scheme--light & {
-        border-color:$_color_light_beta;
+        border-color:$_color_light_delta;
     }
 
     .panes--2 & {width:50%;}

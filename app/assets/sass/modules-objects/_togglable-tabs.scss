@@ -25,7 +25,14 @@
 
     &[aria-expanded="true"] {
         border-width:0 0 3px;
-        color:$_color_omega;
+        .color-scheme--dark & {
+            color:$_color_omega;
+        }
+
+        .color-scheme--light & {
+            color:$_color_alpha;
+        }
+
     }
 
     :first-child > & {margin:0;}

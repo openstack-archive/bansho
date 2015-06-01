@@ -64,7 +64,16 @@
     position:relative;
     width:79px;
 
-    &[aria-expanded="true"] {color:$_color_omega;}
+    &[aria-expanded="true"] {
+        .color-scheme--dark & {
+            color:$_color_omega;
+        }
+
+        .color-scheme--light & {
+            color:$_color_alpha;
+        }
+
+    }
 
     [class^="ico-"],
     [class*=" ico-"] {
