@@ -12,7 +12,7 @@ interactive:
 	sudo docker run -p 8888:8888 --link surveil_surveil_1:surveil -v $(shell pwd)/app:/opt/bansho/dist -e BANSHO_ENV=false -i -t --name bansho bansho bash
 
 daemon:
-	sudo docker run -p 8888:8888 --link surveil_surveil_1:surveil -v $(shell pwd)/app:/opt/bansho/dist -e BANSHO_PROD=false -d -t --name bansho bansho
+	sudo docker run -p 8888:8888 --link surveil_surveil_1:surveil --link surveil_grafana_1:grafana -v $(shell pwd)/app:/opt/bansho/dist -e BANSHO_PROD=false -d -t --name bansho bansho
 	grunt development
 
 production:
