@@ -48,6 +48,10 @@ module.exports = function (grunt) {
                         dest: '<%= project.dist %>/components/config/config.json'
                     },
                     {
+                        src: '<%= project.app %>/components/config/developmentConfig.json',
+                        dest: '<%= project.dist %>/components/config/developmentConfig.json'
+                    },
+                    {
                         src: '<%= project.app %>/index.html',
                         dest: '<%= project.dist %>/index.html'
                     }
