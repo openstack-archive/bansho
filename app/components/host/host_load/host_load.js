@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('bansho.host.load', [])
-    .directive('banshoHostLoad', function () {
+    .directive('banshoHostLoad', ['iframeUrl', function (iframeUrl) {
         return {
             restrict: 'E',
-            compile: function (scope, element, attrs) {
-                scope.host = attrs.host;
-            },
+            controller: ['$scope', function ($scope, element, attrs) {
+                $scope.iframeUrl = iframeUrl.getIFrameUrl("metric_load1", $scope.host.config.host_name, "load");
+            }],
             templateUrl: 'components/host/host_load/host_load.html'
         };
-    });
+    }]);
