@@ -24,7 +24,9 @@ angular.module('bansho', [
     }])
 
     // Reinitialise objects on url change
-    .run(['$rootScope', 'promisesManager', 'reinitTables', function ($rootScope, promisesManager, reinitTables) {
+    .run(['$rootScope', 'promisesManager', 'reinitTables', 'themeManager',
+            function ($rootScope, promisesManager, reinitTables, themeManager) {
+        themeManager.setTheme();
         $rootScope.$on('$locationChangeStart', function () {
             reinitTables();
             promisesManager.clearAllPromises();

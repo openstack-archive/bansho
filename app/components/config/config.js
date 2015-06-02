@@ -3,6 +3,45 @@
 'use strict';
 
 angular.module('bansho.config', [])
+    .service('themeManager', ['$rootScope', 'configManager',
+            function ($rootScope, configManager) {
+        var THEMES = {
+            DARK: "dark",
+            LIGHT: "light",
+            DEFAULT: "dark"
+        };
+
+        var setThemeClass = function (theme, saveConfig) {
+            $rootScope.themeClass = 'color-scheme--' + theme;
+            $rootScope.themeColor = theme;
+
+            if (saveConfig) {
+                configManager.setThemeAndSave(theme);
+            }
+        };
+
+        /**
+         * Set the application theme from configManager
+         *
+         * If configManager isn't loaded this will set default.
+         */
+        this.setTheme = function () {
+            var theme = configManager.getTheme();
+            if (theme) {
+                setThemeClass(theme, false);
+            } else {
+                setThemeClass(THEMES.DARK, false);
+            }
+        };
+
+        this.switchTheme = function () {
+            if ($rootScope.themeColor === THEMES.DARK) {
+                setThemeClass(THEMES.LIGHT, true);
+            } else {
+                setThemeClass(THEMES.DARK, true);
+            }
+        };
+    }])
 
     .service('configManager', ['$http', '$q', function ($http, $q) {
         var config = {},
@@ -39,6 +78,35 @@ angular.module('bansho.config', [])
 
         this.readConfig = function () {
             return config.data;
+        };
+
+        this.setThemeAndSave = function (theme) {
+           config.data.banshoConfig.theme = theme;
+           saveConfig();
+        };
+
+        this.getTheme = function () {
+            var theme;
+
+            if (config.data) {
+                theme = config.data.banshoConfig.theme;
+            }
+
+            return theme;
+        };
+
+        var saveConfig = function () {
+            var responsePromise = $q.defer();
+
+            $http.post('surveil/v2/bansho/config', JSON.stringify(config.data))
+                .success(function () {
+                    responsePromise.resolve();
+                })
+                .error(function () {
+                    responsePromise.reject('Failed to send config to server');
+                });
+
+            return responsePromise.promise;
         };
 
         this.fetchConfig = function (useStoredConfig) {

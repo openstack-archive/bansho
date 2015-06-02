@@ -2,8 +2,8 @@
 
 angular.module('bansho.topbar', ['bansho.surveil'])
 
-    .controller('TopBarCtrl', ['$rootScope', '$scope', '$interval', 'surveilStatus', 'promisesManager', 'authService',
-        function ($rootScope, $scope, $interval, surveilStatus, promisesManager, authService) {
+    .controller('TopBarCtrl', ['$rootScope', '$scope', '$interval', 'surveilStatus', 'promisesManager', 'authService', 'themeManager',
+        function ($rootScope, $scope, $interval, surveilStatus, promisesManager, authService, themeManager) {
             var getData,
                 hostProblems,
                 serviceProblems;
@@ -26,6 +26,10 @@ angular.module('bansho.topbar', ['bansho.surveil'])
 
             $scope.logout = function () {
                 authService.logout();
+            };
+
+            $scope.switchTheme = function () {
+                themeManager.switchTheme();
             };
         }])
 
