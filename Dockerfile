@@ -7,7 +7,7 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
-RUN apt-get update && apt-get install -yq git apache2 npm nodejs-legacy ruby
+RUN apt-get update && apt-get install -yq git apache2 npm nodejs-legacy ruby curl
 RUN npm install -g grunt-cli bower
 RUN gem install sass
 RUN mkdir -p /var/lock/apache2 /var/run/apache2 /var/run/sshd
@@ -17,6 +17,7 @@ ADD container/000-default.conf etc/apache2/sites-enabled/000-default.conf
 ADD container/ports.conf etc/apache2/ports.conf
 RUN a2enmod proxy
 RUN a2enmod proxy_http
+RUN a2enmod headers
 
 # configure script
 ADD container/configure.sh /configure.sh
@@ -34,6 +35,12 @@ ADD /app /opt/bansho/app
 ENV BANSHO_PROD true
 ENV BANSHO_SURVEIL_URL http://surveil:8080/
 ENV BANSHO_AUTH_URL http://surveil:8080/v2/auth/
+
+ENV INFLUXDB_HOST: "influxdb"
+ENV INFLUXDB_PORT: "8086"
+ENV INFLUXDB_NAME: "db"
+ENV INFLUXDB_USER: "root"
+ENV INFLUXDB_PASS: "root"
 
 CMD ./configure.sh && \
     cd /opt/bansho && \
