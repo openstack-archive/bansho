@@ -52,7 +52,8 @@ angular.module('bansho.authentication', [])
 
     }])
 
-    .factory('authService', ['$http', '$location', '$rootScope', 'session', 'configManager',  function ($http, $location, $rootScope, session, configManager) {
+    .factory('authService', [ '$http', '$location', '$rootScope', 'session', 'configManager', 'themeManager',
+             function ($http, $location, $rootScope, session, configManager, themeManager) {
         var authService = {};
 
         authService.login = function (credentials) {
@@ -60,10 +61,12 @@ angular.module('bansho.authentication', [])
                 .post('/surveil/v2/auth/tokens/', credentials)
                 .success(function (data) {
                     $rootScope.isAuthenticated = true;
+
                     session.create(data.access.token.id, data.access.token.expires);
                     $http.defaults.headers.common['X-Auth-Token'] = session.sessionId;
 
                     configManager.fetchConfig(configManager.getDevelopmentConfig().useStoredConfig).then(function () {
+                            themeManager.setTheme();
                             $location.path('/view');
                         }, function (message) {
                             throw new Error(message);
@@ -86,6 +89,9 @@ angular.module('bansho.authentication', [])
             $location.path('/login');
         };
 
+        authService.switchTheme = function () {
+            themeManager.switchTheme();
+        }
 
         return authService;
     }])

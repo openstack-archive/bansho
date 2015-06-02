@@ -1,4 +1,7 @@
 {
+    "banshoConfig": {
+        "theme": "dark"
+    },
     "dashboardConfig": {
         "title": "Unhandled service problems",
         "refreshInterval": 0,
