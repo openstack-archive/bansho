@@ -1,43 +1,9 @@
 <article ng-controller="DrupalCtrl">
   <h1 class="drupal__dashboard__title">{{drupal_id}}</h1>
-  <div class="tile__main">
-    <h1>General informations</h1>
-    <table class="data-table">
-      <tbody>
-        <tr>
-          <td>Core version :</td>
-          <td>7.37</td>
-        </tr>
-        <tr>
-          <td>Core up-to-date :</td>
-          <td>YES</td>
-        </tr>
-        <tr class="btn-success">
-          <td>Vulnerable core :</td>
-          <td>NO</td>
-        </tr>
-        <tr>
-          <td>JQuery version:</td>
-          <td>2.1.4</td>
-        </tr>
-        <tr>
-          <td>Database :</td>
-          <td>MySQL</td>
-        </tr>
-        <tr>
-          <td>Database version :</td>
-          <td>5.6.23</td>
-        </tr>
-        <tr>
-          <td>Database state :</td> <td>OK</td>
-        </tr>
-        <tr>
-          <td>Cache activated :</td>
-          <td>YES</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+
+  <bansho-drupal-info host-name="{{hostName}}"
+                      plugin="drupal_status"
+                      title="General informations"></bansho-drupal-info>
 
   <bansho-drupal-tile host-name="{{hostName}}"
                       plugin="drupal_cache"
