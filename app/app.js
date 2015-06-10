@@ -14,6 +14,7 @@ angular.module('bansho', [
     'bansho.service',
     'bansho.drupal',
     'bansho.drupal.tile',
+    'bansho.drupal.info',
     'bansho.view',
     'bansho.view.dashboard',
     'bansho.view.singleTable',
@@ -29,11 +30,12 @@ angular.module('bansho', [
     }])
 
     // Reinitialise objects on url change
-    .run(['$rootScope', 'promisesManager', 'reinitTables', 'reinitDrupalTiles',
+    .run(['$rootScope', 'promisesManager', 'reinitTables', 'reinitDrupalTiles', 'reinitDrupalInfo',
         function ($rootScope, promisesManager, reinitTables, reinitDrupalTiles) {
             $rootScope.$on('$locationChangeStart', function () {
                 reinitTables();
                 reinitDrupalTiles();
+                reinitDrupalInfo();
                 promisesManager.clearAllPromises();
             });
         }]);
