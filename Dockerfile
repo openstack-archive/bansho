@@ -21,6 +21,7 @@ RUN a2enmod headers
 
 # configure script
 ADD container/configure.sh /configure.sh
+ADD container/configure-dashboard.sh /configure-dashboard.sh
 
 # Bansho files
 ADD /package.json /opt/bansho/package.json
