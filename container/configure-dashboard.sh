@@ -7,7 +7,7 @@ while getopts "H:U:P:p" o; do
             INFLUXDB_HOST=${OPTARG}
             ;;
         U)
-            INFLUXDB_PORT=${OPTARG}
+            INFLUXDB_USER=${OPTARG}
             ;;
         P)
             INFLUXDB_PASS=${OPTARG}
