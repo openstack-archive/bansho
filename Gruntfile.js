@@ -168,6 +168,7 @@ module.exports = function (grunt) {
         'useminPrepare:html',
         'concat:generated',
         'uglify:generated',
+        'cssmin:generated',
         'usemin:html'
     ]);
 };
