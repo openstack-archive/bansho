@@ -111,6 +111,14 @@ module.exports = function (grunt) {
 
         concat: {
             generated: {
+                // Will be generated with usemin:html
+                nonull: true
+            }
+        },
+
+        cssmin: {
+            generated: {
+                // Will be generated with usemin:html
                 nonull: true
             }
         },
@@ -118,6 +126,7 @@ module.exports = function (grunt) {
         // Minify and concatenate bansho in one file
         uglify: {
             generated: {
+                // Will be generated with usemin:html
                 nonull: true
             },
             options: {
@@ -168,6 +177,7 @@ module.exports = function (grunt) {
         'useminPrepare:html',
         'concat:generated',
         'uglify:generated',
+        'cssmin:generated',
         'usemin:html'
     ]);
 };
