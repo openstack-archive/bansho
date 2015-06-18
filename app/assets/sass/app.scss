@@ -57,6 +57,13 @@
 @import '../../components/tactical/tactical';
 
 //----------------------------------*\
+// PNOTIFY
+//----------------------------------*/
+@import "../../bower_components/pnotify/pnotify.core.css";
+@import "../../bower_components/pnotify/pnotify.buttons.css";
+@import "../../bower_components/pnotify/pnotify.history.css";
+
+//----------------------------------*\
 // TEMPORARY MODULES
 //----------------------------------*/
 @import 'temporary';
