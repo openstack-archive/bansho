@@ -58,7 +58,7 @@ angular.module('bansho.authentication', [])
 
         authService.login = function (credentials) {
             return $http
-                .post('/surveil/v2/auth/tokens/', credentials)
+                .post('surveil/v2/auth/tokens/', credentials)
                 .success(function (data) {
                     $rootScope.isAuthenticated = true;
 

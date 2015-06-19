@@ -35,7 +35,7 @@ angular.module('bansho.surveil')
                 query.filters = JSON.stringify(filters);
 
                 return $http({
-                    url: '/surveil/v2/status/' + apiName + '/',
+                    url: 'surveil/v2/status/' + apiName + '/',
                     method: 'POST',
                     data: query,
                     transformResponse: appendTransform($http.defaults.transformResponse, transformations),
@@ -45,7 +45,7 @@ angular.module('bansho.surveil')
             };
 
             var getMetric = function (host, service, metric) {
-                var url = '/surveil/v2/status/hosts/' + host,
+                var url = 'surveil/v2/status/hosts/' + host,
                     responsePromise = $q.defer();
 
                 if (service !== undefined) {
@@ -201,8 +201,8 @@ angular.module('bansho.surveil')
                         "host": "hosts",
                         "service": "services"
                     },
-                    liveUrl = '/surveil/v2/status/' + endpoints[objectType] + '/' + objectIdentifier.host_name + '/',
-                    configUrl = '/surveil/v2/config/' + endpoints[objectType] + '/' + objectIdentifier.host_name + '/',
+                    liveUrl = 'surveil/v2/status/' + endpoints[objectType] + '/' + objectIdentifier.host_name + '/',
+                    configUrl = 'surveil/v2/config/' + endpoints[objectType] + '/' + objectIdentifier.host_name + '/',
                     responsePromise = $q.defer();
 
                 $http.get(liveUrl).success(function (liveData) {

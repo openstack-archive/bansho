@@ -26,7 +26,7 @@ angular.module('bansho.surveil')
                 }
 
                 return $http({
-                    url: '/surveil/v2/actions/acknowledge/',
+                    url: 'surveil/v2/actions/acknowledge/',
                     method: 'POST',
                     data: data
                 });
@@ -39,7 +39,7 @@ angular.module('bansho.surveil')
                 }
 
                 return $http({
-                    url: '/surveil/v2/actions/downtime/',
+                    url: 'surveil/v2/actions/downtime/',
                     method: 'POST',
                     data: attrs
                 });
@@ -53,7 +53,7 @@ angular.module('bansho.surveil')
                 }
 
                 return $http({
-                    url: '/surveil/v2/actions/recheck/',
+                    url: 'surveil/v2/actions/recheck/',
                     method: 'POST',
                     data: attrs
                 });
