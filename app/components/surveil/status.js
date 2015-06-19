@@ -64,6 +64,33 @@ angular.module('bansho.surveil')
                 return responsePromise.promise;
             };
 
+            var getMetricNames = function (host, service) {
+                var url = '/surveil/v2/status/hosts/' + host,
+                    responsePromise = $q.defer();
+
+                if (service !== undefined) {
+                    url += '/services/' + service;
+                }
+
+                url += '/metrics/';
+
+                $http.get(url).success(function (metrics) {
+                    var result = [];
+                    for (var i = 0; i < metrics.length; i += 1) {
+                        if (metrics[i].metric_name.indexOf("metric_") === 0)  {
+                            result.push(metrics[i]);
+                        }
+                    }
+
+                    responsePromise.resolve(result);
+                })
+                .error(function () {
+                    throw new Error('getMetricNames: GET Request failed');
+                });
+
+                return responsePromise.promise;
+            };
+
             var getService = function (hostName, description) {
                 var fields = [],
                     filters = {
@@ -220,8 +247,16 @@ angular.module('bansho.surveil')
                 return getMetric(host, undefined, metric);
             };
 
+            var getHostMetricNames = function (host, metric) {
+                return getMetricNames(host, undefined);
+            };
+
             var getServiceMetric = function (host, service, metric) {
                 return getMetric(host, service, metric);
+            };
+
+            var getServiceMetricNames = function (host, service) {
+                return getMetricNames(host, service);
             };
 
             var hostQueryTransform = function (fields, filters) {
@@ -381,6 +416,8 @@ angular.module('bansho.surveil')
                 getTotalServices: getTotalServices,
                 getServicesByHost: getServicesByHost,
                 getHostMetric: getHostMetric,
-                getServiceMetric: getServiceMetric
+                getHostMetricNames: getHostMetricNames,
+                getServiceMetric: getServiceMetric,
+                getServiceMetricNames: getServiceMetricNames
             };
         }]);
