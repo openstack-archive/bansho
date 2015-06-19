@@ -9,7 +9,9 @@ angular.module('bansho.authentication', [])
         });
     }])
 
-    .controller('LoginController', ['$scope', '$rootScope', '$location', 'authService', 'configManager', function ($scope, $rootScope, $location, authService, configManager) {
+    .controller('LoginController', ['$scope', '$rootScope', '$location', 'authService', 'configManager', 'themeManager', function ($scope, $rootScope, $location, authService, configManager, themeManager) {
+        themeManager.setTheme(themeManager.THEMES.DEFAULT);
+
         var login = function (credentials) {
             authService.login(credentials);
         };
@@ -66,7 +68,7 @@ angular.module('bansho.authentication', [])
                     $http.defaults.headers.common['X-Auth-Token'] = session.sessionId;
 
                     configManager.fetchConfig(configManager.getDevelopmentConfig().useStoredConfig).then(function () {
-                            themeManager.setTheme();
+                            themeManager.setTheme(configManager.getTheme());
                             $location.path('/view');
                         }, function (message) {
                             throw new Error(message);
