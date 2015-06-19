@@ -5,11 +5,13 @@
 angular.module('bansho.config', [])
     .service('themeManager', ['$rootScope', 'configManager',
             function ($rootScope, configManager) {
+        // Constants for theme colors
         var THEMES = {
             DARK: "dark",
             LIGHT: "light",
             DEFAULT: "dark"
         };
+        this.THEMES = THEMES;
 
         var setThemeClass = function (theme, saveConfig) {
             $rootScope.themeClass = 'color-scheme--' + theme;
@@ -25,12 +27,11 @@ angular.module('bansho.config', [])
          *
          * If configManager isn't loaded this will set default.
          */
-        this.setTheme = function () {
-            var theme = configManager.getTheme();
+        this.setTheme = function (theme) {
             if (theme) {
                 setThemeClass(theme, false);
             } else {
-                setThemeClass(THEMES.DARK, false);
+                setThemeClass(THEMES.DEFAULT, false);
             }
         };
 
