@@ -38,6 +38,12 @@ module.exports = function (grunt) {
                         dest: '<%= project.dist %>/assets/css/'
                     },
                     {
+                        cwd: '<%= project.assets %>/images/',
+                        expand: true,
+                        src: ['**.*'],
+                        dest: '<%= project.dist %>/assets/images/'
+                    },
+                    {
                         cwd: '<%= project.app %>/',
                         expand: true,
                         src: ['**/*.html'],
