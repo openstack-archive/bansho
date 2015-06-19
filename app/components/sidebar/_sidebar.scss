@@ -37,12 +37,17 @@
 .sidebar__header {
     text-align:center;
 
-    padding:$_space $_space_narrow;
+    // Todo add constants for padding
+    padding:12px;
 
 
     @include large-xlarge-screen {
-        padding:$_space $_space;
+        padding:12px;
     }
+}
+
+.sidebar__applogo {
+    width: 100%;
 }
 
 .sidebar__appname {
