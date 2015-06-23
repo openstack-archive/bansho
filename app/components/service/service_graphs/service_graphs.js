@@ -10,10 +10,10 @@ angular.module('bansho.service.graphs', [])
                     angular.forEach(metric_names, function (metric) {
                         var metricName = metric.metric_name.substr(7);
                         $scope.iframeUrls[metricName] = iframeUrl.getIFrameUrl(metric.metric_name, service.host_name, service.service_description);
-                    })
-                })
+                    });
+                });
             }
-        })
+        });
     }])
 
     .directive('banshoServiceGraphs', ['iframeUrl', function (iframeUrl) {
