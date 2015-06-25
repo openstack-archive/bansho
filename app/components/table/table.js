@@ -9,7 +9,8 @@ angular.module('bansho.table', ['bansho.surveil',
                                  'bansho.table.cell_status_service_check',
                                  'bansho.table.cell_status_last_check',
                                  'bansho.table.cell_status_host_address',
-                                 'bansho.table.cell_status_host_status'
+                                 'bansho.table.cell_status_host_status',
+                                 'ngMaterial'
                                 ])
 
     .value('tableGlobalConfig', {'cellToFieldsMap': {}, 'cellWrappableField': {}, 'nextTableIndex': 0})
@@ -32,6 +33,7 @@ angular.module('bansho.table', ['bansho.surveil',
             $scope.cellsName = conf.cells.name;
             $scope.cellsText = conf.cells.text;
             $scope.cellIndexes = [];
+            conf.isCheckAll = false;
 
             $scope.$watch(function () {
                 return conf.isCheckAll;

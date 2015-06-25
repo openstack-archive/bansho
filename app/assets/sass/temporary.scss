@@ -31,6 +31,31 @@
     padding-right: 15px;
 }
 
+// angular material component
+
+md-checkbox.md-checked .md-icon {
+     .color-scheme--dark & {
+        background-color:$_color_omega;
+        color: $_color_alpha;
+    }
+
+    .color-scheme--light & {
+        background-color:$_color_alpha;
+        color: $_color_omega;
+    }
+}
+
+md-checkbox.md-checked .md-icon:after {
+     .color-scheme--dark & {
+        border-color: $_color_alpha;
+    }
+
+    .color-scheme--light & {
+        border-color: $_color_omega;
+    }
+}
+
+
 // host/service status page
 
 .data-table thead th:first-child + th {

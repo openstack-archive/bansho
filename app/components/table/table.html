@@ -1,7 +1,9 @@
 <table class="data-table" ng-controller="TableCtrl">
   <thead>
       <tr>
-        <th class="data-table__checkbox"><input type="checkbox" ng-click="onCheckChange()" ng-model="isCheckAll"></th>
+        <th class="data-table__checkbox">
+            <md-checkbox ng-model="isCheckAll" ng-change="onCheckChange()"></md-checkbox>
+        </th>
         <th ng-repeat="i in cellIndexes" class="data-table__{{cellsName[i]}}">
           {{cellsText[i]}}
           <i class="ico-up-dir"></i>
@@ -11,7 +13,9 @@
 
   <tbody class="{{entry.child_class}}" ng-repeat="(groupByKey, groupByItems) in entries | groupBy:'host_name'">
     <tr ng-repeat="entry in groupByItems | actionbarSelectFilter:actionbarFilters.activeFilter | filter:actionbarFilters.searchFilter | noRepeat:this | wrappableStyle:this">
-      <td><input type="checkbox" ng-model="entry.is_checked"></td>
+      <td>
+        <md-checkbox ng-model="entry.is_checked"></md-checkbox>
+      </td>
       <td bansho-cell cell-name="{{cell}}" ng-repeat="cell in cellsName"></td>
     </tr>
   </tbody>
