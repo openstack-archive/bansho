@@ -1,40 +1,29 @@
 <article ng-controller="DrupalDashboardViewCtrl">
-  <h1 class="drupal__dashboard__title">Drupal dashboard</h1>
+  <h1 class="drupal__dashboard__title">{{title}}</h1>
 
-  <span ng-repeat="host in data">
-    <a href="#/view?view=drupal&id=Drupal">
+  <span ng-repeat="(host_name, host_obj) in data">
+    <a href="#/view?view=drupal&id={{host_name}}">
       <div class="tile__main">
-        <h3>{{host.host_text}}</h3>
-        <label ng-repeat="service in data[0].services"
-               ng-hide="{{service.hide}}"
-               class="btn {{service.state}}">{{service.description}}
-        </label>
+        <h3>{{host_obj.host_name}}</h3>
+        <table class="data-table">
+          <tr>
+            <td style="text-align:center;">Address</td>
+            <td style="text-align:center;">{{host_obj.address}}</td>
+          </tr>
+          <tr>
+            <td style="text-align:center;">Core version</td>
+            <td style="text-align:center;">{{host_obj.core_version}}</td>
+          </tr>
+          <tr>
+            <td style="text-align:center;">PHP version</td>
+            <td style="text-align:center;">{{host_obj.php_version}}</td>
+          </tr>
+          <tr ng-class="host_obj.security_class">
+            <td style="text-align:center;">Security updates</td>
+            <td style="text-align:center;">{{host_obj.security}}</td>
+          </tr>
+        </table>
       </div>
     </a>
   </span>
-
-  <a href="#/view?view=drupal&id=Drupal">
-    <div class="tile__main">
-      <h3>Site B</h3>
-      <label class="btn btn-success">Bandwith Ok</label>
-      <label class="btn btn-warning">Cache Warning</label>
-      <label class="btn btn-danger">Security update Critical</label>
-    </div>
-  </a>
-  <a href="#/view?view=drupal&id=Drupal">
-    <div class="tile__main">
-      <h3>Site C</h3>
-      <label class="btn btn-success">Bandwith Ok</label>
-      <label class="btn btn-warning">Cache Warning</label>
-      <label class="btn btn-danger">Security update Critical</label>
-    </div>
-  </a>
-  <a href="#/view?view=drupal&id=Drupal">
-    <div class="tile__main">
-      <h3>Site D</h3>
-      <label class="btn btn-success">Bandwith Ok</label>
-      <label class="btn btn-warning">Cache Warning</label>
-      <label class="btn btn-danger">Security update Critical</label>
-    </div>
-  </a>
 </article>
