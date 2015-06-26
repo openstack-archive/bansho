@@ -270,20 +270,8 @@
         "title": "Drupal dashboard",
         "refreshInterval": 0,
         "template": "drupal_dashboard",
-        "servicesMap": {
-            "drupal_cache": "Drupal cache",
-            "drupal_codebase": "Drupal codebase",
-            "drupal_cron": "Drupal cron",
-            "drupal_database": "Drupal Database",
-            "drupal_extensions": "Drupal Extensions",
-            "drupal_logging": "Drupal logging",
-            "drupal_security": "Drupal security",
-            "drupal_status": "Drupal status",
-            "drupal_views": "Drupal views"
-        },
         "hostsMap": {
             "drupal": "Wonderful Drupal Website"
-        },
-        "hideStatusOk": false
+        }
     }
 }
