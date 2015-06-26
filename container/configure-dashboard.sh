@@ -28,7 +28,7 @@ done
 shift $((OPTIND-1))
 
 echo "=> Configuring InfluxDB datasources."
-curl ${GRAFANA_URL}'/api/datasources' -X PUT -H 'Content-Type: application/json;charset=utf-8' --data '{"name":"influxdb","type":"influxdb","url":"http://'${INFLUXDB_HOST}':'${INFLUXDB_PORT}'","access":"proxy","isDefault":true,"database":"'${INFLUXDB_NAME}'","user":"'${INFLUXDB_USER}'","password":"'${INFLUXDB_PASS}'"}'
+curl ${GRAFANA_URL}'/api/datasources' -X POST -H 'Content-Type: application/json;charset=utf-8' --data '{"name":"influxdb","type":"influxdb","url":"http://'${INFLUXDB_HOST}':'${INFLUXDB_PORT}'","access":"proxy","isDefault":true,"database":"'${INFLUXDB_NAME}'","user":"'${INFLUXDB_USER}'","password":"'${INFLUXDB_PASS}'"}'
 
 echo -e "\n=> Configuring Grafana dashboard."
 # Save dashboard
