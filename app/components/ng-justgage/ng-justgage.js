@@ -24,6 +24,13 @@ angular.module("ngJustGage", [])
                         min: scope.min,
                         max: scope.max,
                         title: scope.title,
+                        gaugeWidthScale: 0.2,
+                        levelColors: ["#E84C3D", "#E84C3D", "#E84C3D", "#E84C3D", "#E84C3D",
+                                      "#E84C3D", "#E84C3D", "#E84C3D", "#E84C3D", "#E84C3D",
+                                      "#F9A13B", "#F9A13B", "#F9A13B", "#F9A13B", "#F9A13B",
+                                      "#F9A13B", "#F9A13B", "#F9A13B", "#F9A13B",
+                                      "#81A854"],
+                        levelColorsGradient: false,
                         value: scope.value,
                         donut: true,
                         symbol: '%'
