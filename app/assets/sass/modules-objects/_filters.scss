@@ -13,7 +13,7 @@
 
     .color-scheme--light & {
         background:$_color_light_gamma;
-        border-color:$_color_light_epsilon;
+        border-color:$_color_light_beta;
     }
 }
 
@@ -49,7 +49,7 @@
     }
 
     .color-scheme--light & {
-        border-color:$_color_light_epsilon;
+        border-color:$_color_light_beta;
     }
 
     .filters__item--more &,
@@ -80,7 +80,7 @@
         }
 
         .color-scheme--light & {
-            background:$_color_light_epsilon;
+            background:$_color_light_beta;
             color:$_color_alpha;
         }
     }

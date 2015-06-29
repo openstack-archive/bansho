@@ -40,11 +40,11 @@
 .subcomponent__live {
 
     .color-scheme--dark & {
-        background-color:$_color_dark_alpha;
+        background-color:$_color_dark_beta;
     }
 
     .color-scheme--light & {
-        background-color:$_color_light_alpha;
+        background-color:$_color_light_beta;
     }
 
     padding: 0px 15px;

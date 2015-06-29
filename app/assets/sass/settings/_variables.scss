@@ -9,12 +9,11 @@ $_img_path: "../images/" !default;
 // Colors
 //----------------------------------*/
 // Light scheme
-$_color_light_alpha: #EEEEEE !default;
-$_color_light_beta: #F9F9F9 !default;
+$_color_light_alpha: #C6D1D2 !default;
+$_color_light_beta: #ECF0F1 !default;
 $_color_light_gamma: #FFFFFF !default;
-$_color_light_delta: #333333 !default;
+$_color_light_delta: #71777C !default;
 $_color_light_epsilon: #c0c1c2 !default;
-
 
 // Dark scheme
 $_color_dark_alpha: #252C35 !default;
@@ -31,10 +30,10 @@ $_color_schemes: (
     ),
 
     light: (
-        alpha: #252C35,
-        beta: #353D48,
-        gamma: #49515C,
-        delta: #A2AAB4
+        alpha: #C6D1D2,
+        beta: #ECF0F1,
+        gamma: #FFFFFF,
+        delta: #71777C
     )
 );
 
