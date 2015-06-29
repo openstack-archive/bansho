@@ -4,7 +4,7 @@
     },
     "dashboardConfig": {
         "title": "Unhandled service problems",
-        "refreshInterval": 0,
+        "refreshInterval": 30,
         "template": "dashboard",
         "components": [
             {
@@ -179,7 +179,7 @@
     },
     "liveHosts": {
         "title": "Hosts",
-        "refreshInterval": 0,
+        "refreshInterval": 30,
         "template": "single_table",
         "components": [
             {
@@ -217,7 +217,7 @@
     },
     "liveServices": {
         "title": "Services",
-        "refreshInterval": 0,
+        "refreshInterval": 30,
         "template": "single_table",
         "components": [
             {
@@ -253,22 +253,22 @@
     },
     "host": {
         "title": "Host",
-        "refreshInterval": 0,
+        "refreshInterval": 30,
         "template": "host"
     },
     "service": {
         "title": "Service",
-        "refreshInterval": 0,
+        "refreshInterval": 30,
         "template": "service"
     },
     "drupal": {
         "title": "Drupal",
-        "refreshInterval": 0,
+        "refreshInterval": 30,
         "template": "drupal"
     },
     "drupalDashboard": {
         "title": "Drupal dashboard",
-        "refreshInterval": 0,
+        "refreshInterval": 30,
         "template": "drupal_dashboard",
         "hostsMap": {
             "drupal": "Wonderful Drupal Website"
