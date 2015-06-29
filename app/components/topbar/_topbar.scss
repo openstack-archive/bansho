@@ -13,6 +13,7 @@
 
 .topbar__item {
     @extend %colorBorderThin;
+    height:80px;
     border:0 solid;
     display:inline-block;
     position:relative;
@@ -70,7 +71,7 @@
         }
 
         .color-scheme--light & {
-            color:$_color_alpha;
+            color:$_color_dark_alpha;
         }
 
     }
