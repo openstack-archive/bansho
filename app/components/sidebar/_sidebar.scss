@@ -28,7 +28,7 @@
 
     .color-scheme--light & {
         background:$_color_light_beta;
-        color:$_color_alpha;
+        color:$_color_dark_alpha;
     }
 
     .no-js & {display:none;}
@@ -65,7 +65,7 @@
     }
 
     .color-scheme--light & {
-        color:$_color_light_epsilon;
+        color:$_color_light_gamma;
     }
 }
 
@@ -81,7 +81,7 @@
     }
 
     .color-scheme--light & {
-        border-top-color:$_color_light_epsilon;
+        border-top-color:$_color_light_gamma;
     }
 
     &:first-child {border:0;}
@@ -108,7 +108,7 @@
     }
 
     .color-scheme--light & {
-        color:$_color_light_epsilon;
+        color:$_color_light_gamma
     }
 
     .sidebar__item:first-child & {padding-top:0;}
@@ -135,7 +135,7 @@
     }
 
     .color-scheme--light & {
-        color:$_color_light_epsilon;
+        color:$_color_light_gamma;
     }
 
     &:focus,
@@ -144,7 +144,7 @@
             color:$_color_omega;
         }
         .color-scheme--light & {
-            color:$_color_alpha;
+            color:$_color_dark_alpha;
         }
     }
 
@@ -170,7 +170,7 @@
             color:$_color_omega;
         }
         .color-scheme--light & {
-            color:$_color_alpha;
+            color:$_color_dark_alpha;
         }
 
         position:relative;
@@ -204,12 +204,18 @@
     }
 
     .color-scheme--light & {
-        background:$_color_light_epsilon;
+        background:$_color_light_beta;
     }
 
     .sidebar__profile__toggle {
         @extend %typo-more-info--little;
-        color:$_color_omega;
+        .color-scheme--dark & {
+            color:$_color_omega;
+        }
+
+        .color-scheme--light & {
+            color:$_color_dark_alpha;
+        }
         display:block;
         line-height:72px;
         min-height:72px;
@@ -229,7 +235,7 @@
             }
 
             .color-scheme--light & {
-                color:$_color_alpha;
+                color:$_color_dark_alpha;
             }
         }
     }
@@ -275,7 +281,7 @@
             }
 
             .color-scheme--light & {
-                color:$_color_light_delta;
+                color:$_color_light_alpha;
             }
         }
 

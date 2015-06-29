@@ -16,7 +16,7 @@
 
     // For panel and the sidebar
     %colorBkgPanel {
-        background:$_color_light_beta;
+        background:$_color_light_alpha;
     }
 
     %colorLink {
@@ -30,19 +30,19 @@
     }
 
     %colorBorderThin {
-        border-color:$_color_light_epsilon;
+        border-color:$_color_light_alpha;
     }
 
     %colorBkgTopbar {
-        background:$_color_light_alpha;
-    }
-
-    %colorBkgTopbarPanel {
         background:$_color_light_beta;
     }
 
-    %colorBkgTopbarButton {
+    %colorBkgTopbarPanel {
         background:$_color_light_alpha;
+    }
+
+    %colorBkgTopbarButton {
+        background:$_color_light_beta;
     }
 }
 
