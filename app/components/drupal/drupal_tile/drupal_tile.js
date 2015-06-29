@@ -34,6 +34,12 @@ angular.module('bansho.drupal.tile', [])
                         $scope.finalScoreClass = 'tile__score-warning';
                     }
 
+                    if ($scope.plugins === 'drupal_views') {
+                        if (response[0].plugin_output.indexOf('Views is not enabled.') !== -1) {
+                            $scope.hide = true;
+                        }
+                    }
+
                     // Split data into (metric, score_class, action) tuples
                     for (var i = 0; i < data.length; i+=3) {
                         var tuple = [];
