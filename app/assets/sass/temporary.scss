@@ -196,3 +196,89 @@ bansho-host-services-list .subcomponent__live {
 just-gage tspan {
     font: 500 1em "Roboto", sans-serif !important;
 }
+
+// Login
+
+.login_page {
+
+    text-align: center;
+    position: fixed;
+    height: 100%;
+
+    .color-scheme--dark & {
+        background-color:$_color_dark_alpha;
+    }
+
+    .color-scheme--light & {
+        background-color:$_color_light_alpha;
+    }
+}
+
+.login_page .sidebar__applogo {
+    width: 70%;
+    margin-bottom: 28px;
+}
+
+.login_page form#loginForm {
+    padding: 20px 25px 5px 25px;
+    margin: 25px;
+    text-align: left;
+    .color-scheme--dark & {
+        background-color:$_color_dark_gamma;
+    }
+  
+    .color-scheme--light & {
+        background-color:$_color_light_gamma;
+    }
+
+}
+
+
+.login_page form#loginForm  label {
+    .color-scheme--dark & {
+        color:$_color_omega;
+    }
+    .color-scheme--light & {
+        color:$_color_dark_alpha;
+    } 
+}
+
+.login_page form#loginForm input {
+    float: inherit;
+    width: 500px;
+    border: none;
+    padding: 0.8em;
+    margin: 10px 0px 0px 0px;
+    outline: 0;
+    .color-scheme--dark & {
+        background-color:$_color_dark_beta;
+        color:$_color_omega;
+    }
+    .color-scheme--light & {
+        background-color:$_color_light_beta;
+        color:$_color_dark_alpha;
+    }   
+}
+
+
+.login_page form#loginForm .md-raised {
+    .color-scheme--dark & {
+        background-color:$_color_dark_alpha;
+        color:$_color_omega;
+    }
+    .color-scheme--light & {
+        background-color:$_color_light_alpha;
+        color:$_color_dark_alpha;
+    }
+}
+.login_page form#loginForm .md-button {
+    margin-right: 0px;
+}
+
+
+.login_page form#loginForm #submitButton {
+    padding-top: 10px;
+    text-align: right;
+}
+
+
