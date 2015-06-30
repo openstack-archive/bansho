@@ -220,7 +220,10 @@
 }
 
 .topbar__settings__item,
-.topbar__settings__subitem {display:block;}
+.topbar__settings__subitem {
+    cursor: pointer;
+    display: block;
+}
 
 .topbar__settings__subitem {
     @extend %typo-menu;
