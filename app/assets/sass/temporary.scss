@@ -196,3 +196,17 @@ bansho-host-services-list .subcomponent__live {
 just-gage tspan {
     font: 500 1em "Roboto", sans-serif !important;
 }
+
+
+// Notifications
+
+div.ui-pnotify {
+    .color-scheme--dark & {
+        background-color:$_color_dark_alpha;
+    }
+
+    .color-scheme--light & {
+        background-color:$_color_light_alpha;
+    }
+
+}
