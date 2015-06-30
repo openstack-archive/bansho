@@ -164,18 +164,37 @@
     .topbar__button {float:left;}
 
     .topbar__searchfield {
+        outline: 0;
         background:transparent;
         border:0;
         display:none;
         float:right;
-        font-size:1em;
-        height:14px;
-        margin:36px $_space 0 0;
+        font-size:1.1em;
+        height:16px;
+        margin:32px $_space 0 0;
         vertical-align:baseline;
+        .color-scheme--dark & {
+            color:$_color_omega;
+        }
+
+        .color-scheme--light & {
+            color:$_color_dark_alpha;
+        }
+
 
         @include large-xlarge-screen {
             display:inline-block;
         }
+    }
+
+    .topbar__searchfield::-webkit-input-placeholder {
+        font-style: italic;
+    }
+    .topbar__searchfield::-ms-input-placeholder {
+        font-style: italic;
+    }
+    .topbar__searchfield::-moz-placeholder {
+        font-style: italic;
     }
 }
 
