@@ -291,3 +291,31 @@ div.ui-pnotify {
     padding-top: 10px;
     text-align: right;
 }
+
+// Action bar
+
+input#filter__search {
+    border: none;
+    width: 100%;
+    padding: 0.8em;
+    margin: 10px 0px 0px 15px;
+    outline: 0;
+    .color-scheme--dark & {
+        background-color:$_color_dark_gamma;
+        color:$_color_omega;
+    }
+    .color-scheme--light & {
+        background-color:$_color_light_gamma;
+        color:$_color_dark_alpha;
+    }
+
+    input#filter__search::-webkit-input-placeholder {
+        font-style: italic;
+    }
+    input#filter__search::-ms-input-placeholder {
+        font-style: italic;
+    }
+    input#filter__searchield::-moz-placeholder {
+        font-style: italic;
+    }
+}
