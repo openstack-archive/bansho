@@ -319,3 +319,12 @@ input#filter__search {
         font-style: italic;
     }
 }
+
+// Table
+
+thead.moving-thead {
+    position: fixed;
+    top: 0;
+    display: none;
+    z-index: 988889;
+}

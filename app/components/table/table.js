@@ -17,9 +17,9 @@ angular.module('bansho.table', ['bansho.surveil',
 
     .value('tablesConfig', [])
 
-    .controller('TableCtrl', ['$scope', '$interval', 'surveilStatus', 'tablesConfig',
+    .controller('TableCtrl', ['$scope', '$interval', '$window', 'surveilStatus', 'tablesConfig',
         'actionbarFilters', 'promisesManager', 'tableGlobalConfig',
-        function ($scope, $interval, surveilStatus, tablesConfig, actionbarFilters, promisesManager, tableGlobalConfig) {
+        function ($scope, $interval, $window, surveilStatus, tablesConfig, actionbarFilters, promisesManager, tableGlobalConfig) {
             var requestFields = [],
                 conf = tablesConfig[tableGlobalConfig.nextTableIndex],
                 getData,
@@ -29,6 +29,43 @@ angular.module('bansho.table', ['bansho.surveil',
             inputSourceServices = {
                 surveilStatus: surveilStatus
             };
+
+
+            // Handle header fixed
+            angular.element(document).ready(function () {
+                // Get init data
+                var staticHead = angular.element(document.querySelector('thead.static-thead'));
+                var theadYOffset = $(staticHead).position().top;
+                var movingHead = $(staticHead).parent().children("thead.moving-thead");
+                // Handle scroll event
+                angular.element(document).bind("scroll", function() {
+                    var winheight = $window.innerHeight;
+                    var yoffset = $window.pageYOffset;
+                    if (yoffset > theadYOffset){
+                        // We need to show moving head
+                        movingHead.css("display", "inherit");
+                        // Resize thead col width
+                        var thList = staticHead.children("tr").children("th");
+                        angular.forEach(thList, function(th, key) {
+                            $(movingHead.children("tr").children("th")[key]).css("width", $(th).css("width"));
+                        });
+                    }
+                    else {
+                        // We need to show moving head
+                        movingHead.css("display", "none");
+                    }
+                });
+
+                // Handle resize event
+                $($window).resize(function() {
+                    // Resize thead col width
+                    var thList = staticHead.children("tr").children("th");
+                    angular.forEach(thList, function(th, key) {
+                        $(movingHead.children("tr").children("th")[key]).css("width", $(th).css("width"));
+                    });
+                });
+            });
+
 
             $scope.cellsName = conf.cells.name;
             $scope.cellsText = conf.cells.text;
