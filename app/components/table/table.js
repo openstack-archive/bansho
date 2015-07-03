@@ -1,4 +1,4 @@
-'use strict';
+//'use strict';
 
 angular.module('bansho.table', ['bansho.surveil',
                                  'bansho.utils.promiseManager',
@@ -29,6 +29,45 @@ angular.module('bansho.table', ['bansho.surveil',
             inputSourceServices = {
                 surveilStatus: surveilStatus
             };
+
+
+            // Handle header fixed
+            angular.element(document).ready(function () {
+                // Get init data
+                var staticHead = angular.element(document.querySelector('thead.static-thead'));
+                var theadYOffset = $(staticHead).position().top;
+                var movingHead = $("thead.moving-thead");
+                var movingHead = $(staticHead).parent().children("thead.moving-thead");
+                // Handle scroll event
+                angular.element(document).bind("scroll", function() {
+                    var winheight = window.innerHeight;
+                    var yoffset = window.pageYOffset;
+                    if (yoffset > theadYOffset){
+                        // We need to show moving head
+                        movingHead.css("display", "inherit");
+                        // Resize thead col width
+                        var thList = staticHead.children("tr").children("th")
+                        angular.forEach(thList, function(th, key) {
+                            $(movingHead.children("tr").children("th")[key]).css("width", $(th).css("width"))
+                        })
+                    }
+                    else {
+                        // We need to show moving head
+                        movingHead.css("display", "none");
+                    }
+                });
+
+                // Handle resize event
+                $( window ).resize(function() {
+                    // Resize thead col width
+                    var thList = staticHead.children("tr").children("th")
+                    angular.forEach(thList, function(th, key) {
+                        $(movingHead.children("tr").children("th")[key]).css("width", $(th).css("width"))
+                    })
+                });
+
+            });
+
 
             $scope.cellsName = conf.cells.name;
             $scope.cellsText = conf.cells.text;
