@@ -34,8 +34,8 @@ ADD /app /opt/bansho/app
 
 # Override those variables at runtime to point Bansho to another backend
 ENV BANSHO_PROD true
-ENV BANSHO_SURVEIL_URL http://surveil:8080/
-ENV BANSHO_AUTH_URL http://surveil:8080/v2/auth/
+ENV BANSHO_SURVEIL_URL http://surveil:5311/
+ENV BANSHO_AUTH_URL http://surveil:5311/v2/auth/
 
 ENV INFLUXDB_HOST influxdb
 ENV INFLUXDB_PORT 8086
