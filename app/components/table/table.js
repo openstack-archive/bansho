@@ -21,9 +21,125 @@ angular.module('bansho.table', ['bansho.surveil',
 
     .value('tablesConfig', [])
 
-    .controller('TableCtrl', ['$scope', '$interval', '$window', 'surveilStatus', 'tablesConfig',
+    .service('headerFollow', ['$window', function ($window){
+        var isFollowing = false, staticHead, followingHead, actionBar = false, actionBarEl, staticActionBar,
+            staticActionBarYOffset, staticHeadYOffset, yThreshold, yOffset;
+
+        function enableFollowingMode() {
+            isFollowing = true;
+            setFollowingModeCss();
+        }
+
+        function setFollowingModeCss() {
+            // We need to show moving head
+            followingHead.css("display", "table-header-group");
+            // Resize thead col width
+            var thList = staticHead.children("tr").children("th");
+            angular.forEach(thList, function(th, key) {
+                $(followingHead.children("tr").children("th")[key]).css("width", $(th).css("width"));
+            });
+            // If we have an actionbar
+            if (actionBar) {
+                // Set actionbar css
+                staticActionBar.css("top", "0");
+                staticActionBar.css("position", "fixed");
+                if (followingHead.css("width") != "0px") {
+                    staticActionBar.css("width", followingHead.css("width"));
+                }
+                // Set top css to moving head
+                followingHead.css("top", staticActionBar.css("height"));
+            }
+        }
+
+        function disableFollowingMode(){
+            isFollowing = false;
+            setStaticModeCss();
+        }
+
+        function setStaticModeCss(){
+            // We need to hide moving head
+            followingHead.css("display", "none");
+            // Resize thead col width
+            var thList = staticHead.children("tr").children("th");
+            angular.forEach(thList, function(th, key) {
+                $(followingHead.children("tr").children("th")[key]).css("width", "auto");
+            });
+            // If we have an actionbar
+            if (actionBar) {
+                // We need to fix moving actionbar
+                staticActionBar.css("position", "relative");
+                if (followingHead.css("width") != "0px") {
+                    staticActionBar.css("width", "auto");
+                }
+            }
+        }
+
+        function calculateThreshold() {
+            // Get YThreshold
+            staticHeadYOffset = $(staticHead).position().top;
+            if (actionBar) {
+                yThreshold = Math.min(staticActionBarYOffset, staticHeadYOffset);
+            }
+            else {
+                yThreshold = staticHeadYOffset;
+            }
+        }
+
+        function scrollEvent() {
+            yOffset = $window.pageYOffset;
+
+            if (!isFollowing) {
+                // Get init data
+                staticHead = $("thead.static-thead");
+                followingHead = $(staticHead).parent().children("thead.moving-thead");
+                // Prepare action bar
+                if (actionBar) {
+                    staticActionBar = actionBarEl.children("menu");
+                    staticActionBarYOffset = $(staticActionBar).position().top;
+                }
+                calculateThreshold();
+            }
+
+            if (yOffset >= yThreshold){
+                enableFollowingMode();
+            }
+            else {
+                disableFollowingMode();
+            }
+        }
+        this.activate = function () {
+            // Handle header fixed
+            angular.element(document).ready(function () {
+
+                // Prepare action bar
+                actionBarEl = $("bansho-table-actionbar");
+                if (actionBarEl.length > 0) {
+                    actionBar = true;
+                }
+
+                // Handle scroll event
+                angular.element(document).on("scroll", scrollEvent);
+
+                // Handle resize event
+                $($window).resize(function() {
+                    if (isFollowing) {
+                        setFollowingModeCss();
+                    }
+                    else {
+                        setStaticModeCss();
+                    }
+                });
+            });
+        };
+
+        this.deactivate = function () {
+            angular.element(document).off("scroll", scrollEvent);
+        }
+    }])
+
+    .controller('TableCtrl', ['$scope', '$interval', 'headerFollow', 'surveilStatus', 'tablesConfig',
         'actionbarFilters', 'promisesManager', 'tableGlobalConfig',
-        function ($scope, $interval, $window, surveilStatus, tablesConfig, actionbarFilters, promisesManager, tableGlobalConfig) {
+        function ($scope, $interval, headerFollow, surveilStatus, tablesConfig, actionbarFilters, promisesManager, tableGlobalConfig) {
             var requestFields = [],
                 conf = tablesConfig[tableGlobalConfig.nextTableIndex],
                 getData,
@@ -34,41 +150,12 @@ angular.module('bansho.table', ['bansho.surveil',
                 surveilStatus: surveilStatus
             };
 
+            if (conf.headerFollow) {
+                headerFollow.activate();
+            } else {
+                headerFollow.deactivate();
+            }
 
-            // Handle header fixed
-            angular.element(document).ready(function () {
-                // Get init data
-                var staticHead = angular.element(document.querySelector('thead.static-thead'));
-                var theadYOffset = $(staticHead).position().top;
-                var movingHead = $(staticHead).parent().children("thead.moving-thead");
-                // Handle scroll event
-                angular.element(document).bind("scroll", function() {
-                    var winheight = $window.innerHeight;
-                    var yoffset = $window.pageYOffset;
-                    if (yoffset > theadYOffset){
-                        // We need to show moving head
-                        movingHead.css("display", "inherit");
-                        // Resize thead col width
-                        var thList = staticHead.children("tr").children("th");
-                        angular.forEach(thList, function(th, key) {
-                            $(movingHead.children("tr").children("th")[key]).css("width", $(th).css("width"));
-                        });
-                    }
-                    else {
-                        // We need to show moving head
-                        movingHead.css("display", "none");
-                    }
-                });
-
-                // Handle resize event
-                $($window).resize(function() {
-                    // Resize thead col width
-                    var thList = staticHead.children("tr").children("th");
-                    angular.forEach(thList, function(th, key) {
-                        $(movingHead.children("tr").children("th")[key]).css("width", $(th).css("width"));
-                    });
-                });
-            });
 
 
             $scope.cellsName = conf.cells.name;
@@ -152,6 +239,7 @@ angular.module('bansho.table', ['bansho.surveil',
 
                         conf.isWrappable = JSON.parse(attrs.isWrappable);
                         conf.noRepeatCell = attrs.noRepeatCell;
+                        conf.headerFollow = scope.$eval(attrs.headerFollow);
                         tableGlobalConfig.tableId = attrs.tableId;
                         scope.checkColumn = scope.$eval(attrs.checkColumn);
 
@@ -209,6 +297,7 @@ angular.module('bansho.table', ['bansho.surveil',
         this.IsWrappable = config.isWrappable;
         this.ContainsActionBar = config.containsActionBar;
         this.CheckColumn = config.checkColumn;
+        this.HeaderFollow = config.headerFollow;
         this.NoRepeatCell = config.noRepeatCell;
     })
 
