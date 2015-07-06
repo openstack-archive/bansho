@@ -18,8 +18,8 @@ angular.module('bansho.surveil')
 
                 if (apiName === 'hosts') {
                     transformations = hostMiddleware;
-                } else if (apiName === 'services') {
-                    transformations = serviceMiddleware;
+                } else if (apiName === 'services' || apiName === 'events') {
+                    transformations = apiMiddleware;
                 } else {
                     throw new Error('getObjects : ' + apiName + ' API is not supported');
                 }
@@ -292,7 +292,7 @@ angular.module('bansho.surveil')
             };
 
             // Modify response object to conform to web ui
-            var serviceMiddleware = function (data) {
+            var apiMiddleware = function (data) {
                 var i = 0,
                     conversions = {};
 
@@ -332,73 +332,86 @@ angular.module('bansho.surveil')
                             responsePromise.resolve(data);
                         });
                     return responsePromise.promise;
-                }
-
-                angular.forEach(fields, function (field) {
-                    if (field in hostKeys) {
-                        hostFields.push(hostKeys[field]);
-                    } else {
-                        serviceFields.push(field);
-                    }
-                });
-
-                // Make sure that 'host_name' is in both queries as we
-                // use this field to merge data
-                if ($.inArray('host_name', hostFields) === -1) {
-                    hostFields.push('host_name');
-                }
-                if ($.inArray('host_name', serviceFields) === -1) {
-                    serviceFields.push('host_name');
-                }
-
-                angular.forEach(inputSourceConfig.filters, function (filterData, filterName) {
-                    angular.forEach(filterData, function (values, field) {
+                } else if (inputSourceConfig.apiName === 'services') {
+                    angular.forEach(fields, function (field) {
                         if (field in hostKeys) {
-                            if (!(filterData in hostFilters)) {
-                                hostFilters[filterName] = {};
-                            }
-                            hostFilters[filterName][hostKeys[field]] = values;
+                            hostFields.push(hostKeys[field]);
                         } else {
-                            if (!(filterData in serviceFilters)) {
-                                serviceFilters[filterName] = {};
-                            }
-                            serviceFilters[filterName][field] = values;
+                            serviceFields.push(field);
                         }
                     });
-                });
 
-                // Queries host and service APIs and merges responses
-                getObjects(hostFields, hostFilters, 'hosts')
-                    .success(function (hostData) {
-                        getObjects(serviceFields, serviceFilters, 'services')
-                            .success(function (serviceData) {
-                                var hostDict = {};
+                    // Make sure that 'host_name' is in both queries as we
+                    // use this field to merge data
+                    if ($.inArray('host_name', hostFields) === -1) {
+                        hostFields.push('host_name');
+                    }
+                    if ($.inArray('host_name', serviceFields) === -1) {
+                        serviceFields.push('host_name');
+                    }
 
-                                // Create a host dict for performance
-                                for (i = 0; i < hostData.length; i += 1) {
-                                    var host_name = hostData[i].host_name;
-
-                                    angular.forEach(hostData[i], function (value, field) {
-                                        if (!(host_name in hostDict)) {
-                                            hostDict[host_name] = {};
-                                        }
-
-                                        hostDict[host_name][field] = value;
-                                    });
+                    angular.forEach(inputSourceConfig.filters, function (filterData, filterName) {
+                        angular.forEach(filterData, function (values, field) {
+                            if (field in hostKeys) {
+                                if (!(filterData in hostFilters)) {
+                                    hostFilters[filterName] = {};
                                 }
-
-                                for (i = 0; i < serviceData.length; i += 1) {
-                                    angular.forEach(hostDict[serviceData[i].host_name],
-                                        function (value, field) {
-                                            serviceData[i][field] = value;
-                                        });
+                                hostFilters[filterName][hostKeys[field]] = values;
+                            } else {
+                                if (!(filterData in serviceFilters)) {
+                                    serviceFilters[filterName] = {};
                                 }
-
-                                responsePromise.resolve(serviceData);
-                            });
+                                serviceFilters[filterName][field] = values;
+                            }
+                        });
                     });
 
-                return responsePromise.promise;
+                    // Queries host and service APIs and merges responses
+                    getObjects(hostFields, hostFilters, 'hosts')
+                        .success(function (hostData) {
+                            getObjects(serviceFields, serviceFilters, 'services')
+                                .success(function (serviceData) {
+                                    var hostDict = {};
+
+                                    // Create a host dict for performance
+                                    for (i = 0; i < hostData.length; i += 1) {
+                                        var host_name = hostData[i].host_name;
+
+                                        angular.forEach(hostData[i], function (value, field) {
+                                            if (!(host_name in hostDict)) {
+                                                hostDict[host_name] = {};
+                                            }
+
+                                            hostDict[host_name][field] = value;
+                                        });
+                                    }
+
+                                    for (i = 0; i < serviceData.length; i += 1) {
+                                        angular.forEach(hostDict[serviceData[i].host_name],
+                                            function (value, field) {
+                                                serviceData[i][field] = value;
+                                            });
+                                    }
+
+                                    responsePromise.resolve(serviceData);
+                                });
+                        });
+
+                    return responsePromise.promise;
+                } else if (inputSourceConfig.apiName === 'events') {
+                    var queryFields = [];
+
+                    // Queries events API
+                    if (inputSourceConfig.fields)
+                        queryFields = inputSourceConfig.fields;
+
+                    getObjects(queryFields, inputSourceConfig.filters, 'events')
+                        .success(function (eventsData) {
+                            responsePromise.resolve(eventsData);
+                        });
+
+                    return responsePromise.promise;
+                }
             };
 
             return {

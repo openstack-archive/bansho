@@ -251,6 +251,42 @@
             }
         ]
     },
+    "liveEvents": {
+        "title": "Events",
+        "refreshInterval": 30,
+        "template": "single_table",
+        "components": [
+            {
+                "type": "table",
+                "config": {
+                    "title": "Hosts",
+                    "cells": {
+                        "text": [
+                            "Event type",
+                            "Output",
+                            "Host name",
+                            "Service"
+                        ],
+                        "name": [
+                            "status_event_event_type",
+                            "status_event_output",
+                            "status_event_host_name",
+                            "status_event_service"
+                        ]
+                    },
+                    "inputSource": {
+                        "service": "surveilStatus",
+                        "config": {
+                            "apiName": "events",
+                            "filters": {}
+                        }
+                    },
+                    "isWrappable": false,
+                    "noRepeatCell": ""
+                }
+            }
+        ]
+    },
     "host": {
         "title": "Host",
         "refreshInterval": 30,
