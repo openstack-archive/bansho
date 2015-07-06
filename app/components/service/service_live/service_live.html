@@ -1,10 +1,10 @@
-<div ng-controller="ServiceLiveCtrl" class="subcomponent__live subcomponent__small">
+<div data-ng-controller="ServiceLiveCtrl" class="subcomponent__live subcomponent__small">
   <h2>Status</h2>
   <table class="data-table">
     <tbody>
       <tr>
         <td>State</td>
-        <td><bansho-service-state-icon state="service.state"></bansho-service-state-icon> {{service.state}}</td>
+        <td><div data-bansho-service-state-icon data-state="service.state"></div> {{service.state}}</td>
       </tr>
       <tr>
         <td>Output</td>

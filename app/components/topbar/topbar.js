@@ -35,7 +35,7 @@ angular.module('bansho.topbar', ['bansho.surveil'])
 
     .directive('banshoTopbar', function () {
         return {
-            restrict: 'E',
+            restrict: 'A',
             templateUrl: 'components/topbar/topbar.html'
         };
     });

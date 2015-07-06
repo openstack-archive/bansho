@@ -1,9 +1,9 @@
-<div class="tile__main" ng-controller='DrupalTileCtrl' ng-hide="hide">
-  <h1>{{title}} <span ng-class="finalScoreClass">{{finalScore}}</span></h1>
+<div class="tile__main" data-ng-controller='DrupalTileCtrl' data-ng-hide="hide">
+  <h1>{{title}} <span data-ng-class="finalScoreClass">{{finalScore}}</span></h1>
   <table class="data-table">
     <tbody>
-    <tr ng-repeat="datum in data">
-      <td style="text-align:center;" ng-class="datum[1]" title="{{datum[2]}}">{{datum[0]}}</td>
+      <tr data-ng-repeat="datum in data">
+        <td style="text-align:center;" data-ng-class="datum[1]" title="{{datum[2]}}">{{datum[0]}}</td>
       </tr>
     </tbody>
   </table>

@@ -109,19 +109,19 @@
     <!-- endbuild -->
   </head>
 
-  <body class="layout" ng-class="themeClass" ng-app="bansho">
+  <body class="layout" data-ng-class="themeClass" data-ng-app="bansho">
     <!--[if lt IE 7]> <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p> <![endif]-->
     <div class="layout__container">
       <aside class="layout__aside sidebar-wrapper collapse" id="sidebarWrapper">
-        <bansho-sidebar ng-show="isAuthenticated"></bansho-sidebar>
+        <div data-bansho-sidebar data-ng-show="isAuthenticated"></div>
       </aside>
 
       <div class="layout__main">
         <div class="topbar-wrapper clearfix">
-          <bansho-topbar ng-show="isAuthenticated"></bansho-topbar>
+          <div data-bansho-topbar data-ng-show="isAuthenticated"></div>
         </div>
 
-        <main ng-view id="page" class="main" role="main"></main>
+        <main data-ng-view id="page" class="main" role="main"></main>
         <footer class="footer" role="contentinfo"></footer>
       </div>
     </div>

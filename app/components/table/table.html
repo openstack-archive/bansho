@@ -1,35 +1,34 @@
-<table class="data-table" ng-controller="TableCtrl">
+<table class="data-table" data-ng-controller="TableCtrl">
   <thead class="moving-thead">
       <tr>
         <th class="data-table__checkbox">
-            <md-checkbox aria-label='Check all' ng-model="isCheckAll" ng-change="onCheckChange()"></md-checkbox>
+            <md-checkbox aria-label='Check all' data-ng-model="isCheckAll" data-ng-change="onCheckChange()"></md-checkbox>
         </th>
-        <th ng-repeat="i in cellIndexes" class="data-table__{{cellsName[i]}}">
+        <th data-ng-repeat="i in cellIndexes" class="data-table__{{cellsName[i]}}">
           {{cellsText[i]}}
           <i class="ico-up-dir"></i>
         </th>
       </tr>
   </thead>
-
 
   <thead class="static-thead">
       <tr>
         <th class="data-table__checkbox">
-            <md-checkbox aria-label='Check all' ng-model="isCheckAll" ng-change="onCheckChange()"></md-checkbox>
+            <md-checkbox aria-label='Check all' data-ng-model="isCheckAll" data-ng-change="onCheckChange()"></md-checkbox>
         </th>
-        <th ng-repeat="i in cellIndexes" class="data-table__{{cellsName[i]}}">
+        <th data-ng-repeat="i in cellIndexes" class="data-table__{{cellsName[i]}}">
           {{cellsText[i]}}
           <i class="ico-up-dir"></i>
         </th>
       </tr>
   </thead>
 
-  <tbody class="{{entry.child_class}}" ng-repeat="(groupByKey, groupByItems) in entries | groupBy:'host_name'">
-    <tr ng-repeat="entry in groupByItems | actionbarSelectFilter:actionbarFilters.activeFilter | filter:actionbarFilters.searchFilter | noRepeat:this | wrappableStyle:this">
+  <tbody class="{{entry.child_class}}" data-ng-repeat="(groupByKey, groupByItems) in entries | groupBy:'host_name'">
+    <tr data-ng-repeat="entry in groupByItems | actionbarSelectFilter:actionbarFilters.activeFilter | filter:actionbarFilters.searchFilter | noRepeat:this | wrappableStyle:this">
       <td>
-        <md-checkbox aria-label='Check' ng-model="entry.is_checked"></md-checkbox>
+        <md-checkbox aria-label='Check' data-ng-model="entry.is_checked"></md-checkbox>
       </td>
-      <td bansho-cell cell-name="{{cell}}" ng-repeat="cell in cellsName"></td>
+      <td bansho-cell cell-name="{{cell}}" data-ng-repeat="cell in cellsName"></td>
     </tr>
   </tbody>
 </table>

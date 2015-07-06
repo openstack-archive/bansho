@@ -23,7 +23,7 @@ angular.module('bansho.service', ['bansho.surveil',
     .directive('banshoService', ['$http', '$compile', 'serviceConfig',
         function ($http, $compile, serviceConfig) {
             return {
-                restrict: 'E',
+                restrict: 'A',
                 compile: function () {
                     return function (scope, element, attrs) {
 

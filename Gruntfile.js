@@ -11,6 +11,7 @@ module.exports = function (grunt) {
         project: {
             app: 'app',
             assets: '<%= project.app %>/assets',
+            bower: '<%= project.app %>/bower_components',
             scss: '<%= project.assets %>/sass/app.scss',
             tmp: '.tmp',
             dist: 'dist'
@@ -62,7 +63,7 @@ module.exports = function (grunt) {
                         dest: '<%= project.dist %>/index.html'
                     }
                 ]
-            },
+            }
         },
 
         sass: {
@@ -140,6 +141,31 @@ module.exports = function (grunt) {
             }
         },
 
+        validation: {
+            options: {
+                reset: grunt.option('reset') || false,
+                stoponerror: false,
+                relaxerror: ['This interface to HTML5 document checking is deprecated.',
+                             'Element head is missing a required instance of child element title.',
+                             'Element img is missing required attribute src.',
+                             'Section lacks heading. Consider using h2-h6 elements to add identifying headings to all sections.',
+                             'Article lacks heading. Consider using h2-h6 elements to add identifying headings to all articles.',
+                             'Bad value {{iframeUrl}} for attribute src on element iframe: Illegal character in path segment: not a URL code point.',
+                             'The frameborder attribute on the iframe element is obsolete. Use CSS instead.',
+                             '& did not start a character reference. (& probably should have been escaped as &amp;.)',
+                             'Bad value #/view?view=service&host_name={{service.host_name}}&description={{service.service_description}} for attribute href on element a: Illegal character in fragment: not a URL code point.',
+                             'Stray start tag td.',
+                             'Stray end tag td.'
+                ],
+                doctype: 'HTML5'
+            },
+            files: {
+                src: ['<%= project.app %>/**/*.html',
+                      '!<%= project.dist %>/**/*.html',
+                      '!<%= project.bower %>/**/*.html']
+            }
+        },
+
         watch: {
             development: {
                 files: [
@@ -174,6 +200,11 @@ module.exports = function (grunt) {
     grunt.registerTask('staging', [
         'production',
         'watch:development'
+    ]);
+
+    grunt.registerTask('review', [
+        'validation',
+        'jshint:all',
     ]);
 
     grunt.registerTask('production', [
