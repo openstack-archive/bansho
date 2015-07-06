@@ -1,15 +1,15 @@
-<div class="panes panes--3" ng-controller="TacticalCtrl" id="tactical">
+<div class="panes panes--3" data-ng-controller="TacticalCtrl" id="tactical">
   <div class="panes__container">
-    <div class="panes__pane" ng-if="statusOverview">
-      <bansho-status-overview></bansho-status-overview>
+    <div class="panes__pane" data-ng-if="statusOverview">
+      <div data-bansho-status-overview></div>
     </div>
 
-    <div class="panes__pane" ng-if="currentHealth">
-      <bansho-current-health></bansho-current-health>
+    <div class="panes__pane" data-ng-if="currentHealth">
+      <div data-bansho-current-health></div>
     </div>
 
-    <div class="panes__pane" ng-if="topAlertProducers">
-      <bansho-top-alert-producers></bansho-top-alert-producers>
+    <div class="panes__pane" data-ng-if="topAlertProducers">
+      <div data-bansho-top-alert-producers></div>
     </div>
   </div>
 </div>

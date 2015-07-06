@@ -1,4 +1,4 @@
-<nav id="topbar" class="topbar" role="navigation" ng-controller="TopBarCtrl">
+<nav id="topbar" class="topbar" role="navigation" data-ng-controller="TopBarCtrl">
   <ul class="topbar__list topbar__list--left">
     <li class="topbar__item topbar__toggle-sidebar">
       <button class="topbar__button"
@@ -106,6 +106,7 @@
             </div>
           </div>
         </div>
+      </div>
     </li>
   </ul>
 
@@ -129,8 +130,8 @@
                 <li class="topbar__settings__subitem"><a href="#">Missing Plugins</a></li>
                 <li class="topbar__settings__subitem"><a href="#">Object History</a></li>
                 <li class="topbar__settings__subitem"><a href="#">Configure</a></li>
-                <li class="topbar__settings__subitem" ng-click="switchTheme()"><a>Change theme</a></li>
-                <li class="topbar__settings__subitem" ng-click="logout()"><a>Logout</a></li>
+                <li class="topbar__settings__subitem" data-ng-click="switchTheme()"><a>Change theme</a></li>
+                <li class="topbar__settings__subitem" data-ng-click="logout()"><a>Logout</a></li>
               </ul>
             </li>
           </ul>

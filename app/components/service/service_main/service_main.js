@@ -8,7 +8,7 @@ angular.module('bansho.service.main', [])
 
     .directive('banshoServiceMain', function () {
         return {
-            restrict: 'E',
+            restrict: 'A',
             scope: {
               service: '=service'
             },

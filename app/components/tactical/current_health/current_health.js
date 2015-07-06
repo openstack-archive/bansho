@@ -9,7 +9,7 @@ angular.module('bansho.tactical.current_health', ['bansho.surveil',
 
     .directive('banshoCurrentHealth', function () {
         return {
-            restrict: 'E',
+            restrict: 'A',
             templateUrl: 'components/tactical/current_health/current_health.html'
         };
     });

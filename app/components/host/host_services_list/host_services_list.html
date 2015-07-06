@@ -1,4 +1,4 @@
-<div ng-show="host.services.length >= 1" class="subcomponent__live">
+<div data-ng-show="host.services.length >= 1" class="subcomponent__live">
   <h2>Services</h2>
   <table class="data-table">
     <thead>
@@ -9,10 +9,10 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="service in host.services">
+      <tr data-ng-repeat="service in host.services">
         <td><a href="#/view?view=service&host_name={{service.host_name}}&description={{service.service_description}}">{{service.service_description}}</a>
         <td>{{service.acknowledged}}</td>
-        <td><bansho-service-state-icon state="service.state"></bansho-service-state-icon>{{service.state}}</td>
+        <td><div data-bansho-service-state-icon data-state="service.state"></div>{{service.state}}</td>
       </tr>
     </tbody>
   </table>

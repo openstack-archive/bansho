@@ -44,7 +44,7 @@ angular.module('bansho.host', ['bansho.surveil',
     .directive('banshoHost', ['$http', '$compile', 'surveilStatus', 'hostConfig',
         function ($http, $compile, surveilStatus, hostConfig) {
             return {
-                restrict: 'E',
+                restrict: 'A',
                 compile: function () {
                     return function (scope, element, attrs) {
 

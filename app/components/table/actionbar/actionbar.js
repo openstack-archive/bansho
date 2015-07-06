@@ -86,7 +86,7 @@ angular.module('bansho.table.actionbar', ['bansho.table', 'bansho.surveil', 'ban
 
     .directive('banshoTableActionbar', function () {
         return {
-            restrict: 'E',
+            restrict: 'A',
             templateUrl: 'components/table/actionbar/actionbar.html'
         };
     });

@@ -1,8 +1,8 @@
-<div class="tile__main" ng-controller='DrupalInfoCtrl'>
+<div class="tile__main" data-ng-controller='DrupalInfoCtrl'>
   <h1>{{title}}</h1>
   <table class="data-table">
     <tbody>
-      <tr ng-repeat="datum in data" ng-class="datum[2]">
+      <tr data-ng-repeat="datum in data" data-ng-class="datum[2]">
         <td style="text-align:center;">{{datum[0]}}</td>
         <td style="text-align:center;">{{datum[1]}}</td>
       </tr>

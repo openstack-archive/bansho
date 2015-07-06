@@ -3,7 +3,7 @@
 angular.module('bansho.table.state_icon', [])
     .directive('banshoHostStateIcon', function () {
         return {
-            restrict: 'E',
+            restrict: 'A',
             scope: {
                 state: '=state'
             },
@@ -24,7 +24,7 @@ angular.module('bansho.table.state_icon', [])
 
     .directive('banshoServiceStateIcon', function () {
         return {
-            restrict: 'E',
+            restrict: 'A',
             scope: {
                 state: '=state'
             },

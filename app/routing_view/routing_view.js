@@ -11,7 +11,7 @@ angular.module('bansho.view', ['ngRoute',
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/view', {
             controller: 'ViewCtrl',
-            template: '<div ng-include="templateUrl">Loading...</div>'
+            template: '<div data-ng-include="templateUrl">Loading...</div>'
         })
         .when('/login', {
             templateUrl: 'components/authentication/authentication.html'

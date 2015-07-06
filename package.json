@@ -22,7 +22,8 @@
     "karma-junit-reporter": "^0.2.2",
     "load-grunt-tasks": "~3.1.0",
     "protractor": "^1.1.1",
-    "shelljs": "^0.2.6"
+    "shelljs": "^0.2.6",
+    "grunt-html-validation": "~0.1.18"
   },
   "scripts": {
     "postinstall": "bower install",

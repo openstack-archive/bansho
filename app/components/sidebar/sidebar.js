@@ -16,7 +16,7 @@ angular.module('bansho.sidebar', [])
 
     .directive('banshoSidebar', function () {
         return {
-            restrict: 'E',
+            restrict: 'A',
             templateUrl: "components/sidebar/sidebar.html"
         };
     });

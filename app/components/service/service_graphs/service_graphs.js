@@ -18,7 +18,7 @@ angular.module('bansho.service.graphs', [])
 
     .directive('banshoServiceGraphs', ['iframeUrl', function (iframeUrl) {
         return {
-            restrict: 'E',
+            restrict: 'A',
             scope: {
               service: '=service'
             },

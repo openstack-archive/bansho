@@ -67,7 +67,7 @@ angular.module('bansho.tactical', ['bansho.surveil',
 
     .directive('banshoTactical', ['tacticalConfig', function (tacticalConfig) {
         return {
-            restrict: 'E',
+            restrict: 'A',
             templateUrl: 'components/tactical/tactical.html',
             compile: function compile() {
                 return {

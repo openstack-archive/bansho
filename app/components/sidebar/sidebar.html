@@ -1,11 +1,11 @@
-<div class="sidebar" ng-controller="SideBarCtrl">
+<div class="sidebar" data-ng-controller="SideBarCtrl">
   <button class="sidebar__close">
     <span class="visuallyhidden">Close the sidebar</span>
     <i class="ico-cancel"></i>
   </button>
 
   <header class="sidebar__header">
-      <img class="sidebar__applogo" ng-src="assets/images/surveil-{{themeColor}}-horizontal.svg">
+      <img class="sidebar__applogo" data-ng-src="assets/images/surveil-{{themeColor}}-horizontal.svg" alt="Surveil logo">
   </header>
 
   <nav class="sidebar__nav" role="navigation">
@@ -21,9 +21,9 @@
         </button>
 
         <ul class="sidebar__sublist collapse in" id="shortcutList">
-          <li class="sidebar__subitem"><a ng-class="getClass('/view')" href="#/view">Dashboard</a></li>
-          <li class="sidebar__subitem"><a ng-class="getClass('/view?view=liveHosts')" href="#/view?view=liveHosts">Hosts</a></li>
-          <li class="sidebar__subitem"><a ng-class="getClass('/view?view=liveServices')" href="#/view?view=liveServices">Services</a></li>
+          <li class="sidebar__subitem"><a data-ng-class="getClass('/view')" href="#/view">Dashboard</a></li>
+          <li class="sidebar__subitem"><a data-ng-class="getClass('/view?view=liveHosts')" href="#/view?view=liveHosts">Hosts</a></li>
+          <li class="sidebar__subitem"><a data-ng-class="getClass('/view?view=liveServices')" href="#/view?view=liveServices">Services</a></li>
           <li class="sidebar__subitem"><a href="#">Networks parents</a></li>
         </ul>
       </li>
@@ -39,7 +39,7 @@
 
         <ul class="sidebar__sublist collapse in" id="reportsList">
           <li class="sidebar__subitem"><a href="#">State History</a></li>
-          <li class="sidebar__subitem"><a ng-class="getClass('/view?view=liveEvents')" href="#/view?view=liveEvents">Events</a></li>
+          <li class="sidebar__subitem"><a data-ng-class="getClass('/view?view=liveEvents')" href="#/view?view=liveEvents">Events</a></li>
           <li class="sidebar__subitem"><a href="#">Comments</a></li>
           <li class="sidebar__subitem"><a href="#">Downtimes</a></li>
         </ul>

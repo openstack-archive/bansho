@@ -3,7 +3,7 @@
 angular.module('bansho.host.services_list', [])
     .directive('banshoHostServicesList', function () {
         return {
-            restrict: 'E',
+            restrict: 'A',
             compile: function (scope, element, attrs) {
                 scope.host = attrs.host;
             },

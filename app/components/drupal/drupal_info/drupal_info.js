@@ -115,7 +115,7 @@ angular.module('bansho.drupal.info', [])
     .directive('banshoDrupalInfo', ['$http', '$compile', 'DrupalInfoConfig',
         function ($http, $compile, DrupalInfoConfig) {
         return {
-            restrict: 'E',
+            restrict: 'A',
             compile: function () {
                 return function (scope, element, attrs) {
                     var template = 'components/drupal/drupal_info/drupal_info.html',

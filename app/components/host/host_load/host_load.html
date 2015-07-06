@@ -5,7 +5,10 @@
     <tbody>
       <tr>
         <td>State</td>
-        <td><bansho-service-state-icon state="host.loadService.state"></bansho-service-state-icon> {{host.loadService.state}}</td>
+        <td>
+          <div data-bansho-service-state-icon data-state="host.loadService.state"></div>
+          {{host.loadService.state}}
+        </td>
       </tr>
       <tr>
         <td>Output</td>

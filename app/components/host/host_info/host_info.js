@@ -11,7 +11,7 @@ angular.module('bansho.host.info', [])
 
     .directive('banshoHostInfo', function () {
         return {
-            restrict: 'E',
+            restrict: 'A',
             templateUrl: 'components/host/host_info/host_info.html'
         };
     });

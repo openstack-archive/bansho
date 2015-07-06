@@ -8,7 +8,7 @@ angular.module('bansho.host.main', [])
 
     .directive('banshoHostMain', function () {
         return {
-            restrict: 'E',
+            restrict: 'A',
             compile: function (scope, element, attrs) {
                 scope.host = attrs.host;
             },

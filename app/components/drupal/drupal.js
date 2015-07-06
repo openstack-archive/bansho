@@ -12,13 +12,13 @@ angular.module('bansho.drupal', ['bansho.surveil'])
     .directive('banshoDrupal', ['$http', '$compile', 'surveilStatus', 'drupalConfig',
         function ($http, $compile, surveilStatus, drupalConfig) {
             return {
-                restrict: 'E',
+                restrict: 'A',
                 compile: function () {
                     return function (scope, element, attrs) {
                         var template = 'components/drupal/drupal.html';
 
                         if (!attrs.hostName) {
-                            throw new Error('<bansho-drupal> "host-name" attribute must be defined');
+                            throw new Error('<div data-bansho-drupal> "host-name" attribute must be defined');
                         }
 
                         drupalConfig.hostName = {};

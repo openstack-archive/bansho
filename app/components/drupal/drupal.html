@@ -1,55 +1,65 @@
-<article ng-controller="DrupalCtrl">
+<article data-ng-controller="DrupalCtrl">
   <h1 class="drupal__dashboard__title">{{drupal_id}}</h1>
 
-  <bansho-drupal-info host-name="{{hostName}}"
-                      plugin="drupal_status,drupal_jenkins,http_load,selenium"
-                      title="General informations"></bansho-drupal-info>
+  <div data-bansho-drupal-info
+    data-host-name="{{hostName}}"
+    data-plugin="drupal_status,drupal_jenkins,http_load,selenium"
+    data-title="General informations"></div>
 
-  <bansho-drupal-tile host-name="{{hostName}}"
-                      plugin="drupal_cache"
-                      title="Cache"
-                      warning="70"
-                      critical="40"></bansho-drupal-tile>
+  <div data-bansho-drupal-tile
+    data-host-name="{{hostName}}"
+    data-plugin="drupal_cache"
+    data-title="Cache"
+    data-warning="70"
+    data-critical="40"></div>
 
-  <bansho-drupal-tile host-name="{{hostName}}"
-                      plugin="drupal_cron"
-                      title="Cron"
-                      warning="70"
-                      critical="40"></bansho-drupal-tile>
+  <div data-bansho-drupal-tile
+    data-host-name="{{hostName}}"
+    data-plugin="drupal_cron"
+    data-title="Cron"
+    data-warning="70"
+    data-critical="40"></div>
 
-  <bansho-drupal-tile host-name="{{hostName}}"
-                      plugin="drupal_database"
-                      title="Database"
-                      warning="70"
-                      critical="40"></bansho-drupal-tile>
+  <div data-bansho-drupal-tile
+    data-host-name="{{hostName}}"
+    data-plugin="drupal_database"
+    data-title="Database"
+    data-warning="70"
+    data-critical="40"></div>
 
-  <bansho-drupal-tile host-name="{{hostName}}"
-                      plugin="drupal_codebase"
-                      title="Codebase"
-                      warning="70"
-                      critical="40"></bansho-drupal-tile>
+  <div data-bansho-drupal-tile
+    data-host-name="{{hostName}}"
+    data-plugin="drupal_codebase"
+    data-title="Codebase"
+    data-warning="70"
+    data-critical="40"></div>
 
-  <bansho-drupal-tile host-name="{{hostName}}"
-                      plugin="drupal_extensions"
-                      title="Extensions"
-                      warning="70"
-                      critical="40"></bansho-drupal-tile>
+  <div data-bansho-drupal-tile
+    data-host-name="{{hostName}}"
+    data-plugin="drupal_extensions"
+    data-title="Extensions"
+    data-warning="70"
+    data-critical="40"></div>
 
-  <bansho-drupal-tile host-name="{{hostName}}"
-                      plugin="drupal_logging"
-                      title="Logging"
-                      warning="70"
-                      critical="40"></bansho-drupal-tile>
+  <div data-bansho-drupal-tile
+    data-host-name="{{hostName}}"
+    data-plugin="drupal_logging"
+    data-title="Logging"
+    data-warning="70"
+    data-critical="40"></div>
 
-  <bansho-drupal-tile host-name="{{hostName}}"
-                      plugin="drupal_security"
-                      title="Security"
-                      warning="70"
-                      critical="40"></bansho-drupal-tile>
+  <div data-bansho-drupal-tile
+    data-host-name="{{hostName}}"
+    data-plugin="drupal_security"
+    data-title="Security"
+    data-warning="70"
+    data-critical="40"></div>
 
-  <bansho-drupal-tile host-name="{{hostName}}"
-                      plugin="drupal_views"
-                      title="Views"
-                      warning="70"
-                      critical="40"></bansho-drupal-tile>
+  <div data-bansho-drupal-tile
+    data-host-name="{{hostName}}"
+    data-plugin="drupal_views"
+    data-title="Views"
+    data-warning="70"
+    data-critical="40"></div>
+
 </article>

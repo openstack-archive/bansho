@@ -20,7 +20,7 @@ angular.module('bansho.tactical.top_alert_producers', ['ngRoute' ])
 
     .directive('banshoTopAlertProducers', function () {
         return {
-            restrict: 'E',
+            restrict: 'A',
             templateUrl: 'components/tactical/top_alert_producers/top_alert_producers.html'
         };
     });

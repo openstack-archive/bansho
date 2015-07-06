@@ -66,7 +66,7 @@ angular.module('bansho.drupal.tile', [])
     .directive('banshoDrupalTile', ['$http', '$compile', 'DrupalTileConfig',
         function ($http, $compile, DrupalTileConfig) {
         return {
-            restrict: 'E',
+            restrict: 'A',
             compile: function () {
                 return function (scope, element, attrs) {
                     var template = 'components/drupal/drupal_tile/drupal_tile.html',

@@ -1,4 +1,4 @@
-<table ng-controller="TacticalTopAlertProducers" class="table">
+<table data-ng-controller="TacticalTopAlertProducers" class="table">
   <thead>
     <tr>
       <th>Top alert producers</th>
@@ -6,7 +6,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="host in hosts">
+    <tr data-ng-repeat="host in hosts">
       <th>{{ host.host_name }}</th>
       <td class="state--error">{{ host.problems }}</td>
     </tr>

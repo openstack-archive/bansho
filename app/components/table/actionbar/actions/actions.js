@@ -4,7 +4,7 @@ angular.module('bansho.table.actionbar')
 
     .directive('banshoAcknowledgeForm', function () {
         return {
-            restrict: 'E',
+            restrict: 'A',
             templateUrl: 'components/table/actionbar/actions/acknowledge_form.html',
             scope: {
                 isShown: '='
@@ -47,7 +47,7 @@ angular.module('bansho.table.actionbar')
 
     .directive('banshoDowntimeForm', function () {
         return {
-            restrict: 'E',
+            restrict: 'A',
             templateUrl: 'components/table/actionbar/actions/downtime_form.html',
             scope: {
                 isShown: '='
@@ -89,7 +89,7 @@ angular.module('bansho.table.actionbar')
 
     .directive('banshoRecheckButton', function () {
         return {
-            restrict: 'E',
+            restrict: 'A',
             templateUrl: 'components/table/actionbar/actions/recheck_button.html',
             controller: 'banshoRecheckButtonCtrl'
         };

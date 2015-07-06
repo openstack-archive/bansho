@@ -3,7 +3,7 @@
 angular.module('bansho.host.load', [])
     .directive('banshoHostLoad', ['iframeUrl', function (iframeUrl) {
         return {
-            restrict: 'E',
+            restrict: 'A',
             controller: ['$scope', function ($scope, element, attrs) {
                 $scope.iframeUrl = iframeUrl.getIFrameUrl("metric_load1", $scope.host.config.host_name, "load");
             }],

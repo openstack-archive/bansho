@@ -8,7 +8,7 @@ angular.module('bansho.service.metrics', [])
 
     .directive('banshoServiceMetrics', function () {
         return {
-            restrict: 'E',
+            restrict: 'A',
             scope: {
               service: '=service'
             },
