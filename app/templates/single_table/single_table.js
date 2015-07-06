@@ -20,7 +20,6 @@ angular.module('bansho.view.singleTable', ['ngRoute',
             }
 
             $scope.tableConfig = new TableConfigObj(singleTableConfig[viewName].components[0].config);
-
             $scope.singleTableTitle = singleTableConfig[viewName].title;
             $scope.singleTableRefreshInterval = singleTableConfig[viewName].refreshInterval;
         }]);

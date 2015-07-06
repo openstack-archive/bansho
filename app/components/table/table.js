@@ -5,6 +5,10 @@ angular.module('bansho.table', ['bansho.surveil',
                                  'bansho.table.actionbar',
                                  'bansho.filters',
                                  'bansho.table.cell_status_host',
+                                 'bansho.table.cell_status_event_event_type',
+                                 'bansho.table.cell_status_event_output',
+                                 'bansho.table.cell_status_event_host_name',
+                                 'bansho.table.cell_status_event_service',
                                  'bansho.table.cell_status_duration',
                                  'bansho.table.cell_status_service_check',
                                  'bansho.table.cell_status_last_check',
@@ -201,6 +205,7 @@ angular.module('bansho.table', ['bansho.surveil',
         this.CellsName = config.cells.name.join();
         this.InputSource = config.inputSource;
         this.IsWrappable = config.isWrappable;
+        this.ContainsActionBar = config.containsActionBar;
         this.NoRepeatCell = config.noRepeatCell;
     })
 
