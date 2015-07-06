@@ -11,6 +11,7 @@ module.exports = function (grunt) {
         project: {
             app: 'app',
             assets: '<%= project.app %>/assets',
+            bower: '<%= project.app %>/bower_components',
             scss: '<%= project.assets %>/sass/app.scss',
             tmp: '.tmp',
             dist: 'dist'
@@ -62,7 +63,7 @@ module.exports = function (grunt) {
                         dest: '<%= project.dist %>/index.html'
                     }
                 ]
-            },
+            }
         },
 
         sass: {
@@ -140,6 +141,25 @@ module.exports = function (grunt) {
             }
         },
 
+        validation: {
+            options: {
+                reset: grunt.option('reset') || false,
+                stoponerror: false,
+                relaxerror: ['This interface to HTML5 document checking is deprecated.',
+                             'Element head is missing a required instance of child element title.',
+                             'Element img is missing required attribute src.',
+                             'Element bansho-host not allowed as child of element article in this context. (Suppressing further errors from this subtree.)',
+                             'Element bansho-drupal not allowed as child of element body in this context. (Suppressing further errors from this subtree.)'],
+                //'no document type declaration; will parse without validation'],
+                doctype: 'HTML5'
+            },
+            files: {
+                src: ['<%= project.app %>/**/*.html',
+                      '!<%= project.dist %>/**/*.html',
+                      '!<%= project.bower %>/**/*.html']
+            }
+        },
+
         watch: {
             development: {
                 files: [
@@ -174,6 +194,11 @@ module.exports = function (grunt) {
     grunt.registerTask('staging', [
         'production',
         'watch:development'
+    ]);
+
+    grunt.registerTask('review', [
+        'validation',
+        'jshint:all',
     ]);
 
     grunt.registerTask('production', [

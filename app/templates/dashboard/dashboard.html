@@ -1,4 +1,4 @@
-<article ng-controller="DashboardCtrl" id="tactical">
+<article data-ng-controller="DashboardCtrl" id="tactical">
   <header class="main__overview">
     <h2 class="main__overview__title">{{dashboardTactical[0].title}}</h2>
 
@@ -39,16 +39,16 @@
 
     <div class="tab-content">
       <div role="tabpanel" class="problems tab-pane active" id="openProblems">
-        <span ng-hide="nbHostOpenProblems == 0">
+        <span data-ng-hide="nbHostOpenProblems == 0">
           <header class="main__content__header clearfix">
             <h2 class="main__content__title">{{dashboardTables[0].title}}</h2>
             <p class="main__content__alert state--error">
               There
-              <ng-pluralize count="nbHostOpenProblems" when="{'0':'is', '1': 'is', 'other': 'are'}">
-              </ng-pluralize>
+              <data-ng-pluralize count="nbHostOpenProblems" when="{'0':'is', '1': 'is', 'other': 'are'}">
+              </data-ng-pluralize>
               are {{nbHostOpenProblems}} host
-              <ng-pluralize count="nbHostOpenProblems" when="{'0':'problem', '1': 'problem', 'other': 'problems'}">
-              </ng-pluralize>
+              <data-ng-pluralize count="nbHostOpenProblems" when="{'0':'problem', '1': 'problem', 'other': 'problems'}">
+              </data-ng-pluralize>
             </p>
           </header>
 
@@ -64,16 +64,16 @@
 
         </span>
 
-        <span ng-hide="nbServiceOpenProblems == 0">
+        <span data-ng-hide="nbServiceOpenProblems == 0">
           <header class="main__content__header clearfix">
             <h2 class="main__content__title">{{dashboardTables[1].title}}</h2>
             <p class="main__content__alert state--error">
               There
-              <ng-pluralize count="nbServiceOpenProblems" when="{'0':'is', '1': 'is', 'other': 'are'}">
-              </ng-pluralize>
+              <data-ng-pluralize count="nbServiceOpenProblems" when="{'0':'is', '1': 'is', 'other': 'are'}">
+              </data-ng-pluralize>
               {{nbServiceOpenProblems}} service
-              <ng-pluralize count="nbServiceOpenProblems" when="{'0':'problem', '1': 'problem', 'other': 'problems'}"/>
-              </ng-pluralize>
+              <data-ng-pluralize count="nbServiceOpenProblems" when="{'0':'problem', '1': 'problem', 'other': 'problems'}"/>
+              </data-ng-pluralize>
             </p>
           </header>
 
@@ -91,16 +91,16 @@
       </div>
 
       <div role="tabpanel" class="problems tab-pane" id="allProblems">
-        <span ng-hide="nbHostProblems == 0">
+        <span data-ng-hide="nbHostProblems == 0">
           <header class="main__content__header clearfix">
             <h2 class="main__content__title">{{dashboardTables[2].title}}</h2>
             <p class="main__content__alert state--error">
               There
-              <ng-pluralize count="nbHostProblems" when="{'0':'is', '1': 'is', 'other': 'are'}"/>
-              </ng-pluralize>
+              <data-ng-pluralize count="nbHostProblems" when="{'0':'is', '1': 'is', 'other': 'are'}"/>
+              </data-ng-pluralize>
               {{nbHostProblems}} host
-              <ng-pluralize count="nbHostProblems" when="{'0':'problem', '1': 'problem', 'other': 'problems'}"/>
-              </ng-pluralize>
+              <data-ng-pluralize count="nbHostProblems" when="{'0':'problem', '1': 'problem', 'other': 'problems'}"/>
+              </data-ng-pluralize>
             </p>
           </header>
 
@@ -114,16 +114,16 @@
                      table-id="2"></bansho-table>
         </span>
 
-        <span ng-hide="nbServiceProblems == 0">
+        <span data-ng-hide="nbServiceProblems == 0">
           <header class="main__content__header clearfix">
             <h2 class="main__content__title">{{dashboardTables[3].title}}</h2>
             <p class="main__content__alert state--error">
               There
-              <ng-pluralize count="nbServiceProblems" when="{'0':'is', '1': 'is', 'other': 'are'}"/>
-              </ng-pluralize>
+              <data-ng-pluralize count="nbServiceProblems" when="{'0':'is', '1': 'is', 'other': 'are'}"/>
+              </data-ng-pluralize>
               {{nbServiceProblems}} service
-              <ng-pluralize count="nbServiceProblems" when="{'0':'problem', '1': 'problem', 'other': 'problems'}"/>
-              </ng-pluralize>
+              <data-ng-pluralize count="nbServiceProblems" when="{'0':'problem', '1': 'problem', 'other': 'problems'}"/>
+              </data-ng-pluralize>
             </p>
           </header>
 

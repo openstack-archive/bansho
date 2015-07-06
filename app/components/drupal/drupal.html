@@ -1,21 +1,23 @@
-<article ng-controller="DrupalCtrl">
+<article data-ng-controller="DrupalCtrl">
   <h1 class="drupal__dashboard__title">{{drupal_id}}</h1>
 
-  <bansho-drupal-info host-name="{{hostName}}"
+  <bansho-drupal-info data-host-name="{{hostName}}"
                       plugin="drupal_status,drupal_jenkins,http_load,selenium"
                       title="General informations"></bansho-drupal-info>
 
-  <bansho-drupal-tile host-name="{{hostName}}"
-                      plugin="drupal_cache"
-                      title="Cache"
-                      warning="70"
-                      critical="40"></bansho-drupal-tile>
+  <div data-bansho-drupal-tile
+                      data-host-name="{{hostName}}"
+                      data-plugin="drupal_cache"
+                      data-title="Cache"
+                      data-warning="70"
+                      data-critical="40"></div>
 
-  <bansho-drupal-tile host-name="{{hostName}}"
-                      plugin="drupal_cron"
+  <div bansho-drupal-tile
+       data-host-name="{{hostName}}"
+       :               plugin="drupal_cron"
                       title="Cron"
                       warning="70"
-                      critical="40"></bansho-drupal-tile>
+                      critical="40"></div>
 
   <bansho-drupal-tile host-name="{{hostName}}"
                       plugin="drupal_database"

@@ -130,7 +130,7 @@ angular.module('bansho.table', ['bansho.surveil',
     .directive('banshoTable', ['$http', '$compile', 'tablesConfig', 'tableGlobalConfig',
         function ($http, $compile, tablesConfig, tableGlobalConfig) {
             return {
-                restrict: 'E',
+                restrict: 'A',
                 compile: function () {
                     return function (scope, element, attrs) {
 
