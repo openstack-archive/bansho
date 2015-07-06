@@ -62,7 +62,7 @@ module.exports = function (grunt) {
                         dest: '<%= project.dist %>/index.html'
                     }
                 ]
-            },
+            }
         },
 
         sass: {
@@ -140,6 +140,17 @@ module.exports = function (grunt) {
             }
         },
 
+        validation: {
+            options: {
+                reset: grunt.option('reset') || false,
+                stoponerror: false,
+                relaxerror: [] //ignores these errors
+            },
+            files: {
+                src: ['<%= project.app %>/**/*.html']
+            }
+        },
+
         watch: {
             development: {
                 files: [
@@ -167,6 +178,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('development', [
         'sass',
+        'validation',
         'jshint:all',
         'watch:development'
     ]);

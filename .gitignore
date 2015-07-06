@@ -19,4 +19,7 @@ out/
 dist/
 .tmp/
 
+validation-report.json
+validation-status.json
+
 app/components/config/developmentConfig.json
