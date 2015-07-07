@@ -153,6 +153,9 @@ angular.module('bansho.table', ['bansho.surveil',
                         conf.isWrappable = JSON.parse(attrs.isWrappable);
                         conf.noRepeatCell = attrs.noRepeatCell;
                         tableGlobalConfig.tableId = attrs.tableId;
+                        console.log(attrs.checkColumn)
+                        scope.checkColumn = scope.$eval(attrs.checkColumn);
+
 
                         if (!!attrs.refreshInterval) {
                             tableGlobalConfig.refreshInterval = parseInt(attrs.refreshInterval * 1000, 10);
@@ -206,6 +209,7 @@ angular.module('bansho.table', ['bansho.surveil',
         this.InputSource = config.inputSource;
         this.IsWrappable = config.isWrappable;
         this.ContainsActionBar = config.containsActionBar;
+        this.CheckColumn = config.checkColumn;
         this.NoRepeatCell = config.noRepeatCell;
     })
 
