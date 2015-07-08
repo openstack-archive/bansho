@@ -3,34 +3,79 @@
 'use strict';
 
 angular.module('bansho.surveil')
-    .service('surveilStatus', ['$http', '$q',
-        function ($http, $q) {
-            var getObjects = function (fields, filters, apiName) {
-                var query = {},
-                    transformations;
+    .constant('statusApiConfig', (function() {
+        var defaultApiConfig = {
+            webuiToApiMapping: {}
+        }
 
-                function appendTransform(defaults, transform) {
-                    // We can't guarantee that the default transformation is an array
-                    defaults = angular.isArray(defaults) ? defaults : [defaults];
+        return {
+            endpoints: {
+                hosts: {
+                    webuiToApiMapping: { 'host_state': 'state' }
+                },
+                events: defaultApiConfig,
+                services: defaultApiConfig
+            }
+        }
+    })())
 
-                    return defaults.concat(transform);
+    .service('surveilStatus', ['$http', '$q', 'statusApiConfig',
+        function ($http, $q, statusApiConfig) {
+            // host middleware
+            var getApiFields = function (data, webuiToApiMapping) {
+                var i = 0;
+
+                for (i = 0; i < data.length; i += 1) {
+                    angular.forEach(data[i], function (value, field) {
+                        if (field in conversions) {
+                            data[i][conversions[field]] = value;
+                            delete data[i][field];
+                        }
+                    });
                 }
 
-                if (apiName === 'hosts') {
-                    transformations = hostMiddleware;
-                } else if (apiName === 'services' || apiName === 'events') {
-                    transformations = apiMiddleware;
-                } else {
+                return data;
+            };
+
+            // hostquery transform
+            var getWebuiFields = function (data, webuiToApiMapping) {
+                var i,
+                    apiToWebuiMapping = {};
+
+                angular.forEach(webuiToApiMapping, function(api, webui) {
+                    apiToWebuiMapping[api] = webui;
+                });
+
+                for (i = 0; i < data.length; i += 1) {
+                    console.log(data[i])
+                    if (data[i] in apiToWebuiMapping) {
+                        console(apiToWebMapping[data[i]])
+                        data[i] = apiToWebMapping[data[i]];
+                    }
+                }
+            };
+
+            var appendTransform = function (defaults, transform) {
+                // We can't guarantee that the default transformation is an array
+                defaults = angular.isArray(defaults) ? defaults : [defaults];
+
+                return defaults.concat(transform);
+            };
+
+            var getObjects = function (webuiData, filters, apiName) {
+                var query = {},
+                    apiFields,
+                    transformations;
+
+                if (!statusApiConfig.endpoints[apiName]) {
                     throw new Error('getObjects : ' + apiName + ' API is not supported');
                 }
 
-                if (apiName === 'hosts') {
-                    hostQueryTransform(fields, filters);
+                // Create fields to query.
+                if (webuiData.length > 0) {
+                    query.fields = getApiFields(webuiData, statusApiConfig.endpoints[apiName].mappingWebuiApi);
                 }
-
-                if (fields.length > 0) {
-                    query.fields = fields;
-                }
+                transformations = getApiFields(webuiData, statusApiConfig.endpoints[apiName].mappingWebuiApi);
 
                 query.filters = JSON.stringify(filters);
 
@@ -38,7 +83,7 @@ angular.module('bansho.surveil')
                     url: 'surveil/v2/status/' + apiName + '/',
                     method: 'POST',
                     data: query,
-                    transformResponse: appendTransform($http.defaults.transformResponse, transformations),
+                    transformResponse: appendTransform($http.defaults.transformResponse, transformations)
                 }).error(function () {
                     throw new Error('getObjects : POST Request failed');
                 });
@@ -77,7 +122,7 @@ angular.module('bansho.surveil')
                 $http.get(url).success(function (metrics) {
                     var result = [];
                     for (var i = 0; i < metrics.length; i += 1) {
-                        if (metrics[i].metric_name.indexOf("metric_") === 0)  {
+                        if (metrics[i].metric_name.indexOf("metric_") === 0) {
                             result.push(metrics[i]);
                         }
                     }
@@ -259,59 +304,7 @@ angular.module('bansho.surveil')
                 return getMetricNames(host, service);
             };
 
-            var hostQueryTransform = function (fields, filters) {
-                var i,
-                    transformations = {
-                        'host_state': 'state',
-                    };
-
-                for (i = 0; i < fields.length; i += 1) {
-                    if (fields[i] in transformations) {
-                        fields[i] = transformations[fields[i]];
-                    }
-                }
-            };
-
             // Modify response object to conform to web ui
-            var hostMiddleware = function (data) {
-                var i = 0,
-                    conversions = {
-                        'state': 'host_state'
-                    };
-
-                for (i = 0; i < data.length; i += 1) {
-                    angular.forEach(data[i], function (value, field) {
-                        if (field in conversions) {
-                            data[i][conversions[field]] = value;
-                            delete data[i][field];
-                        }
-                    });
-                }
-
-                return data;
-            };
-
-            // Modify response object to conform to web ui
-            var apiMiddleware = function (data) {
-                var i = 0,
-                    conversions = {};
-
-                if (jQuery.isEmptyObject(conversions)) {
-                    return data;
-                }
-
-                for (i = 0; i < data.length; i += 1) {
-                    angular.forEach(data[i], function (value, field) {
-                        if (field in conversions) {
-                            data[i][conversions[field]] = value;
-                            delete data[i][field];
-                        }
-                    });
-                }
-
-                return data;
-            };
-
             var getTableData = function (fields, inputSourceConfig) {
                 var hostFields = [],
                     serviceFields = [],
@@ -326,11 +319,20 @@ angular.module('bansho.surveil')
                     i,
                     found = false;
 
-                if (inputSourceConfig.apiName === 'hosts') {
-                    this.getObjects(fields, inputSourceConfig.filters, 'hosts')
+                if (inputSourceConfig.apiName === 'hosts' ||
+                        inputSourceConfig.apiName === 'events') {
+                    var queryFields = [];
+
+                    // Queries events API
+                    if (inputSourceConfig.fields)
+                        queryFields = inputSourceConfig.fields;
+
+                    getObjects(queryFields, inputSourceConfig.filters, inputSourceConfig.apiName)
                         .success(function (data) {
+                            console.log(data)
                             responsePromise.resolve(data);
                         });
+
                     return responsePromise.promise;
                 } else if (inputSourceConfig.apiName === 'services') {
                     angular.forEach(fields, function (field) {
@@ -367,12 +369,13 @@ angular.module('bansho.surveil')
                     });
 
                     // Queries host and service APIs and merges responses
-                    getObjects(hostFields, hostFilters, 'hosts')
+                    this.getObjects(hostFields, hostFilters, 'hosts')
                         .success(function (hostData) {
                             getObjects(serviceFields, serviceFilters, 'services')
                                 .success(function (serviceData) {
                                     var hostDict = {};
 
+                                    console.log(hostData)
                                     // Create a host dict for performance
                                     for (i = 0; i < hostData.length; i += 1) {
                                         var host_name = hostData[i].host_name;
@@ -398,19 +401,6 @@ angular.module('bansho.surveil')
                         });
 
                     return responsePromise.promise;
-                } else if (inputSourceConfig.apiName === 'events') {
-                    var queryFields = [];
-
-                    // Queries events API
-                    if (inputSourceConfig.fields)
-                        queryFields = inputSourceConfig.fields;
-
-                    getObjects(queryFields, inputSourceConfig.filters, 'events')
-                        .success(function (eventsData) {
-                            responsePromise.resolve(eventsData);
-                        });
-
-                    return responsePromise.promise;
                 }
             };
 
@@ -418,9 +408,7 @@ angular.module('bansho.surveil')
                 getHost: getHost,
                 getObjects : getObjects,
                 getService : getService,
-                hostQueryTransform: hostQueryTransform,
                 getHostOpenProblems: getHostOpenProblems,
-                hostMiddleware: hostMiddleware,
                 getServiceProblems: getServiceProblems,
                 getServiceOpenProblems: getServiceOpenProblems,
                 getHostProblems: getHostProblems,
