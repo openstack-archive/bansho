@@ -268,13 +268,15 @@
                             "Event type",
                             "Output",
                             "Host name",
-                            "Service"
+                            "Service",
+                            "Time"
                         ],
                         "name": [
                             "status_event_event_type",
                             "status_event_output",
                             "status_event_host_name",
-                            "status_event_service"
+                            "status_event_service",
+                            "status_event_time"
                         ]
                     },
                     "inputSource": {
