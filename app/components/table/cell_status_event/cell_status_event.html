@@ -1,0 +1,13 @@
+<td data-ng-click="toggleExpansion()" class="data-table__event" data-ng-controller="CellStatusEventCtrl">
+  <p class="data-table__data">
+      <i data-ng-class="{'ico-down-dir': isExpanded, 'ico-right-dir': !isExpanded}"></i>
+      <span data-ng-show="isExpanded">
+          <span data-ng-show="entry.contact">Contact: {{entry.contact}}<br></span>
+          <span data-ng-show="entry.attempts">Attempts: {{entry.attempts}}<br></span>
+          <span data-ng-show="entry.notification_method">Notification method: {{entry.notification_method}}<br></span>
+          <span data-ng-show="entry.notification_type">Notification type {{entry.notification_type}}<br></span>
+          <span data-ng-show="entry.state">State: {{entry.state}}<br></span>
+          <span data-ng-show="entry.state_type">State type: {{entry.state_type}}<br></span>
+      </span>
+  </p>
+</td>
