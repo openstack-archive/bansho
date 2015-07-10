@@ -38,6 +38,7 @@
                             "status_host_status"
                         ]
                     },
+                    "headerFollow": false,
                     "inputSource": {
                         "service": "surveilStatus",
                         "config": {
@@ -78,6 +79,7 @@
                             "status_last_check"
                         ]
                     },
+                    "headerFollow": false,
                     "inputSource": {
                         "service": "surveilStatus",
                         "config": {
@@ -125,6 +127,7 @@
                             "status_host_status"
                         ]
                     },
+                    "headerFollow": false,
                     "inputSource": {
                         "service": "surveilStatus",
                         "config": {
@@ -161,6 +164,7 @@
                             "status_last_check"
                         ]
                     },
+                    "headerFollow": false,
                     "inputSource": {
                         "service": "surveilStatus",
                         "config": {
@@ -206,6 +210,7 @@
                             "status_host_status"
                         ]
                     },
+                    "headerFollow": true,
                     "inputSource": {
                         "service": "surveilStatus",
                         "config": {
@@ -244,6 +249,7 @@
                             "status_last_check"
                         ]
                     },
+                    "headerFollow": true,
                     "inputSource": {
                         "service": "surveilStatus",
                         "config": {
@@ -287,6 +293,7 @@
                             "status_event"
                         ]
                     },
+                    "headerFollow": true,
                     "inputSource": {
                         "service": "surveilStatus",
                         "config": {

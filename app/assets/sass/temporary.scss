@@ -302,6 +302,10 @@ div.ui-pnotify {
 
 // Action bar
 
+bansho-table-actionbar menu {
+    z-index: 988889;
+}
+
 input#filter__search {
     border: none;
     width: 100%;
