@@ -11,7 +11,7 @@ rebuild:
 interactive:
 	sudo docker run -p 8888:8888 --link surveil_surveil_1:surveil --link surveil_grafana_1:grafana -v $(shell pwd)/app:/opt/bansho/dist -e BANSHO_ENV=false -i -t --name bansho bansho bash
 
-daemon:
+daemon: remove
 	sudo docker run -p 8888:8888 --link surveil_surveil_1:surveil --link surveil_grafana_1:grafana -v $(shell pwd)/app:/opt/bansho/dist -e BANSHO_PROD=false -d -t --name bansho bansho
 	grunt development
 
@@ -19,7 +19,7 @@ drupal:
 	sudo docker run -p 8888:8888 --link drupalmonitoring_surveil_1:surveil -v $(shell pwd)/app:/opt/bansho/dist -e BANSHO_PROD=false -d -t --name bansho bansho
 	grunt development
 
-production:
+production: remove
 	sudo docker run -p 8888:8888 --link surveil_surveil_1:surveil --link surveil_grafana_1:grafana -d -t --name bansho bansho
 
 staging:
