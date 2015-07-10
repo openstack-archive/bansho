@@ -14,6 +14,9 @@ while getopts "H:U:P:p:g:" o; do
         P)
             INFLUXDB_PASS=${OPTARG}
            ;;
+        N)
+            INFLUXDB_NAME=${OPTARG}
+            ;;
         p)
             INFLUXDB_PORT=${OPTARG}
            ;;
@@ -22,6 +25,7 @@ while getopts "H:U:P:p:g:" o; do
            ;;
         *)
             usage
+            exit 1
             ;;
     esac
 done
