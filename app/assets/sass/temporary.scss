@@ -246,6 +246,11 @@ div.ui-pnotify {
 
 
 .login_page form#loginForm  label {
+    float: left;
+    width: 25%;
+    padding: 0.8em 0em;
+    margin: 10px 0px 0px 0px;
+
     .color-scheme--dark & {
         color:$_color_omega;
     }
@@ -255,8 +260,8 @@ div.ui-pnotify {
 }
 
 .login_page form#loginForm input {
-    float: inherit;
-    width: 500px;
+    float: right;
+    width: 65%;
     border: none;
     padding: 0.8em;
     margin: 10px 0px 0px 0px;
@@ -271,6 +276,10 @@ div.ui-pnotify {
     }
 }
 
+.login_page form#loginForm div.form-group {
+    clear: both;
+    height: 40px;
+}
 
 .login_page form#loginForm .md-raised {
     .color-scheme--dark & {
@@ -285,7 +294,6 @@ div.ui-pnotify {
 .login_page form#loginForm .md-button {
     margin-right: 0px;
 }
-
 
 .login_page form#loginForm #submitButton {
     padding-top: 10px;
