@@ -22,6 +22,7 @@
                 "type": "table",
                 "config": {
                     "title": "Open Hosts problems",
+                    "tableId": 0,
                     "cells": {
                         "text": [
                             "Host",
