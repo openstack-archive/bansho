@@ -312,7 +312,7 @@ angular.module('bansho.surveil')
                 return data;
             };
 
-            var getTableData = function (fields, inputSourceConfig) {
+            var getTableData = function (fields, inputSourceConfig, filters) {
                 var hostFields = [],
                     serviceFields = [],
                     hostFilters = {},

@@ -25,7 +25,7 @@
   </thead>
 
   <tbody class="{{entry.child_class}}" ng-repeat="(groupByKey, groupByItems) in entries | groupBy:'host_name'">
-    <tr ng-repeat="entry in groupByItems | actionbarSelectFilter:actionbarFilters.activeFilter | filter:actionbarFilters.searchFilter | noRepeat:this | wrappableStyle:this">
+    <tr ng-repeat="entry in groupByItems | noRepeat:this | wrappableStyle:this">
       <td data-ng-show="checkColumn">
         <md-checkbox aria-label='Check' ng-model="entry.is_checked"></md-checkbox>
       </td>
