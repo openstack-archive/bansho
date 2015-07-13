@@ -30,10 +30,9 @@ angular.module('bansho', [
     }])
 
     // Reinitialise objects on url change
-    .run(['$rootScope', 'promisesManager', 'reinitTables', 'reinitDrupalTiles', 'reinitDrupalInfo',
-        function ($rootScope, promisesManager, reinitTables, reinitDrupalTiles, reinitDrupalInfo) {
+    .run(['$rootScope', 'promisesManager', 'reinitDrupalTiles', 'reinitDrupalInfo',
+        function ($rootScope, promisesManager, reinitDrupalTiles, reinitDrupalInfo) {
             $rootScope.$on('$locationChangeStart', function () {
-                reinitTables();
                 reinitDrupalTiles();
                 reinitDrupalInfo();
                 promisesManager.clearAllPromises();

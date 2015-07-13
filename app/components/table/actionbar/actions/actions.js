@@ -14,13 +14,13 @@ angular.module('bansho.table.actionbar')
     })
 
     .controller('banshoAcknowledgeFormCtrl',
-        ['$scope', '$filter', 'tablesConfig', 'actionbarFilters', 'surveilActions', 'notifications',
-        function ($scope, $filter, tablesConfig, actionbarFilters, surveilActions, notifications) {
+        ['$scope', '$filter', 'surveilActions', 'notifications',
+        function ($scope, $filter, surveilActions, notifications) {
 
         $scope.acknowledgeProblems = function () {
             angular.forEach(tablesConfig, function (table) {
-                var entries = $filter('filter')(table.entries,
-                    actionbarFilters.searchFilter);
+                var entries = table.entries; // $filter('filter')(table.entries,
+//                    actionbarFilters.searchFilter);
                 table.isCheckAll = false;
 
                 angular.forEach(entries, function (entry) {
@@ -57,12 +57,12 @@ angular.module('bansho.table.actionbar')
     })
 
     .controller('banshoDowntimeFormCtrl',
-        ['$scope', '$filter', 'tablesConfig', 'actionbarFilters', 'surveilActions', 'notifications',
-        function ($scope, $filter, tablesConfig, actionbarFilters, surveilActions, notifications) {
+        ['$scope', '$filter', 'surveilActions', 'notifications',
+        function ($scope, $filter, surveilActions, notifications) {
 
         $scope.sendDowntime = function () {
             angular.forEach(tablesConfig, function (table) {
-                var entries = $filter('filter')(table.entries, actionbarFilters.searchFilter);
+                var entries = table.entries;  //TODO $filter('filter')(table.entries, actionbarFilters.searchFilter);
                 table.isCheckAll = false;
 
                 angular.forEach(entries, function (entry) {
@@ -96,12 +96,12 @@ angular.module('bansho.table.actionbar')
     })
 
     .controller('banshoRecheckButtonCtrl',
-        ['$scope', '$filter', 'tablesConfig', 'actionbarFilters', 'surveilActions', 'notifications',
-        function ($scope, $filter, tablesConfig, actionbarFilters, surveilActions, notifications) {
+        ['$scope', '$filter', 'surveilActions', 'notifications',
+        function ($scope, $filter, surveilActions, notifications) {
 
         $scope.sendRecheck = function () {
             angular.forEach(tablesConfig, function (table) {
-                var entries = $filter('filter')(table.entries, actionbarFilters.searchFilter);
+                var entries = table.entries; //$filter('filter')(table.entries, actionbarFilters.searchFilter);
                 table.isCheckAll = false;
 
                 angular.forEach(entries, function (entry) {

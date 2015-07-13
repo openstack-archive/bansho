@@ -10,8 +10,11 @@
       </div>
     </div>
 
-    <bansho-table-actionbar data-ng-if="tableConfig.ContainsActionBar"></bansho-table-actionbar>
-
+    <bansho-table-actionbar-events data-ng-if="true" data-table-id="0" ></bansho-table-actionbar-events>
+      <h1>test</h1>
+    <bansho-table-actionbar data-ng-if="true" data-table-id="0" ></bansho-table-actionbar>
+      <h1>test</h1>
+<!--tableConfig.ContainsActionBar"-->
     <bansho-table cells-name="{{tableConfig.CellsName}}"
                cells-text="{{tableConfig.CellsText}}"
                input-source="{{tableConfig.InputSource}}"
