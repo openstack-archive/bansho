@@ -19,7 +19,7 @@ drupal:
 	sudo docker run -p 8888:8888 --link drupalmonitoring_surveil_1:surveil -v $(shell pwd)/app:/opt/bansho/dist -e BANSHO_PROD=false -d -t --name bansho bansho
 	grunt development
 
-production: remove
+production:
 	sudo docker run -p 8888:8888 --link surveil_surveil_1:surveil --link surveil_grafana_1:grafana -d -t --name bansho bansho
 
 staging:
