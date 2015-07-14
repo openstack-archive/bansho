@@ -1,57 +1,25 @@
 'use strict';
 
 angular.module('bansho.table.actionbar', ['bansho.table', 'bansho.surveil', 'bansho.notifications'])
-    .directive('banshoTableActionbar', function () {
+    .directive('banshoActionbar', function ($compile) {
         return {
             restrict: 'E',
             scope: {
                 tableId: '='
             },
-            controller: ['$scope', 'tables', function ($scope, tables) {
-                $scope.isDowntimeShown = false;
-                $scope.isAcknowledgeShown = false;
+            templateUrl: 'components/table/actionbar/actionbar.html',
+            compile: function () {
+                return function (scope, element, attrs) {
+                    scope.components = attrs.components.split(',');
+                    if (angular.isArray(scope.components)) {
+                        angular.forEach(scope.components, function (component) {
+                            var banshoDirective = "<bansho-actionbar-" + component + " table-id='[" + scope.tableId + "]'" + "/>";
 
-                $scope.switchDowntimeForm = function () {
-                    $scope.isAcknowledgeShown = false;
-                    $scope.isDowntimeShown = !$scope.isDowntimeShown;
+                            element.append(banshoDirective);
+                            $compile(element.contents())(scope);
+                        });
+                    }
                 };
-
-                $scope.switchAcknowledgeForm = function () {
-                    $scope.isDowntimeShown = false;
-                    $scope.isAcknowledgeShown = !$scope.isAcknowledgeShown;
-                };
-
-                $scope.actionbarFilters = [{
-                        text: "All",
-                        name: "all"
-                    },
-                    {
-                        text: "All OK",
-                        name: "all_ok"
-                    },
-                    {
-                        text: "All Acknowledged",
-                        name: "all_acknowledged"
-                    },
-                    {
-                        text: "All in Downtime",
-                        name: "all_downtime"
-                    }];
-
-                $scope.activeFilter = $scope.actionbarFilters[0];
-                $scope.activateFilter = function (item) {
-                    $scope.activeFilter = $scope.actionbarFilters[item];
-                    angular.forEach($scope.tableId, function (tableId) {
-                        console.log("not yet implemented");
-                    });
-                };
-
-                $scope.searchFilterChange = function () {
-                    angular.forEach($scope.tableId, function (tableId) {
-                        tables.setSearchFilter(tableId, $scope.searchFilter);
-                    });
-                };
-            }],
-            templateUrl: 'components/table/actionbar/actionbar.html'
+            }
         };
     });
