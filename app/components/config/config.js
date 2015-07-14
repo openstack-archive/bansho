@@ -67,14 +67,8 @@ angular.module('bansho.config', [])
             return developmentConfig;
         };
 
-        this.loadByTemplate = function (templateName, destination) {
-            var viewsConfig = config.data;
-
-            angular.forEach(viewsConfig, function (conf, view) {
-                if (conf.template === templateName) {
-                    destination[view] = conf;
-                }
-            });
+        this.getConfigData = function (templateName) {
+            return config.data[templateName];
         };
 
         this.readConfig = function () {
