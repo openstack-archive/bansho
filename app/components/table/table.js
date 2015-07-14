@@ -144,16 +144,14 @@ angular.module('bansho.table', ['bansho.surveil',
                 },
                 compile: function () {
                     return function (scope, element, attrs) {
-
                         var template = 'components/table/table.html',
-                            conf;
+                            conf = {};
 
                         if (!attrs.cellsText || !attrs.cellsName || !attrs.inputSource || !attrs.isWrappable) {
                             throw new Error('<bansho-table> "cells-text", "cells-name", "inputSource" and "is-wrappable" attributes must be defined');
                         }
 
                         // Create table configuration
-                        conf = {};
                         conf.cells = { 'text': [], 'name': [] };
                         conf.cells.text = attrs.cellsText.split(',');
                         conf.cells.name = attrs.cellsName.split(',');
@@ -166,7 +164,6 @@ angular.module('bansho.table', ['bansho.surveil',
 
                         tables.addTable(scope.tableId, conf);
 
-                        //tableGlobalConfig.tableId = attrs.tableId;
                         scope.checkColumn = scope.$eval(attrs.checkColumn);
 
                         if (!!attrs.refreshInterval) {
@@ -207,6 +204,7 @@ angular.module('bansho.table', ['bansho.surveil',
 
     .value('TableConfigObj', function (config) {
         this.title = config.title;
+        this.tableId = config.tableId;
         this.CellsText = config.cells.text.join();
         this.CellsName = config.cells.name.join();
         this.InputSource = config.inputSource;

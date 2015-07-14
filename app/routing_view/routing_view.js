@@ -18,10 +18,9 @@ angular.module('bansho.view', ['ngRoute',
         });
     }])
 
-    .controller('ViewCtrl', ['$scope', '$rootScope',  '$location', '$routeParams', '$window', '$timeout', 'viewsTemplate', 'loadConfig', 'authService', 'configManager',
-        function ($scope, $rootScope, $location, $routeParams, $window, $timeout, viewsTemplate, loadConfig, authService, configManager) {
-            var templateName,
-                templateUrl;
+    .controller('ViewCtrl', ['$scope', '$rootScope',  '$location', '$routeParams', '$window', '$timeout', 'viewsTemplate', 'loadConfig',
+        function ($scope, $rootScope, $location, $routeParams, $window, $timeout, viewsTemplate, loadConfig) {
+            var templateName;
 
             if (!$rootScope.isAuthenticated) {
                 $location.path('/login');
