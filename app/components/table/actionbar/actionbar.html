@@ -1,90 +1,10 @@
 <menu class="filters">
     <ul class="filters__list clearfix">
-        <li class="filters__item filters__item--problems">
-        <button class="filters__button"
-            type="button"
-            data-toggle="collapse"
-            data-target="#filtersProblems"
-            aria-expanded="false"
-            aria-controls="filtersProblems">
-            <span>{{activeFilter.text}}</span>
-            <i class="ico-down-dir"></i>
-        </button>
-
-        <div class="filters__panel collapse" id="filtersProblems">
-            <ul class="filters__sublist">
-                <li class="filters__subitem" ng-repeat="actionbarFilter in actionbarFilters" ng-click="activateFilter($index)">
-                <a class="filters__link state--current" ng-if="actionbarFilter === activeFilter">{{actionbarFilter.text}}</a>
-                <a class="filters__link" ng-if="actionbarFilter !== activeFilter">{{actionbarFilter.text}}</a>
-                </li>
-            </ul>
-        </div>
-        </li>
-        <li class="filters__item filters__item--recheck">
-        <bansho-recheck-button></bansho-recheck-button>
-        </li>
-        <li class="filters__item filters__item--acknowledge" data-mover="true">
-        <button class="filters__button" type="button" ng-click="switchAcknowledgeForm()">
-            <span class="visuallyhidden">Acknowledge</span>
-            <i class="ico-thumbs-up"></i>
-        </button>
-        </li>
-        <li class="filters__item filters__item--downtime" data-mover="true">
-        <button class="filters__button" type="button" ng-click="switchDowntimeForm()">
-            <span class="visuallyhidden">Downtime</span>
-            <i class="ico-clock"></i>
-        </button>
-        </li>
-        <li class="filters__item filters__item--more clearfix">
-        <button class="filters__button"
-            type="button"
-            data-toggle="collapse"
-            data-target="#filtersMore"
-            aria-expanded="false"
-            aria-controls="filtersMore">
-            <span>More</span>
-            <i class="ico-down-dir"></i>
-        </button>
-
-        <div class="filters__panel collapse" id="filtersMore">
-            <ul class="filters__sublist">
-                <li class="filters__subitem">
-                <a class="filters__link" href="#">More I</a>
-                </li>
-                <li class="filters__subitem">
-                <a class="filters__link" href="#">More II</a>
-                </li>
-                <li class="filters__subitem">
-                <a class="filters__link" href="#">More III</a>
-                </li>
-            </ul>
-        </div>
-        </li>
-        <li class="filters__item clearfix">
-        <input id="filter__search" type="search" placeholder="Filter hosts, services, ..." ng-model="searchFilter" data-ng-change="searchFilterChange()"/>
-        </li>
-        <li class="filters__item filters__item--settings">
-        <button class="filters__button"
-            type="button"
-            data-toggle="collapse"
-            data-target="#filtersSettings"
-            aria-expanded="false"
-            aria-controls="filtersSettings">
-            <span class="visuallyhidden">Filters Settings</span>
-            <i class="ico-cog"></i>
-        </button>
-
-        <div class="filters__panel collapse" id="filtersSettings">
-            <ul class="filters__sublist">
-                <li>...</li>
-                <li>...</li>
-                <li>...</li>
-            </ul>
-        </div>
-        </li>
+        <bansho-filter table-id="tableId"></bansho-filter>
+        <bansho-acknowledge table-id="tableId"></bansho-acknowledge>
+        <bansho-downtime table-id="tableId"></bansho-downtime>
+        <bansho-recheck table-id="tableId"></bansho-recheck>
+        <bansho-more table-id="tableId"></bansho-more>
+        <bansho-search-filter table-id="tableId"></bansho-search-filter>
     </ul>
-
-    <bansho-acknowledge-form ng-show="isAcknowledgeShown" is-shown="isAcknowledgeShown"> </bansho-acknowledge-form>
-
-    <bansho-downtime-form ng-show="isDowntimeShown" is-shown="isDowntimeShown"> </bansho-downtime-form>
 </menu>

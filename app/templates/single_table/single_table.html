@@ -10,7 +10,7 @@
       </div>
     </div>
 
-    <bansho-table-actionbar data-ng-if="tableConfig.ContainsActionBar" data-table-id="0" ></bansho-table-actionbar>
+    <bansho-table-actionbar data-ng-if="tableConfig.ContainsActionBar" data-table-id="[0]" ></bansho-table-actionbar>
 
     <bansho-table cells-name="{{tableConfig.CellsName}}"
                cells-text="{{tableConfig.CellsText}}"
@@ -21,7 +21,7 @@
                no-repeat-cell="{{tableConfig.NoRepeatCell}}"
                header-follow="{{tableConfig.HeaderFollow}}"
                refresh-interval="{{singleTableRefreshInterval}}"
-               table-id="0"></bansho-table>
+               table-id="{{tableConfig.tableId}}"></bansho-table>
 
   </section>
 </article>
