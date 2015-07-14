@@ -8,6 +8,27 @@
         "template": "dashboard",
         "components": [
             {
+                "type": "actionbar",
+                "config": {
+                    "components": [
+                        "filter",
+                        "acknowledge",
+                        "downtime",
+                        "recheck",
+                        "more",
+                        "search-filter"
+                    ],
+                    "tableId": [
+                        0,
+                        1,
+                        2,
+                        3
+                    ]
+                }
+            }
+        ],
+        "extra_components": [
+            {
                 "type": "tactical",
                 "config": {
                     "title": "Tactical Overview",
@@ -188,12 +209,27 @@
     "liveHosts": {
         "title": "Hosts",
         "refreshInterval": 30,
-        "template": "single_table",
+        "template": "tables",
         "components": [
+            {
+                "type": "actionbar",
+                "config": {
+                    "components": [
+                        "filter",
+                        "acknowledge",
+                        "downtime",
+                        "recheck",
+                        "more",
+                        "search-filter"
+                    ],
+                    "tableId": [0]
+                }
+            },
             {
                 "type": "table",
                 "config": {
                     "title": "Hosts",
+                    "tableId": 0,
                     "cells": {
                         "text": [
                             "Host",
@@ -229,12 +265,27 @@
     "liveServices": {
         "title": "Services",
         "refreshInterval": 30,
-        "template": "single_table",
+        "template": "tables",
         "components": [
+            {
+                "type": "actionbar",
+                "config": {
+                    "components": [
+                        "filter",
+                        "acknowledge",
+                        "downtime",
+                        "recheck",
+                        "more",
+                        "search-filter"
+                    ],
+                    "tableId": [0]
+                }
+            },
             {
                 "type": "table",
                 "config": {
                     "title": "Services",
+                    "tableId": 0,
                     "cells": {
                         "text": [
                             "Host",
@@ -249,7 +300,6 @@
                             "status_last_check"
                         ]
                     },
-                    "headerFollow": true,
                     "inputSource": {
                         "service": "surveilStatus",
                         "config": {
@@ -259,9 +309,9 @@
                     },
                     "isWrappable": false,
                     "noRepeatCell": "host",
-                    "checkColumn": true,
-                    "containsActionBar": true
-
+                    "headerFollow": true,
+                    "containsActionBar": true,
+                    "checkColumn": true
                 }
             }
         ]
@@ -269,12 +319,24 @@
     "liveEvents": {
         "title": "Events",
         "refreshInterval": 30,
-        "template": "single_table",
+        "template": "tables",
         "components": [
+            {
+                "type": "actionbar",
+                "config": {
+                    "components": [
+                        "filter",
+                        "more",
+                        "search-filter"
+                    ],
+                    "tableId": [0]
+                }
+            },
             {
                 "type": "table",
                 "config": {
                     "title": "Hosts",
+                    "tableId": 0,
                     "cells": {
                         "text": [
                             "Event type",
