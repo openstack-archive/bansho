@@ -215,12 +215,48 @@
                 "type": "actionbar",
                 "config": {
                     "components": [
-                        "filter",
-                        "acknowledge",
-                        "downtime",
-                        "recheck",
-                        "more",
-                        "search-filter"
+                        {
+                            "type": "filter",
+                            "components": {
+                                "filters": [
+                                    {
+                                        "name": "All",
+                                        "filter": {
+                                            "isnot": {
+                                                "state": [
+                                                    "OK"
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "All OK",
+                                        "filter": {
+                                            "isnot": {
+                                                "state": [
+                                                    "OK"
+                                                ]
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "acknowledge"
+                        },
+                        {
+                            "type": "downtime"
+                        },
+                        {
+                            "type": "recheck"
+                        },
+                        {
+                            "type": "more"
+                        },
+                        {
+                            "type": "search-filter"
+                        }
                     ],
                     "tableId": [0]
                 }
