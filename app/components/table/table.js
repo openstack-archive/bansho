@@ -40,19 +40,22 @@ angular.module('bansho.table', ['bansho.surveil',
             filteredData[tableId] = $filter('filter')(data[tableId], config[tableId].searchFilter);
         }
 
-        return {
-            refreshTableData: function (tableId) {
-                var promise = inputSourceServices.surveilStatus.getTableData(
-                        config[tableId].requestFields, config[tableId].inputSource.config);
-                promise.then(function (newData) {
-                    data[tableId] = newData;
+        function refreshTableData (tableId) {
+            console.log('tat')
+            var promise = inputSourceServices.surveilStatus.getTableData(
+                config[tableId].requestFields, config[tableId].inputSource.config);
+            promise.then(function (newData) {
+                data[tableId] = newData;
                     config[tableId].isCheckAll = false;
                     filterData(tableId);
                     notifyDataChanged(tableId);
                 }, function (error) {
                     throw new Error('getTableData : Query failed' + error);
                 });
-            },
+        }
+
+        return {
+            refreshTableData: refreshTableData,
             addTable: function (tableId, conf) {
                 config[tableId] = conf;
                 config[tableId].requestFields = [];
@@ -93,6 +96,10 @@ angular.module('bansho.table', ['bansho.surveil',
                 config[tableId].searchFilter = searchFilter;
                 filterData(tableId);
                 notifyDataChanged(tableId);
+            },
+            setQueryFilter: function (tableId, queryFilter) {
+                config[tableId].queryFilter = queryFilter;
+                refreshTableData(tableId);
             }
         };
     }])

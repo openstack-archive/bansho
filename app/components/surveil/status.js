@@ -5,7 +5,7 @@
 angular.module('bansho.surveil')
     .service('surveilStatus', ['$http', '$q',
         function ($http, $q) {
-            var getObjects = function (fields, filters, apiName) {
+            var getObjects = function (fields, filters, apiName, queryFilter) {
                 var query = {},
                     transformations;
 
@@ -312,6 +312,12 @@ angular.module('bansho.surveil')
                 return data;
             };
 
+            var createSurveilQuery = function (fields, filters, ) {
+
+            }
+            var getData = function () {
+
+            }
             var getTableData = function (fields, inputSourceConfig) {
                 var hostFields = [],
                     serviceFields = [],

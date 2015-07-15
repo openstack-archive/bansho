@@ -5,33 +5,22 @@ angular.module('bansho.table.actionbar')
         return {
             restrict: 'EA',
             scope: {
-                'tableId': '='
+                "tableId": '='
             },
             templateUrl: 'components/table/actionbar/component_filter/filter.html',
-            controller: ['$scope', 'tables', function ($scope, tables) {
-                $scope.possibleFilters = [
-                    {
-                        text: "All",
-                        name: "all"
-                    },
-                    {
-                        text: "All OK",
-                        name: "all_ok"
-                    },
-                    {
-                        text: "All Acknowledged",
-                        name: "all_acknowledged"
-                    },
-                    {
-                        text: "All in Downtime",
-                        name: "all_downtime"
-                    }];
+            compile: function () {
+                return function (scope, element, attrs) {
+                    attrs.components = JSON.parse(attrs.components);
+                }
+            },
+            controller: ['$scope', '$attrs', 'tables', function ($scope, $attrs, tables) {
+                $scope.filters = JSON.parse($attrs.components).filters;
 
-                $scope.activeFilter = $scope.possibleFilters[0];
+                $scope.activeFilter = $scope.filters[0];
                 $scope.activateFilter = function (item) {
-                    $scope.activeFilter = $scope.possibleFilters[item];
+                    $scope.activeFilter = $scope.filters[item];
                     angular.forEach($scope.tableId, function (tableId) {
-                        console.log("not yet implemented");
+                        tables.setQueryFilter(tableId, $scope.activeFilter.filter)
                     });
                 };
             }]

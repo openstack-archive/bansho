@@ -10,10 +10,10 @@ angular.module('bansho.table.actionbar', ['bansho.table', 'bansho.surveil', 'ban
             templateUrl: 'components/table/actionbar/actionbar.html',
             compile: function () {
                 return function (scope, element, attrs) {
-                    scope.components = attrs.components.split(',');
+                    scope.components = JSON.parse(attrs.components);
                     if (angular.isArray(scope.components)) {
                         angular.forEach(scope.components, function (component) {
-                            var banshoDirective = "<bansho-actionbar-" + component + " table-id='[" + scope.tableId + "]'" + "/>";
+                            var banshoDirective = "<bansho-actionbar-" + component.type + " table-id='[" + scope.tableId + "]' components='" + JSON.stringify(component.components) + "' />";
 
                             element.append(banshoDirective);
                             $compile(element.contents())(scope);

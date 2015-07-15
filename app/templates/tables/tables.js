@@ -33,7 +33,7 @@ angular.module('bansho.view.singleTable', ['ngRoute',
 
                         if (component.type === "actionbar") {
                             banshoDirective +=
-                                " components='" + config.components + "'";
+                                " components='" + JSON.stringify(config.components) + "'";
                         } else if (component.type === "table") {
                             banshoDirective +=
                                 " cells-name='" + config.cells.name + "'" +

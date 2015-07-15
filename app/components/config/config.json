@@ -214,15 +214,56 @@
             {
                 "type": "actionbar",
                 "config": {
+                    "tableId": [0],
                     "components": [
-                        "filter",
-                        "acknowledge",
-                        "downtime",
-                        "recheck",
-                        "more",
-                        "search-filter"
-                    ],
-                    "tableId": [0]
+                        {
+                            "type": "filter",
+                            "components": {
+                                "filters": [
+                                    {
+                                        "name": "All",
+                                        "filter": {
+                                            "isnot": {
+                                                "state": [
+                                                    "OK"
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "All OK",
+                                        "filter": {
+                                            "isnot": {
+                                                "state": [
+                                                    "OK"
+                                                ]
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "acknowledge",
+                            "components": {}
+                        },
+                        {
+                            "type": "downtime",
+                            "components": {}
+                        },
+                        {
+                            "type": "recheck",
+                            "components": {}
+                        },
+                        {
+                            "type": "more",
+                            "components": {}
+                        },
+                        {
+                            "type": "search-filter",
+                            "components": {}
+                        }
+                    ]
                 }
             },
             {
