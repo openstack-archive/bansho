@@ -9,29 +9,25 @@ angular.module('bansho.view.dashboard', ['ngRoute',
                                          'bansho.surveil'
                                         ])
 
-    .value('dashboardConfig', {})
-
-    .controller('DashboardCtrl', ['$scope', '$routeParams', '$interval', 'configManager', 'dashboardConfig', 'TableConfigObj', 'TacticalConfigObj', 'surveilStatus', 'promisesManager',
-        function ($scope, $routeParams, $interval, configManager, dashboardConfig, TableConfigObj, TacticalConfigObj, surveilStatus, promisesManager) {
+    .controller('DashboardCtrl', ['$scope', '$routeParams', '$interval', 'configManager', 'TableConfigObj', 'TacticalConfigObj', 'surveilStatus', 'promisesManager',
+        function ($scope, $routeParams, $interval, configManager, TableConfigObj, TacticalConfigObj, surveilStatus, promisesManager) {
             var components = [],
                 component,
                 config,
                 viewName = $scope.viewName,
+                pageConfig = configManager.getConfigData(viewName),
                 i = 0,
                 getData;
 
-            if (jQuery.isEmptyObject(dashboardConfig)) {
-                configManager.loadByTemplate('dashboard', dashboardConfig);
-            }
-
-            $scope.dashboardTitle = dashboardConfig[viewName].title;
-            $scope.dashboardTemplate = dashboardConfig[viewName].template;
-            $scope.dashboardRefreshInterval = dashboardConfig[viewName].refreshInterval;
+            $scope.dashboardTitle = pageConfig.title;
+            $scope.dashboardTemplate = pageConfig.template;
+            $scope.dashboardRefreshInterval = pageConfig.refreshInterval;
 
             $scope.dashboardTactical = [];
             $scope.dashboardTables = [];
 
-            components = dashboardConfig[viewName].components;
+            $scope.components = pageConfig.components;
+            components = pageConfig.extra_components;
 
             for (i = 0; i < components.length; i += 1) {
                 component = components[i];
