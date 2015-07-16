@@ -1,0 +1,8 @@
+Verified+2: Jenkins
+Code-Review+2: Vincent Fournier <vincent.fournier@savoirfairelinux.com>
+Workflow+1: Vincent Fournier <vincent.fournier@savoirfairelinux.com>
+Submitted-by: Jenkins
+Submitted-at: Thu, 16 Jul 2015 19:05:43 +0000
+Reviewed-on: https://review.openstack.org/202672
+Project: stackforge/bansho
+Branch: refs/heads/master
