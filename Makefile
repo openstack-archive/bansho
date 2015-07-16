@@ -30,4 +30,4 @@ kill:
 	sudo docker kill bansho
 
 remove:
-	sudo docker rm -f bansho
+	- sudo docker rm -f bansho
