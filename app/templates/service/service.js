@@ -2,13 +2,17 @@
 
 angular.module("bansho.view.service", [ "bansho.surveil" ])
 
-    .controller("ServiceViewCtrl", [ "$scope", "$routeParams",
-        function ($scope, $routeParams) {
+    .controller("ServiceViewCtrl", ['$scope', '$routeParams', 'configManager', 'pageParams',
+        function ($scope, $routeParams, configManager, pageParams) {
+            var host_name = $routeParams.host_name,
+                service_description = $routeParams.description;
 
-            if (!$routeParams.host_name || !$routeParams.description) {
+            $scope.components = configManager.getConfigData($scope.viewName).components;
+
+            if (!host_name || !service_description) {
                 throw new Error("ERROR :'host_name' and 'description' GET parameters must be set");
+            } else {
+                pageParams.host_name = host_name;
+                pageParams.service_description = service_description;
             }
-
-            $scope.hostName = $routeParams.host_name;
-            $scope.description = $routeParams.description;
         }]);
