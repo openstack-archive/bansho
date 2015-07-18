@@ -1,0 +1,239 @@
+{
+    "filters": {
+        "allHostOpenProblems": {
+            "name": "Open hosts problems",
+            "filter": {
+                "hosts": {
+                    "is": {
+                        "state": [
+                            "DOWN",
+                            "UNREACHABLE"
+                        ],
+                        "acknowledged": [
+                            false
+                        ]
+                    }
+                }
+            }
+        },
+        "allHostsProblems": {
+            "name": "Hosts problems",
+            "filter": {
+                "hosts": {
+                    "isnot": {
+                        "state": [
+                            "UP"
+                        ]
+                    }
+                }
+            }
+        },
+        "hostOk": {
+            "name": "All Ok",
+            "filter": {
+                "hosts": {
+                    "is": {
+                        "state": [
+                            "UP"
+                        ]
+                    }
+                }
+            }
+        },
+        "hostNotOk": {
+            "name": "All not Ok",
+            "filter": {
+                "hosts": {
+                    "isnot": {
+                        "state": [
+                            "UP"
+                        ]
+                    }
+                }
+            }
+        },
+        "serviceOk": {
+            "name": "All Ok",
+            "filter": {
+                "services": {
+                    "is": {
+                        "state": [
+                            "OK"
+                        ]
+                    }
+                }
+            }
+        },
+        "serviceNotOk": {
+            "name": "All not Ok",
+            "filter": {
+                "services": {
+                    "isnot": {
+                        "state": [
+                            "OK"
+                        ]
+                    }
+                }
+            }
+        },
+        "allAlert": {
+            "name": "All ALERT",
+            "filter": {
+                "events": {
+                    "is": {
+                        "event_type": [
+                            "ALERT"
+                        ]
+                    }
+                }
+            }
+        },
+        "allNotification": {
+            "name": "All NOTIFICATION",
+            "filter": {
+                "events": {
+                    "is": {
+                        "event_type": [
+                            "NOTIFICATION"
+                        ]
+                    }
+                }
+            }
+        },
+        "allOk": {
+            "name": "All OK",
+            "filter": {
+                "hosts": {
+                    "is": {
+                        "state": [
+                            "UP"
+                        ]
+                    }
+                },
+                "services": {
+                    "is": {
+                        "state": [
+                            "OK"
+                        ]
+                    }
+                }
+            }
+        },
+        "allNotOk": {
+            "name": "All not OK",
+            "filter": {
+                "hosts": {
+                    "isnot": {
+                        "state": [
+                            "UP"
+                        ]
+                    }
+                },
+                "services": {
+                    "isnot": {
+                        "state": [
+                            "OK"
+                        ]
+                    }
+                }
+            }
+        },
+        "allServices": {
+            "name": "All",
+            "filter": {
+                "hosts": {},
+                "services": {}
+            }
+        },
+        "allServicesProblems": {
+            "name": "Open services problems",
+            "filter": {
+                "services": {
+                    "isnot": {
+                        "state": [
+                            "OK"
+                        ]
+                    }
+                },
+                "hosts": {
+                    "isnot": {
+                        "state": [
+                            "DOWN",
+                            "UNREACHABLE"
+                        ]
+                    }
+                }
+            }
+        },
+        "allServiceOpenProblems": {
+            "name": "Open services problems",
+            "filter": {
+                "services": {
+                    "isnot": {
+                        "state": [
+                            "OK"
+                        ]
+                    },
+                    "is": {
+                        "acknowledged": [
+                            false
+                        ]
+                    }
+                },
+                "hosts": {
+                    "isnot": {
+                        "state": [
+                            "DOWN",
+                            "UNREACHABLE"
+                        ]
+                    }
+                }
+            }
+        },
+        "all": {
+            "name": "All",
+            "filter": {
+                "services": {},
+                "hosts": {},
+                "events": {}
+            }
+        }
+    },
+    "inputSource": {
+        "hostOpenProblems": {
+            "provider": "status",
+            "endpoint": "hosts",
+            "filter": "allHostOpenProblems"
+        },
+        "serviceOpenProblems": {
+            "provider": "status",
+            "endpoint": "services",
+            "filter": "allServiceOpenProblems"
+        },
+        "hostsProblems": {
+            "provider": "status",
+            "endpoint": "hosts",
+            "filter": "allHostsProblems"
+        },
+        "servicesProblems": {
+            "provider": "status",
+            "endpoint": "services",
+            "filter": "allServicesProblems"
+        },
+        "events": {
+            "provider": "status",
+            "endpoint": "events",
+            "filter": "all"
+        },
+        "hosts": {
+            "provider": "status",
+            "endpoint": "hosts",
+            "filter": "all"
+        },
+        "services": {
+            "provider": "status",
+            "endpoint": "services",
+            "filter": "all"
+        }
+    }
+}

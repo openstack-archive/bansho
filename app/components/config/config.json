@@ -3,378 +3,568 @@
         "theme": "dark"
     },
     "dashboardConfig": {
-        "title": "Unhandled service problems",
-        "refreshInterval": 30,
-        "template": "dashboard",
+        "template": "page",
+        "attributes": {
+            "refreshInterval": 30
+        },
         "components": [
             {
-                "type": "actionbar",
-                "config": {
-                    "components": [
-                        "filter",
-                        "acknowledge",
-                        "downtime",
-                        "recheck",
-                        "more",
-                        "search-filter"
-                    ],
-                    "tableId": [
-                        0,
-                        1,
-                        2,
-                        3
-                    ]
-                }
-            }
-        ],
-        "extra_components": [
-            {
                 "type": "tactical",
-                "config": {
+                "attributes": {
                     "title": "Tactical Overview",
-                    "components": {
-                        "statusOverview": true,
-                        "currentHealth": true,
-                        "topAlertProducers": false
-                    }
+                    "statusOverview": true,
+                    "currentHealth": true,
+                    "topAlertProducers": false
                 }
             },
             {
-                "type": "table",
-                "config": {
-                    "title": "Open Hosts problems",
-                    "cells": {
-                        "text": [
-                            "Host",
-                            "Address",
-                            "Duration",
-                            "Last check",
-                            "Host status"
-                        ],
-                        "name": [
-                            "status_host",
-                            "status_host_address",
-                            "status_duration",
-                            "status_last_check",
-                            "status_host_status"
-                        ]
-                    },
-                    "headerFollow": false,
-                    "inputSource": {
-                        "service": "surveilStatus",
-                        "config": {
-                            "apiName": "hosts",
-                            "filters": {
-                                "is": {
-                                    "acknowledged": [
-                                        false
-                                    ],
-                                    "state": [
-                                        "DOWN",
-                                        "UNREACHABLE"
-                                    ]
-                                }
-                            }
+                "type": "tabpanel",
+                "attributes": {
+                    "navigation": [
+                        {
+                            "title": "Open Problems",
+                            "panelId": "openProblems"
+                        },
+                        {
+                            "title": "All Problems",
+                            "panelId": "allProblems"
                         }
-                    },
-                    "isWrappable": false,
-                    "checkColumn": true,
-                    "noRepeatCell": ""
-                }
-            },
-            {
-                "type": "table",
-                "config": {
-                    "title": "Open Service problems",
-                    "cells": {
-                        "text": [
-                            "Host",
-                            "Service check",
-                            "Duration",
-                            "Last check"
-                        ],
-                        "name": [
-                            "status_host",
-                            "status_service_check",
-                            "status_duration",
-                            "status_last_check"
-                        ]
-                    },
-                    "headerFollow": false,
-                    "inputSource": {
-                        "service": "surveilStatus",
-                        "config": {
-                            "apiName": "services",
-                            "filters": {
-                                "isnot": {
-                                    "state": [
-                                        "OK"
-                                    ],
-                                    "host_state": [
-                                        "DOWN",
-                                        "UNREACHABLE"
+                    ]
+                },
+                "components": [
+                    {
+                        "type": "panel",
+                        "attributes": {
+                            "title": "openProblems"
+                        },
+                        "components": [
+                            {
+                                "type": "actionbar",
+                                "attributes": {
+                                    "tableId": [
+                                        0,
+                                        1
                                     ]
                                 },
-                                "is": {
-                                    "acknowledged": [
-                                        false
-                                    ]
+                                "components": [
+                                    {
+                                        "type": "actionbar-filter",
+                                        "attributes": {
+                                            "filters": [
+                                                {
+                                                    "location": "componentsConfig",
+                                                    "content": "all"
+                                                },
+                                                {
+                                                    "location": "componentsConfig",
+                                                    "content": "allOk"
+                                                },
+                                                {
+                                                    "location": "componentsConfig",
+                                                    "content": "allNotOk"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "actionbar-acknowledge",
+                                        "attributes": {}
+                                    },
+                                    {
+                                        "type": "actionbar-downtime",
+                                        "attributes": {}
+                                    },
+                                    {
+                                        "type": "actionbar-recheck",
+                                        "attributes": {}
+                                    },
+                                    {
+                                        "type": "actionbar-more",
+                                        "attributes": {}
+                                    },
+                                    {
+                                        "type": "actionbar-search-filter",
+                                        "attributes": {}
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "table",
+                                "attributes": {
+                                    "title": "Open Hosts problems",
+                                    "tableId": 0,
+                                    "cells": {
+                                        "text": [
+                                            "Host",
+                                            "Lastcheck",
+                                            "Hoststatus"
+                                        ],
+                                        "name": [
+                                            "status_host",
+                                            "status_last_check",
+                                            "status_host_status"
+                                        ]
+                                    },
+                                    "headerFollow": false,
+                                    "inputSource": "hostOpenProblems",
+                                    "isWrappable": false,
+                                    "checkColumn": true,
+                                    "noRepeatCell": ""
+                                }
+                            },
+                            {
+                                "type": "table",
+                                "attributes": {
+                                    "title": "Open Service problems",
+                                    "tableId": 1,
+                                    "cells": {
+                                        "text": [
+                                            "Host",
+                                            "Servicecheck",
+                                            "Duration",
+                                            "Lastcheck"
+                                        ],
+                                        "name": [
+                                            "status_host",
+                                            "status_service_check",
+                                            "status_duration",
+                                            "status_last_check"
+                                        ]
+                                    },
+                                    "headerFollow": false,
+                                    "inputSource": "serviceOpenProblems",
+                                    "isWrappable": true,
+                                    "checkColumn": true,
+                                    "noRepeatCell": "host"
                                 }
                             }
-                        }
-                    },
-                    "isWrappable": true,
-                    "checkColumn": true,
-                    "noRepeatCell": "host"
-                }
-            },
-            {
-                "type": "table",
-                "config": {
-                    "title": "Hosts problems",
-                    "cells": {
-                        "text": [
-                            "Host",
-                            "Address",
-                            "Duration",
-                            "Last check",
-                            "Host status"
-                        ],
-                        "name": [
-                            "status_host",
-                            "status_host_address",
-                            "status_duration",
-                            "status_last_check",
-                            "status_host_status"
                         ]
                     },
-                    "headerFollow": false,
-                    "inputSource": {
-                        "service": "surveilStatus",
-                        "config": {
-                            "apiName": "hosts",
-                            "filters": {
-                                "isnot": {
-                                    "state": [
-                                        "UP"
+                    {
+                        "type": "panel",
+                        "attributes": {
+                            "title": "allProblems"
+                        },
+                        "components": [
+                            {
+                                "type": "actionbar",
+                                "attributes": {
+                                    "tableId": [
+                                        2,
+                                        3
                                     ]
+                                },
+                                "components": [
+                                    {
+                                        "type": "actionbar-filter",
+                                        "attributes": {
+                                            "filters": [
+                                                {
+                                                    "location": "componentsConfig",
+                                                    "content": "all"
+                                                },
+                                                {
+                                                    "location": "componentsConfig",
+                                                    "content": "allOk"
+                                                },
+                                                {
+                                                    "location": "componentsConfig",
+                                                    "content": "allNotOk"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "actionbar-acknowledge",
+                                        "attributes": {}
+                                    },
+                                    {
+                                        "type": "actionbar-downtime",
+                                        "attributes": {}
+                                    },
+                                    {
+                                        "type": "actionbar-recheck",
+                                        "attributes": {}
+                                    },
+                                    {
+                                        "type": "actionbar-more",
+                                        "attributes": {}
+                                    },
+                                    {
+                                        "type": "actionbar-search-filter",
+                                        "attributes": {}
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "table",
+                                "attributes": {
+                                    "title": "Hosts problems",
+                                    "tableId": 2,
+                                    "cells": {
+                                        "text": [
+                                            "Host",
+                                            "Address",
+                                            "Duration",
+                                            "Lastcheck",
+                                            "Hoststatus"
+                                        ],
+                                        "name": [
+                                            "status_host",
+                                            "status_host_address",
+                                            "status_duration",
+                                            "status_last_check",
+                                            "status_host_status"
+                                        ]
+                                    },
+                                    "headerFollow": false,
+                                    "inputSource": "hostsProblems",
+                                    "isWrappable": false,
+                                    "checkColumn": true,
+                                    "noRepeatCell": ""
+                                }
+                            },
+                            {
+                                "type": "table",
+                                "attributes": {
+                                    "title": "Services problems",
+                                    "tableId": 3,
+                                    "cells": {
+                                        "text": [
+                                            "Host",
+                                            "Servicecheck",
+                                            "Duration",
+                                            "Lastcheck"
+                                        ],
+                                        "name": [
+                                            "status_host",
+                                            "status_service_check",
+                                            "status_duration",
+                                            "status_last_check"
+                                        ]
+                                    },
+                                    "headerFollow": false,
+                                    "inputSource": "servicesProblems",
+                                    "isWrappable": true,
+                                    "checkColumn": true,
+                                    "noRepeatCell": "host"
                                 }
                             }
-                        }
-                    },
-                    "isWrappable": false,
-                    "checkColumn": true,
-                    "noRepeatCell": ""
-                }
-            },
-            {
-                "type": "table",
-                "config": {
-                    "title": "Services problems",
-                    "cells": {
-                        "text": [
-                            "Host",
-                            "Service check",
-                            "Duration",
-                            "Last check"
-                        ],
-                        "name": [
-                            "status_host",
-                            "status_service_check",
-                            "status_duration",
-                            "status_last_check"
                         ]
-                    },
-                    "headerFollow": false,
-                    "inputSource": {
-                        "service": "surveilStatus",
-                        "config": {
-                            "apiName": "services",
-                            "filters": {
-                                "isnot": {
-                                    "state": [
-                                        "OK"
-                                    ]
-                                }
-                            }
-                        }
-                    },
-                    "isWrappable": true,
-                    "checkColumn": true,
-                    "noRepeatCell": "host"
-                }
+                    }
+                ]
             }
         ]
     },
     "liveHosts": {
-        "title": "Hosts",
-        "refreshInterval": 30,
-        "template": "tables",
+        "template": "page",
         "components": [
             {
-                "type": "actionbar",
-                "config": {
-                    "components": [
-                        "filter",
-                        "acknowledge",
-                        "downtime",
-                        "recheck",
-                        "more",
-                        "search-filter"
-                    ],
-                    "tableId": [0]
-                }
-            },
-            {
-                "type": "table",
-                "config": {
-                    "title": "Hosts",
-                    "tableId": 0,
-                    "cells": {
-                        "text": [
-                            "Host",
-                            "Address",
-                            "Duration",
-                            "Last check",
-                            "Host status"
-                        ],
-                        "name": [
-                            "status_host",
-                            "status_host_address",
-                            "status_duration",
-                            "status_last_check",
-                            "status_host_status"
-                        ]
-                    },
-                    "headerFollow": true,
-                    "inputSource": {
-                        "service": "surveilStatus",
-                        "config": {
-                            "apiName": "hosts",
-                            "filters": {}
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "title",
+                        "attributes": {
+                            "title": "Hosts"
                         }
                     },
-                    "isWrappable": false,
-                    "noRepeatCell": "",
-                    "checkColumn": true,
-                    "containsActionBar": true
-                }
+                    {
+                        "type": "actionbar",
+                        "attributes": {
+                            "tableId": [
+                                0
+                            ]
+                        },
+                        "components": [
+                            {
+                                "type": "actionbar-filter",
+                                "attributes": {
+                                    "filters": [
+                                        {
+                                            "location": "componentsConfig",
+                                            "content": "all"
+                                        },
+                                        {
+                                            "location": "componentsConfig",
+                                            "content": "hostOk"
+                                        },
+                                        {
+                                            "location": "componentsConfig",
+                                            "content": "hostNotOk"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "type": "actionbar-acknowledge",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-downtime",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-recheck",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-more",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-search-filter",
+                                "attributes": {}
+                            }
+                        ]
+                    },
+                    {
+                        "type": "table",
+                        "attributes": {
+                            "tableId": 0,
+                            "refreshInterval": 30,
+                            "cells": {
+                                "text": [
+                                    "Host",
+                                    "Address",
+                                    "Duration",
+                                    "Last check",
+                                    "Host status"
+                                ],
+                                "name": [
+                                    "status_host",
+                                    "status_host_address",
+                                    "status_duration",
+                                    "status_last_check",
+                                    "status_host_status"
+                                ]
+                            },
+                            "headerFollow": true,
+                            "inputSource": "hosts",
+                            "isWrappable": false,
+                            "noRepeatCell": "",
+                            "checkColumn": true
+                        }
+                    }
+                ]
             }
         ]
     },
     "liveServices": {
-        "title": "Services",
-        "refreshInterval": 30,
-        "template": "tables",
+        "template": "page",
         "components": [
             {
-                "type": "actionbar",
-                "config": {
-                    "components": [
-                        "filter",
-                        "acknowledge",
-                        "downtime",
-                        "recheck",
-                        "more",
-                        "search-filter"
-                    ],
-                    "tableId": [0]
-                }
-            },
-            {
-                "type": "table",
-                "config": {
-                    "title": "Services",
-                    "tableId": 0,
-                    "cells": {
-                        "text": [
-                            "Host",
-                            "Service check",
-                            "Duration",
-                            "Last check"
-                        ],
-                        "name": [
-                            "status_host",
-                            "status_service_check",
-                            "status_duration",
-                            "status_last_check"
-                        ]
-                    },
-                    "inputSource": {
-                        "service": "surveilStatus",
-                        "config": {
-                            "apiName": "services",
-                            "filters": {}
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "title",
+                        "attributes": {
+                            "title": "Services"
                         }
                     },
-                    "isWrappable": false,
-                    "noRepeatCell": "host",
-                    "headerFollow": true,
-                    "containsActionBar": true,
-                    "checkColumn": true
-                }
+                    {
+                        "type": "actionbar",
+                        "attributes": {
+                            "tableId": [
+                                0
+                            ]
+                        },
+                        "components": [
+                            {
+                                "type": "actionbar-filter",
+                                "attributes": {
+                                    "filters": [
+                                        {
+                                            "location": "componentsConfig",
+                                            "content": "all"
+                                        },
+                                        {
+                                            "location": "componentsConfig",
+                                            "content": "serviceOk"
+                                        },
+                                        {
+                                            "location": "componentsConfig",
+                                            "content": "serviceNotOk"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "type": "actionbar-acknowledge",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-downtime",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-recheck",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-more",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-search-filter",
+                                "attributes": {}
+                            }
+                        ]
+                    },
+                    {
+                        "type": "table",
+                        "attributes": {
+                            "tableId": 0,
+                            "refreshInterval": 30,
+                            "cells": {
+                                "text": [
+                                    "Host",
+                                    "Service check",
+                                    "Duration",
+                                    "Last check"
+                                ],
+                                "name": [
+                                    "status_host",
+                                    "status_service_check",
+                                    "status_duration",
+                                    "status_last_check"
+                                ]
+                            },
+                            "headerFollow": true,
+                            "inputSource": "services",
+                            "isWrappable": false,
+                            "checkColumn": true,
+                            "noRepeatCell": "host"
+                        }
+                    }
+                ]
             }
         ]
     },
     "liveEvents": {
-        "title": "Events",
-        "refreshInterval": 30,
-        "template": "tables",
+        "template": "page",
         "components": [
             {
-                "type": "actionbar",
-                "config": {
-                    "components": [
-                        "filter",
-                        "more",
-                        "search-filter"
-                    ],
-                    "tableId": [0]
-                }
-            },
-            {
-                "type": "table",
-                "config": {
-                    "title": "Hosts",
-                    "tableId": 0,
-                    "cells": {
-                        "text": [
-                            "Event type",
-                            "Output",
-                            "Host name",
-                            "Service",
-                            "Time",
-                            "Complete data"
-                        ],
-                        "name": [
-                            "status_event_event_type",
-                            "status_event_output",
-                            "status_event_host_name",
-                            "status_event_service",
-                            "status_event_time",
-                            "status_event"
-                        ]
-                    },
-                    "headerFollow": true,
-                    "inputSource": {
-                        "service": "surveilStatus",
-                        "config": {
-                            "apiName": "events",
-                            "filters": {}
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "title",
+                        "attributes": {
+                            "title": "Events"
                         }
                     },
-                    "isWrappable": false,
-                    "noRepeatCell": "",
-                    "checkColumn": false,
-                    "containsActionBar": false
-                }
+                    {
+                        "type": "actionbar",
+                        "attributes": {
+                            "tableId": [
+                                0
+                            ]
+                        },
+                        "components": [
+                            {
+                                "type": "actionbar-filter",
+                                "attributes": {
+                                    "filters": [
+                                        {
+                                            "location": "componentsConfig",
+                                            "content": "all"
+                                        },
+                                        {
+                                            "location": "componentsConfig",
+                                            "content": "allAlert"
+                                        },
+                                        {
+                                            "location": "componentsConfig",
+                                            "content": "allNotification"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "type": "actionbar-more",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-search-filter",
+                                "attributes": {}
+                            }
+                        ]
+                    },
+                    {
+                        "type": "table",
+                        "attributes": {
+                            "refreshInterval": 30,
+                            "tableId": 0,
+                            "cells": {
+                                "text": [
+                                    "Event type",
+                                    "Output",
+                                    "Hostname",
+                                    "Service",
+                                    "Time",
+                                    "Complete data"
+                                ],
+                                "name": [
+                                    "status_event_event_type",
+                                    "status_event_output",
+                                    "status_event_host_name",
+                                    "status_event_service",
+                                    "status_event_time",
+                                    "status_event"
+                                ]
+                            },
+                            "headerFollow": true,
+                            "inputSource": "events",
+                            "isWrappable": false,
+                            "checkColumn": false,
+                            "noRepeatCell": ""
+                        }
+                    }
+                ]
             }
         ]
     },
     "host": {
-        "title": "Host",
-        "refreshInterval": 30,
-        "template": "host"
+        "template": "host",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "host",
+                        "components": [
+                            {
+                                "type": "host-main",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-more",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "host-live",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "host-load",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "host-cpu",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "host-info",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "host-services-list",
+                                "attributes": {}
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
     },
     "service": {
         "title": "Service",

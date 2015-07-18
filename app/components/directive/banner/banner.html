@@ -1,0 +1,8 @@
+<p class="main__content__alert state--error">
+    There
+    <ng-pluralize count="nbHostOpenProblems" when="{'0':'is', '1': 'is', 'other': 'are'}">
+    </ng-pluralize>
+    are {{nbHostOpenProblems}} host
+    <ng-pluralize count="nbHostOpenProblems" when="{'0':'problem', '1': 'problem', 'other': 'problems'}">
+    </ng-pluralize>
+</p>
