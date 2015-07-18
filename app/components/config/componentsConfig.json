@@ -1,0 +1,150 @@
+{
+    "filters": {
+        "allHostOpenProblems": {
+            "name": "Open hosts problems",
+            "filter": {
+                "hosts": {
+                    "is": {
+                        "state": [
+                            "DOWN",
+                            "UNREACHABLE"
+                        ],
+                        "acknowledged": [false]
+                    }
+                }
+            }
+        },
+        "allHostsProblems": {
+            "name": "Hosts problems",
+            "filter": {
+                "hosts": {
+                    "isnot": {
+                        "state": [
+                            "UP"
+                        ]
+                    }
+                }
+            }
+        },
+        "allOk": {
+            "name": "All Ok",
+            "filter": {
+                "hosts": {
+                    "is": {
+                        "state": [
+                            "OK"
+                        ]
+                    }
+                }
+            }
+        },
+        "allAlert": {
+            "name": "All ALERT",
+            "filter": {
+                "events": {
+                    "is": {
+                        "event_type": [
+                            "ALERT"
+                        ]
+                    }
+                }
+            }
+        },
+        "allNotification": {
+            "name": "All NOTIFICATION",
+            "filter": {
+                "events": {
+                    "is": {
+                        "event_type": [
+                            "NOTIFICATION"
+                        ]
+                    }
+                }
+            }
+        },
+        "allNotOk": {
+            "name": "All not OK",
+            "filter": {
+                "hosts": {
+                    "isnot": {
+                        "state": [
+                            "OK",
+                            "UP"
+                        ]
+                    }
+                }
+            }
+        },
+        "allServices": {
+            "name": "All",
+            "filter": { "hosts": {}, "services": {}}
+        },
+        "allServicesProblems": {
+            "name": "Open services problems",
+            "filter": {
+                "services": {
+                    "isnot": {
+                        "state": [
+                            "OK"
+                        ]
+                    }
+                },
+                "hosts": {
+                    "isnot": {
+                        "state": [
+                            "DOWN",
+                            "UNREACHABLE"
+                        ]
+                    }
+                }
+            }
+        },
+        "allServiceOpenProblems": {
+            "name": "Open services problems",
+            "filter": {
+                "services": {
+                    "isnot": {
+                        "state": [
+                            "OK"
+                        ]
+                    },
+                    "is": {
+                        "acknowledged": [
+                            false
+                        ]
+                    }
+                },
+                "hosts": {
+                    "isnot": {
+                        "state": [
+                            "DOWN",
+                            "UNREACHABLE"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "inputSource": {
+        "hostOpenProblems": {
+            "provider": "status",
+            "endpoint": "hosts",
+            "filter": "allHostOpenProblems"
+        },
+        "serviceOpenProblems": {
+            "provider": "status",
+            "endpoint": "services",
+            "filter": "allServiceOpenProblems"
+        },
+        "hostsProblems": {
+            "provider": "status",
+            "endpoint": "hosts",
+            "filter": "allHostsProblems"
+        },
+        "events": {
+            "provider": "status",
+            "endpoint": "events",
+            "filter": "all"
+        }
+    }
+}
