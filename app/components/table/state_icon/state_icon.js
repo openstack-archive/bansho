@@ -5,15 +5,15 @@ angular.module('bansho.table.state_icon', [])
         return {
             restrict: 'E',
             scope: {
-                state: '=state'
+                hostState: '=state'
             },
             templateUrl: 'components/table/state_icon/state_icon.html',
             controller: ['$scope', function ($scope) {
-                if ($scope.state === 'UP') {
+                if ($scope.host_state === 'UP') {
                     $scope.stateClass = 'state--ok';
-                } else if ($scope.state === 'WARNING') {
+                } else if ($scope.host_state === 'WARNING') {
                     $scope.stateClass = 'state--warning';
-                } else if ($scope.state === '') {
+                } else if ($scope.host_state === '') {
                     $scope.stateClass = '';
                 } else {
                     $scope.stateClass = 'state--error';
@@ -26,15 +26,15 @@ angular.module('bansho.table.state_icon', [])
         return {
             restrict: 'E',
             scope: {
-                state: '=state'
+                serviceState: '=state'
             },
             templateUrl: 'components/table/state_icon/state_icon.html',
             controller: ['$scope', function ($scope) {
-                if ($scope.state === 'OK') {
+                if ($scope.service_state === 'OK') {
                     $scope.stateClass = 'state--ok';
-                } else if ($scope.state === 'WARNING') {
+                } else if ($scope.service_state === 'WARNING') {
                     $scope.state = 'state--warning';
-                } else if ($scope.state === '') {
+                } else if ($scope.service_state === '') {
                     $scope.stateClass = '';
                 } else {
                     $scope.stateClass = 'state--error';
