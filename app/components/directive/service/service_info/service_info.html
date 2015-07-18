@@ -1,0 +1,19 @@
+<div class="subcomponent__live">
+  <h2>Info</h2>
+  <table class="data-table">
+    <tbody>
+      <tr>
+        <td>Last check</td>
+        <td>{{param.service.service_last_check|timeElapsed}}</td>
+      </tr>
+      <tr>
+        <td>Last state change</td>
+        <td>{{param.service.service_last_state_change|timeElapsed}}</td>
+      </tr>
+      <tr>
+        <td>Acknowledged</td>
+        <td>{{param.service.service_acknowledged ? "Yes" : "No"}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,14 @@
+<div class="tab-content">
+  <header class="main__content__header clearfix">
+    <h2 class="main__content__title">{{options.attributes.title}}</h2>
+
+    <p data-ng-show="isBannerShown" class="main__content__alert state--error">
+      There
+      <ng-pluralize count="{{data}}" when="{'0':'is', '1': 'is', 'other': 'are'}">
+      </ng-pluralize>
+      are {{data}} {{item}}
+      <ng-pluralize count="data" when="{'0':'problem', '1': 'problem', 'other': 'problems'}">
+      </ng-pluralize>
+    </p>
+  </header>
+</div>
