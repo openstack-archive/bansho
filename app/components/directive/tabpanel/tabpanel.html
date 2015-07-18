@@ -1,0 +1,15 @@
+<nav>
+    <ul class="tablist clearfix">
+        <li role="presentation" class="tablist__item" ng-repeat="(index, panel) in tabpanel">
+            <a ng-click="setIsShown(index)"
+               class="tabpanel__tab"
+               aria-controls="openProblems"
+               aria-expanded="true"
+               role="tab"
+               data-toggle="tab"
+               data-problems="{{panel.right}}">{{panel.title}}
+            </a>
+        </li>
+    </ul>
+</nav>
+<bansho-components components="options.components"></bansho-components>
