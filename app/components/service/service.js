@@ -5,8 +5,7 @@ angular.module('bansho.service', ['bansho.surveil',
                                    'bansho.service.live',
                                    'bansho.service.info',
                                    'bansho.service.metrics',
-                                   'bansho.service.graphs',
-                                   'bansho.table.state_icon'])
+                                   'bansho.service.graphs'])
 
     .value('serviceConfig', {})
 

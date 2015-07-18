@@ -1,0 +1,19 @@
+<header class="main__overview">
+  <h2 class="main__overview__title">{{title}}</h2>
+  <div class="panes panes--3" id="tactical">
+    <div class="panes__container">
+      <div class="panes__pane" ng-if="statusOverview">
+        <bansho-status-overview></bansho-status-overview>
+      </div>
+
+      <div class="panes__pane" ng-if="currentHealth">
+        <bansho-current-health></bansho-current-health>
+      </div>
+
+      <div class="panes__pane" ng-if="topAlertProducers">
+        <bansho-top-alert-producers></bansho-top-alert-producers>
+      </div>
+    </div>
+  </div>
+</header>
+

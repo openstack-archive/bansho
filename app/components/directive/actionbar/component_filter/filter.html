@@ -1,0 +1,21 @@
+{{filters}}
+<li class="filters__item filters__item--problems">
+    <button class="filters__button"
+            type="button"
+            data-target="#filtersProblems"
+            aria-expanded="false"
+            aria-controls="filtersProblems"
+            data-ng-click="switchFilterFormShown()">
+        <span>{{activeFilter.name}}</span>
+        <i class="ico-down-dir"></i>
+    </button>
+
+    <div class="filters__panel collapse" ng-class="{collapse: isShown}" id="filtersProblems">
+        <ul class="filters__sublist">
+            <li class="filters__subitem" ng-repeat="actionbarFilter in filters" ng-click="activateFilter($index)">
+                <a class="filters__link state--current" ng-if="actionbarFilter === activeFilter">{{actionbarFilter.name}}</a>
+                <a class="filters__link" ng-if="actionbarFilter !== activeFilter">{{actionbarFilter.name}}</a>
+            </li>
+        </ul>
+    </div>
+</li>

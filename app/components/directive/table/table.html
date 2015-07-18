@@ -1,0 +1,39 @@
+<div>
+    <header class="main__content__header clearfix">
+        <h2 class="main__content__title">tets{{title}}</h2>
+    </header>
+    <table class="data-table">
+      <thead class="moving-thead">
+          <tr>
+            <th data-ng-show="checkColumn" class="data-table__checkbox">
+                <md-checkbox aria-label='Check all' ng-model="isCheckAll" ng-change="onCheckChange()"></md-checkbox>
+            </th>
+            <th ng-repeat="i in cellIndexes" class="data-table__{{cellsName[i]}}">
+              {{cellsText[i]}}
+              <i class="ico-up-dir"></i>
+            </th>
+          </tr>
+      </thead>
+
+      <thead class="static-thead">
+          <tr>
+            <th data-ng-show="checkColumn" class="data-table__checkbox">
+                <md-checkbox aria-label='Check all' ng-model="isCheckAll" ng-change="onCheckChange()"></md-checkbox>
+            </th>
+            <th ng-repeat="i in cellIndexes" class="data-table__{{cellsName[i]}}">
+              {{cellsText[i]}}
+              <i class="ico-up-dir"></i>
+            </th>
+          </tr>
+      </thead>
+
+      <tbody class="{{entry.child_class}}" ng-repeat="(groupByKey, groupByItems) in entries | groupBy:'host_name'">
+        <tr ng-repeat="entry in groupByItems | noRepeat:this | wrappableStyle:this">
+          <td data-ng-show="checkColumn">
+            <md-checkbox aria-label='Check' ng-model="entry.is_checked"></md-checkbox>
+          </td>
+          <td bansho-cell cell-name="{{cell}}" ng-repeat="cell in cellsName"></td>
+        </tr>
+      </tbody>
+    </table>
+</div>
