@@ -1,0 +1,47 @@
+{
+    "filters": {
+        "openProblems": {
+            "name": "Open problems",
+            "filter": {
+                "is": {
+                    "state": [
+                        "DOWN",
+                        "UNREACHABLE"
+                    ],
+                    "acknowledged": [false]
+                }
+            }
+        },
+        "allOk": {
+            "name": "All Ok",
+            "filter": {
+                "is": {
+                    "state": [
+                        "OK", "UP"
+                    ]
+                }
+            }
+        },
+        "allNotOk": {
+            "name": "All not OK",
+            "filter": {
+                "isnot": {
+                    "state": [
+                        "OK", "UP"
+                    ]
+                }
+            }
+        },
+        "all": {
+            "name": "All",
+            "filter": {}
+        }
+    },
+    "inputSource": {
+        "hostOpenProblems": {
+            "provider": "status",
+            "endpoint": "hosts",
+            "filter": "openProblems"
+        }
+    }
+}

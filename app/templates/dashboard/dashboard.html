@@ -1,151 +1,151 @@
 <article ng-controller="DashboardCtrl" id="tactical">
-  <header class="main__overview">
-    <h2 class="main__overview__title">{{dashboardTactical[0].title}}</h2>
-
-    <bansho-tactical status-overview="{{dashboardTactical[0].statusOverview}}"
-                  current-health="{{dashboardTactical[0].currentHealth}}"
-                  top-alert-producers="{{dashboardTactical[0].topAlertProducers}}"
-                  refresh-interval="{{dashboardRefreshInterval}}"></bansho-tactical>
-
-  </header>
-
+  <!--<header class="main__overview">-->
+    <!--<h2 class="main__overview__title">{{dashboardTactical[0].title}}</h2>-->
+<!---->
+    <!--<bansho-tactical status-overview="{{dashboardTactical[0].statusOverview}}"-->
+                  <!--current-health="{{dashboardTactical[0].currentHealth}}"-->
+                  <!--top-alert-producers="{{dashboardTactical[0].topAlertProducers}}"-->
+                  <!--refresh-interval="{{dashboardRefreshInterval}}"></bansho-tactical>-->
+<!---->
+  <!--</header>-->
+<!---->
   <section class="main__content tabpanel">
-    <nav>
-      <ul class="tablist clearfix">
-        <li role="presentation" class="tablist__item active">
-          <a href="#openProblems"
-             class="tabpanel__tab"
-             aria-controls="openProblems"
-             aria-expanded="true"
-             role="tab"
-             data-toggle="tab"
-             data-problems="{{totalOpenProblems}}">Open problems
-          </a>
-        </li>
-        <li role="presentation" class="tablist__item">
-          <a href="#allProblems"
-             class="tabpanel__tab"
-             aria-controls="allProblems"
-             aria-expanded="false"
-             role="tab"
-             data-toggle="tab"
-             data-problems="{{totalProblems}}">All problems
-          </a>
-        </li>
-      </ul>
-    </nav>
+    <!--<nav>-->
+      <!--<ul class="tablist clearfix">-->
+        <!--<li role="presentation" class="tablist__item active">-->
+          <!--<a href="#openProblems"-->
+             <!--class="tabpanel__tab"-->
+             <!--aria-controls="openProblems"-->
+             <!--aria-expanded="true"-->
+             <!--role="tab"-->
+             <!--data-toggle="tab"-->
+             <!--data-problems="{{totalOpenProblems}}">Open problems-->
+          <!--</a>-->
+        <!--</li>-->
+        <!--<li role="presentation" class="tablist__item">-->
+          <!--<a href="#allProblems"-->
+             <!--class="tabpanel__tab"-->
+             <!--aria-controls="allProblems"-->
+             <!--aria-expanded="false"-->
+             <!--role="tab"-->
+             <!--data-toggle="tab"-->
+             <!--data-problems="{{totalProblems}}">All problems-->
+          <!--</a>-->
+        <!--</li>-->
+      <!--</ul>-->
+    <!--</nav>-->
 
     <bansho-components refresh="refresh" components="components"></bansho-components>
 
-    <div class="tab-content">
-      <div role="tabpanel" class="problems tab-pane active" id="openProblems">
-        <span ng-hide="nbHostOpenProblems == 0">
-          <header class="main__content__header clearfix">
-            <h2 class="main__content__title">{{dashboardTables[0].title}}</h2>
-            <p class="main__content__alert state--error">
-              There
-              <ng-pluralize count="nbHostOpenProblems" when="{'0':'is', '1': 'is', 'other': 'are'}">
-              </ng-pluralize>
-              are {{nbHostOpenProblems}} host
-              <ng-pluralize count="nbHostOpenProblems" when="{'0':'problem', '1': 'problem', 'other': 'problems'}">
-              </ng-pluralize>
-            </p>
-          </header>
-
-          <bansho-table cells-text="{{dashboardTables[0].CellsText}}"
-                     cells-name="{{dashboardTables[0].CellsName}}"
-                     input-source="{{dashboardTables[0].InputSource}}"
-                     filters="{{dashboardTables[0].Filters}}"
-                     is-wrappable="{{dashboardTables[0].IsWrappable}}"
-                     no-repeat-cell="{{dashboardTables[0].NoRepeatCell}}"
-                     check-column="{{dashboardTables[0].CheckColumn}}"
-                     header-follow="{{dashboardTables[0].HeaderFollow}}"
-                     refresh-interval="{{dashboardRefreshInterval}}"
-                     additionnal-query-fields="{{dashboardTables[0].additionnalQueryFields}}"
-                     table-id="0"></bansho-table>
-
-        </span>
-
-        <span ng-hide="nbServiceOpenProblems == 0">
-          <header class="main__content__header clearfix">
-            <h2 class="main__content__title">{{dashboardTables[1].title}}</h2>
-            <p class="main__content__alert state--error">
-              There
-              <ng-pluralize count="nbServiceOpenProblems" when="{'0':'is', '1': 'is', 'other': 'are'}">
-              </ng-pluralize>
-              {{nbServiceOpenProblems}} service
-              <ng-pluralize count="nbServiceOpenProblems" when="{'0':'problem', '1': 'problem', 'other': 'problems'}"/>
-              </ng-pluralize>
-            </p>
-          </header>
-
-          <bansho-table cells-text="{{dashboardTables[1].CellsText}}"
-                     cells-name="{{dashboardTables[1].CellsName}}"
-                     input-source="{{dashboardTables[1].InputSource}}"
-                     filters="{{dashboardTables[1].Filters}}"
-                     is-wrappable="{{dashboardTables[1].IsWrappable}}"
-                     no-repeat-cell="{{dashboardTables[1].NoRepeatCell}}"
-                     check-column="{{dashboardTables[1].CheckColumn}}"
-                     header-follow="{{dashboardTables[1].HeaderFollow}}"
-                     refresh-interval="{{dashboardRefreshInterval}}"
-                     additionnal-query-fields="{{dashboardTables[1].additionnalQueryFields}}"
-                     table-id="1"></bansho-table>
-
-        </span>
-      </div>
-
-      <div role="tabpanel" class="problems tab-pane" id="allProblems">
-        <span ng-hide="nbHostProblems == 0">
-          <header class="main__content__header clearfix">
-            <h2 class="main__content__title">{{dashboardTables[2].title}}</h2>
-            <p class="main__content__alert state--error">
-              There
-              <ng-pluralize count="nbHostProblems" when="{'0':'is', '1': 'is', 'other': 'are'}"/>
-              </ng-pluralize>
-              {{nbHostProblems}} host
-              <ng-pluralize count="nbHostProblems" when="{'0':'problem', '1': 'problem', 'other': 'problems'}"/>
-              </ng-pluralize>
-            </p>
-          </header>
-
-          <bansho-table cells-text="{{dashboardTables[2].CellsText}}"
-                     cells-name="{{dashboardTables[2].CellsName}}"
-                     input-source="{{dashboardTables[2].InputSource}}"
-                     filters="{{dashboardTables[2].Filters}}"
-                     is-wrappable="{{dashboardTables[2].IsWrappable}}"
-                     no-repeat-cell="{{dashboardTables[2].NoRepeatCell}}"
-                     check-column="{{dashboardTables[2].CheckColumn}}"
-                     header-follow="{{dashboardTables[2].HeaderFollow}}"
-                     refresh-interval="{{dashboardRefreshInterval}}"
-                     table-id="2"></bansho-table>
-        </span>
-
-        <span ng-hide="nbServiceProblems == 0">
-          <header class="main__content__header clearfix">
-            <h2 class="main__content__title">{{dashboardTables[3].title}}</h2>
-            <p class="main__content__alert state--error">
-              There
-              <ng-pluralize count="nbServiceProblems" when="{'0':'is', '1': 'is', 'other': 'are'}"/>
-              </ng-pluralize>
-              {{nbServiceProblems}} service
-              <ng-pluralize count="nbServiceProblems" when="{'0':'problem', '1': 'problem', 'other': 'problems'}"/>
-              </ng-pluralize>
-            </p>
-          </header>
-
-          <bansho-table cells-text="{{dashboardTables[3].CellsText}}"
-                     cells-name="{{dashboardTables[3].CellsName}}"
-                     input-source="{{dashboardTables[3].InputSource}}"
-                     filters="{{dashboardTables[3].Filters}}"
-                     is-wrappable="{{dashboardTables[3].IsWrappable}}"
-                     no-repeat-cell="{{dashboardTables[3].NoRepeatCell}}"
-                     check-column="{{dashboardTables[3].CheckColumn}}"
-                     header-follow="{{dashboardTables[3].HeaderFollow}}"
-                     refresh-interval="{{dashboardRefreshInterval}}"
-                     table-id="3"></bansho-table>
-       </span>
-      </div>
-    </div>
-
+    <!--<div class="tab-content">-->
+      <!--<div role="tabpanel" class="problems tab-pane active" id="openProblems">-->
+        <!--<span ng-hide="nbHostOpenProblems == 0">-->
+          <!--<header class="main__content__header clearfix">-->
+            <!--<h2 class="main__content__title">{{dashboardTables[0].title}}</h2>-->
+            <!--<p class="main__content__alert state&#45;&#45;error">-->
+              <!--There-->
+              <!--<ng-pluralize count="nbHostOpenProblems" when="{'0':'is', '1': 'is', 'other': 'are'}">-->
+              <!--</ng-pluralize>-->
+              <!--are {{nbHostOpenProblems}} host-->
+              <!--<ng-pluralize count="nbHostOpenProblems" when="{'0':'problem', '1': 'problem', 'other': 'problems'}">-->
+              <!--</ng-pluralize>-->
+            <!--</p>-->
+          <!--</header>-->
+<!---->
+          <!--<bansho-table cells-text="{{dashboardTables[0].CellsText}}"-->
+                     <!--cells-name="{{dashboardTables[0].CellsName}}"-->
+                     <!--input-source="{{dashboardTables[0].InputSource}}"-->
+                     <!--filters="{{dashboardTables[0].Filters}}"-->
+                     <!--is-wrappable="{{dashboardTables[0].IsWrappable}}"-->
+                     <!--no-repeat-cell="{{dashboardTables[0].NoRepeatCell}}"-->
+                     <!--check-column="{{dashboardTables[0].CheckColumn}}"-->
+                     <!--header-follow="{{dashboardTables[0].HeaderFollow}}"-->
+                     <!--refresh-interval="{{dashboardRefreshInterval}}"-->
+                     <!--additionnal-query-fields="{{dashboardTables[0].additionnalQueryFields}}"-->
+                     <!--table-id="0"></bansho-table>-->
+<!---->
+        <!--</span>-->
+<!---->
+        <!--<span ng-hide="nbServiceOpenProblems == 0">-->
+          <!--<header class="main__content__header clearfix">-->
+            <!--<h2 class="main__content__title">{{dashboardTables[1].title}}</h2>-->
+            <!--<p class="main__content__alert state&#45;&#45;error">-->
+              <!--There-->
+              <!--<ng-pluralize count="nbServiceOpenProblems" when="{'0':'is', '1': 'is', 'other': 'are'}">-->
+              <!--</ng-pluralize>-->
+              <!--{{nbServiceOpenProblems}} service-->
+              <!--<ng-pluralize count="nbServiceOpenProblems" when="{'0':'problem', '1': 'problem', 'other': 'problems'}"/>-->
+              <!--</ng-pluralize>-->
+            <!--</p>-->
+          <!--</header>-->
+<!---->
+          <!--<bansho-table cells-text="{{dashboardTables[1].CellsText}}"-->
+                     <!--cells-name="{{dashboardTables[1].CellsName}}"-->
+                     <!--input-source="{{dashboardTables[1].InputSource}}"-->
+                     <!--filters="{{dashboardTables[1].Filters}}"-->
+                     <!--is-wrappable="{{dashboardTables[1].IsWrappable}}"-->
+                     <!--no-repeat-cell="{{dashboardTables[1].NoRepeatCell}}"-->
+                     <!--check-column="{{dashboardTables[1].CheckColumn}}"-->
+                     <!--header-follow="{{dashboardTables[1].HeaderFollow}}"-->
+                     <!--refresh-interval="{{dashboardRefreshInterval}}"-->
+                     <!--additionnal-query-fields="{{dashboardTables[1].additionnalQueryFields}}"-->
+                     <!--table-id="1"></bansho-table>-->
+<!---->
+        <!--</span>-->
+      <!--</div>-->
+<!---->
+      <!--<div role="tabpanel" class="problems tab-pane" id="allProblems">-->
+        <!--<span ng-hide="nbHostProblems == 0">-->
+          <!--<header class="main__content__header clearfix">-->
+            <!--<h2 class="main__content__title">{{dashboardTables[2].title}}</h2>-->
+            <!--<p class="main__content__alert state&#45;&#45;error">-->
+              <!--There-->
+              <!--<ng-pluralize count="nbHostProblems" when="{'0':'is', '1': 'is', 'other': 'are'}"/>-->
+              <!--</ng-pluralize>-->
+              <!--{{nbHostProblems}} host-->
+              <!--<ng-pluralize count="nbHostProblems" when="{'0':'problem', '1': 'problem', 'other': 'problems'}"/>-->
+              <!--</ng-pluralize>-->
+            <!--</p>-->
+          <!--</header>-->
+<!---->
+          <!--<bansho-table cells-text="{{dashboardTables[2].CellsText}}"-->
+                     <!--cells-name="{{dashboardTables[2].CellsName}}"-->
+                     <!--input-source="{{dashboardTables[2].InputSource}}"-->
+                     <!--filters="{{dashboardTables[2].Filters}}"-->
+                     <!--is-wrappable="{{dashboardTables[2].IsWrappable}}"-->
+                     <!--no-repeat-cell="{{dashboardTables[2].NoRepeatCell}}"-->
+                     <!--check-column="{{dashboardTables[2].CheckColumn}}"-->
+                     <!--header-follow="{{dashboardTables[2].HeaderFollow}}"-->
+                     <!--refresh-interval="{{dashboardRefreshInterval}}"-->
+                     <!--table-id="2"></bansho-table>-->
+        <!--</span>-->
+<!---->
+        <!--<span ng-hide="nbServiceProblems == 0">-->
+          <!--<header class="main__content__header clearfix">-->
+            <!--<h2 class="main__content__title">{{dashboardTables[3].title}}</h2>-->
+            <!--<p class="main__content__alert state&#45;&#45;error">-->
+              <!--There-->
+              <!--<ng-pluralize count="nbServiceProblems" when="{'0':'is', '1': 'is', 'other': 'are'}"/>-->
+              <!--</ng-pluralize>-->
+              <!--{{nbServiceProblems}} service-->
+              <!--<ng-pluralize count="nbServiceProblems" when="{'0':'problem', '1': 'problem', 'other': 'problems'}"/>-->
+              <!--</ng-pluralize>-->
+            <!--</p>-->
+          <!--</header>-->
+<!---->
+          <!--<bansho-table cells-text="{{dashboardTables[3].CellsText}}"-->
+                     <!--cells-name="{{dashboardTables[3].CellsName}}"-->
+                     <!--input-source="{{dashboardTables[3].InputSource}}"-->
+                     <!--filters="{{dashboardTables[3].Filters}}"-->
+                     <!--is-wrappable="{{dashboardTables[3].IsWrappable}}"-->
+                     <!--no-repeat-cell="{{dashboardTables[3].NoRepeatCell}}"-->
+                     <!--check-column="{{dashboardTables[3].CheckColumn}}"-->
+                     <!--header-follow="{{dashboardTables[3].HeaderFollow}}"-->
+                     <!--refresh-interval="{{dashboardRefreshInterval}}"-->
+                     <!--table-id="3"></bansho-table>-->
+       <!--</span>-->
+      <!--</div>-->
+    <!--</div>-->
+<!---->
   </section>
 </article>

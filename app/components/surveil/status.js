@@ -3,18 +3,11 @@
 'use strict';
 
 angular.module('bansho.surveil')
-    .service('surveilStatus', ['$http', '$q',
-        function ($http, $q) {
-            var getObjects = function (fields, filters, apiName) {
+    .service('surveilStatus', ['$http', '$q', 'surveilQuery',
+        function ($http, $q, surveilQuery) {
+            var getObjects = function (fields, filters, apiName, queryFilter) {
                 var query = {},
                     transformations;
-
-                function appendTransform(defaults, transform) {
-                    // We can't guarantee that the default transformation is an array
-                    defaults = angular.isArray(defaults) ? defaults : [defaults];
-
-                    return defaults.concat(transform);
-                }
 
                 if (apiName === 'hosts') {
                     transformations = hostMiddleware;
@@ -34,14 +27,6 @@ angular.module('bansho.surveil')
 
                 query.filters = JSON.stringify(filters);
 
-                return $http({
-                    url: 'surveil/v2/status/' + apiName + '/',
-                    method: 'POST',
-                    data: query,
-                    transformResponse: appendTransform($http.defaults.transformResponse, transformations),
-                }).error(function () {
-                    throw new Error('getObjects : POST Request failed');
-                });
             };
 
             var getMetric = function (host, service, metric) {
@@ -273,25 +258,6 @@ angular.module('bansho.surveil')
             };
 
             // Modify response object to conform to web ui
-            var hostMiddleware = function (data) {
-                var i = 0,
-                    conversions = {
-                        'state': 'host_state'
-                    };
-
-                for (i = 0; i < data.length; i += 1) {
-                    angular.forEach(data[i], function (value, field) {
-                        if (field in conversions) {
-                            data[i][conversions[field]] = value;
-                            delete data[i][field];
-                        }
-                    });
-                }
-
-                return data;
-            };
-
-            // Modify response object to conform to web ui
             var apiMiddleware = function (data) {
                 var i = 0,
                     conversions = {};
@@ -312,6 +278,35 @@ angular.module('bansho.surveil')
                 return data;
             };
 
+            var executeQuery = function (url, method, query) {
+                return $http({
+                    url: url,
+                    method: method,
+                    data: query
+                }).error(function () {
+                    throw new Error('executeQuery : ' + method + ' Request failed');
+                });
+            };
+
+            var getData = function (fields, filters, endpoint) {
+                var promise = $q.defer(), query;
+
+                console.log(endpoint)
+                //if (endpoint !== 'hosts' || endpoint !== 'services' || endpoint !== 'events') {
+                //    throw new Error('getData in surveilStatus : Invalid endpoint ' + endpoint);
+                //}
+
+                query = surveilQuery(fields, filters);
+
+                executeQuery('surveil/v2/status/' + endpoint + '/', 'POST', query)
+                    .success(function (data) {
+                        console.log(data)
+                        promise.resolve(data);
+                    });
+
+                return promise.promise;
+            };
+
             var getTableData = function (fields, inputSourceConfig) {
                 var hostFields = [],
                     serviceFields = [],
@@ -320,9 +315,8 @@ angular.module('bansho.surveil')
                     hostKeys = {
                         'host_state': 'state',
                         'address': 'address',
-                        'childs': 'childs'
+                        //'childs': 'childs'
                     },
-                    responsePromise = $q.defer(),
                     i,
                     found = false;
 
@@ -399,32 +393,21 @@ angular.module('bansho.surveil')
 
                     return responsePromise.promise;
                 } else if (inputSourceConfig.apiName === 'events') {
-                    var queryFields = [];
 
-                    // Queries events API
-                    if (inputSourceConfig.fields)
-                        queryFields = inputSourceConfig.fields;
-
-                    getObjects(queryFields, inputSourceConfig.filters, 'events')
-                        .success(function (eventsData) {
-                            responsePromise.resolve(eventsData);
-                        });
-
-                    return responsePromise.promise;
                 }
             };
 
             return {
+                getData: getData,
                 getHost: getHost,
                 getObjects : getObjects,
                 getService : getService,
                 hostQueryTransform: hostQueryTransform,
                 getHostOpenProblems: getHostOpenProblems,
-                hostMiddleware: hostMiddleware,
                 getServiceProblems: getServiceProblems,
                 getServiceOpenProblems: getServiceOpenProblems,
                 getHostProblems: getHostProblems,
-                getTableData: getTableData,
+                //getTableData: getTableData,
                 getTotalHosts: getTotalHosts,
                 getTotalServices: getTotalServices,
                 getServicesByHost: getServicesByHost,
