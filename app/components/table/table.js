@@ -20,10 +20,10 @@ angular.module('bansho.table', ['bansho.surveil',
 
     .value('tableGlobalConfig', {'cellToFieldsMap': {}, 'cellWrappableField': {}})
 
-    .service('tables', ['$filter', 'surveilStatus', 'tableGlobalConfig',
-                        function ($filter, surveilStatus, tableGlobalConfig) {
-        var inputSourceServices = {
-                surveilStatus: surveilStatus
+    .service('tables', ['$filter', 'surveilStatus', 'surveilQuery', 'componentsConfig', 'tableGlobalConfig',
+                        function ($filter, surveilStatus, surveilQuery, componentsConfig, tableGlobalConfig) {
+        var providerServices = {
+                status: surveilStatus
             },
             config = [],
             data = [],
@@ -41,18 +41,29 @@ angular.module('bansho.table', ['bansho.surveil',
             notifyDataChanged(tableId);
         }
 
-        return {
-            refreshTableData: function (tableId) {
-                var promise = inputSourceServices.surveilStatus.getTableData(
-                        config[tableId].requestFields, config[tableId].inputSource.config);
-                promise.then(function (newData) {
+        function refreshTableData (tableId) {
+            var conf = config[tableId],
+                inputSource = componentsConfig.getInputSource(conf.inputSource),
+                filter = componentsConfig.getFilter(inputSource.filter).filter,
+                promise;
+
+            if (config[tableId].queryFilter) {
+                filter = componentsConfig.mergeFilters([config[tableId].queryFilter, filter]);
+            }
+
+            promise = providerServices[inputSource.provider].getData([], filter, inputSource.endpoint);
+
+            promise.then(function (newData) {
                     data[tableId] = newData;
                     config[tableId].isCheckAll = false;
                     filterData(tableId);
                 }, function (error) {
                     throw new Error('getTableData : Query failed' + error);
                 });
-            },
+        }
+
+        return {
+            refreshTableData: refreshTableData,
             addTable: function (tableId, conf) {
                 config[tableId] = conf;
                 config[tableId].requestFields = [];
@@ -92,6 +103,12 @@ angular.module('bansho.table', ['bansho.surveil',
             setSearchFilter: function (tableId, searchFilter) {
                 config[tableId].searchFilter = searchFilter;
                 filterData(tableId);
+
+                notifyDataChanged(tableId);
+            },
+            setQueryFilter: function (tableId, queryFilter) {
+                config[tableId].queryFilter = queryFilter;
+                refreshTableData(tableId);
             }
         };
     }])
@@ -139,33 +156,36 @@ angular.module('bansho.table', ['bansho.surveil',
             return {
                 restrict: 'E',
                 scope: {
-                    tableId: '='
+                    tableId: '=',
+                    refresh: '='
                 },
                 compile: function () {
                     return function (scope, element, attrs) {
                         var template = 'components/table/table.html',
                             conf = {};
 
-                        if (!attrs.cellsText || !attrs.cellsName || !attrs.inputSource || !attrs.isWrappable) {
-                            throw new Error('<bansho-table> "cells-text", "cells-name", "inputSource" and "is-wrappable" attributes must be defined');
-                        }
+                        // TODO correct checker
+                        //if (!attrs.cells || !attrs.inputSource || !attrs.isWrappable) {
+                        //    throw new Error('<bansho-table> "cells-text", "cells-name", "inputSource" and "is-wrappable" attributes must be defined');
+                        //}
 
                         // Create table configuration
                         conf.cells = { 'text': [], 'name': [] };
-                        conf.cells.text = attrs.cellsText.split(',');
-                        conf.cells.name = attrs.cellsName.split(',');
+                        conf.cells.text = JSON.parse(attrs.cells).text;
+                        conf.cells.name = JSON.parse(attrs.cells).name;
 
-                        conf.inputSource = JSON.parse(attrs.inputSource);
+                        conf.inputSource = attrs.inputSource;
 
-                        conf.isWrappable = JSON.parse(attrs.isWrappable);
-                        conf.noRepeatCell = attrs.noRepeatCell;
+                        conf.isWrappable = scope.$eval(attrs.isWrappable);
                         conf.headerFollow = scope.$eval(attrs.headerFollow);
+                        conf.noRepeatCell = attrs.noRepeatCell;
 
-                        tables.addTable(scope.tableId, conf);
+                        tables.addTable(attrs.tableId, conf);
 
                         scope.checkColumn = scope.$eval(attrs.checkColumn);
 
-                        if (!!attrs.refreshInterval) {
+                        tableGlobalConfig.refreshInterval = 30000;
+                        if (!!scope.refresh) {
                             tableGlobalConfig.refreshInterval = parseInt(attrs.refreshInterval * 1000, 10);
                         }
 

@@ -9,19 +9,19 @@ angular.module('bansho.table.cell_status_event', ['bansho.table'])
         };
 
         var shownOutput = {
-            'attempts': true,
-            'contact': true,
-            'notification_method': true,
-            'notification_type': true,
-            'state': true,
-            'state_type': true
+            'event_attempts': true,
+            'event_contact': true,
+            'event_notification_method': true,
+            'event_notification_type': true,
+            'event_state': true,
+            'event_state_type': true
         };
 
         $scope.filter = function (entry) {
             var result = {};
             angular.forEach(entry, function(value, key) {
                 if (shownOutput[key]) {
-                    result[key] = value;
+                    result[key.substring(6)] = value;
                 }
             });
             return result;

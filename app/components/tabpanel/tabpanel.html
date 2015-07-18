@@ -1,0 +1,13 @@
+<nav>
+    <ul class="tablist clearfix" ng-repeat="panel in tabpanel">
+        <li role="presentation" class="tablist__item">
+            <a ng-click="setIsShown(panel)"
+               class="tabpanel__tab"
+               aria-controls="openProblems"
+               aria-expanded="true"
+               role="tab"
+               data-toggle="tab">{{panel.title}}
+            </a>
+        </li>
+    </ul>
+</nav>
