@@ -54,6 +54,10 @@ module.exports = function (grunt) {
                         dest: '<%= project.dist %>/components/config/config.json'
                     },
                     {
+                        src: '<%= project.app %>/components/config/componentsConfig.json',
+                        dest: '<%= project.dist %>/components/config/componentsConfig.json'
+                    },
+                    {
                         src: '<%= project.app %>/components/config/developmentConfig.json',
                         dest: '<%= project.dist %>/components/config/developmentConfig.json'
                     },
