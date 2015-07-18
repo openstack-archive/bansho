@@ -11,6 +11,7 @@ angular.module('bansho.authentication', [])
 
     .controller('LoginController', ['$scope', '$rootScope', '$location', 'authService', 'configManager', 'themeManager', function ($scope, $rootScope, $location, authService, configManager, themeManager) {
         themeManager.setTheme(themeManager.THEMES.DEFAULT);
+        $rootScope.isAuthenticated = false;
 
         var login = function (credentials) {
             authService.login(credentials);
