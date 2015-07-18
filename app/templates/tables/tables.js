@@ -16,7 +16,7 @@ angular.module('bansho.view.singleTable', ['ngRoute',
             $scope.components = pageConfig.components;
         }])
 
-    .directive('banshoComponents', ['$compile', function ($compile) {
+    .directive('banshoComponents', ['$compile', 'directiveBuilder', function ($compile, directiveBuilder) {
         return {
             restrict: "E",
             replace: true,
@@ -24,35 +24,32 @@ angular.module('bansho.view.singleTable', ['ngRoute',
                 components: '=',
                 refresh: '='
             },
-            template: "<span></span>",
+            template: "<section></section>",
             link: function (scope, element, attrs) {
                 if (angular.isArray(scope.components)) {
                     angular.forEach(scope.components, function (component) {
-                        var banshoDirective = "<bansho-" + component.type + " table-id='[" + component.config.tableId + "]'",
-                            config = component.config;
-
-                        if (component.type === "actionbar") {
-                            banshoDirective +=
-                                " components='" + config.components + "'";
-                        } else if (component.type === "table") {
-                            banshoDirective +=
-                                " cells-name='" + config.cells.name + "'" +
-                                " cells-text='" + config.cells.text + "'" +
-                                " input-source='" + JSON.stringify(config.inputSource) + "'" +
-                                " is-wrappable='" + config.isWrappable + "'" +
-                                " no-repeat-cell='" + config.noRepeatCell + "'" +
-                                " check-column='" + config.checkColumn + "'" +
-                                " contains-actionbar='" + config.containsActionBar + "'" +
-                                " header-follow='" + config.headerFollow + "'" +
-                                " refresh-interval='" + scope.refresh + "'";
-                        }
-
-                        banshoDirective += "/>";
-
-                        element.append(banshoDirective);
-                        $compile(element.contents())(scope);
+                        element.append(directiveBuilder(
+                            component.type,
+                            component.attributes,
+                            component.components
+                        ));
                     });
+
+                    $compile(element.contents())(scope);
                 }
             }
         };
+    }])
+
+    .factory('directiveBuilder', [function () {
+        return function (type, attributes, components) {
+            var banshoDirective = "<bansho-" + type;
+
+            angular.forEach(attributes, function (value, attr) {
+                banshoDirective += " " + attr + "=" + JSON.stringify(value);
+            });
+            banshoDirective += " components='" + JSON.stringify(components) + "'/>";
+
+            return banshoDirective;
+        }
     }]);

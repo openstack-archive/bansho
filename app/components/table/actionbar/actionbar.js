@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bansho.table.actionbar', ['bansho.table', 'bansho.surveil', 'bansho.notifications'])
-    .directive('banshoActionbar', ['$compile', function ($compile) {
+    .directive('banshoActionbar', ['$compile', 'directiveBuilder', function ($compile, directiveBuilder) {
         return {
             restrict: 'E',
             scope: {
@@ -10,12 +10,21 @@ angular.module('bansho.table.actionbar', ['bansho.table', 'bansho.surveil', 'ban
             templateUrl: 'components/table/actionbar/actionbar.html',
             compile: function () {
                 return function (scope, element, attrs) {
-                    scope.components = attrs.components.split(',');
-                    if (angular.isArray(scope.components)) {
-                        angular.forEach(scope.components, function (component) {
-                            var banshoDirective = "<bansho-actionbar-" + component + " table-id='[" + scope.tableId + "]'" + "/>";
+                    var components = JSON.parse(attrs.components);
+                    if (angular.isArray(components)) {
+                        angular.forEach(components, function (component) {
+                            if (!component.attributes) {
+                                component.attributes = {}
+                            }
+                            component.attributes['table-id'] = scope.tableId;
 
-                            element.append(banshoDirective);
+                            var directive = directiveBuilder(
+                                component.type,
+                                component.attributes,
+                                component.components
+                            );
+
+                            element.append(directive);
                             $compile(element.contents())(scope);
                         });
                     }

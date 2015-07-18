@@ -19,7 +19,7 @@ angular.module('bansho.host', ['bansho.surveil',
             $scope.host = data;
             $scope.data = data;
 
-            surveilStatus.getServicesByHost($scope.hostName).success(function (data) {
+            surveilStatus.getService($scope.hostName).success(function (data) {
                 var i,
                     service;
 
