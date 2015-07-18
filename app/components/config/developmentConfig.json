@@ -1,6 +1,6 @@
 {
-    "env": "production",
+    "env": "development",
     "username":"",
     "password":"",
-    "useStoredConfig": true
+    "useStoredConfig": false
 }
