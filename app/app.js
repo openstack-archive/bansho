@@ -10,16 +10,18 @@ angular.module('bansho', [
     'bansho.topbar',
     'bansho.sidebar',
     'bansho.surveil',
+    'bansho.datasource',
+    'bansho.directive',
     'bansho.host',
     'bansho.service',
     'bansho.drupal',
     'bansho.drupal.tile',
     'bansho.drupal.info',
     'bansho.view',
-    'bansho.view.dashboard',
-    'bansho.view.singleTable',
+    'bansho.view.page',
     'bansho.view.host',
     'bansho.view.service',
+    'bansho.view.config',
     'bansho.view.drupalDashboard',
     'bansho.view.drupal',
     'bansho.grafana'
@@ -30,11 +32,13 @@ angular.module('bansho', [
     }])
 
     // Reinitialise objects on url change
-    .run(['$rootScope', 'promisesManager', 'reinitDrupalTiles', 'reinitDrupalInfo',
-        function ($rootScope, promisesManager, reinitDrupalTiles, reinitDrupalInfo) {
+    .run(['$rootScope', 'promisesManager', 'sharedData', 'reinitDrupalTiles', 'reinitDrupalInfo', 'componentsConfig',
+        function ($rootScope, promisesManager, sharedData, reinitDrupalTiles, reinitDrupalInfo, componentsConfig) {
+            componentsConfig.load();
             $rootScope.$on('$locationChangeStart', function () {
                 reinitDrupalTiles();
                 reinitDrupalInfo();
                 promisesManager.clearAllPromises();
+                sharedData.clear();
             });
         }]);

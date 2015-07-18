@@ -1,0 +1,17 @@
+<section class="main__content tabpanel">
+  <nav>
+    <ul class="tablist clearfix">
+      <li role="presentation" class="tablist__item" data-ng-repeat="(index, panel) in navigation"
+          ng-class="{active: currentPanel ===  index }">
+        <a ng-click="setIsShown(index)"
+           class="tabpanel__tab"
+           aria-expanded="true"
+           role="tab"
+           data-toggle="tab"
+           data-problems="{{panel.right}}">{{panel.title}}
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <bansho-components components="options.components"></bansho-components>
+</section>

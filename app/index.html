@@ -17,8 +17,6 @@
     <link href="bower_components/angular-material/angular-material.min.css" media="all" rel="stylesheet" type="text/css" />
     <!-- endbuild -->
 
-
-
     <meta name="description" content="">
 
     <!-- build:js js/app.min.js -->
@@ -52,6 +50,7 @@
     <script src="components/surveil/surveil.js"></script>
     <script src="components/surveil/status.js"></script>
     <script src="components/surveil/actions.js"></script>
+    <script src="components/surveil/query.js"></script>
 
     <script src="components/authentication/authentication.js"></script>
     <script src="components/ng-justgage/ng-justgage.js"></script>
@@ -59,56 +58,61 @@
     <script src="components/notifications/notifications.js"></script>
     <script src="components/sidebar/sidebar.js"></script>
     <script src="components/topbar/topbar.js"></script>
-    <script src="components/tactical/tactical.js"></script>
-    <script src="components/tactical/status_overview/status_overview.js"></script>
-    <script src="components/tactical/current_health/current_health.js"></script>
-    <script src="components/tactical/top_alert_producers/top_alert_producers.js"></script>
+    <script src="components/datasource/datasource.js"></script>
+
+    <!-- Directives -->
+    <script src="components/directive/directive.js"></script>
+    <script src="components/directive/title/title.js"></script>
+    <script src="components/directive/tactical/tactical.js"></script>
+    <script src="components/directive/tactical/status_overview/status_overview.js"></script>
+    <script src="components/directive/tactical/current_health/current_health.js"></script>
+    <script src="components/directive/tactical/top_alert_producers/top_alert_producers.js"></script>
+    <script src="components/directive/tabpanel/tabpanel.js"></script>
 
     <!-- Table components -->
-    <script src="components/table/actionbar/actionbar.js"></script>
-    <script src="components/table/actionbar/component_acknowledge/acknowledge.js"></script>
-    <script src="components/table/actionbar/component_downtime/downtime.js"></script>
-    <script src="components/table/actionbar/component_filter/filter.js"></script>
-    <script src="components/table/actionbar/component_more/more.js"></script>
-    <script src="components/table/actionbar/component_recheck/recheck.js"></script>
-    <script src="components/table/actionbar/component_search_filter/search_filter.js"></script>
-    <script src="components/table/table.js"></script>
-    <script src="components/table/cell_status_duration/cell_status_duration.js"></script>
+    <script src="components/directive/actionbar/actionbar.js"></script>
+    <script src="components/directive/actionbar/component_acknowledge/acknowledge.js"></script>
+    <script src="components/directive/actionbar/component_downtime/downtime.js"></script>
+    <script src="components/directive/actionbar/component_filter/filter.js"></script>
+    <script src="components/directive/actionbar/component_more/more.js"></script>
+    <script src="components/directive/actionbar/component_recheck/recheck.js"></script>
+    <script src="components/directive/actionbar/component_search_filter/search_filter.js"></script>
+    <script src="components/directive/table/table.js"></script>
+    <script src="components/directive/table/cell_status_duration/cell_status_duration.js"></script>
 
-    <script src="components/table/cell_status_event/cell_status_event.js"></script>
-    <script src="components/table/cell_status_event_event_type/cell_status_event_event_type.js"></script>
-    <script src="components/table/cell_status_event_output/cell_status_event_output.js"></script>
-    <script src="components/table/cell_status_event_host_name/cell_status_event_host_name.js"></script>
-    <script src="components/table/cell_status_event_service/cell_status_event_service.js"></script>
-    <script src="components/table/cell_status_event_time/cell_status_event_time.js"></script>
+    <script src="components/directive/table/cell_status_event/cell_status_event.js"></script>
+    <script src="components/directive/table/cell_status_event_event_type/cell_status_event_event_type.js"></script>
+    <script src="components/directive/table/cell_status_event_output/cell_status_event_output.js"></script>
+    <script src="components/directive/table/cell_status_event_host_name/cell_status_event_host_name.js"></script>
+    <script src="components/directive/table/cell_status_event_service/cell_status_event_service.js"></script>
+    <script src="components/directive/table/cell_status_event_time/cell_status_event_time.js"></script>
 
-    <script src="components/table/cell_status_host/cell_status_host.js"></script>
-    <script src="components/table/cell_status_last_check/cell_status_last_check.js"></script>
-    <script src="components/table/cell_status_service_check/cell_status_service_check.js"></script>
-    <script src="components/table/cell_status_host_address/cell_status_host_address.js"></script>
-    <script src="components/table/cell_status_host_status/cell_status_host_status.js"></script>
-    <script src="components/table/state_icon/state_icon.js"></script>
+    <script src="components/directive/table/cell_status_host/cell_status_host.js"></script>
+    <script src="components/directive/table/cell_status_last_check/cell_status_last_check.js"></script>
+    <script src="components/directive/table/cell_status_service_check/cell_status_service_check.js"></script>
+    <script src="components/directive/table/cell_status_host_address/cell_status_host_address.js"></script>
+    <script src="components/directive/table/cell_status_host_status/cell_status_host_status.js"></script>
+    <script src="components/directive/table/state_icon/state_icon.js"></script>
     <script src="components/grafana/grafana.js"></script>
 
-    <script src="components/host/host.js"></script>
-    <script src="components/host/host_cpu/host_cpu.js"></script>
-    <script src="components/host/host_info/host_info.js"></script>
-    <script src="components/host/host_load/host_load.js"></script>
-    <script src="components/host/host_main/host_main.js"></script>
-    <script src="components/host/host_live/host_live.js"></script>
-    <script src="components/host/host_services_list/host_services_list.js"></script>
-    <script src="components/service/service.js"></script>
-    <script src="components/service/service_main/service_main.js"></script>
-    <script src="components/service/service_live/service_live.js"></script>
-    <script src="components/service/service_info/service_info.js"></script>
-    <script src="components/service/service_graphs/service_graphs.js"></script>
-    <script src="components/service/service_metrics/service_metrics.js"></script>
+    <script src="components/directive/host/host.js"></script>
+    <script src="components/directive/host/host_cpu/host_cpu.js"></script>
+    <script src="components/directive/host/host_info/host_info.js"></script>
+    <script src="components/directive/host/host_load/host_load.js"></script>
+    <script src="components/directive/host/host_main/host_main.js"></script>
+    <script src="components/directive/host/host_live/host_live.js"></script>
+    <script src="components/directive/host/host_services_list/host_services_list.js"></script>
+    <script src="components/directive/service/service.js"></script>
+    <script src="components/directive/service/service_main/service_main.js"></script>
+    <script src="components/directive/service/service_live/service_live.js"></script>
+    <script src="components/directive/service/service_info/service_info.js"></script>
+    <script src="components/directive/service/service_graphs/service_graphs.js"></script>
+    <script src="components/directive/service/service_metrics/service_metrics.js"></script>
     <script src="components/drupal/drupal.js"></script>
     <script src="components/drupal/drupal_tile/drupal_tile.js"></script>
     <script src="components/drupal/drupal_info/drupal_info.js"></script>
     <script src="routing_view/routing_view.js"></script>
-    <script src="templates/dashboard/dashboard.js"></script>
-    <script src="templates/tables/tables.js"></script>
+    <script src="templates/page/page.js"></script>
     <script src="templates/host/host.js"></script>
     <script src="templates/config/config.js"></script>
     <script src="templates/service/service.js"></script>
@@ -129,7 +133,7 @@
           <bansho-topbar ng-show="isAuthenticated"></bansho-topbar>
         </div>
 
-        <main ng-view id="page" class="main" role="main"></main>
+        <div ng-view id="page" class="main" role="main"></div>
         <footer class="footer" role="contentinfo"></footer>
       </div>
     </div>
