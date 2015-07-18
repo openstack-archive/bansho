@@ -1,0 +1,15 @@
+<div data-ng-show="cpuService" class="subcomponent__live subcomponent__small">
+  <h2>Cpu</h2>
+  <table class="data-table">
+    <tbody>
+      <tr>
+        <td>State</td>
+        <td><bansho-service-state-icon state="host.cpuService.state"></bansho-service-state-icon> {{host.cpuService.state}}</td>
+      </tr>
+      <tr>
+        <td>Output</td>
+        <td>{{cpuService.plugin_output}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
