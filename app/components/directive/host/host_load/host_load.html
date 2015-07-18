@@ -1,0 +1,16 @@
+<div data-ng-show="param.host.load" class="subcomponent__live subcomponent__small">
+  <h2>Load</h2>
+  <iframe src="{{param.host.load.iframeUrl}}" width="450" height="200" frameborder="0"></iframe>
+  <table class="data-table">
+    <tbody>
+      <tr>
+        <td>State</td>
+        <td><bansho-service-state-icon state="param.host.load.state"></bansho-service-state-icon> {{param.host.load.state}}</td>
+      </tr>
+      <tr>
+        <td>Output</td>
+        <td>{{param.host.load.plugin_output}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

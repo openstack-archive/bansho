@@ -1,0 +1,35 @@
+<div class="subcomponent__live">
+  <h2>Info</h2>
+  <table class="data-table">
+    <tbody>
+      <tr>
+        <td>Last check</td>
+        <td>{{param.host.host_last_check | timeElapsed}}</td>
+      </tr>
+      <tr>
+        <td>Check period</td>
+        <td>{{param.host.config_host_check_period}}</td>
+      </tr>
+      <tr>
+        <td>Notification period</td>
+        <td>{{param.host.config_host_notification_period}}</td>
+      </tr>
+      <tr>
+        <td>Active checks</td>
+        <td>{{param.host.config_host_active_checks}}</td>
+      </tr>
+      <tr>
+        <td>Notifications</td>
+        <td>{{param.host.config_host_notifications_enabled}}</td>
+      </tr>
+      <tr>
+        <td>Event Handler</td>
+        <td>{{param.host.config_host_event_handler_enabled}}</td>
+      </tr>
+      <tr>
+        <td>Flag detection</td>
+        <td>{{param.host.config_host_flap_detection_enabled}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
