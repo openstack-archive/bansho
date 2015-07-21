@@ -75,6 +75,11 @@ angular.module('bansho.config', [])
             return config.data;
         };
 
+        this.saveConfig = function(configuration) {
+            config.data = configuration;
+            saveConfig();
+        };
+
         this.setThemeAndSave = function (theme) {
            config.data.banshoConfig.theme = theme;
            saveConfig();

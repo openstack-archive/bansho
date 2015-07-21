@@ -393,5 +393,8 @@
         "hostsMap": {
             "drupal": "Wonderful Drupal Website"
         }
+    },
+    "config": {
+        "template": "config"
     }
 }
