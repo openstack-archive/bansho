@@ -1,1 +1,2 @@
-angular.module('bansho.surveil', []);
+angular.module('bansho.surveil', [])
+    .value('surveilApiEndpoint', '');
