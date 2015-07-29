@@ -3,10 +3,10 @@
 'use strict';
 
 angular.module('bansho.surveil')
-    .service('surveilStatus', ['$http', '$q', 'surveilQuery', 'componentsConfig',
-        function ($http, $q, surveilQuery, componentsConfig) {
+    .service('surveilStatus', ['$http', '$q', 'surveilQuery', 'componentsConfig', 'surveilConfig',
+        function ($http, $q, surveilQuery, componentsConfig, surveilConfig) {
             var getMetric = function (host, service, metric) {
-                var url = 'surveil/v2/status/hosts/' + host,
+                var url = surveilConfig.endpoint('status') + 'hosts/' + host,
                     responsePromise = $q.defer();
 
                 if (service !== undefined) {
@@ -25,7 +25,7 @@ angular.module('bansho.surveil')
             };
 
             var getMetricNames = function (host, service) {
-                var url = '/surveil/v2/status/hosts/' + host,
+                var url = surveilConfig.endpoint('status') + 'hosts/' + host,
                     responsePromise = $q.defer();
 
                 if (service !== undefined) {
@@ -44,7 +44,7 @@ angular.module('bansho.surveil')
 
                     responsePromise.resolve(result);
                 }).error(function () {
-                        throw new Error('getMetricNames: GET Request failed');
+                    throw new Error('getMetricNames: GET Request failed');
                 });
 
                 return responsePromise.promise;
@@ -78,9 +78,9 @@ angular.module('bansho.surveil')
                 var hostQuery = surveilQuery(fields, filters.hosts),
                     serviceQuery = surveilQuery(fields, filters.services);
 
-                executeQuery('surveil/v2/status/hosts/', 'POST', hostQuery)
+                executeQuery(surveilConfig.endpoint('status') + 'hosts/', 'POST', hostQuery)
                     .success(function (hosts) {
-                        executeQuery('surveil/v2/status/services/', 'POST', serviceQuery)
+                        executeQuery(surveilConfig.endpoint('status') + 'services/', 'POST', serviceQuery)
                             .success(function (services) {
                                 callback(hosts, services);
                             });
@@ -129,7 +129,7 @@ angular.module('bansho.surveil')
                 "hosts": function (fields, filters, callback) {
                     var hostQuery = surveilQuery(fields, filters.hosts),
                         method = 'POST',
-                        hostUrl = 'surveil/v2/status/hosts/';
+                        hostUrl = surveilConfig.endpoint('status') + 'hosts/';
 
                     if (filters.hosts && filters.hosts.is && filters.hosts.is.host_name) {
                         hostUrl += filters.hosts.is.host_name;
@@ -151,7 +151,7 @@ angular.module('bansho.surveil')
                 "events": function (fields, filters, callback) {
                     var query = surveilQuery(fields, filters.events);
 
-                    executeQuery('surveil/v2/status/events/', 'POST', query)
+                    executeQuery(surveilConfig.endpoint('status') + 'events/', 'POST', query)
                         .success(function (events) {
                             angular.forEach(events, function (event) {
                                 angular.forEach(event, function (value, attr) {

@@ -2,7 +2,7 @@
 
 'use strict';
 
-angular.module('bansho.view.singleTable')
+angular.module('bansho.view.config', [])
     .controller('ConfigCtrl', ['$scope', '$window', 'configManager',
         function ($scope, $window, configManager) {
             $scope.configuration = JSON.stringify(configManager.readConfig(),null,4);
