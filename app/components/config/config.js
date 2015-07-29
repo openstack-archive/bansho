@@ -87,103 +87,105 @@ angular.module('bansho.config', [])
         };
     }])
 
-    .service('configManager', ['$http', '$q', 'componentsConfig', function ($http, $q, componentsConfig) {
-        var config = {},
-            developmentConfig = {};
+    .service('configManager', ['$http', '$q', 'componentsConfig', 'surveilConfig',
+        function ($http, $q, componentsConfig, surveilConfig) {
+            var config = {},
+                developmentConfig = {};
 
-        this.loadDevelopmentConfig = function() {
-            var promise = $q.defer();
+            this.loadDevelopmentConfig = function() {
+                var promise = $q.defer();
 
-            $http.get('components/config/developmentConfig.json')
-                .success(function (config) {
-                    developmentConfig = config;
-                    promise.resolve();
-                })
-                .error(function() {
-                    promise.reject();
-                });
+                $http.get('components/config/developmentConfig.json')
+                    .success(function (config) {
+                        developmentConfig = config;
+                        surveilConfig.setSurveilApiUrl(config.surveilApi);
+                        promise.resolve();
+                    })
+                    .error(function() {
+                        promise.reject();
+                    });
 
-            return promise.promise;
-        };
+                return promise.promise;
+            };
 
-        this.getDevelopmentConfig = function () {
-            return developmentConfig;
-        };
+            this.getDevelopmentConfig = function () {
+                return developmentConfig;
+            };
 
-        this.getConfigData = function (templateName) {
-            return config.data[templateName];
-        };
+            this.getConfigData = function (templateName) {
+                return config.data[templateName];
+            };
 
-        this.readConfig = function () {
-            return config.data;
-        };
+            this.readConfig = function () {
+                return config.data;
+            };
 
-        this.saveConfig = function(configuration) {
-            config.data = configuration;
-            saveConfig();
-        };
+            this.saveConfig = function(configuration) {
+                config.data = configuration;
+                saveConfig();
+            };
 
-        this.setThemeAndSave = function (theme) {
-           config.data.banshoConfig.theme = theme;
-           saveConfig();
-        };
+            this.setThemeAndSave = function (theme) {
+               config.data.banshoConfig.theme = theme;
+               saveConfig();
+            };
 
-        this.getTheme = function () {
-            var theme;
+            this.getTheme = function () {
+                var theme;
 
-            if (config.data) {
-                theme = config.data.banshoConfig.theme;
-            }
+                if (config.data) {
+                    theme = config.data.banshoConfig.theme;
+                }
 
-            return theme;
-        };
+                return theme;
+            };
 
-        var saveConfig = function () {
-            var responsePromise = $q.defer();
+            var saveConfig = function () {
+                var responsePromise = $q.defer();
 
-            $http.post('surveil/v2/bansho/config', JSON.stringify(config.data))
-                .success(function () {
-                    responsePromise.resolve();
-                })
-                .error(function () {
-                    responsePromise.reject('Failed to send config to server');
-                });
-
-            return responsePromise.promise;
-        };
-
-        this.fetchConfig = function (useStoredConfig) {
-            var responsePromise = $q.defer();
-
-            componentsConfig.load();
-
-            $http.get('surveil/v2/bansho/config')
-                .success(function (conf) {
-                    if (!useStoredConfig || jQuery.isEmptyObject(conf))  {
-                        $http.get('components/config/config.json')
-                            .success(function (conf) {
-                                config.data = conf;
-
-                                $http.post('surveil/v2/bansho/config', JSON.stringify(conf))
-                                    .success(function () {
-                                        responsePromise.resolve();
-                                    })
-                                    .error(function () {
-                                        responsePromise.reject('Failed to send config to server');
-                                    });
-                            })
-                            .error(function () {
-                                responsePromise.reject('Failed to fetch default config');
-                            });
-                    } else {
-                        config.data = conf;
+                $http.post(surveilConfig.endpoint('config'), JSON.stringify(config.data))
+                    .success(function () {
                         responsePromise.resolve();
-                    }
-                })
-                .error(function () {
-                    responsePromise.reject('Failed to fetch config');
-                });
+                    })
+                    .error(function () {
+                        responsePromise.reject('Failed to send config to server');
+                    });
 
                 return responsePromise.promise;
             };
-        }]);
+
+            this.fetchConfig = function (useStoredConfig) {
+                var responsePromise = $q.defer();
+
+                componentsConfig.load();
+
+                $http.get(surveilConfig.endpoint('config'))
+                    .success(function (conf) {
+                        if (!useStoredConfig || jQuery.isEmptyObject(conf))  {
+                            $http.get('components/config/config.json')
+                                .success(function (conf) {
+                                    config.data = conf;
+
+                                    $http.post(surveilConfig.endpoint('config'), JSON.stringify(conf))
+                                        .success(function () {
+                                            responsePromise.resolve();
+                                        })
+                                        .error(function () {
+                                            responsePromise.reject('Failed to send config to server');
+                                        });
+                                })
+                                .error(function () {
+                                    responsePromise.reject('Failed to fetch default config');
+                                });
+                        } else {
+                            config.data = conf;
+                            responsePromise.resolve();
+                        }
+                    })
+                    .error(function () {
+                        responsePromise.reject('Failed to fetch config');
+                    });
+
+                    return responsePromise.promise;
+                };
+            }]);
