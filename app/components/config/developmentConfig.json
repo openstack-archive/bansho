@@ -2,5 +2,7 @@
     "env": "production",
     "username":"",
     "password":"",
-    "useStoredConfig": true
+    "useStoredConfig": true,
+    "surveilApiUrl": "http://localhost:12000/v2",
+    "surveilAuthUrl": "http://localhost:12000/v2/auth"
 }

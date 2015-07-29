@@ -31,12 +31,9 @@ angular.module('bansho.authentication', [])
             login($scope.credentials);
         };
 
-        if (authService.isAuthenticated()) {
-            login($scope.credentials);
-        }
-
         configManager.loadDevelopmentConfig().then(function () {
             var devConfig = configManager.getDevelopmentConfig();
+
             if (devConfig.env === 'development') {
                 login({
                     'auth': {
@@ -47,6 +44,8 @@ angular.module('bansho.authentication', [])
                         }
                     }
                 });
+            } else if (authService.isAuthenticated()) {
+                login($scope.credentials);
             }
 
         }, function () {
@@ -55,13 +54,13 @@ angular.module('bansho.authentication', [])
 
     }])
 
-    .factory('authService', [ '$http', '$location', '$rootScope', 'session', 'configManager', 'themeManager',
-             function ($http, $location, $rootScope, session, configManager, themeManager) {
+    .factory('authService', [ '$http', '$location', '$rootScope', 'session', 'configManager', 'themeManager', 'surveilConfig',
+             function ($http, $location, $rootScope, session, configManager, themeManager, surveilConfig) {
         var authService = {};
 
         authService.login = function (credentials) {
             return $http
-                .post('surveil/v2/auth/tokens/', credentials)
+                .post(surveilConfig.getAuthUrl() + '/tokens/', credentials)
                 .success(function (data) {
                     $rootScope.isAuthenticated = true;
 
