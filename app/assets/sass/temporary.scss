@@ -64,9 +64,7 @@ md-checkbox.md-checked .md-icon:after {
 
 // host/service status page
 
-.data-table thead th:first-child + th {
-  padding-left: 15px;
-}
+
 
 .subcomponent__live {
 
@@ -78,13 +76,37 @@ md-checkbox.md-checked .md-icon:after {
         background-color:$_color_light_beta;
     }
 
-    padding: 0px 15px;
     float: left;
-    margin: 20px;
+
+   .size-scheme--small & {
+        padding: 0px 5px;
+        margin: 5px;
+    }
+    .size-scheme--normal & {
+        padding: 0px 10px;
+        margin: 10px;
+    }
+    .size-scheme--big & {
+        padding: 0px 15px;
+        margin: 20px;
+    }
+
 }
 
 .subcomponent__live .data-table thead th:first-child {
     border-width: 0 0 0 0px;
+}
+
+.subcomponent__live .data-table tbody td {
+    .size-scheme--small & {
+        line-height: 30px;
+    }
+    .size-scheme--normal & {
+        line-height: 35px;
+    }
+    .size-scheme--big & {
+        line-height: 40px;
+    }
 }
 
 .subcomponent__live table {
@@ -95,10 +117,21 @@ md-checkbox.md-checked .md-icon:after {
     .color-scheme--light & {
         background-color:$_color_light_gamma;
     }
-
 }
+
 .subcomponent__live h2 {
-    margin: 15px 0px 20px 0px;
+
+    .size-scheme--small & {
+        margin: 5px 0px 10px 0px;
+    }
+    .size-scheme--normal & {
+        margin: 10px 0px 15px 0px;
+    }
+    .size-scheme--big & {
+        margin: 15px 0px 20px 0px;
+    }
+
+
     .color-scheme--dark & {
         color:$_color_omega;
     }
@@ -150,7 +183,15 @@ md-checkbox.md-checked .md-icon:after {
     .color-scheme--light & {
         color:$_color_alpha;
     }
-
+    .size-scheme--small & {
+        margin: 0px 0px;
+    }
+    .size-scheme--normal & {
+        margin: 5px 0px;
+    }
+    .size-scheme--big & {
+        margin: 10px 0px;
+    }
 }
 
 .subcomponent__title h1 span {
@@ -170,7 +211,15 @@ md-checkbox.md-checked .md-icon:after {
 }
 
 .subcomponent__small {
-    min-height: 190px;
+    .size-scheme--small & {
+        min-height: 130px;
+    }
+    .size-scheme--normal & {
+        min-height: 150px;
+    }
+    .size-scheme--big & {
+        min-height: 190px;
+    }
 }
 
 
@@ -183,6 +232,15 @@ md-checkbox.md-checked .md-icon:after {
 .subcomponent__live .state--ok .data-table__data:before {
     position: relative;
     left: -10px;
+    .size-scheme--small & {
+        height: 22px;
+    }
+    .size-scheme--normal & {
+        height: 22px;
+    }
+    .size-scheme--big & {
+        height: 25px;
+    }
 }
 
 bansho-host-services-list .subcomponent__live {
@@ -195,6 +253,19 @@ bansho-host-services-list .subcomponent__live {
 
 just-gage tspan {
     font: 500 1em "Roboto", sans-serif !important;
+}
+
+just-gage div {
+    .size-scheme--small & {
+        height: 100px;
+    }
+    .size-scheme--normal & {
+        height: 125px;
+    }
+    .size-scheme--big & {
+        height: 150px;
+    }
+
 }
 
 
@@ -306,11 +377,10 @@ bansho-table-actionbar menu {
     z-index: 988889;
 }
 
-input#filter__search {
+.filters__item input#filter__search {
     border: none;
     width: 100%;
-    padding: 0.8em;
-    margin: 10px 0px 0px 15px;
+    padding-left: 0.8em;
     outline: 0;
     .color-scheme--dark & {
         background-color:$_color_dark_gamma;
@@ -339,4 +409,122 @@ thead.moving-thead {
     top: 0;
     display: none;
     z-index: 988889;
+}
+
+
+// Theme size
+.data-table tbody td,
+.data-table tbody td:first-child + td,
+.data-table thead th:first-child + th {
+    .size-scheme--small & {
+        padding: 0px 5px 0px 5px;
+    }
+    .size-scheme--normal & {
+        padding: 5px 5px 5px 15px;
+    }
+    .size-scheme--big & {
+        padding: 15px;
+    }
+}
+
+.data-table thead th {
+    .size-scheme--small & {
+        padding: 3px 5px 3px 5px;
+    }
+    .size-scheme--normal & {
+        padding: 5px 5px 5px 15px;
+    }
+    .size-scheme--big & {
+        padding: 15px;
+    }
+}
+
+.data-table thead th:first-child,
+.data-table tbody td:first-child {
+    .size-scheme--small & {
+        padding: 0px 5px 0px 5px;
+    }
+    .size-scheme--normal & {
+        padding-left: 5px;
+    }
+    .size-scheme--big & {
+        padding-left: 15px;
+    }
+}
+
+
+.data-table md-checkbox {
+    .size-scheme--small & {
+        line-height: 0px;
+    }
+    .size-scheme--normal & {
+        line-height: 5px;
+    }
+    .size-scheme--big & {
+        line-height: 15px;
+    }
+}
+
+.filters__button {
+    .size-scheme--small & {
+        min-height: 34px;
+    }
+    .size-scheme--normal & {
+        min-height: 45px;
+    }
+    .size-scheme--big & {
+        min-height: 56px;
+    }
+}
+
+.filters__item input#filter__search {
+    .size-scheme--small & {
+          min-height: 34px - 2px;
+      }
+      .size-scheme--normal & {
+          min-height: 45px - 2px;
+      }
+      .size-scheme--big & {
+          min-height: 56px - 2px;
+      }
+}
+
+bansho-actionbar-acknowledge button.filters__button,
+bansho-actionbar-recheck button.filters__button,
+bansho-actionbar-downtime button.filters__button {
+    padding: 0px;
+    .size-scheme--small & {
+        min-width: 34px;
+    }
+    .size-scheme--normal & {
+        min-width: 45px;
+    }
+    .size-scheme--big & {
+        min-width: 56px;
+    }
+}
+
+.tab-content {
+    .size-scheme--small & {
+        padding: 5px 0 10px;
+    }
+    .size-scheme--normal & {
+        padding: 10px 0 15px;
+    }
+    .size-scheme--big & {
+        padding: 30px 0 15px;
+    }
+
+}
+
+.main__content {
+    .size-scheme--small & {
+        padding: 5px;
+    }
+    .size-scheme--normal & {
+        padding: 10px;
+    }
+    .size-scheme--big & {
+        padding: 15px;
+    }
 }

@@ -70,7 +70,15 @@
         border-width:0;
         display:block;
         padding:$_space_narrow 0 0;
-        vertical-align:top;
+        .size-scheme--small & {
+            vertical-align: middle;
+        }
+        .size-scheme--normal & {
+            vertical-align: middle;
+        }
+        .size-scheme--big & {
+            vertical-align: middle;
+        }
 
         @include medium-and-up-screen {
             border-width:0 0 1px;
@@ -240,14 +248,26 @@
             top:0;
             font-family:"adagios-fontawesome";
             left:0;
-            position:absolute;
+            position:relative;
             z-index:988888;
+            .size-scheme--small & {
+                line-height: 30px;
+            }
+            .size-scheme--normal & {
+                line-height: 35px;
+            }
+            .size-scheme--big & {
+                line-height: 40px;
+            }
+
+            float: left;
+            padding-right: 10px;
         }
     }
 
     .state--error & {
         @extend .ico-error;
-        padding-left:(16 + $_space_narrow);
+        padding-left:(-10 + $_space_narrow);
 
         &:before {
             color:$_color_error;
@@ -257,7 +277,7 @@
 
     .state--warning & {
         @extend .ico-warning;
-        padding-left:(16 + $_space_narrow);
+        padding-left:(-10 + $_space_narrow);
 
         &:before {
             color:$_color_warning;
@@ -267,7 +287,7 @@
 
     .state--ok & {
         @extend .ico-ok;
-        padding-left:(18 + $_space_narrow);
+        padding-left:(-10 + $_space_narrow);
 
         &:before {
             color:$_color_ok;
@@ -303,6 +323,16 @@ time.data-table__data {
 
 .data-table__host {
     width:auto;
+    .size-scheme--small & {
+        line-height: 30px;
+    }
+    .size-scheme--normal & {
+        line-height: 35px;
+    }
+    .size-scheme--big & {
+        line-height: 40px;
+    }
+
 
     @include medium-and-up-screen {
         width:percentage(368 / 1200);
@@ -311,6 +341,16 @@ time.data-table__data {
 
 .data-table__service {
     width:auto;
+
+    .size-scheme--small & {
+        line-height: 16px;
+    }
+    .size-scheme--normal & {
+        line-height: 20px;
+    }
+    .size-scheme--big & {
+        line-height: 24px;
+    }
 
     @include medium-and-up-screen {
         width:percentage(500 / 1200);

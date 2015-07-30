@@ -11,6 +11,7 @@ angular.module('bansho.authentication', [])
 
     .controller('LoginController', ['$scope', '$rootScope', '$location', 'authService', 'configManager', 'themeManager', function ($scope, $rootScope, $location, authService, configManager, themeManager) {
         themeManager.setTheme(themeManager.THEMES.DEFAULT);
+        themeManager.setSize(themeManager.SIZES.DEFAULT, false);
         $rootScope.isAuthenticated = false;
 
         var login = function (credentials) {
@@ -70,6 +71,7 @@ angular.module('bansho.authentication', [])
 
                     configManager.fetchLayoutConfig(configManager.getConfig().useStoredConfig).then(function () {
                             themeManager.setTheme(configManager.getTheme());
+                            themeManager.setSize(configManager.getSize());
                             $location.path('/view');
 
                             angular.forEach(onLogin, function (f) {
