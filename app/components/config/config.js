@@ -11,7 +11,14 @@ angular.module('bansho.config', [])
             LIGHT: "light",
             DEFAULT: "dark"
         };
+        var SIZES = {
+            BIG: "big",
+            NORMAL: "normal",
+            SMALL: "small",
+            DEFAULT: "normal"
+        };
         this.THEMES = THEMES;
+        this.SIZES = SIZES;
 
         var setThemeClass = function (theme, saveConfig) {
             $rootScope.themeClass = 'color-scheme--' + theme;
@@ -19,6 +26,15 @@ angular.module('bansho.config', [])
 
             if (saveConfig) {
                 configManager.setThemeAndSave(theme);
+            }
+        };
+
+        var setThemeSize = function (size, saveConfig) {
+            $rootScope.themeClassSize = 'size-scheme--' + size;
+            $rootScope.themeSize = size;
+
+            if (saveConfig) {
+                configManager.setSizeAndSave(size);
             }
         };
 
@@ -40,6 +56,17 @@ angular.module('bansho.config', [])
                 setThemeClass(THEMES.LIGHT, true);
             } else {
                 setThemeClass(THEMES.DARK, true);
+            }
+        };
+
+        this.setSize = function (size, saveConfig) {
+            if (saveConfig === undefined) {
+                saveConfig = true;
+            }
+            if (size) {
+                setThemeSize(size, saveConfig);
+            } else {
+                setThemeSize(SIZES.DEFAULT, saveConfig);
             }
         };
     }])
@@ -90,16 +117,16 @@ angular.module('bansho.config', [])
     .service('configManager', ['$http', '$q', 'componentsConfig', 'surveilConfig',
         function ($http, $q, componentsConfig, surveilConfig) {
             var layoutConfig = {},
-                developmentConfig = {};
+                config = {};
 
-            this.loadDevelopmentConfig = function() {
+            this.loadConfig = function() {
                 var promise = $q.defer();
 
-                $http.get('components/config/developmentConfig.json')
-                    .success(function (config) {
-                        developmentConfig = config;
-                        surveilConfig.setSurveilApiUrl(config.surveilApiUrl);
-                        surveilConfig.setAuthUrl(config.surveilAuthUrl);
+                $http.get('components/config/config.json')
+                    .success(function (c) {
+                        config = c;
+                        surveilConfig.setSurveilApiUrl(c.surveilApiUrl);
+                        surveilConfig.setAuthUrl(c.surveilAuthUrl);
                         promise.resolve();
                     })
                     .error(function() {
@@ -109,8 +136,8 @@ angular.module('bansho.config', [])
                 return promise.promise;
             };
 
-            this.getDevelopmentConfig = function () {
-                return developmentConfig;
+            this.getConfig = function () {
+                return config;
             };
 
             this.getConfigData = function (templateName) {
@@ -126,19 +153,33 @@ angular.module('bansho.config', [])
                 saveLayoutConfig();
             };
 
+            this.setSizeAndSave = function (size) {
+                layoutConfig.data.banshoConfig.size = size;
+                saveLayoutConfig();
+            };
+
             this.setThemeAndSave = function (theme) {
-               layoutConfig.data.banshoConfig.theme = theme;
-               saveLayoutConfig();
+                layoutConfig.data.banshoConfig.theme = theme;
+                saveLayoutConfig();
+            };
+
+            this.getSize = function () {
+                var size;
+
+                if (layoutConfig.data) {
+                    size = layoutConfig.data.banshoConfig.size;
+                }
+
+                return size;
             };
 
             this.getTheme = function () {
                 var theme;
 
-                if (layoutConfig.data) {
-                    theme = layoutConfig.data.banshoConfig.theme;
-                }
-
-                return theme;
+                    if (layoutConfig.data) {
+                        theme = layoutConfig.data.banshoConfig.theme;
+                    }
+                    return theme;
             };
 
             var saveLayoutConfig = function () {

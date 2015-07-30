@@ -15,6 +15,9 @@ angular.module('bansho.topbar', ['bansho.surveil'])
                     $scope.switchTheme = function () {
                         themeManager.switchTheme();
                     };
+                    $scope.setSize = function (size) {
+                        themeManager.setSize(size);
+                    };
                 }]
         };
     });

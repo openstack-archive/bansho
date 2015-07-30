@@ -13,10 +13,20 @@
 
 .topbar__item {
     @extend %colorBorderThin;
-    height:80px;
     border:0 solid;
     display:inline-block;
     position:relative;
+
+   .size-scheme--small & {
+        height: 50px;
+    }
+    .size-scheme--normal & {
+        height: 60px;
+    }
+    .size-scheme--big & {
+        height: 80px;
+    }
+
 
     .topbar__list--left & {
         border-right-width:1px;
@@ -54,16 +64,43 @@
         }
     }
 
-    .topbar__panel__content {padding:$_space $_space_narrow 0;}
+    .topbar__panel__content {
+        .size-scheme--small & {
+            padding-top: $_space - 20px;
+            padding-right: $_space_narrow;
+            padding-bottom: 0;
+            padding-left: $_space_narrow;
+        }
+        .size-scheme--normal & {
+            padding-top: $_space - 10px;
+            padding-right: $_space_narrow;
+            padding-bottom: 0;
+            padding-left: $_space_narrow;
+        }
+        .size-scheme--big & {
+            padding: $_space $_space_narrow 0;
+        }
+    }
 }
 
 .topbar__button {
     @extend %button-reset;
     @extend %colorBkgTopbarButton;
     @extend %colorLink;
-    height:80px;
+   .size-scheme--small & {
+        width: 49px;
+        height: 50px;
+    }
+    .size-scheme--normal & {
+        width: 59px;
+        height: 60px;
+    }
+    .size-scheme--big & {
+        width:79px;
+        height: 80px;
+    }
+
     position:relative;
-    width:79px;
 
     &[aria-expanded="true"] {
         .color-scheme--dark & {
@@ -78,7 +115,15 @@
 
     [class^="ico-"],
     [class*=" ico-"] {
-        bottom:30px;
+       .size-scheme--small & {
+            bottom:15px;
+        }
+        .size-scheme--normal & {
+            bottom:20px;
+        }
+        .size-scheme--big & {
+            bottom:30px;
+        }
         display:block;
         font-size:em(20, $_base_font_size);
         height:1em;
@@ -171,7 +216,19 @@
         float:right;
         font-size:1.1em;
         height:16px;
-        margin:32px $_space 0 0;
+
+       .size-scheme--small & {
+            margin:16px $_space 0 0;
+            bottom:15px;
+        }
+        .size-scheme--normal & {
+            margin:22px $_space 0 0;
+            bottom:20px;
+        }
+        .size-scheme--big & {
+            margin:32px $_space 0 0;
+        }
+
         vertical-align:baseline;
         .color-scheme--dark & {
             color:$_color_omega;
@@ -223,11 +280,89 @@
 .topbar__settings__subitem {
     cursor: pointer;
     display: block;
+    outline:0;
 }
 
 .topbar__settings__subitem {
     @extend %typo-menu;
-    margin-bottom:$_space;
+    .size-scheme--small & {
+        margin-bottom:$_space - 20px;
+    }
+    .size-scheme--normal & {
+        margin-bottom:$_space - 10px;
+    }
+    .size-scheme--big & {
+        margin-bottom:$_space;
+    }
+
 
     a {display:block;}
+
+}
+
+
+
+.topbar__settings__subitem div.set-size-small.active,
+.topbar__settings__subitem div.set-size-normal.active,
+.topbar__settings__subitem div.set-size-big.active {
+    .color-scheme--light & {
+        color:$_color_alpha;
+    }
+    .color-scheme--dark & {
+        color:$_color_omega;
+     }
+}
+
+.topbar__settings__subitem .set-size-small,
+.topbar__settings__subitem .set-size-normal,
+.topbar__settings__subitem .set-size-big
+{
+    float: left;
+    width: 30%;
+    line-height: 1px;
+    text-align: center;
+    outline:0;
+
+    .color-scheme--light & {
+        color:$_color_light_delta;
+        transition-duration: 0.5s;
+        transition-property: color;
+        &:hover {
+            color:$_color_alpha;
+            outline:0;
+        }
+    }
+
+    .color-scheme--dark & {
+        color:$_color_light_delta;
+        transition-duration: 0.5s;
+        transition-property: color;
+        &:hover {
+            color:$_color_omega;
+            outline:0;
+        }
+    }
+
+
+
+
+}
+.topbar__settings__subitem .set-size-clear{
+    clear: both;
+}
+
+.topbar__settings__subitem .set-size-small
+{
+    font-size: em(15, $_base_font_size);
+    line-height: 20px;
+}
+.topbar__settings__subitem .set-size-normal
+{
+    font-size: em(20, $_base_font_size);
+    line-height: 20px;
+}
+.topbar__settings__subitem .set-size-big
+{
+    font-size: em(25, $_base_font_size);
+    line-height: 20px;
 }
