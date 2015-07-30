@@ -90,16 +90,16 @@ angular.module('bansho.config', [])
     .service('configManager', ['$http', '$q', 'componentsConfig', 'surveilConfig',
         function ($http, $q, componentsConfig, surveilConfig) {
             var layoutConfig = {},
-                developmentConfig = {};
+                config = {};
 
-            this.loadDevelopmentConfig = function() {
+            this.loadConfig = function() {
                 var promise = $q.defer();
 
-                $http.get('components/config/developmentConfig.json')
-                    .success(function (config) {
-                        developmentConfig = config;
-                        surveilConfig.setSurveilApiUrl(config.surveilApiUrl);
-                        surveilConfig.setAuthUrl(config.surveilAuthUrl);
+                $http.get('components/config/config.json')
+                    .success(function (c) {
+                        config = c;
+                        surveilConfig.setSurveilApiUrl(c.surveilApiUrl);
+                        surveilConfig.setAuthUrl(c.surveilAuthUrl);
                         promise.resolve();
                     })
                     .error(function() {
@@ -109,8 +109,8 @@ angular.module('bansho.config', [])
                 return promise.promise;
             };
 
-            this.getDevelopmentConfig = function () {
-                return developmentConfig;
+            this.getConfig = function () {
+                return config;
             };
 
             this.getConfigData = function (templateName) {
