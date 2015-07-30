@@ -43,7 +43,7 @@ angular.module('bansho.view', ['ngRoute',
 
     .service('loadConfig', ['configManager', 'viewsTemplate', function (configManager, viewsTemplate) {
         return function () {
-            var viewsConfig = configManager.readConfig();
+            var viewsConfig = configManager.readLayoutConfig();
 
             angular.forEach(viewsConfig, function (config, view) {
                 viewsTemplate[view] = config.template;

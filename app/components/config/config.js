@@ -89,7 +89,7 @@ angular.module('bansho.config', [])
 
     .service('configManager', ['$http', '$q', 'componentsConfig', 'surveilConfig',
         function ($http, $q, componentsConfig, surveilConfig) {
-            var config = {},
+            var layoutConfig = {},
                 developmentConfig = {};
 
             this.loadDevelopmentConfig = function() {
@@ -114,37 +114,37 @@ angular.module('bansho.config', [])
             };
 
             this.getConfigData = function (templateName) {
-                return config.data[templateName];
+                return layoutConfig.data[templateName];
             };
 
-            this.readConfig = function () {
-                return config.data;
+            this.readLayoutConfig = function () {
+                return layoutConfig.data;
             };
 
-            this.saveConfig = function(configuration) {
-                config.data = configuration;
-                saveConfig();
+            this.saveLayoutConfig = function(configuration) {
+                layoutConfig.data = configuration;
+                saveLayoutConfig();
             };
 
             this.setThemeAndSave = function (theme) {
-               config.data.banshoConfig.theme = theme;
-               saveConfig();
+               layoutConfig.data.banshoConfig.theme = theme;
+               saveLayoutConfig();
             };
 
             this.getTheme = function () {
                 var theme;
 
-                if (config.data) {
-                    theme = config.data.banshoConfig.theme;
+                if (layoutConfig.data) {
+                    theme = layoutConfig.data.banshoConfig.theme;
                 }
 
                 return theme;
             };
 
-            var saveConfig = function () {
+            var saveLayoutConfig = function () {
                 var responsePromise = $q.defer();
 
-                $http.post(surveilConfig.endpoint('config'), JSON.stringify(config.data))
+                $http.post(surveilConfig.endpoint('appConfig'), JSON.stringify(layoutConfig.data))
                     .success(function () {
                         responsePromise.resolve();
                     })
@@ -155,19 +155,19 @@ angular.module('bansho.config', [])
                 return responsePromise.promise;
             };
 
-            this.fetchConfig = function (useStoredConfig) {
+            this.fetchLayoutConfig = function (useStoredConfig) {
                 var responsePromise = $q.defer();
 
                 componentsConfig.load();
 
-                $http.get(surveilConfig.endpoint('config'))
+                $http.get(surveilConfig.endpoint('appConfig'))
                     .success(function (conf) {
                         if (!useStoredConfig || jQuery.isEmptyObject(conf))  {
-                            $http.get('components/config/config.json')
+                            $http.get('components/config/defaultLayoutConfig.json')
                                 .success(function (conf) {
-                                    config.data = conf;
+                                    layoutConfig.data = conf;
 
-                                    $http.post(surveilConfig.endpoint('config'), JSON.stringify(conf))
+                                    $http.post(surveilConfig.endpoint('appConfig'), JSON.stringify(conf))
                                         .success(function () {
                                             responsePromise.resolve();
                                         })
@@ -179,7 +179,7 @@ angular.module('bansho.config', [])
                                     responsePromise.reject('Failed to fetch default config');
                                 });
                         } else {
-                            config.data = conf;
+                            layoutConfig.data = conf;
                             responsePromise.resolve();
                         }
                     })
