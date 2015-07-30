@@ -1,5 +1,4 @@
-<table ng-controller="TacticalCurrentHealth"
-       class="current-health"
+<table class="current-health"
        ng-if="hostsRatio != undefined && servicesRatio != undefined">
   <thead>
     <tr>
@@ -10,10 +9,10 @@
   <tbody>
     <tr>
       <td class="layout__half">
-        <just-gage id="allservices" class="someClass" min=0 max=100 value=servicesRatio title="ALL SERVICES"></just-gage>
+        <just-gage id="allhosts" min=0 max=100 value=hostsRatio title="ALL HOSTS"></just-gage>
       </td>
       <td class="layout__half">
-        <just-gage id="allhosts" class="someClass" min=0 max=100 value=hostsRatio title="ALL HOSTS"></just-gage>
+        <just-gage id="allservices" min=0 max=100 value=servicesRatio title="ALL SERVICES"></just-gage>
       </td>
     </tr>
   </tbody>

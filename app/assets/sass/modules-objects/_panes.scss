@@ -43,7 +43,16 @@
     border-style:solid;
     border-width:0 0 0 1px;
     display:table-cell;
-    padding:$_space_narrow;
+    
+    .size-scheme--small & {
+        padding:$_space_narrow - 5px;
+    }
+    .size-scheme--normal & {
+        padding:$_space_narrow + 5px;
+    }
+    .size-scheme--big & {
+        padding:$_space_narrow + 15px;
+    }
 
     &:first-child {border-left:0;}
 

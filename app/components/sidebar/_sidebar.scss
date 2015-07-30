@@ -73,8 +73,18 @@
 
 .sidebar__item {
     border-top:1px solid;
-    margin-bottom:$_space;
     position:relative;
+
+    .size-scheme--small & {
+        margin-bottom:$_space - 20px;
+    }
+    .size-scheme--normal & {
+        margin-bottom:$_space - 15px;
+    }
+    .size-scheme--big & {
+        margin-bottom:$_space;
+    }
+
 
     .color-scheme--dark & {
         border-top-color:$_color_dark_gamma;
@@ -91,7 +101,23 @@
     @extend %button-reset;
     @extend %typo-title;
     display:block;
-    padding:$_space $_space_narrow 0 $_space;
+
+    .size-scheme--small & {
+        padding-top:$_space - 20px;
+        padding-right: $_space_narrow;
+        padding-bottom: 0;
+        padding-left: $_space - 22px;
+    }
+    .size-scheme--normal & {
+        padding-top:$_space - 15px;
+        padding-right: $_space_narrow;
+        padding-bottom: 0;
+        padding-left: $_space - 15px;
+    }
+    .size-scheme--big & {
+        padding:$_space $_space_narrow 0 $_space;
+    }
+
     text-align:left;
     width:100%;
 
@@ -119,7 +145,25 @@
     display:inline-block;
     font-size:em(24, $_base_font_size);
     line-height:1;
-    padding:$_space $_space_narrow 0;
+
+    .size-scheme--small & {
+        padding-top:$_space - 20px;
+        padding-right: $_space_narrow;
+        padding-bottom: 0;
+        padding-left: $_space_narrow;
+    }
+    .size-scheme--normal & {
+        padding-top:$_space - 15px;
+        padding-right: $_space_narrow;
+        padding-bottom: 0;
+        padding-left: $_space_narrow;
+    }
+    .size-scheme--big & {
+        padding:$_space $_space_narrow 0;
+    }
+
+
+
     position:absolute;
     right:0;
     top:0 ;
@@ -154,7 +198,21 @@
 }
 
 .sidebar__sublist {
-    padding:0 $_space_narrow 0 $_space;
+    padding-top:0;
+    padding-bottom: 0;
+
+    .size-scheme--small & {
+        padding-right: $_space_narrow;
+        padding-left: $_space - 15px;
+    }
+    .size-scheme--normal & {
+        padding-right: $_space_narrow;
+        padding-left: $_space - 5px;
+    }
+    .size-scheme--big & {
+        padding-right: $_space_narrow;
+        padding-left: $_space;
+    }
 
     @include large-xlarge-screen {
         padding:0 $_space;
@@ -163,7 +221,16 @@
 
 .sidebar__subitem {
     @extend %typo-menu;
-    margin-top:$_space;
+
+    .size-scheme--small & {
+        margin-top:$_space - 20px;
+    }
+    .size-scheme--normal & {
+        margin-top:$_space - 15px;
+    }
+    .size-scheme--big & {
+        margin-top:$_space;
+    }
 
     .state--current {
         .color-scheme--dark & {
