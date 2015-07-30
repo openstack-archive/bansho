@@ -16,6 +16,10 @@ angular.module('bansho.topbar', ['bansho.surveil'])
                         themeManager.switchTheme();
                     };
 
+                    $scope.setSize = function (size) {
+                        themeManager.setSize(size);
+                    };
+
                     authService.registerOnLogin(function () {
                         $scope.allProblems = sharedData.getData('nbServicesHostsOpenProblems', function (data) {
                             $scope.allProblems = data;

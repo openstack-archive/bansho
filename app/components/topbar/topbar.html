@@ -51,6 +51,12 @@
                 <li class="topbar__settings__subitem"><a href="#">Object History</a></li>
                 <li class="topbar__settings__subitem"><a href="#/view?view=config">Configure</a></li>
                 <li class="topbar__settings__subitem" ng-click="switchTheme()"><a>Change theme</a></li>
+                <li class="topbar__settings__subitem" >
+                    <div class="set-size-big" ng-class="{active: themeClassSize=='size-scheme--big'}" ng-click="setSize('big')">A</div>
+                    <div class="set-size-normal" ng-class="{active: themeClassSize=='size-scheme--normal'}" ng-click="setSize('normal')">A</div>
+                    <div class="set-size-small" ng-class="{active: themeClassSize=='size-scheme--small'}" ng-click="setSize('small')">A</div>
+                    <div class="set-size-clear"></div>
+                </li>
                 <li class="topbar__settings__subitem" ng-click="logout()"><a>Logout</a></li>
               </ul>
             </li>
