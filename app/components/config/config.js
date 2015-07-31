@@ -114,8 +114,8 @@ angular.module('bansho.config', [])
         };
     }])
 
-    .service('configManager', ['$http', '$q', 'componentsConfig', 'surveilConfig',
-        function ($http, $q, componentsConfig, surveilConfig) {
+    .service('configManager', ['$http', '$q', 'componentsConfig', 'surveilApiConfig',
+        function ($http, $q, componentsConfig, surveilApiConfig) {
             var layoutConfig = {},
                 config = {};
 
@@ -125,8 +125,8 @@ angular.module('bansho.config', [])
                 $http.get('components/config/config.json')
                     .success(function (c) {
                         config = c;
-                        surveilConfig.setSurveilApiUrl(c.surveilApiUrl);
-                        surveilConfig.setAuthUrl(c.surveilAuthUrl);
+                        surveilApiConfig.setSurveilApiUrl(c.surveilApiUrl);
+                        surveilApiConfig.setAuthUrl(c.surveilAuthUrl);
                         promise.resolve();
                     })
                     .error(function() {
@@ -185,7 +185,7 @@ angular.module('bansho.config', [])
             var saveLayoutConfig = function () {
                 var responsePromise = $q.defer();
 
-                $http.post(surveilConfig.endpoint('appConfig'), JSON.stringify(layoutConfig.data))
+                $http.post(surveilApiConfig.endpoint('appConfig'), JSON.stringify(layoutConfig.data))
                     .success(function () {
                         responsePromise.resolve();
                     })
@@ -201,14 +201,14 @@ angular.module('bansho.config', [])
 
                 componentsConfig.load();
 
-                $http.get(surveilConfig.endpoint('appConfig'))
+                $http.get(surveilApiConfig.endpoint('appConfig'))
                     .success(function (conf) {
                         if (!useStoredConfig || jQuery.isEmptyObject(conf))  {
                             $http.get('components/config/defaultLayoutConfig.json')
                                 .success(function (conf) {
                                     layoutConfig.data = conf;
 
-                                    $http.post(surveilConfig.endpoint('appConfig'), JSON.stringify(conf))
+                                    $http.post(surveilApiConfig.endpoint('appConfig'), JSON.stringify(conf))
                                         .success(function () {
                                             responsePromise.resolve();
                                         })
