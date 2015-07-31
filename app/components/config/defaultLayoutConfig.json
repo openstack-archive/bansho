@@ -4,9 +4,6 @@
     },
     "dashboardConfig": {
         "template": "page",
-        "attributes": {
-            "refreshInterval": 30
-        },
         "components": [
             {
                 "type": "tactical",
@@ -356,7 +353,6 @@
                         "type": "table",
                         "attributes": {
                             "tableId": 0,
-                            "refreshInterval": 30,
                             "cells": {
                                 "text": [
                                     "Host",
@@ -449,7 +445,6 @@
                         "type": "table",
                         "attributes": {
                             "tableId": 0,
-                            "refreshInterval": 30,
                             "cells": {
                                 "text": [
                                     "Host",
@@ -527,7 +522,6 @@
                     {
                         "type": "table",
                         "attributes": {
-                            "refreshInterval": 30,
                             "tableId": 0,
                             "cells": {
                                 "text": [
@@ -626,17 +620,14 @@
                     }
                 ]
             }
-        ],
-        "refreshInterval": 30
+        ]
     },
     "drupal": {
         "title": "Drupal",
-        "refreshInterval": 30,
         "template": "drupal"
     },
     "drupalDashboard": {
         "title": "Drupal dashboard",
-        "refreshInterval": 30,
         "template": "drupal_dashboard",
         "hostsMap": {
             "drupal": "Wonderful Drupal Website"

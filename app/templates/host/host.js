@@ -2,8 +2,8 @@
 
 angular.module('bansho.view.host', ['bansho.datasource'])
 
-    .controller('HostViewCtrl', ['$scope', '$routeParams', 'configManager', 'pageParams',
-        function ($scope, $routeParams, configManager, pageParams) {
+    .controller('HostViewCtrl', ['$scope', '$routeParams', 'configManager', 'templateManager',
+        function ($scope, $routeParams, configManager, templateManager) {
             var hostname = $routeParams.host_name;
 
             $scope.components = configManager.getConfigData($scope.viewName).components;
@@ -11,6 +11,6 @@ angular.module('bansho.view.host', ['bansho.datasource'])
             if (!hostname) {
                 throw new Error("ERROR :'host_name' GET parameter must be set");
             } else {
-                pageParams.hostname = hostname;
+                templateManager.setPageParam('hostname', hostname);
             }
         }]);

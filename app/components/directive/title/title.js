@@ -11,7 +11,7 @@ angular.module('bansho.title', [])
             link: function (scope) {
                 if (scope.options.attributes.item) {
                     scope.item = scope.options.attributes.item;
-                    scope.data = sharedData.getData(scope.options.attributes.provider, 30000, function (data) {
+                    scope.data = sharedData.getData(scope.options.attributes.provider, function (data) {
                         scope.data = data;
                     });
 

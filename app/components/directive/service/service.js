@@ -9,10 +9,10 @@ angular.module('bansho.service', ['bansho.datasource'])
                 options: '='
             },
             templateUrl: 'components/directive/service/service.html',
-            controller: ['$scope', 'pageParams', 'surveilStatus', 'iframeUrl',
-                function ($scope, pageParams, surveilStatus, iframeUrl) {
-                    var hostname = pageParams.host_name,
-                        serviceDescription = pageParams.service_description;
+            controller: ['$scope', 'templateManager', 'surveilStatus', 'iframeUrl',
+                function ($scope, templateManager, surveilStatus, iframeUrl) {
+                    var hostname = templateManager.getPageParam('host_name'),
+                        serviceDescription = templateManager.getPageParam('service_description');
 
                     $scope.param = {};
                     surveilStatus.getService(hostname, serviceDescription).then(function (data) {

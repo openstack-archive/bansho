@@ -21,7 +21,7 @@ angular.module('bansho.tabpanel', [])
                 });
 
                 angular.forEach(scope.options.attributes.navigation, function (panel, index) {
-                    panel.right = sharedData.getData(panel.provider, 30000, function (data) {
+                    panel.right = sharedData.getData(panel.provider, function (data) {
                         panel.right = data;
                     });
                 });

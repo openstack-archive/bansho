@@ -1,7 +1,6 @@
 'use strict';
 
-angular.module('bansho.table', ['bansho.utils.promiseManager',
-                                 'bansho.datasource',
+angular.module('bansho.table', ['bansho.datasource',
                                  'bansho.actionbar',
                                  'bansho.filters',
                                  'bansho.table.cell_status_host',
@@ -18,18 +17,17 @@ angular.module('bansho.table', ['bansho.utils.promiseManager',
                                  'ngMaterial'
                                 ])
 
-    .directive('banshoTable', ['datasource', 'tableGlobalConfig',
-        function (datasource, tableGlobalConfig) {
+    .directive('banshoTable', ['datasource',
+        function (datasource) {
             return {
                 restrict: 'E',
                 scope: {
                     options: '='
                 },
                 templateUrl: 'components/directive/table/table.html',
-                controller: ['$scope', '$interval', 'headerFollow', 'datasource', 'tableGlobalConfig', 'promisesManager', 'pageParams',
-                    function ($scope, $interval, headerFollow, datasource, tableGlobalConfig, promisesManager, pageParams) {
+                controller: ['$scope', 'headerFollow', 'datasource', 'templateManager',
+                    function ($scope, headerFollow, datasource, templateManager) {
                         var conf = {},
-                            refreshInterval = pageParams.refreshInterval ? pageParams.refreshInterval : 100000,
                             i;
 
                         $scope.tableId = $scope.options.attributes.tableId;
@@ -73,14 +71,9 @@ angular.module('bansho.table', ['bansho.utils.promiseManager',
                             $scope.entries = data;
                         });
                         datasource.refreshTableData($scope.tableId);
-
-                        if ($scope.options.attributes.refreshInterval && $scope.options.attributes.refreshInterval !== 0) {
-                            promisesManager.addAjaxPromise(
-                                $interval(function () {
-                                    datasource.refreshTableData($scope.tableId);
-                                }, refreshInterval)
-                            );
-                        }
+                        templateManager.addInterval(function refreshTable () {
+                            datasource.refreshTableData($scope.tableId);
+                        });
                     }]
             };
         }

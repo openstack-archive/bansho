@@ -96,55 +96,55 @@ angular.module('bansho.datasource', ['bansho.surveil'])
             };
         }])
 
-    .service('sharedData', ['$interval', 'surveilStatus',
-        function ($interval, surveilStatus) {
+    .service('sharedData', ['templateManager', 'surveilStatus',
+        function (templateManager, surveilStatus) {
             var sharedData = {},
                 listeners = {},
                 providers = {
-                    'nbHostsOpenProblems': function (key) {
+                    'nbHostsOpenProblems': function () {
                         surveilStatus.getNbHostOpenProblems().then(function (nbHostProblems) {
-                            sharedData[key].value = nbHostProblems;
-                            notifyListeners(key);
+                            sharedData.nbHostsOpenProblems = nbHostProblems;
+                            notifyListeners('nbHostsOpenProblems');
                         });
                     },
-                    'nbServicesOpenProblems': function (key) {
+                    'nbServicesOpenProblems': function () {
                         surveilStatus.getNbServiceOpenProblems().then(function (nbServiceProblems) {
-                            sharedData[key].value = nbServiceProblems;
-                            notifyListeners(key);
+                            sharedData.nbServicesOpenProblems = nbServiceProblems;
+                            notifyListeners('nbServicesOpenProblems');
                         });
                     },
-                    'nbHosts': function (key) {
+                    'nbHosts': function () {
                         surveilStatus.getNbHosts().then(function (nbHosts) {
-                            sharedData[key].value = nbHosts;
-                            notifyListeners(key);
+                            sharedData.nbHosts = nbHosts;
+                            notifyListeners('nbHosts');
                         });
 
                     },
-                    'nbServices': function (key) {
+                    'nbServices': function () {
                         surveilStatus.getNbServices().then(function (nbServices) {
-                            sharedData[key].value = nbServices;
-                            notifyListeners(key);
+                            sharedData.nbServices = nbServices;
+                            notifyListeners('nbServices');
                         });
                     },
-                    'nbServicesOpenProblemsOnly': function (key) {
+                    'nbServicesOpenProblemsOnly': function () {
                         surveilStatus.getNbServiceOpenProblemsOnly().then(function (nbServices) {
-                            sharedData[key].value = nbServices;
-                            notifyListeners(key);
+                            sharedData.nbServicesOpenProblemsOnly = nbServices;
+                            notifyListeners('nbServicesOpenProblemsOnly');
                         });
                     },
-                    'nbServicesHostsOpenProblems': function (key) {
+                    'nbServicesHostsOpenProblems': function () {
                         surveilStatus.getNbHostsProblems().then(function (nbHosts) {
                             surveilStatus.getNbServiceOpenProblemsOnly().then(function (nbServices) {
-                                sharedData[key].value = nbHosts + nbServices;
-                                notifyListeners(key);
+                                sharedData.nbServicesHostsOpenProblems = nbHosts + nbServices;
+                                notifyListeners('nbServicesHostsOpenProblems');
                             });
                         });
                     },
-                    'nbServicesHostsOpenProblemsDoubleCount': function (key) {
+                    'nbServicesHostsOpenProblemsDoubleCount': function () {
                         surveilStatus.getNbHostsProblems().then(function (nbHosts) {
                             surveilStatus.getNbServiceOpenProblems().then(function (nbServices) {
-                                sharedData[key].value = nbHosts + nbServices;
-                                notifyListeners(key);
+                                sharedData.nbServicesHostsOpenProblemsDoubleCount = nbHosts + nbServices;
+                                notifyListeners('nbServicesHostsOpenProblemsDoubleCount');
                             });
                         });
                     }
@@ -152,42 +152,21 @@ angular.module('bansho.datasource', ['bansho.surveil'])
 
             var notifyListeners = function (key) {
                 angular.forEach(listeners[key], function (onChange) {
-                    onChange(sharedData[key].value);
+                    onChange(sharedData[key]);
                 });
             };
 
             return {
-                clear: function () {
-                    angular.forEach(sharedData, function (provider) {
-                        $interval.cancel(provider.promise);
-                    });
-                    sharedData = {};
-                    listeners = {};
-                },
-                getData: function (key, interval, onChange) {
-                    if (!sharedData[key]) {
-                        sharedData[key] = {
-                            interval: interval
-                        };
-
-                        listeners[key] = [
-                            onChange
-                        ];
-
-                        providers[key](key);
-                        $interval(providers[key](key), interval);
+                getData: function (key, onChange) {
+                    if (listeners[key] === undefined) {
+                        listeners[key] = [onChange];
+                        templateManager.addInterval(providers[key]);
+                        providers[key]();
                     } else {
                         listeners[key].push(onChange);
-
-                        if (sharedData[key].interval >= interval) {
-                            sharedData[key].interval = interval;
-                            $interval.cancel(sharedData[key].promise);
-                            sharedData[key].promise = $interval(providers[key](key), interval);
-                        }
-
                     }
 
-                    return sharedData[key].value;
+                    return sharedData[key];
                 }
             };
         }]);

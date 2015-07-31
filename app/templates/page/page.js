@@ -1,13 +1,10 @@
 'use strict';
 
 angular.module('bansho.view.page', ['bansho.table', 'bansho.tactical'])
-
-    .value('pageParams', {})
-
-    .controller('PageCtrl', ['$scope', 'configManager', 'pageParams',
-        function ($scope, configManager, pageParams) {
-            pageParams.page = configManager.getConfigData($scope.viewName);
-            $scope.components = pageParams.page.components;
+    .controller('PageCtrl', ['$scope', 'configManager', 'templateManager',
+        function ($scope, configManager, templateManager) {
+            templateManager.setLayout($scope.viewName);
+            $scope.components = templateManager.getLayoutComponents();
         }])
 
     .directive('banshoComponents', ['$compile', 'directiveBuilder', function ($compile, directiveBuilder) {

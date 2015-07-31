@@ -4,5 +4,6 @@
     "password":"",
     "useStoredConfig": true,
     "surveilApiUrl": "surveil/v2",
-    "surveilAuthUrl": "surveil/v2/auth"
+    "surveilAuthUrl": "surveil/v2/auth",
+    "refreshInterval": -1
 }
