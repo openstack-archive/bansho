@@ -1,0 +1,35 @@
+<div ng-controller="HostInfoCtrl" class="subcomponent__live">
+  <h2>Info</h2>
+  <table class="data-table">
+    <tbody>
+      <tr>
+        <td>Last check</td>
+        <td>{{data.live.last_check | timeElapsed}}</td>
+      </tr>
+      <tr>
+        <td>Check period</td>
+        <td>{{data.config.check_period}}</td>
+      </tr>
+      <tr>
+        <td>Notification period</td>
+        <td>{{data.config.notification_period}}</td>
+      </tr>
+      <tr>
+        <td>Active checks</td>
+        <td>{{active_checks}}</td>
+      </tr>
+      <tr>
+        <td>Notifications</td>
+        <td>{{notifications_enabled}}</td>
+      </tr>
+      <tr>
+        <td>Event Handler</td>
+        <td>{{event_handler_enabled}}</td>
+      </tr>
+      <tr>
+        <td>Flag detection</td>
+        <td>{{flap_detection_enabled}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
