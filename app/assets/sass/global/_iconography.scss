@@ -55,6 +55,8 @@
   /* Uncomment for 3D effect */
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
+.ico-enabled:before { content: '\f05d'; }
+.ico-disabled:before { content: '\f05c'; }
 .ico-profil:before { content: '\e800'; } /* '' */
 .ico-cog:before { content: '\e801'; } /* '' */
 .ico-search:before { content: '\e802'; } /* '' */
