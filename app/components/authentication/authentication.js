@@ -55,14 +55,14 @@ angular.module('bansho.authentication', [])
 
     }])
 
-    .factory('authService', [ '$http', '$location', '$rootScope', 'session', 'configManager', 'themeManager', 'surveilConfig',
-             function ($http, $location, $rootScope, session, configManager, themeManager, surveilConfig) {
+    .factory('authService', [ '$http', '$location', '$rootScope', 'session', 'configManager', 'themeManager', 'surveilApiConfig',
+             function ($http, $location, $rootScope, session, configManager, themeManager, surveilApiConfig) {
         var authService = {},
             onLogin = [];
 
         authService.login = function (credentials) {
             return $http
-                .post(surveilConfig.getAuthUrl() + '/tokens/', credentials)
+                .post(surveilApiConfig.getAuthUrl() + '/tokens/', credentials)
                 .success(function (data) {
                     $rootScope.isAuthenticated = true;
 

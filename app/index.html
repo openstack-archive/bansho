@@ -49,6 +49,7 @@
     <script src="components/surveil/surveil.js"></script>
     <script src="components/surveil/status.js"></script>
     <script src="components/surveil/actions.js"></script>
+    <script src="components/surveil/config.js"></script>
     <script src="components/surveil/query.js"></script>
 
     <script src="components/authentication/authentication.js"></script>
@@ -68,7 +69,8 @@
     <script src="components/directive/tactical/top_alert_producers/top_alert_producers.js"></script>
     <script src="components/directive/tabpanel/tabpanel.js"></script>
 
-    <!-- Table components -->
+    <!-- Table components -->      
+
     <script src="components/directive/actionbar/actionbar.js"></script>
     <script src="components/directive/actionbar/component_acknowledge/acknowledge.js"></script>
     <script src="components/directive/actionbar/component_downtime/downtime.js"></script>
@@ -78,6 +80,12 @@
     <script src="components/directive/actionbar/component_search_filter/search_filter.js"></script>
     <script src="components/directive/table/table.js"></script>
     <script src="components/directive/table/cell_status_duration/cell_status_duration.js"></script>
+
+    <script src="components/directive/table/cell_config_host/cell_config_host.js"></script>
+    <script src="components/directive/table/cell_config_host_address/cell_config_host_address.js"></script>
+    <script src="components/directive/table/cell_config_host_name/cell_config_host_name.js"></script>
+    <script src="components/directive/table/cell_config_host_register/cell_config_host_register.js"></script>
+    <script src="components/directive/table/cell_config_host_use/cell_config_host_use.js"></script>
 
     <script src="components/directive/table/cell_status_event/cell_status_event.js"></script>
     <script src="components/directive/table/cell_status_event_event_type/cell_status_event_event_type.js"></script>
@@ -134,7 +142,7 @@
           <bansho-topbar ng-show="isAuthenticated"></bansho-topbar>
         </div>
 
-        <div ng-view id="page" class="main" role="main"></div>
+        <main ng-view id="page" class="main" role="main"></main>
         <footer class="footer" role="contentinfo"></footer>
       </div>
     </div>

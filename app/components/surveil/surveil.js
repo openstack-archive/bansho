@@ -1,5 +1,5 @@
 angular.module('bansho.surveil', [])
-    .service('surveilConfig', function () {
+    .service('surveilApiConfig', function () {
         var apiUrl,
             authUrl,
             surveilEndpoints = {};

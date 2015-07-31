@@ -3,8 +3,8 @@
 'use strict';
 
 angular.module('bansho.surveil')
-    .service('surveilStatus', ['$http', '$q', 'surveilQuery', 'componentsConfig', 'surveilConfig',
-        function ($http, $q, surveilQuery, componentsConfig, surveilConfig) {
+    .service('surveilStatus', ['$http', '$q', 'surveilQuery', 'componentsConfig', 'surveilApiConfig',
+        function ($http, $q, surveilQuery, componentsConfig, surveilApiConfig) {
             var getMetric = function (host, service, metric) {
                 var url = surveilConfig.endpoint('status') + '/hosts/' + host,
                     responsePromise = $q.defer();

@@ -247,6 +247,11 @@
             "provider": "status",
             "endpoint": "services",
             "filter": "all"
+        },
+        "hosts_config": {
+            "provider": "config",
+            "endpoint": "hosts",
+            "filter": "all"
         }
     }
 }
