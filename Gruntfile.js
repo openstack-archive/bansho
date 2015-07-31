@@ -58,15 +58,15 @@ module.exports = function (grunt) {
                         dest: '<%= project.dist %>/components/config/componentsConfig.json'
                     },
                     {
-                        src: '<%= project.app %>/components/config/developmentConfig.json',
-                        dest: '<%= project.dist %>/components/config/developmentConfig.json'
+                        src: '<%= project.app %>/components/config/defaultLayoutConfig.json',
+                        dest: '<%= project.dist %>/components/config/defaultLayoutConfig.json'
                     },
                     {
                         src: '<%= project.app %>/index.html',
                         dest: '<%= project.dist %>/index.html'
                     }
                 ]
-            },
+            }
         },
 
         sass: {
