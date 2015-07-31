@@ -1,5 +1,5 @@
 angular.module('bansho.surveil', [])
-    .service('surveilConfig', function () {
+    .service('surveilApiConfig', function () {
         var apiUrl,
             authUrl,
             surveilEndpoints = {};
@@ -10,6 +10,7 @@ angular.module('bansho.surveil', [])
                 surveilEndpoints = {
                     status: apiUrl + '/status',
                     actions: apiUrl + '/actions',
+                    config: apiUrl + '/config',
                     appConfig: apiUrl + '/bansho/config'
                 };
             },

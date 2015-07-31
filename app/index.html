@@ -11,6 +11,7 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,400italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="assets/css/app.css">
     <!-- build:css assets/css/app_ext_css.css -->
+    <link href="bower_components/fontawesome/css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css">
     <link href="bower_components/pnotify/pnotify.core.css" media="all" rel="stylesheet" type="text/css" />
     <link href="bower_components/pnotify/pnotify.buttons.css" media="all" rel="stylesheet" type="text/css" />
     <link href="bower_components/pnotify/pnotify.history.css" media="all" rel="stylesheet" type="text/css" />
@@ -49,6 +50,7 @@
     <script src="components/surveil/surveil.js"></script>
     <script src="components/surveil/status.js"></script>
     <script src="components/surveil/actions.js"></script>
+    <script src="components/surveil/config.js"></script>
     <script src="components/surveil/query.js"></script>
 
     <script src="components/authentication/authentication.js"></script>
@@ -69,6 +71,7 @@
     <script src="components/directive/tabpanel/tabpanel.js"></script>
 
     <!-- Table components -->
+
     <script src="components/directive/actionbar/actionbar.js"></script>
     <script src="components/directive/actionbar/component_acknowledge/acknowledge.js"></script>
     <script src="components/directive/actionbar/component_downtime/downtime.js"></script>
@@ -78,6 +81,12 @@
     <script src="components/directive/actionbar/component_search_filter/search_filter.js"></script>
     <script src="components/directive/table/table.js"></script>
     <script src="components/directive/table/cell_status_duration/cell_status_duration.js"></script>
+
+    <script src="components/directive/table/cell_config_host/cell_config_host.js"></script>
+    <script src="components/directive/table/cell_config_host_address/cell_config_host_address.js"></script>
+    <script src="components/directive/table/cell_config_host_name/cell_config_host_name.js"></script>
+    <script src="components/directive/table/cell_config_host_register/cell_config_host_register.js"></script>
+    <script src="components/directive/table/cell_config_host_use/cell_config_host_use.js"></script>
 
     <script src="components/directive/table/cell_status_event/cell_status_event.js"></script>
     <script src="components/directive/table/cell_status_event_event_type/cell_status_event_event_type.js"></script>
@@ -134,7 +143,7 @@
           <bansho-topbar ng-show="isAuthenticated"></bansho-topbar>
         </div>
 
-        <div ng-view id="page" class="main" role="main"></div>
+        <main ng-view id="page" class="main" role="main"></main>
         <footer class="footer" role="contentinfo"></footer>
       </div>
     </div>

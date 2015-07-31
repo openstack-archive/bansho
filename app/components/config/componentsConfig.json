@@ -198,6 +198,30 @@
                 }
             }
         },
+        "allHostConfigTemplate": {
+            "name": "Host config template",
+            "filter": {
+                "hosts": {
+                    "is": {
+                        "register": [
+                          "0"
+                        ]
+                    }
+                }
+            }
+        },
+        "allHostConfigWithoutTemplate": {
+            "name": "Host config without template",
+            "filter": {
+                "hosts": {
+                    "isnot": {
+                        "register": [
+                          "0"
+                        ]
+                    }
+                }
+             }
+        },
         "all": {
             "name": "All",
             "filter": {
@@ -247,6 +271,16 @@
             "provider": "status",
             "endpoint": "services",
             "filter": "all"
+        },
+        "hostsConfig": {
+            "provider": "config",
+            "endpoint": "hosts",
+            "filter": "allHostConfigWithoutTemplate"
+        },
+        "hostsConfigTemplate": {
+            "provider": "config",
+            "endpoint": "hosts",
+            "filter": "allHostConfigTemplate"
         }
     }
 }
