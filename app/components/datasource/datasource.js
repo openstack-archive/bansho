@@ -96,11 +96,22 @@ angular.module('bansho.datasource', ['bansho.surveil'])
             };
         }])
 
-    .service('sharedData', ['templateManager', 'surveilStatus',
-        function (templateManager, surveilStatus) {
-            var sharedData = {},
+    .service('sharedData', ['templateManager', 'surveilStatus', 'componentsConfig',
+        function (templateManager, surveilStatus, componentsConfig) {
+            var providerServices = {
+                    status: surveilStatus
+                },
+                sharedData = {},
                 listeners = {},
                 providers = {
+                    'nbServicesHostsProblems': function () {
+                        surveilStatus.getNbHostsProblems().then(function (nbHosts) {
+                            surveilStatus.getNbServicesProblems().then(function (nbServices) {
+                                sharedData.nbServicesHostsProblems = nbHosts + nbServices;
+                                notifyListeners('nbServicesHostsProblems');
+                            });
+                        });
+                    },
                     'nbHostsOpenProblems': function () {
                         surveilStatus.getNbHostOpenProblems().then(function (nbHostProblems) {
                             sharedData.nbHostsOpenProblems = nbHostProblems;
@@ -167,6 +178,30 @@ angular.module('bansho.datasource', ['bansho.surveil'])
                     }
 
                     return sharedData[key];
+                },
+                getDataFromInputSource: function (source, onChange) {
+                    if (listeners[source] === undefined) {
+                        listeners[source] = [onChange];
+
+                        var inputSource = componentsConfig.getInputSource(source);
+
+                        providers[source] = function () {
+                            providerServices[inputSource.provider].getData([], componentsConfig.getFilter(inputSource.filter).filter, inputSource.endpoint)
+                                .then(function (newData) {
+                                    sharedData[source] = newData;
+                                    notifyListeners(source);
+                                }, function (error) {
+                                    throw new Error('getTableData : Query failed' + error);
+                                });
+                        };
+
+                        templateManager.addInterval(providers[source]);
+                        providers[source]();
+                    } else {
+                        listeners[source].push(onChange);
+                    }
+
+                    return sharedData[source];
                 }
             };
         }]);

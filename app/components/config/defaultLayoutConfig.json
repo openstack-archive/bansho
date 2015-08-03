@@ -2,6 +2,63 @@
     "banshoConfig": {
         "theme": "dark"
     },
+    "topbar": {
+        "template": "page",
+        "components": [
+            {
+                "type": "tabpanel",
+                "attributes": {
+                    "navigation": [
+                        {
+                            "title": "Open problems",
+                            "panelId": "openProblems",
+                            "provider": "nbServicesHostsOpenProblems"
+                        },
+                        {
+                            "title": "All problems",
+                            "panelId": "allProblems",
+                            "provider": "nbServicesHostsProblems"
+                        }
+                    ]
+                },
+                "components": [
+                    {
+                        "type": "panel",
+                        "attributes": {
+                            "panelId": "openProblems"
+                        },
+                        "components": [
+                            {
+                                "type": "host-tree",
+                                "attributes": {
+                                    "inputSource": [
+                                        "hostOpenProblems",
+                                        "serviceOpenProblemsOnly"
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "panel",
+                        "attributes": {
+                            "panelId": "openProblems"
+                        },
+                        "components": [
+                            {
+                                "type": "host-tree",
+                                "attributes": {
+                                    "inputSource": [
+                                        "servicesProblems"
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
     "dashboardConfig": {
         "template": "page",
         "components": [

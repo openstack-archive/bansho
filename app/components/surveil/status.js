@@ -236,6 +236,14 @@ angular.module('bansho.surveil')
                         });
                     return promise.promise;
                 },
+                getNbServicesProblems: function () {
+                    var promise = $q.defer();
+                    getData([], componentsConfig.getFilter("allServicesProblems").filter, "services")
+                        .then(function (data) {
+                            promise.resolve(data.length);
+                        });
+                    return promise.promise;
+                },
                 getHostMetric: function (host, metric) {
                     return getMetric(host, undefined, metric);
                 },
