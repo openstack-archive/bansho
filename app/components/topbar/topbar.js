@@ -6,8 +6,8 @@ angular.module('bansho.topbar', ['bansho.surveil'])
         return {
             restrict: 'E',
             templateUrl: 'components/topbar/topbar.html',
-            controller: ['$scope', '$timeout', 'authService', 'themeManager',
-                function ($scope, $timeout, authService, themeManager) {
+            controller: ['$compile', '$element', '$scope', 'authService', 'themeManager', 'viewsTemplate', 'sharedData', 'configManager',
+                function ($compile, $element, $scope, authService, themeManager, viewsTemplate, sharedData, configManager) {
                     $scope.logout = function () {
                         authService.logout();
                     };
@@ -15,6 +15,15 @@ angular.module('bansho.topbar', ['bansho.surveil'])
                     $scope.switchTheme = function () {
                         themeManager.switchTheme();
                     };
+
+                    authService.registerOnLogin(function () {
+                        $scope.allProblems = sharedData.getData('nbServicesHostsOpenProblems', function (data) {
+                            $scope.allProblems = data;
+                        });
+
+                        $scope.components = configManager.getConfigData('topbar').components;
+                        $compile($element.contents())($scope);
+                    });
                 }]
         };
     });

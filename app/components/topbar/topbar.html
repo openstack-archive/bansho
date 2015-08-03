@@ -17,96 +17,17 @@
               type="button"
               data-toggle="collapse"
               data-target="#notificationsPanel"
-              aria-expanded="false"
+              aria-expanded="true"
               aria-controls="notificationsPanel">
         <span class="visuallyhidden">Voir les notifications</span>
         <i class="ico-bell-alt" data-notifications="{{allProblems}}"></i>
       </button>
 
       <div class="topbar__panel--fromleft collapse" id="notificationsPanel">
-        <div class="topbar__panel__content tabpanel">
-          <ul class="tablist clearfix">
-            <li role="presentation" class="tablist__item active">
-              <a href="#topOpenProblems"
-                 class="tabpanel__tab"
-                 aria-controls="topOpenProblems"
-                 aria-expanded="true"
-                 role="tab"
-                 data-toggle="tab"
-                 data-problems="27">Open problems
-              </a>
-            </li>
-            <li role="presentation" class="tablist__item">
-              <a href="#topAllProblems"
-                 class="tabpanel__tab"
-                 aria-controls="topAllProblems"
-                 aria-expanded="false"
-                 role="tab"
-                 data-toggle="tab"
-                 data-problems="38">All problems
-              </a>
-            </li>
-          </ul>
-
-          <div class="tab-content">
-            <div role="tabpanel" class="problems tab-pane active" id="topOpenProblems">
-              <ol class="problems__list">
-                <li class="problems__item">
-                  <strong class="problems__host state--ok">localhost</strong>
-
-                  <dl class="problems__desclist">
-                    <dt class="problems__name state--warning">
-                      <span>Root partition</span>
-                      <small class="problems__duration">2 days, 8 hours</small>
-                    </dt>
-                    <dd class="problems__description">Disk warning - free space : / 673 MB (12% inode = 59%)</dd>
-                  </dl>
-                </li>
-                <li class="problems__item">
-                  <strong class="problems__host state--warning">www.theatlantic.com</strong>
-
-                  <dl class="problems__desclist">
-                    <dt class="problems__name state--warning">
-                      <span>HTTP www.theatlantic.com</span>
-                      <small class="problems__duration">6 days, 5 hours</small>
-                    </dt>
-                    <dd class="problems__description">Check_http: invalid onedirection - $</dd>
-                  </dl>
-                </li>
-                <li class="problems__item">
-                  <strong class="problems__host state--error">www.savoirfairelinux.com</strong>
-
-                  <dl class="problems__desclist">
-                    <dt class="problems__name state--warning">
-                      <span>Verbis se superiores opere enim</span>
-                      <small class="problems__duration">8 days, 5 hours</small>
-                    </dt>
-                    <dd class="problems__description">Check_http: invalid onedirection option - $</dd>
-
-                    <dt class="problems__name state--error">
-                      <span>CPU utilization</span>
-                      <small class="problems__duration">1 days, 3 hours</small>
-                    </dt>
-                    <dd class="problems__description">NRPE: Command checkCPU not defined</dd>
-
-                    <dt class="problems__name state--ok">
-                      <span>Runnning services</span>
-                      <small class="problems__duration">1 days, 12 hours</small>
-                    </dt>
-                    <dd class="problems__description">Levandi amicitias se fere - $</dd>
-                  </dl>
-                </li>
-              </ol>
-
-              <button class="problems__viewall" type="button">View all open problems</button>
-            </div>
-
-            <div role="tabpanel" class="tab-pane" id="topAllProblems">
-              ALL PROBLEMS
-            </div>
-          </div>
+        <div class="topbar__panel__content">
+          <bansho-components components="components"></bansho-components>
         </div>
-    </li>
+      </div>
   </ul>
 
   <ul class="topbar__list topbar__list--right">

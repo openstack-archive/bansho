@@ -56,7 +56,8 @@ angular.module('bansho.authentication', [])
 
     .factory('authService', [ '$http', '$location', '$rootScope', 'session', 'configManager', 'themeManager', 'surveilConfig',
              function ($http, $location, $rootScope, session, configManager, themeManager, surveilConfig) {
-        var authService = {};
+        var authService = {},
+            onLogin = [];
 
         authService.login = function (credentials) {
             return $http
@@ -70,6 +71,10 @@ angular.module('bansho.authentication', [])
                     configManager.fetchLayoutConfig(configManager.getConfig().useStoredConfig).then(function () {
                             themeManager.setTheme(configManager.getTheme());
                             $location.path('/view');
+
+                            angular.forEach(onLogin, function (f) {
+                                f();
+                            });
                         }, function (message) {
                             throw new Error(message);
                         });
@@ -93,6 +98,10 @@ angular.module('bansho.authentication', [])
 
         authService.switchTheme = function () {
             themeManager.switchTheme();
+        };
+
+        authService.registerOnLogin = function (f) {
+            onLogin.push(f);
         };
 
         return authService;

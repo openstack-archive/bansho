@@ -1,0 +1,22 @@
+<ol class="problems__list">
+  <span data-ng-repeat="source in sources">
+    <span data-ng-repeat="(key, host) in source | groupBy: 'host_description'">
+       <li class="problems_item">
+         <a href="#/view?view=host&host_name={{key}}">
+           <strong class="problems__host" bansho-host-state-icon state="host[0].host_state">{{key}}</strong>
+         </a>
+         <dl class="problems__desclist" data-ng-repeat="service in host">
+           <span data-ng-show="service.service_service_description">
+             <dt class="problems__name" bansho-service-state-icon state="service.service_state">
+               <a href="#/view?view=service&host_name={{key}}&description={{service.service_service_description}}">
+                 {{service.service_service_description}}
+               </a>
+               <small class="problems__duration">2 days, 8 hours</small>
+             </dt>
+             <dd class="problems__description">{{service.service_plugin_output}}</dd>
+           </span>
+         </dl>
+       </li>
+    </span>
+  </span>
+</ol>

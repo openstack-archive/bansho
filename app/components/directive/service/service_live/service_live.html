@@ -4,7 +4,9 @@
     <tbody>
       <tr>
         <td>State</td>
-        <td><bansho-service-state-icon state="param.service.service_state"></bansho-service-state-icon> {{param.service.service_state}}</td>
+        <td bansho-service-state-icon state="param.service.service_state">
+          <span class="data-table__data">{{param.service.service_state}}</span>
+        </td>
       </tr>
       <tr>
         <td>Output</td>
