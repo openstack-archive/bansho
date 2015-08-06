@@ -37,9 +37,7 @@ angular.module('bansho.surveil')
                 $http.get(url).success(function (metrics) {
                     var result = [];
                     for (var i = 0; i < metrics.length; i += 1) {
-                        if (metrics[i].metric_name.indexOf("metric_") === 0) {
-                            result.push(metrics[i]);
-                        }
+                        result.push(metrics[i].metric_name);
                     }
 
                     responsePromise.resolve(result);

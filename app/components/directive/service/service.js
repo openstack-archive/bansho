@@ -19,13 +19,14 @@ angular.module('bansho.service', ['bansho.datasource'])
                         $scope.param.service = data[0];
                         surveilStatus.getServiceMetricNames(hostname, serviceDescription).then(function(metric_names) {
                             $scope.param.service.iframeUrls = {};
-                            angular.forEach(metric_names, function (metric) {
-                                var metricName = metric.metric_name.substr(7);
-                                $scope.param.service.iframeUrls[metricName] = iframeUrl.getIFrameUrl(metric.metric_name, hostname, serviceDescription);
+                            angular.forEach(metric_names, function (metricName) {
+                                $scope.param.service.iframeUrls[metricName] = iframeUrl.getIFrameUrl("metric_" + metricName, hostname, serviceDescription);
+                                surveilStatus.getServiceMetric(hostname, serviceDescription, metricName).then(function(data) {
+                                 // TODO: waiting for ORBER BY DESC support in InfluxDB
+                                })
                             });
                         });
                     });
-
                     $scope.components = $scope.options.components;
                 }]
             };
