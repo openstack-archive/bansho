@@ -13,7 +13,9 @@ angular.module('bansho.host', ['bansho.datasource'])
                 function ($scope, templateManager, surveilStatus, iframeUrl) {
                     var hostname = templateManager.getPageParam('hostname');
 
-                    $scope.param = {};
+                    $scope.param = {
+                        host: {}
+                    };
                     surveilStatus.getHost(hostname).then(function (data) {
                         surveilStatus.getService(hostname).then(function(services) {
                             $scope.param.host = data[0];
@@ -29,7 +31,19 @@ angular.module('bansho.host', ['bansho.datasource'])
                                 }
                             });
                         });
+
                     });
+
+                    surveilStatus.getHostMetricNames(hostname).then(function(metrics) {
+                        $scope.param.host.metrics = metrics;
+                        angular.forEach(metrics, function (metric) {
+                            surveilStatus.getHostMetric(hostname, metric).then(function(data) {
+                                // TODO: waiting for ORBER BY DESC support in InfluxDB
+                            });
+                        });
+                    });
+
+
 
                     $scope.components = $scope.options.components;
             }]
