@@ -144,6 +144,8 @@ angular.module('bansho.config', [])
             var saveLayoutConfig = function () {
                 var responsePromise = $q.defer();
 
+                console.log('layoutConfig ')
+                console.log(JSON.stringify(layoutConfig))
                 $http.post(surveilConfig.endpoint('appConfig'), JSON.stringify(layoutConfig.data))
                     .success(function () {
                         responsePromise.resolve();

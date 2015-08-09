@@ -1,14 +1,14 @@
 <section class="main__content tabpanel">
   <nav>
     <ul class="tablist clearfix">
-      <li role="presentation" class="tablist__item" data-ng-repeat="(index, panel) in navigation"
-          ng-class="{active: currentPanel ===  index }">
-        <a ng-click="setIsShown(index)"
+      <li role="presentation" class="tablist__item" data-ng-repeat="(index, panel) in options.attributes.navigation"
+          ng-class="{active: currentPanel ===  panel.panelId }">
+        <a ng-click="setIsShown(panel.panelId)"
            class="tabpanel__tab"
            aria-expanded="true"
            role="tab"
            data-toggle="tab"
-           data-problems="{{panel.right}}">{{panel.title}}
+           data-problems="{{navigation[index].right}}">{{panel.title}}
         </a>
       </li>
     </ul>
