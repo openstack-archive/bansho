@@ -8,18 +8,16 @@
             {
                 "type": "tabpanel",
                 "attributes": {
-                    "navigation": [
-                        {
+                    "navigation": {
+                        "openProblems" : {
                             "title": "Open problems",
-                            "panelId": "openProblems",
                             "provider": "nbServicesHostsOpenProblems"
                         },
-                        {
+                        "allProblems": {
                             "title": "All problems",
-                            "panelId": "allProblems",
                             "provider": "nbServicesHostsProblems"
                         }
-                    ]
+                    }
                 },
                 "components": [
                     {
@@ -74,18 +72,16 @@
             {
                 "type": "tabpanel",
                 "attributes": {
-                    "navigation": [
-                        {
+                    "navigation": {
+                        "openProblems": {
                             "title": "Open Problems",
-                            "panelId": "openProblems",
                             "provider": "nbServicesHostsOpenProblems"
                         },
-                        {
+                        "allProblems": {
                             "title": "All Problems",
-                            "panelId": "allProblems",
                             "provider": "nbServicesHostsOpenProblemsDoubleCount"
                         }
-                    ]
+                    }
                 },
                 "components": [
                     {

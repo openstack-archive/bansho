@@ -11,16 +11,12 @@ angular.module('bansho.tabpanel', [])
             link: function (scope) {
                 scope.navigation = scope.options.attributes.navigation;
 
-                scope.currentPanel = 0;
-                scope.setIsShown = function (index) {
-                    scope.currentPanel = index;
+                scope.currentPanel = Object.keys(scope.navigation)[0];
+                scope.setIsShown = function (panelId) {
+                    scope.currentPanel = panelId;
                 };
 
-                angular.forEach(scope.options.components, function (panel, index) {
-                    panel.attributes.index = index;
-                });
-
-                angular.forEach(scope.options.attributes.navigation, function (panel, index) {
+                angular.forEach(scope.navigation, function (panel) {
                     panel.right = sharedData.getData(panel.provider, function (data) {
                         panel.right = data;
                     });
@@ -39,11 +35,14 @@ angular.module('bansho.tabpanel', [])
             link: function (scope) {
                 if (scope.$parent.$parent.currentPanel !== undefined) {
                     scope.parent = scope.$parent.$parent;
-                    scope.index = scope.options.attributes.index;
                 } else {
                     scope.parent = {};
                     scope.parent.currentPanel = 0;
-                    scope.index = 0;
+
+                    if (!scope.options.attributes) {
+                        scope.options.attributes = {};
+                    }
+                    scope.options.attributes.panelId = 0;
                 }
             }
         };
