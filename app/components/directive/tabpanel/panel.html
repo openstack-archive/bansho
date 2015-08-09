@@ -1,5 +1,5 @@
-<div role="tabpanel" class="tab-pane" data-ng-class="{active: parent.currentPanel ===  index }"
-     id="{{options.attributes.panelId}}" data-ng-show="parent.currentPanel === index">
+<div role="tabpanel" class="tab-pane" data-ng-class="{active: parent.currentPanel === options.attributes.panelId }"
+     id="{{options.attributes.panelId}}" data-ng-show="parent.currentPanel === options.attributes.panelId">
     <section class="main__content tabpanel">
         <bansho-components components="options.components"></bansho-components>
     </section>

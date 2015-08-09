@@ -1,9 +1,9 @@
 <section class="main__content tabpanel">
   <nav>
     <ul class="tablist clearfix">
-      <li role="presentation" class="tablist__item" data-ng-repeat="(index, panel) in navigation"
-          ng-class="{active: currentPanel ===  index }">
-        <a ng-click="setIsShown(index)"
+      <li role="presentation" class="tablist__item" data-ng-repeat="(key, panel) in options.attributes.navigation"
+          ng-class="{active: currentPanel === key}">
+        <a ng-click="setIsShown(key)"
            class="tabpanel__tab"
            aria-expanded="true"
            role="tab"
