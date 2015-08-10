@@ -6,7 +6,7 @@ angular.module('bansho.surveil')
     .service('surveilStatus', ['$http', '$q', 'surveilQuery', 'componentsConfig', 'surveilApiConfig',
         function ($http, $q, surveilQuery, componentsConfig, surveilApiConfig) {
             var getMetric = function (host, service, metric) {
-                var url = surveilConfig.endpoint('status') + '/hosts/' + host,
+                var url = surveilApiConfig.endpoint('status') + '/hosts/' + host,
                     responsePromise = $q.defer();
 
                 if (service !== undefined) {
@@ -25,7 +25,7 @@ angular.module('bansho.surveil')
             };
 
             var getMetricNames = function (host, service) {
-                var url = surveilConfig.endpoint('status') + '/hosts/' + host,
+                var url = surveilApiConfig.endpoint('status') + '/hosts/' + host,
                     responsePromise = $q.defer();
 
                 if (service !== undefined) {
@@ -78,9 +78,9 @@ angular.module('bansho.surveil')
                 var hostQuery = surveilQuery(fields, filters.hosts),
                     serviceQuery = surveilQuery(fields, filters.services);
 
-                executeQuery(surveilConfig.endpoint('status') + '/hosts/', 'POST', hostQuery)
+                executeQuery(surveilApiConfig.endpoint('status') + '/hosts/', 'POST', hostQuery)
                     .success(function (hosts) {
-                        executeQuery(surveilConfig.endpoint('status') + '/services/', 'POST', serviceQuery)
+                        executeQuery(surveilApiConfig.endpoint('status') + '/services/', 'POST', serviceQuery)
                             .success(function (services) {
                                 callback(hosts, services);
                             });
@@ -129,12 +129,7 @@ angular.module('bansho.surveil')
                 "hosts": function (fields, filters, callback) {
                     var hostQuery = surveilQuery(fields, filters.hosts),
                         method = 'POST',
-                        hostUrl = surveilConfig.endpoint('status') + '/hosts/';
-
-                    if (filters.hosts && filters.hosts.is && filters.hosts.is.host_name) {
-                        hostUrl += filters.hosts.is.host_name;
-                        method = 'GET';
-                    }
+                        hostUrl = surveilApiConfig.endpoint('status') + '/hosts/';
 
                     executeQuery(hostUrl, method, hostQuery)
                         .success(function (hosts) {
@@ -151,7 +146,7 @@ angular.module('bansho.surveil')
                 "events": function (fields, filters, callback) {
                     var query = surveilQuery(fields, filters.events);
 
-                    executeQuery(surveilConfig.endpoint('status') + '/events/', 'POST', query)
+                    executeQuery(surveilApiConfig.endpoint('status') + '/events/', 'POST', query)
                         .success(function (events) {
                             angular.forEach(events, function (event) {
                                 angular.forEach(event, function (value, attr) {

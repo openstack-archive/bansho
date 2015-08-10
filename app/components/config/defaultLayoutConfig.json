@@ -837,7 +837,7 @@
                                 ]
                             },
                             "headerFollow": false,
-                            "inputSource": "hosts_config",
+                            "inputSource": "hosts_config_template",
                             "isWrappable": false,
                             "noRepeatCell": "",
                             "checkColumn": false

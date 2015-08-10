@@ -10,6 +10,7 @@ angular.module('bansho.surveil', [])
                 surveilEndpoints = {
                     status: apiUrl + '/status',
                     actions: apiUrl + '/actions',
+                    config: apiUrl + '/config',
                     appConfig: apiUrl + '/bansho/config'
                 };
             },
