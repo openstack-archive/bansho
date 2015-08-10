@@ -692,5 +692,158 @@
     },
     "config": {
         "template": "config"
+    },
+    "configHosts": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "title",
+                        "attributes": {
+                            "title": "ConfigHosts"
+                        }
+                    },
+                    {
+                        "type": "actionbar",
+                        "attributes": {
+                            "tableId": [
+                                0
+                            ]
+                        },
+                        "components": [
+                            {
+                                "type": "actionbar-filter",
+                                "attributes": {
+                                    "filters": [
+                                        {
+                                            "location": "componentsConfig",
+                                            "content": "all"
+                                        },
+                                        {
+                                            "location": "componentsConfig",
+                                            "content": "hostOk"
+                                        },
+                                        {
+                                            "location": "componentsConfig",
+                                            "content": "hostNotOk"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "type": "actionbar-more",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-search-filter",
+                                "attributes": {}
+                            }
+                        ]
+                    },
+                    {
+                        "type": "table",
+                        "attributes": {
+                            "tableId": 0,
+                            "refreshInterval": 30,
+                            "cells": {
+                                "text": [
+                                    "Host",
+                                    "Address",
+                                    "Use",
+                                    "Enable"
+                                ],
+                                "name": [
+                                    "config_host",
+                                    "config_host_address",
+                                    "config_host_use",
+                                    "config_host_register"
+                                ]
+                            },
+                            "headerFollow": false,
+                            "inputSource": "hostsConfig",
+                            "isWrappable": false,
+                            "noRepeatCell": "",
+                            "checkColumn": false
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "configHostsTemplate": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "title",
+                        "attributes": {
+                            "title": "Hosts Template"
+                        }
+                    },
+                    {
+                        "type": "actionbar",
+                        "attributes": {
+                            "tableId": [
+                                0
+                            ]
+                        },
+                        "components": [
+                            {
+                                "type": "actionbar-filter",
+                                "attributes": {
+                                    "filters": [
+                                        {
+                                            "location": "componentsConfig",
+                                            "content": "all"
+                                        },
+                                        {
+                                            "location": "componentsConfig",
+                                            "content": "hostOk"
+                                        },
+                                        {
+                                            "location": "componentsConfig",
+                                            "content": "hostNotOk"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "type": "actionbar-more",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-search-filter",
+                                "attributes": {}
+                            }
+                        ]
+                    },
+                    {
+                        "type": "table",
+                        "attributes": {
+                            "tableId": 0,
+                            "cells": {
+                                "text": [
+                                    "Template",
+                                    "Use"
+                                ],
+                                "name": [
+                                    "config_host_name",
+                                    "config_host_use"
+                                ]
+                            },
+                            "headerFollow": false,
+                            "inputSource": "hostsConfigTemplate",
+                            "isWrappable": false,
+                            "noRepeatCell": "",
+                            "checkColumn": false
+                        }
+                    }
+                ]
+            }
+        ]
     }
 }

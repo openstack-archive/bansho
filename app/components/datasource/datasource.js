@@ -3,10 +3,11 @@
 angular.module('bansho.datasource', ['bansho.surveil'])
     .value('tableGlobalConfig', {'cellToFieldsMap': {}, 'cellWrappableField': {}})
 
-    .service('datasource', ['$filter', 'surveilStatus', 'surveilQuery', 'componentsConfig', 'tableGlobalConfig',
-        function ($filter, surveilStatus, surveilQuery, componentsConfig, tableGlobalConfig) {
+    .service('datasource', ['$filter', 'surveilStatus', 'surveilConfig', 'surveilQuery', 'componentsConfig', 'tableGlobalConfig',
+        function ($filter, surveilStatus, surveilConfig, surveilQuery, componentsConfig, tableGlobalConfig) {
             var providerServices = {
-                    status: surveilStatus
+                    status: surveilStatus,
+                    config: surveilConfig
                 },
                 config = [],
                 data = [],
