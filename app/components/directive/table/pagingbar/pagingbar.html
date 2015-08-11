@@ -1,0 +1,38 @@
+<menu class="filters">
+  <ul class="filters__list clearfix">
+    <li class="filters__item" data-mover="true">
+      <button class="filters__button" ng-class="{disabled: page === 0}" type="button" ng-click="previousPage()">
+        <span class="visuallyhidden">Previous</span>
+        <i class="fa fa-chevron-left"></i>
+      </button>
+    </li>
+    <li class="filters__item">
+      <button class="filters__button" type="button">{{page}}</button>
+    </li>
+    <li class="filters__item" data-mover="true"ng-click="nextPage()">
+      <button class="filters__button" type="button" >
+        <span class="visuallyhidden">Next</span>
+        <i class="fa fa-chevron-right"></i>
+      </button>
+    </li>
+    <li class="filters__item filters__item--settings">
+      <button class="filters__button"
+              type="button"
+              data-toggle="collapse"
+              data-target="#tableSettings"
+              aria-expanded="false"
+              aria-controls="filtersSettings">
+        <span class="visuallyhidden">Current page size</span>
+        {{size}}
+      </button>
+      <div class="filters__panel collapse" id="tableSettings">
+        <ul class="filters__sublist">
+          <li data-ng-repeat="size in pageSizes" class="topbar__settings__subitem" ng-click="setPageSize(size)">
+              <a>{{size}}</a>
+          </li>
+          <li class="topbar__settings__subitem"><input type="text" class="small__input" data-ng-model="size"></li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+</menu>
