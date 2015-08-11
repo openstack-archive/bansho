@@ -11,7 +11,11 @@ angular.module('bansho.surveil')
                 }
                 query.filters = JSON.stringify(filters);
 
-                // TODO handle paging and timeInterval
+                if (paging) {
+                    query.paging = paging;
+                }
+
+                // TODO handle timeInterval
 
                 return query;
             };

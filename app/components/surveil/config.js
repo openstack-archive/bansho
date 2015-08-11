@@ -15,14 +15,14 @@ angular.module('bansho.surveil')
                 });
             };
 
-            var getData = function (fields, filters, endpoint) {
+            var getData = function (fields, filters, endpoint, paging) {
                 var promise = $q.defer();
 
                 if (!queryEndpoint[endpoint]) {
                     throw new Error('getData in surveilConfig : Invalid endpoint ' + endpoint);
                 }
 
-                queryEndpoint[endpoint](fields, filters, function (data) {
+                queryEndpoint[endpoint](fields, filters, paging, function (data) {
                     promise.resolve(data);
                 });
 
@@ -30,8 +30,8 @@ angular.module('bansho.surveil')
             };
 
             var queryEndpoint = {
-                "hosts": function (fields, filters, callback) {
-                    var hostQuery = surveilQuery(fields, filters.hosts),
+                "hosts": function (fields, filters, paging, callback) {
+                    var hostQuery = surveilQuery(fields, filters.hosts, paging),
                         method = 'POST',
                         hostUrl = surveilApiConfig.endpoint('config') + '/hosts/';
 
