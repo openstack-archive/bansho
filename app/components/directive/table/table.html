@@ -1,6 +1,6 @@
 <div>
     <header class="main__content__header clearfix">
-        <h2 data-ng-show="title" class="main__content__title">tets{{title}}</h2>
+        <h2 data-ng-show="title" class="main__content__title">{{title}}</h2>
     </header>
     <table class="data-table">
         <thead class="moving-thead">
@@ -37,4 +37,5 @@
         </tr>
         </tbody>
     </table>
+    <bansho-pagingbar data-ng-show="pagingbar" options="options"></bansho-pagingbar>
 </div>
