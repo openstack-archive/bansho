@@ -78,6 +78,10 @@ angular.module('bansho.config', [])
             return componentsConfig.filters[name];
         };
 
+        this.getPaging = function (name) {
+            return componentsConfig.paging[name];
+        };
+
         this.mergeFilters = function (filters) {
             var filter = {};
 

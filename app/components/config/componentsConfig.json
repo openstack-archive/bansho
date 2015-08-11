@@ -231,6 +231,12 @@
             }
         }
     },
+    "paging":{
+        "default": {
+            "page": 0,
+            "size": 50
+        }
+    },
     "inputSource": {
         "hostOpenProblems": {
             "provider": "status",

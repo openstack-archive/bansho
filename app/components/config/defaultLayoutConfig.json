@@ -176,7 +176,8 @@
                                     "inputSource": "hostOpenProblems",
                                     "isWrappable": false,
                                     "checkColumn": true,
-                                    "noRepeatCell": ""
+                                    "noRepeatCell": "",
+                                    "pagingbar": true
                                 }
                             },
                             {
@@ -209,7 +210,8 @@
                                     "inputSource": "serviceOpenProblemsOnly",
                                     "isWrappable": true,
                                     "checkColumn": true,
-                                    "noRepeatCell": "host"
+                                    "noRepeatCell": "host",
+                                    "pagingbar": true
                                 }
                             }
                         ]
@@ -303,7 +305,8 @@
                                     "inputSource": "hostsProblems",
                                     "isWrappable": false,
                                     "checkColumn": true,
-                                    "noRepeatCell": ""
+                                    "noRepeatCell": "",
+                                    "pagingbar": true
                                 }
                             },
                             {
@@ -336,7 +339,8 @@
                                     "inputSource": "servicesProblems",
                                     "isWrappable": true,
                                     "checkColumn": true,
-                                    "noRepeatCell": "host"
+                                    "noRepeatCell": "host",
+                                    "pagingbar": true
                                 }
                             }
                         ]
@@ -430,7 +434,8 @@
                             "inputSource": "hosts",
                             "isWrappable": false,
                             "noRepeatCell": "",
-                            "checkColumn": true
+                            "checkColumn": true,
+                            "pagingbar": true
                         }
                     }
                 ]
@@ -520,7 +525,8 @@
                             "inputSource": "services",
                             "isWrappable": false,
                             "checkColumn": true,
-                            "noRepeatCell": "host"
+                            "noRepeatCell": "host",
+                            "pagingbar": true
                         }
                     }
                 ]
@@ -602,7 +608,8 @@
                             "inputSource": "events",
                             "isWrappable": false,
                             "checkColumn": false,
-                            "noRepeatCell": ""
+                            "noRepeatCell": "",
+                            "pagingbar": true
                         }
                     }
                 ]
@@ -765,7 +772,8 @@
                             "inputSource": "hostsConfig",
                             "isWrappable": false,
                             "noRepeatCell": "",
-                            "checkColumn": false
+                            "checkColumn": false,
+                            "pagingbar": true
                         }
                     }
                 ]
@@ -839,7 +847,8 @@
                             "inputSource": "hostsConfigTemplate",
                             "isWrappable": false,
                             "noRepeatCell": "",
-                            "checkColumn": false
+                            "checkColumn": false,
+                            "pagingbar": true
                         }
                     }
                 ]

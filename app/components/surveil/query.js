@@ -9,9 +9,15 @@ angular.module('bansho.surveil')
                 if (fields.length > 0) {
                     query.fields = JSON.stringify(fields);
                 }
+
+
                 query.filters = JSON.stringify(filters);
 
-                // TODO handle paging and timeInterval
+                if (paging) {
+                    query.paging = paging;
+                }
+
+                // TODO handle timeInterval
 
                 return query;
             };
