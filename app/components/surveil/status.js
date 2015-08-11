@@ -58,23 +58,23 @@ angular.module('bansho.surveil')
                 });
             };
 
-            var getData = function (fields, filters, endpoint) {
+            var getData = function (fields, filters, paging, endpoint) {
                 var promise = $q.defer();
 
                 if (!queryEndpoint[endpoint]) {
                     throw new Error('getData in surveilStatus : Invalid endpoint ' + endpoint);
                 }
 
-                queryEndpoint[endpoint](fields, filters, function (data) {
+                queryEndpoint[endpoint](fields, filters, paging, function (data) {
                     promise.resolve(data);
                 });
 
                 return promise.promise;
             };
 
-            var queryHostsServices = function (fields, filters, callback) {
-                var hostQuery = surveilQuery(fields, filters.hosts),
-                    serviceQuery = surveilQuery(fields, filters.services);
+            var queryHostsServices = function (fields, filters, paging, callback) {
+                var hostQuery = surveilQuery(fields, filters.hosts, paging),
+                    serviceQuery = surveilQuery(fields, filters.services, paging);
 
                 executeQuery(surveilApiConfig.endpoint('status') + '/hosts/', 'POST', hostQuery)
                     .success(function (hosts) {
@@ -104,8 +104,8 @@ angular.module('bansho.surveil')
             };
 
             var queryEndpoint = {
-                "services": function (fields, filters, callback) {
-                    queryHostsServices(fields, filters, function (hosts, services) {
+                "services": function (fields, filters, paging, callback) {
+                    queryHostsServices(fields, filters, paging, function (hosts, services) {
                         var hostsDict = createHostsDict(hosts),
                             response = [];
 
@@ -124,8 +124,8 @@ angular.module('bansho.surveil')
                         callback(response);
                     });
                 },
-                "hosts": function (fields, filters, callback) {
-                    var hostQuery = surveilQuery(fields, filters.hosts),
+                "hosts": function (fields, filters, paging, callback) {
+                    var hostQuery = surveilQuery(fields, filters.hosts, paging),
                         method = 'POST',
                         hostUrl = surveilApiConfig.endpoint('status') + '/hosts/';
 
@@ -141,8 +141,8 @@ angular.module('bansho.surveil')
                             callback(response);
                         });
                 },
-                "events": function (fields, filters, callback) {
-                    var query = surveilQuery(fields, filters.events);
+                "events": function (fields, filters, paging, callback) {
+                    var query = surveilQuery(fields, filters.events, paging);
 
                     executeQuery(surveilApiConfig.endpoint('status') + '/events/', 'POST', query)
                         .success(function (events) {

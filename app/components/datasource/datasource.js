@@ -30,12 +30,13 @@ angular.module('bansho.datasource', ['bansho.surveil'])
                     inputSource = componentsConfig.getInputSource(conf.inputSource),
                     filter = componentsConfig.getFilter(inputSource.filter).filter,
                     promise;
+                    console.log(inputSource)
 
                 if (config[tableId].queryFilter) {
                     filter = componentsConfig.mergeFilters([config[tableId].queryFilter, filter]);
                 }
 
-                promise = providerServices[inputSource.provider].getData([], filter, inputSource.endpoint);
+                promise = providerServices[inputSource.provider].getData([], filter, inputSource.endpoint, conf.queryPaging);
 
                 promise.then(function (newData) {
                     data[tableId] = newData;
@@ -87,11 +88,14 @@ angular.module('bansho.datasource', ['bansho.surveil'])
                 setSearchFilter: function (tableId, searchFilter) {
                     config[tableId].searchFilter = searchFilter;
                     filterData(tableId);
-
-                    notifyDataChanged(tableId);
                 },
                 setQueryFilter: function (tableId, queryFilter) {
                     config[tableId].queryFilter = queryFilter;
+                    refreshTableData(tableId);
+                },
+                setQueryPaging: function (tableId, queryPaging) {
+                    console.log(queryPaging)
+                    config[tableId].queryPaging = queryPaging;
                     refreshTableData(tableId);
                 }
             };

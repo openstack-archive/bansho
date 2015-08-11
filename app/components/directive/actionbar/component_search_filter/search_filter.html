@@ -13,8 +13,11 @@
     </button>
     <div class="filters__panel collapse" id="filtersSettings">
         <ul class="filters__sublist">
-            <li>...</li>
-            <li>...</li>
+            <li>
+                Page: <input type="text" ng-model="searchPaging.page" ><br>
+                Page size: <input type="text" ng-model="searchPaging.size" ><br>
+                <button type="button" ng-click="searchPagingChange()">Submit</button>
+            </li>
             <li>...</li>
         </ul>
     </div>
