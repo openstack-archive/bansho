@@ -35,7 +35,7 @@ angular.module('bansho.datasource', ['bansho.surveil'])
                     filter = componentsConfig.mergeFilters([config[tableId].queryFilter, filter]);
                 }
 
-                promise = providerServices[inputSource.provider].getData([], filter, inputSource.endpoint);
+                promise = providerServices[inputSource.provider].getData([], filter, inputSource.endpoint, conf.queryPaging);
 
                 promise.then(function (newData) {
                     data[tableId] = newData;
@@ -56,6 +56,16 @@ angular.module('bansho.datasource', ['bansho.surveil'])
                             config[tableId].requestFields.push(_value);
                         });
                     });
+                    if (config[tableId].pagingbar)
+                        config[tableId].queryPaging = {
+                            page: 0,
+                            size: 50
+                        };
+                    else
+                        config[tableId].queryPaging = {
+                            page: -1,
+                            size: -1
+                        };
                 },
                 getConfig: function (tableId) {
                     return config[tableId];
@@ -87,12 +97,30 @@ angular.module('bansho.datasource', ['bansho.surveil'])
                 setSearchFilter: function (tableId, searchFilter) {
                     config[tableId].searchFilter = searchFilter;
                     filterData(tableId);
-
-                    notifyDataChanged(tableId);
                 },
                 setQueryFilter: function (tableId, queryFilter) {
                     config[tableId].queryFilter = queryFilter;
                     refreshTableData(tableId);
+                },
+                nextPage: function (tableId) {
+                    config[tableId].queryPaging.page += 1;
+                    refreshTableData(tableId);
+                },
+                previousPage: function (tableId) {
+                    if (config[tableId].queryPaging.page > 0) {
+                        config[tableId].queryPaging.page -= 1;
+                        refreshTableData(tableId);
+                    }
+                },
+                getPage: function (tableId) {
+                    return config[tableId].queryPaging.page;
+                },
+                setPageSize: function (tableId, pageSize) {
+                    config[tableId].queryPaging.size = pageSize;
+                    refreshTableData(tableId);
+                },
+                getPageSize: function (tableId) {
+                    return config[tableId].queryPaging.size;
                 }
             };
         }])

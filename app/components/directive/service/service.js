@@ -23,7 +23,7 @@ angular.module('bansho.service', ['bansho.datasource'])
                                 $scope.param.service.iframeUrls[metricName] = iframeUrl.getIFrameUrl("metric_" + metricName, hostname, serviceDescription);
                                 surveilStatus.getServiceMetric(hostname, serviceDescription, metricName).then(function(data) {
                                  // TODO: waiting for ORBER BY DESC support in InfluxDB
-                                })
+                                });
                             });
                         });
                     });
