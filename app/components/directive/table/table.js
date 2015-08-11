@@ -11,6 +11,7 @@ angular.module('bansho.table', ['bansho.datasource',
                                  'bansho.table.cell_status_host_status',
                                  'bansho.table.cell_config_host',
                                  'bansho.table.cell_config_host_register',
+                                 'bansho.table.pagingbar',
                                  'ngMaterial'
                                 ])
 
@@ -37,14 +38,17 @@ angular.module('bansho.table', ['bansho.datasource',
                         conf.cells.name = $scope.options.attributes.cells.name;
 
                         conf.inputSource = $scope.options.attributes.inputSource;
-
-                        conf.isWrappable = $scope.$eval($scope.options.attributes.isWrappable);
+                        conf.isWrappable = $scope.options.attributes.isWrappable;
+                        conf.pagingbar = $scope.options.attributes.pagingbar;
                         conf.noRepeatCell = $scope.options.attributes.noRepeatCell;
 
                         datasource.addTable($scope.tableId, conf);
 
                         // Handle table layout
                         $scope.checkColumn = $scope.options.attributes.checkColumn;
+
+                        $scope.pagingbar = conf.pagingbar
+
 
                         if ($scope.options.attributes.headerFollow) {
                             headerFollow.activate();
