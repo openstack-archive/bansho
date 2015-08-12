@@ -176,10 +176,19 @@ angular.module('bansho.config', [])
             this.getTheme = function () {
                 var theme;
 
-                    if (layoutConfig.data) {
-                        theme = layoutConfig.data.banshoConfig.theme;
-                    }
-                    return theme;
+                if (layoutConfig.data) {
+                    theme = layoutConfig.data.banshoConfig.theme;
+                }
+                return theme;
+            };
+
+            this.getPagingSize = function () {
+                var pagingSize;
+
+                if (layoutConfig.data) {
+                    pagingSize = layoutConfig.data.banshoConfig.pagingSize;
+                }
+                return pagingSize;
             };
 
             var saveLayoutConfig = function () {
