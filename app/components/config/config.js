@@ -182,6 +182,15 @@ angular.module('bansho.config', [])
                     return theme;
             };
 
+            this.getPagingSize = function () {
+                var pagingSize;
+
+                    if (layoutConfig.data) {
+                        pagingSize = layoutConfig.data.banshoConfig.pagingSize;
+                    }
+                    return pagingSize;
+            };
+
             var saveLayoutConfig = function () {
                 var responsePromise = $q.defer();
 

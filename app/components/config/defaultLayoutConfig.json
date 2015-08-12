@@ -1,6 +1,7 @@
 {
     "banshoConfig": {
-        "theme": "dark"
+        "theme": "dark",
+        "pagingSize": 50
     },
     "topbar": {
         "template": "page",

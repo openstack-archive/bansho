@@ -3,8 +3,8 @@
 angular.module('bansho.datasource', ['bansho.surveil'])
     .value('tableGlobalConfig', {'cellToFieldsMap': {}, 'cellWrappableField': {}})
 
-    .service('datasource', ['$filter', 'surveilStatus', 'surveilConfig', 'surveilQuery', 'componentsConfig', 'tableGlobalConfig',
-        function ($filter, surveilStatus, surveilConfig, surveilQuery, componentsConfig, tableGlobalConfig) {
+    .service('datasource', ['$filter', 'surveilStatus', 'surveilConfig', 'surveilQuery', 'componentsConfig', 'tableGlobalConfig', 'configManager',
+        function ($filter, surveilStatus, surveilConfig, surveilQuery, componentsConfig, tableGlobalConfig, configManager) {
             var providerServices = {
                     status: surveilStatus,
                     config: surveilConfig
@@ -60,7 +60,7 @@ angular.module('bansho.datasource', ['bansho.surveil'])
                     if (config[tableId].pagingbar) {
                         config[tableId].queryPaging = {
                             page: 0,
-                            size: 50
+                            size: configManager.getPagingSize()
                         };
                     }
                 },
