@@ -10,7 +10,7 @@
                 "type": "tabpanel",
                 "attributes": {
                     "navigation": {
-                        "openProblems" : {
+                        "openProblems": {
                             "title": "Open problems",
                             "provider": "nbServicesHostsOpenProblems"
                         },
@@ -639,12 +639,16 @@
                                 "attributes": {}
                             },
                             {
-                                "type": "host-info",
+                                "type": "host-services-list",
                                 "attributes": {}
                             },
                             {
-                                "type": "host-services-list",
-                                "attributes": {}
+                                "type": "info",
+                                "attributes": {
+                                    "datamodel": {
+                                        "Configuration": "configHost"
+                                    }
+                                }
                             }
                         ]
                     }
