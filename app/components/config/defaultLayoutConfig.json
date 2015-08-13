@@ -619,37 +619,39 @@
             {
                 "type": "panel",
                 "components": [
-                    {
-                        "type": "host",
-                        "components": [
-                            {
-                                "type": "host-main",
-                                "attributes": {}
-                            },
-                            {
-                                "type": "host-live",
-                                "attributes": {}
-                            },
-                            {
-                                "type": "host-load",
-                                "attributes": {}
-                            },
-                            {
-                                "type": "host-cpu",
-                                "attributes": {}
-                            },
-                            {
-                                "type": "host-info",
-                                "attributes": {}
-                            },
-                            {
-                                "type": "host-services-list",
-                                "attributes": {}
-                            }
-                        ]
-                    }
+                  {
+                    "type": "host",
+                    "components": [
+                      {
+                        "type": "host-main",
+                        "attributes": {}
+                      },
+                      {
+                        "type": "host-live",
+                        "attributes": {}
+                      },
+                      {
+                        "type": "host-load",
+                        "attributes": {}
+                      },
+                      {
+                        "type": "host-cpu",
+                        "attributes": {}
+                      },
+                      {
+                        "type": "host-services-list",
+                        "attributes": {}
+                      },
+                      {
+                        "type": "info",
+                        "attributes": {"datamodel": "host_config"}
+                      }
+                    ]
+                  }
+
                 ]
             }
+
         ]
     },
     "service": {

@@ -9,13 +9,19 @@ angular.module('bansho.host', ['bansho.datasource'])
                 options: '='
             },
             templateUrl: 'components/directive/host/host.html',
-            controller: ['$scope', 'templateManager', 'surveilStatus', 'iframeUrl',
-                function ($scope, templateManager, surveilStatus, iframeUrl) {
+            controller: ['$scope', 'templateManager', 'surveilStatus', 'surveilConfig', 'iframeUrl',
+                function ($scope, templateManager, surveilStatus, surveilConfig, iframeUrl) {
                     var hostname = templateManager.getPageParam('hostname');
 
                     $scope.param = {
-                        host: {}
+                        host: {},
+                        host_config: {}
                     };
+
+                    surveilConfig.getHost(hostname).then(function (data) {
+                        $scope.param.host_config = data[0];
+                    });
+
                     surveilStatus.getHost(hostname).then(function (data) {
                         surveilStatus.getService(hostname).then(function(services) {
                             $scope.param.host = data[0];
