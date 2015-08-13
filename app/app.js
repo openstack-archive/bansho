@@ -19,6 +19,7 @@ angular.module('bansho', [
     'bansho.view',
     'bansho.view.page',
     'bansho.view.host',
+    'bansho.view.host_create',
     'bansho.view.service',
     'bansho.view.config',
     'bansho.view.drupalDashboard',
