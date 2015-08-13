@@ -50,6 +50,14 @@ angular.module('bansho.surveil')
 
 
             return {
-                getData: getData
+                getData: getData,
+                getHost: function (hostname) {
+                    var promise = $q.defer(), query = {"hosts": {"is": {"host_name": [ hostname ] } } };
+                    getData([], query, "hosts")
+                        .then(function (data) {
+                            promise.resolve(data);
+                        });
+                    return promise.promise;
+                },
             };
         }]);
