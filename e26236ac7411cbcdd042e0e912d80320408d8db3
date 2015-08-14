@@ -1,0 +1,8 @@
+Verified+2: Jenkins
+Code-Review+2: peyre <peyre.flavien@gmail.com>
+Workflow+1: peyre <peyre.flavien@gmail.com>
+Submitted-by: Jenkins
+Submitted-at: Fri, 14 Aug 2015 15:33:48 +0000
+Reviewed-on: https://review.openstack.org/213189
+Project: stackforge/bansho
+Branch: refs/heads/master
