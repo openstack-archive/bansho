@@ -8,7 +8,7 @@
          <dl class="problems__desclist" data-ng-repeat="service in host">
            <span data-ng-show="service.service_service_description">
              <dt class="problems__name" bansho-service-state-icon state="service.service_state">
-               <a href="#/view?view=service&host_name={{key}}&description={{service.service_service_description}}">
+               <a href="#/view?view=service&host_name={{key}}&service_description={{service.service_service_description}}">
                  {{service.service_service_description}}
                </a>
                <small class="problems__duration">2 days, 8 hours</small>

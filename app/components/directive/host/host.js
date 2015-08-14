@@ -11,7 +11,7 @@ angular.module('bansho.host', ['bansho.datasource'])
             templateUrl: 'components/directive/host/host.html',
             controller: ['$scope', 'templateManager', 'surveilStatus', 'surveilConfig', 'iframeUrl',
                 function ($scope, templateManager, surveilStatus, surveilConfig, iframeUrl) {
-                    var hostname = templateManager.getPageParam('hostname');
+                    var hostname = templateManager.getPageParam('host_name');
 
                     $scope.param = {
                         host: {},

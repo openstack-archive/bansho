@@ -1,9 +1,14 @@
 'use strict';
 
 angular.module('bansho.view.page', ['bansho.table', 'bansho.tactical'])
-    .controller('PageCtrl', ['$scope', 'configManager', 'templateManager',
-        function ($scope, configManager, templateManager) {
+    .controller('PageCtrl', ['$scope', '$routeParams', 'configManager', 'templateManager',
+        function ($scope, $routeParams, configManager, templateManager) {
             templateManager.setLayout($scope.viewName);
+
+            angular.forEach($routeParams, function (value, key) {
+                templateManager.setPageParam(key, value);
+            });
+
             $scope.components = templateManager.getLayoutComponents();
         }])
 

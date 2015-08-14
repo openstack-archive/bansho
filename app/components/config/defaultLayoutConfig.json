@@ -614,7 +614,7 @@
         ]
     },
     "host": {
-        "template": "host",
+        "template": "page",
         "components": [
             {
                 "type": "panel",
@@ -657,7 +657,7 @@
         ]
     },
     "service": {
-        "template": "service",
+        "template": "page",
         "components": [
             {
                 "type": "panel",
