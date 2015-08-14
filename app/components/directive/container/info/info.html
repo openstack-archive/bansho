@@ -1,0 +1,13 @@
+<span data-ng-repeat="(key, datamodel) in datamodels">
+  <div data-ng-show="param[datamodel]" class="subcomponent__live">
+    <h2>{{key}}</h2>
+    <table class="data-table">
+      <tbody data-ng-repeat="(key, value) in param[datamodel]">
+        <tr>
+          <td>{{key}}</td>
+          <td>{{value}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</span>

@@ -620,7 +620,7 @@
                 "type": "panel",
                 "components": [
                     {
-                        "type": "host",
+                        "type": "container",
                         "components": [
                             {
                                 "type": "host-main",
@@ -663,7 +663,7 @@
                 "type": "panel",
                 "components": [
                     {
-                        "type": "service",
+                        "type": "container",
                         "components": [
                             {
                                 "type": "service-main",

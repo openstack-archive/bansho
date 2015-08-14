@@ -1,12 +1,13 @@
 'use strict';
 
-angular.module('bansho.host')
+angular.module('bansho.container')
     .directive('banshoHostCpu', function () {
         return {
             restrict: 'E',
-            templateUrl: 'components/directive/host/host_cpu/host_cpu.html',
+            templateUrl: 'components/directive/container/host_cpu/host_cpu.html',
             link: function (scope) {
                 scope.param = scope.$parent.param;
+                scope.$parent.addDirectiveParamRequirements('host');
             }
         };
     });

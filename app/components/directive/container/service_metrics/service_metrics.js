@@ -1,12 +1,13 @@
 'use strict';
 
-angular.module('bansho.service.metrics', [])
+angular.module('bansho.container')
     .directive('banshoServiceMetrics', function () {
         return {
             restrict: 'E',
-            templateUrl: 'components/service/service_metrics/service_metrics.html',
+            templateUrl: 'components/directive/container/service_metrics/service_metrics.html',
             link: function (scope) {
                 scope.param = scope.$parent.param;
+                scope.$parent.addDirectiveParamRequirements('service');
             }
         };
     });

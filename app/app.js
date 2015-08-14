@@ -11,8 +11,6 @@ angular.module('bansho', [
     'bansho.surveil',
     'bansho.datasource',
     'bansho.directive',
-    'bansho.host',
-    'bansho.service',
     'bansho.drupal',
     'bansho.drupal.tile',
     'bansho.drupal.info',

@@ -1,12 +1,13 @@
 'use strict';
 
-angular.module('bansho.host')
+angular.module('bansho.container')
     .directive('banshoHostServicesList', function () {
         return {
             restrict: 'E',
-            templateUrl: 'components/directive/host/host_services_list/host_services_list.html',
+            templateUrl: 'components/directive/container/host_services_list/host_services_list.html',
             link: function (scope) {
                 scope.param = scope.$parent.param;
+                scope.$parent.addDirectiveParamRequirements('host');
             }
         };
     });
