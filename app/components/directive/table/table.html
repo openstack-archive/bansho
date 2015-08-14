@@ -1,17 +1,22 @@
 <div>
-    <header class="main__content__header clearfix">
-        <h2 data-ng-show="title" class="main__content__title">{{title}}</h2>
-    </header>
     <table class="data-table">
         <thead class="moving-thead">
         <tr>
             <th data-ng-show="checkColumn" class="data-table__checkbox">
                 <md-checkbox aria-label='Check all' ng-model="isCheckAll" ng-change="onCheckChange()"></md-checkbox>
             </th>
-            <th ng-repeat="i in cellIndexes" class="data-table__{{cellsName[i]}}">
+            <span data-ng-hide="allCells">
+              <th ng-repeat="i in cellIndexes" class="data-table__{{cellsName[i]}}">
                 {{cellsText[i]}}
                 <i class="ico-up-dir"></i>
-            </th>
+              </th>
+            </span>
+            <span data-ng-show="allCells">
+              <th ng-repeat="(key, value) in columns" class="data-table__host">
+                {{key}}
+                <i class="ico-up-dir"></i>
+              </th>
+            </span>
         </tr>
         </thead>
 
@@ -20,21 +25,45 @@
             <th data-ng-show="checkColumn" class="data-table__checkbox">
                 <md-checkbox aria-label='Check all' ng-model="isCheckAll" ng-change="onCheckChange()"></md-checkbox>
             </th>
-            <th ng-repeat="i in cellIndexes" class="data-table__{{cellsName[i]}}">
+            <span data-ng-hide="allCells">
+              <th ng-repeat="i in cellIndexes" class="data-table__{{cellsName[i]}}">
                 {{cellsText[i]}}
                 <i class="ico-up-dir"></i>
-            </th>
+              </th>
+            </span>
+            <span data-ng-show="allCells">
+              <th ng-repeat="(key, value) in columns" class="data-table__host">
+                {{key}}
+                <i class="ico-up-dir"></i>
+              </th>
+            </span>
         </tr>
         </thead>
 
-        <tbody class="{{entry.child_class}}"
-               ng-repeat="(groupByKey, groupByItems) in entries | groupBy:'host_name'">
-        <tr ng-repeat="entry in groupByItems | noRepeat:this | wrappableStyle:this">
-            <td data-ng-show="checkColumn">
+        <tbody data-ng-if="!allCells" class="{{entry.child_class}}"
+                 ng-repeat="(groupByKey, groupByItems) in entries | groupBy:'host_name'">
+            <tr ng-repeat="entry in groupByItems | noRepeat:this | wrappableStyle:this">
+              <td data-ng-show="checkColumn">
                 <md-checkbox aria-label='Check' ng-model="entry.is_checked"></md-checkbox>
+              </td>
+              <td bansho-cell cell-name="{{cell}}" ng-repeat="cell in cellsName"></td>
+            </tr>
+        </tbody>
+        <tbody data-ng-if="allCells" class="{{entry.child_class}}">
+          <tr ng-repeat="(key, entry) in entries">
+            <td data-ng-show="checkColumn">
+              <md-checkbox aria-label='Check' ng-model="entry.is_checked"></md-checkbox>
             </td>
-            <td bansho-cell cell-name="{{cell}}" ng-repeat="cell in cellsName"></td>
-        </tr>
+            <td ng-repeat="(key, value) in columns">
+              <a data-ng-show="cellUrls[key]"
+                 ng-click="createUrl(entry, cellUrls[key])">
+                   {{entry[key]}}
+              </a>
+              <span data-ng-hide="cellUrls[key]">
+                {{entry[key]}}
+              </span>
+            </td>
+          </tr>
         </tbody>
     </table>
     <bansho-pagingbar data-ng-if="pagingbar" options="options"></bansho-pagingbar>

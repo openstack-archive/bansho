@@ -34,7 +34,6 @@ angular.module('bansho.surveil')
                 "commands": true
             };
 
-
             var queryEndpoint = function (endpoint, fields, filters, paging, callback) {
                 var query = surveilQuery(fields, filters[endpoint], paging),
                     method = 'POST',
