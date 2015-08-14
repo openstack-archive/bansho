@@ -699,7 +699,24 @@
         }
     },
     "config": {
-        "template": "config"
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "title",
+                        "attributes": {
+                            "title": "Edit Config"
+                        }
+                    },
+                    {
+                        "type": "text-area",
+                        "attributes": {}
+                    }
+                ]
+            }
+        ]
     },
     "configHosts": {
         "template": "page",
