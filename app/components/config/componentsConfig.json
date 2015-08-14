@@ -227,7 +227,8 @@
             "filter": {
                 "services": {},
                 "hosts": {},
-                "events": {}
+                "events": {},
+                "commands": {}
             }
         }
     },
@@ -281,6 +282,11 @@
             "provider": "config",
             "endpoint": "hosts",
             "filter": "allHostConfigTemplate"
+        },
+        "commands": {
+            "provider": "config",
+            "endpoint": "commands",
+            "filter": "all"
         }
     }
 }

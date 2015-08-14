@@ -23,8 +23,8 @@ angular.module('bansho.table', ['bansho.datasource',
                     options: '='
                 },
                 templateUrl: 'components/directive/table/table.html',
-                controller: ['$scope', 'headerFollow', 'datasource', 'templateManager',
-                    function ($scope, headerFollow, datasource, templateManager) {
+                controller: ['$scope', '$window', 'headerFollow', 'datasource', 'templateManager',
+                    function ($scope, $window, headerFollow, datasource, templateManager) {
                         var conf = {},
                             i;
 
@@ -34,8 +34,22 @@ angular.module('bansho.table', ['bansho.datasource',
                         conf.title = $scope.options.attributes.title;
 
                         conf.cells = {'text': [], 'name': []};
-                        conf.cells.text = $scope.options.attributes.cells.text;
-                        conf.cells.name = $scope.options.attributes.cells.name;
+                        if ($scope.options.attributes.cells) {
+                            $scope.allCells = false;
+                            conf.cells.text = $scope.options.attributes.cells.text;
+                            conf.cells.name = $scope.options.attributes.cells.name;
+                        } else {
+                            $scope.allCells = true;
+                        }
+
+                        $scope.cellUrls = $scope.options.attributes.cellUrls;
+                        $scope.createUrl = function (entry, urlParam) {
+                            var url = "/#/view?view=" + urlParam.view;
+                            angular.forEach(urlParam.params, function (paramName) {
+                                url += '&' + paramName + '=' + entry[paramName];
+                            });
+                            $window.location = url;
+                        };
 
                         conf.inputSource = $scope.options.attributes.inputSource;
                         conf.isWrappable = $scope.options.attributes.isWrappable;
@@ -69,6 +83,14 @@ angular.module('bansho.table', ['bansho.datasource',
                         datasource.registerDataChanged($scope.tableId, function (data, isCheckAll) {
                             $scope.isCheckAll = isCheckAll;
                             $scope.entries = data;
+                            if ($scope.allCells) {
+                                $scope.columns = {};
+                                angular.forEach($scope.entries, function (entry) {
+                                   angular.forEach(entry, function (value, key) {
+                                       $scope.columns[key] = true;
+                                   });
+                                });
+                            }
                         });
                         datasource.refreshTableData($scope.tableId);
                         templateManager.addInterval(function refreshTable () {

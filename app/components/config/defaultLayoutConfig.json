@@ -855,5 +855,87 @@
                 ]
             }
         ]
+    },
+    "commands": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "title",
+                        "attributes": {
+                            "title": "Commands"
+                        }
+                    },
+                    {
+                        "type": "actionbar",
+                        "attributes": {
+                            "tableId": [
+                                0
+                            ]
+                        },
+                        "components": [
+                            {
+                                "type": "actionbar-recheck",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-more",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-search-filter",
+                                "attributes": {}
+                            }
+                        ]
+                    },
+                    {
+                        "type": "table",
+                        "attributes": {
+                            "tableId": 0,
+                            "headerFollow": true,
+                            "inputSource": "commands",
+                            "isWrappable": false,
+                            "noRepeatCell": "",
+                            "checkColumn": false,
+                            "pagingbar": true,
+                            "cellUrls": {
+                                "command_name": {
+                                    "view": "command",
+                                    "params": [
+                                        "command_name"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "command": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "container",
+                        "components": [
+                            {
+                                "type": "info",
+                                "attributes": {
+                                    "datamodel": {
+                                        "Command": "command"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+
     }
 }
