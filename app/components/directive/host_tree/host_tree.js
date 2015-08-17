@@ -8,7 +8,7 @@ angular.module('bansho.hostTree', ['bansho.datasource'])
             scope: {
                 options: '='
             },
-            templateUrl: 'components/directive/hostTree/hostTree.html',
+            templateUrl: 'components/directive/host_tree/host_tree.html',
             controller: ['$scope', 'sharedData',
                 function ($scope, sharedData) {
                     $scope.sources = {};

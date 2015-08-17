@@ -7,7 +7,7 @@ angular.module('bansho.table.pagingbar', ['bansho.datasource', 'bansho.surveil',
             scope: {
                 options: '='
             },
-            templateUrl: 'components/directive/table/pagingbar/pagingbar.html',
+            templateUrl: 'components/directive/table/paging_bar/paging_bar.html',
             controller: ['$scope', 'datasource',
                 function ($scope, datasource) {
                     $scope.datasourceId = $scope.options.attributes.datasourceId;

@@ -4,7 +4,7 @@ angular.module('bansho.tabpanel', [])
     .directive('banshoTabpanel', ['sharedData', function (sharedData) {
         return {
             restrict: 'E',
-            templateUrl: 'components/directive/tabpanel/tabpanel.html',
+            templateUrl: 'components/directive/tab_panel/tab_panel.html',
             scope: {
                 options: '='
             },
@@ -28,7 +28,7 @@ angular.module('bansho.tabpanel', [])
     .directive('banshoPanel', function () {
         return {
             restrict: 'E',
-            templateUrl: 'components/directive/tabpanel/panel.html',
+            templateUrl: 'components/directive/tab_panel/panel.html',
             scope: {
                   options: '='
             },
