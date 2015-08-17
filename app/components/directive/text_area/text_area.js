@@ -10,7 +10,7 @@ angular.module('bansho.textArea', [])
                 scope: {
                     options: '='
                 },
-                templateUrl: 'components/directive/textArea/textArea.html',
+                templateUrl: 'components/directive/text_area/text_area.html',
                 controller:['$scope', '$window', 'configManager',
                     function ($scope, $window, configManager) {
                         $scope.configuration = JSON.stringify(configManager.readLayoutConfig(), null, 4);

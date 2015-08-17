@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('bansho.table')
+angular.module('bansho.stateIcon', [])
     .directive('banshoHostStateIcon', function () {
         return {
             restrict: 'EA',
