@@ -2,7 +2,7 @@
 
 angular.module('bansho.directive', [
     'bansho.actionbar',
-    'bansho.textArea',
+    'bansho.form',
     'bansho.container',
     'bansho.hostTree',
     'bansho.table',

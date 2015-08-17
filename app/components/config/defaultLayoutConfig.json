@@ -711,8 +711,14 @@
                         }
                     },
                     {
-                        "type": "text-area",
-                        "attributes": {}
+                        "type": "form",
+                        "attributes": {},
+                        "components": [
+                            {
+                                "type": "text-area",
+                                "attributes": {}
+                            }
+                        ]
                     }
                 ]
             }
