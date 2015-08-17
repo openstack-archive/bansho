@@ -64,6 +64,12 @@ module.exports = function (grunt) {
                     {
                         src: '<%= project.app %>/index.html',
                         dest: '<%= project.dist %>/index.html'
+                    },
+                    {
+                        cwd: '<%= project.app %>/bower_components/fontawesome/fonts',
+                        expand: true,
+                        src: ['**.*'],
+                        dest: '<%= project.dist %>/assets/fonts'
                     }
                 ]
             }
