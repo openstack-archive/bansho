@@ -24,7 +24,7 @@
                     {
                         "type": "panel",
                         "attributes": {
-                            "panelId": "openProblems"
+                            "panelId": "allProblems"
                         },
                         "components": [
                             {
@@ -94,7 +94,7 @@
                             {
                                 "type": "actionbar",
                                 "attributes": {
-                                    "tableId": [
+                                    "datasourceId": [
                                         0,
                                         1
                                     ]
@@ -152,22 +152,13 @@
                             {
                                 "type": "table",
                                 "attributes": {
-                                    "tableId": 0,
+                                    "datasourceId": 0,
                                     "cells": {
-                                        "text": [
-                                            "Host",
-                                            "Address",
-                                            "Duration",
-                                            "Last check",
-                                            "Host status"
-                                        ],
-                                        "name": [
-                                            "status_host",
-                                            "status_host_address",
-                                            "status_duration",
-                                            "status_last_check",
-                                            "status_host_status"
-                                        ]
+                                        "complex_status_host": "Host",
+                                        "host_address": "Address",
+                                        "complex_status_duration": "Duration",
+                                        "complex_status_last_check": "Last check",
+                                        "complex_status_host_status": "Host status"
                                     },
                                     "headerFollow": false,
                                     "inputSource": "hostOpenProblems",
@@ -188,20 +179,12 @@
                             {
                                 "type": "table",
                                 "attributes": {
-                                    "tableId": 1,
+                                    "datasourceId": 1,
                                     "cells": {
-                                        "text": [
-                                            "Host",
-                                            "Service check",
-                                            "Duration",
-                                            "Last check"
-                                        ],
-                                        "name": [
-                                            "status_host",
-                                            "status_service_check",
-                                            "status_duration",
-                                            "status_last_check"
-                                        ]
+                                        "complex_status_host": "Host",
+                                        "complex_status_service_check": "Service check",
+                                        "complex_status_duration": "Duration",
+                                        "complex_status_last_check": "Last check"
                                     },
                                     "headerFollow": false,
                                     "inputSource": "serviceOpenProblemsOnly",
@@ -223,7 +206,7 @@
                             {
                                 "type": "actionbar",
                                 "attributes": {
-                                    "tableId": [
+                                    "datasourceId": [
                                         2,
                                         3
                                     ]
@@ -281,22 +264,13 @@
                             {
                                 "type": "table",
                                 "attributes": {
-                                    "tableId": 2,
+                                    "datasourceId": 2,
                                     "cells": {
-                                        "text": [
-                                            "Host",
-                                            "Address",
-                                            "Duration",
-                                            "Lastcheck",
-                                            "Hoststatus"
-                                        ],
-                                        "name": [
-                                            "status_host",
-                                            "status_host_address",
-                                            "status_duration",
-                                            "status_last_check",
-                                            "status_host_status"
-                                        ]
+                                        "complex_status_host": "Host",
+                                        "host_address": "Address",
+                                        "complex_status_duration": "Duration",
+                                        "complex_status_last_check": "Last check",
+                                        "complex_status_host_status": "Host status"
                                     },
                                     "headerFollow": false,
                                     "inputSource": "hostsProblems",
@@ -317,20 +291,12 @@
                             {
                                 "type": "table",
                                 "attributes": {
-                                    "tableId": 3,
+                                    "datasourceId": 3,
                                     "cells": {
-                                        "text": [
-                                            "Host",
-                                            "Service check",
-                                            "Duration",
-                                            "Last check"
-                                        ],
-                                        "name": [
-                                            "status_host",
-                                            "status_service_check",
-                                            "status_duration",
-                                            "status_last_check"
-                                        ]
+                                        "complex_status_host": "Host",
+                                        "complex_status_service_check": "Service check",
+                                        "complex_status_duration": "Duration",
+                                        "complex_status_last_check": "Last check"
                                     },
                                     "headerFollow": false,
                                     "inputSource": "servicesProblems",
@@ -361,7 +327,7 @@
                     {
                         "type": "actionbar",
                         "attributes": {
-                            "tableId": [
+                            "datasourceId": [
                                 0
                             ]
                         },
@@ -410,22 +376,13 @@
                     {
                         "type": "table",
                         "attributes": {
-                            "tableId": 0,
+                            "datasourceId": 0,
                             "cells": {
-                                "text": [
-                                    "Host",
-                                    "Address",
-                                    "Duration",
-                                    "Last check",
-                                    "Host status"
-                                ],
-                                "name": [
-                                    "status_host",
-                                    "status_host_address",
-                                    "status_duration",
-                                    "status_last_check",
-                                    "status_host_status"
-                                ]
+                                "complex_status_host": "Host",
+                                "host_address": "Address",
+                                "complex_status_duration": "Duration",
+                                "complex_status_last_check": "Last check",
+                                "complex_status_host_status": "Host status"
                             },
                             "headerFollow": true,
                             "inputSource": "hosts",
@@ -454,7 +411,7 @@
                     {
                         "type": "actionbar",
                         "attributes": {
-                            "tableId": [
+                            "datasourceId": [
                                 0
                             ]
                         },
@@ -503,20 +460,12 @@
                     {
                         "type": "table",
                         "attributes": {
-                            "tableId": 0,
+                            "datasourceId": 0,
                             "cells": {
-                                "text": [
-                                    "Host",
-                                    "Service check",
-                                    "Duration",
-                                    "Last check"
-                                ],
-                                "name": [
-                                    "status_host",
-                                    "status_service_check",
-                                    "status_duration",
-                                    "status_last_check"
-                                ]
+                                "complex_status_host": "Host",
+                                "complex_status_service_check": "Service check",
+                                "complex_status_duration": "Duration",
+                                "complex_status_last_check": "Last check"
                             },
                             "headerFollow": true,
                             "inputSource": "services",
@@ -545,7 +494,7 @@
                     {
                         "type": "actionbar",
                         "attributes": {
-                            "tableId": [
+                            "datasourceId": [
                                 0
                             ]
                         },
@@ -582,24 +531,14 @@
                     {
                         "type": "table",
                         "attributes": {
-                            "tableId": 0,
+                            "datasourceId": 0,
                             "cells": {
-                                "text": [
-                                    "Event type",
-                                    "Output",
-                                    "Hostname",
-                                    "Service",
-                                    "Time",
-                                    "Complete data"
-                                ],
-                                "name": [
-                                    "status_event_event_type",
-                                    "status_event_output",
-                                    "status_event_host_name",
-                                    "status_event_service",
-                                    "status_event_time",
-                                    "status_event"
-                                ]
+                                "event_event_type": "Type",
+                                "event_output": "Output",
+                                "event_host_name": "Hostname",
+                                "event_service_description": "Service description",
+                                "event_time": "Time",
+                                "complex_status_event": "Complete data"
                             },
                             "headerFollow": true,
                             "inputSource": "events",
@@ -733,7 +672,7 @@
                     {
                         "type": "actionbar",
                         "attributes": {
-                            "tableId": [
+                            "datasourceId": [
                                 0
                             ]
                         },
@@ -770,21 +709,13 @@
                     {
                         "type": "table",
                         "attributes": {
-                            "tableId": 0,
+                            "datasourceId": 0,
                             "refreshInterval": 30,
                             "cells": {
-                                "text": [
-                                    "Host",
-                                    "Address",
-                                    "Use",
-                                    "Enable"
-                                ],
-                                "name": [
-                                    "config_host",
-                                    "config_host_address",
-                                    "config_host_use",
-                                    "config_host_register"
-                                ]
+                                "host_name": "Hosts",
+                                "address": "Address",
+                                "use": "Use",
+                                "complex_config_host_register": "Register"
                             },
                             "headerFollow": false,
                             "inputSource": "hostsConfig",
@@ -813,7 +744,7 @@
                     {
                         "type": "actionbar",
                         "attributes": {
-                            "tableId": [
+                            "datasourceId": [
                                 0
                             ]
                         },
@@ -850,19 +781,13 @@
                     {
                         "type": "table",
                         "attributes": {
-                            "tableId": 0,
+                            "datasourceId": 0,
+                            "inputSource": "hostsConfigTemplate",
                             "cells": {
-                                "text": [
-                                    "Template",
-                                    "Use"
-                                ],
-                                "name": [
-                                    "config_host_name",
-                                    "config_host_use"
-                                ]
+                                "name": "Template",
+                                "use": "Use"
                             },
                             "headerFollow": false,
-                            "inputSource": "hostsConfigTemplate",
                             "isWrappable": false,
                             "noRepeatCell": "",
                             "checkColumn": false,
@@ -888,7 +813,7 @@
                     {
                         "type": "actionbar",
                         "attributes": {
-                            "tableId": [
+                            "datasourceId": [
                                 0
                             ]
                         },
@@ -910,13 +835,18 @@
                     {
                         "type": "table",
                         "attributes": {
-                            "tableId": 0,
+                            "datasourceId": 0,
                             "headerFollow": true,
                             "inputSource": "commands",
                             "isWrappable": false,
                             "noRepeatCell": "",
                             "checkColumn": false,
                             "pagingbar": true,
+                            "cells": {
+                                "command_name": "Name",
+                                "command_line": "Lines",
+                                "module_type": "Module type"
+                            },
                             "cellUrls": {
                                 "command_name": {
                                     "view": "command",

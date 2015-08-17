@@ -10,8 +10,8 @@ angular.module('bansho.actionbar')
             templateUrl: 'components/directive/actionbar/component_search_filter/search_filter.html',
             controller: ['$scope', 'datasource', function ($scope, datasource) {
                 $scope.searchFilterChange = function () {
-                    angular.forEach($scope.options.attributes.tableId, function (tableId) {
-                        datasource.setSearchFilter(tableId, $scope.searchFilter);
+                    angular.forEach($scope.options.attributes.datasourceId, function (datasourceId) {
+                        datasource.setSearchFilter(datasourceId, $scope.searchFilter);
                     });
                 };
             }]
