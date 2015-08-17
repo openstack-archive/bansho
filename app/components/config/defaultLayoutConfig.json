@@ -241,7 +241,20 @@
                                     {
                                         "type": "cell-status-service-check",
                                         "attributes": {
-                                            "title": "Service check"
+                                            "title": "Service check",
+                                            "url": {
+                                                "view": "service",
+                                                "params": [
+                                                    {
+                                                        "urlParam": "host_name",
+                                                        "entryKey": "host_host_name"
+                                                    },
+                                                    {
+                                                        "urlParam": "service_description",
+                                                        "entryKey": "service_service_description"
+                                                    }
+                                                ]
+                                            }
                                         }
                                     },
                                     {
@@ -417,7 +430,20 @@
                                     {
                                         "type": "cell-status-service-check",
                                         "attributes": {
-                                            "title": "Service check"
+                                            "title": "Service check",
+                                            "url": {
+                                                "view": "service",
+                                                "params": [
+                                                    {
+                                                        "urlParam": "host_name",
+                                                        "entryKey": "host_host_name"
+                                                    },
+                                                    {
+                                                        "urlParam": "service_description",
+                                                        "entryKey": "service_service_description"
+                                                    }
+                                                ]
+                                            }
                                         }
                                     },
                                     {
@@ -845,37 +871,6 @@
             }
         ]
     },
-    "service": {
-        "template": "page",
-        "components": [
-            {
-                "type": "panel",
-                "components": [
-                    {
-                        "type": "container",
-                        "components": [
-                            {
-                                "type": "service-main",
-                                "attributes": {}
-                            },
-                            {
-                                "type": "service-live",
-                                "attributes": {}
-                            },
-                            {
-                                "type": "service-info",
-                                "attributes": {}
-                            },
-                            {
-                                "type": "service-graphs",
-                                "attributes": {}
-                            }
-                        ]
-                    }
-                ]
-            }
-        ]
-    },
     "drupal": {
         "title": "Drupal",
         "template": "drupal"
@@ -1145,15 +1140,7 @@
                             "isWrappable": false,
                             "noRepeatCell": "",
                             "checkColumn": false,
-                            "pagingbar": true,
-                            "cellUrls": {
-                                "command_name": {
-                                    "view": "command",
-                                    "params": [
-                                        "command_name"
-                                    ]
-                                }
-                            }
+                            "pagingbar": true
                         },
                         "components": [
                             {
@@ -1167,7 +1154,16 @@
                                 "type": "cell-single",
                                 "attributes": {
                                     "entryKey": "command_line",
-                                    "title": "Line"
+                                    "title": "Line",
+                                    "url": {
+                                        "view": "command",
+                                        "params": [
+                                            {
+                                                "urlParam": "command_name",
+                                                "entryKey": "command_name"
+                                            }
+                                        ]
+                                    }
                                 }
                             },
                             {
@@ -1196,7 +1192,1102 @@
                                 "type": "info",
                                 "attributes": {
                                     "datamodel": {
-                                        "Command": "command"
+                                        "Command": "configCommand"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "businessimpactmodulations": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "title",
+                        "attributes": {
+                            "title": "Business Impact Modulations"
+                        }
+                    },
+                    {
+                        "type": "actionbar",
+                        "attributes": {
+                            "tableId": [
+                                0
+                            ]
+                        },
+                        "components": [
+                            {
+                                "type": "actionbar-recheck",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-more",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-search-filter",
+                                "attributes": {}
+                            }
+                        ]
+                    },
+                    {
+                        "type": "table",
+                        "attributes": {
+                            "tableId": 0,
+                            "headerFollow": true,
+                            "inputSource": "businessimpactmodulations",
+                            "isWrappable": false,
+                            "noRepeatCell": "",
+                            "checkColumn": false,
+                            "pagingbar": true
+                        },
+                        "components": [
+                            {
+                                "type": "cell-single",
+                                "attributes": {
+                                    "entryKey": "business_impact_modulation_name",
+                                    "title": "Name",
+                                    "url": {
+                                        "view": "businessimpactmodulation",
+                                        "params": [
+                                            {
+                                                "urlParam": "business_impact_modulation_name",
+                                                "entryKey": "business_impact_modulation_name"
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            {
+                                "type": "cell-single",
+                                "attributes": {
+                                    "title": "business_impact",
+                                    "entryKey": "business_impact",
+                                    "class": "small"
+                                }
+                            },
+                            {
+                                "type": "cell-single",
+                                "attributes": {
+                                    "entryKey": "modulation_period",
+                                    "title": "Period",
+                                    "class": "small"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "businessimpactmodulation": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "container",
+                        "components": [
+                            {
+                                "type": "info",
+                                "attributes": {
+                                    "datamodel": {
+                                        "Business Impact Modulation": "configBusinessImpactModulation"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "checkmodulations": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "title",
+                        "attributes": {
+                            "title": "Check Modulations"
+                        }
+                    },
+                    {
+                        "type": "actionbar",
+                        "attributes": {
+                            "tableId": [
+                                0
+                            ]
+                        },
+                        "components": [
+                            {
+                                "type": "actionbar-recheck",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-more",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-search-filter",
+                                "attributes": {}
+                            }
+                        ]
+                    },
+                    {
+                        "type": "table",
+                        "attributes": {
+                            "tableId": 0,
+                            "headerFollow": true,
+                            "inputSource": "checkmodulations",
+                            "isWrappable": false,
+                            "noRepeatCell": "",
+                            "checkColumn": false,
+                            "pagingbar": true,
+                            "cellUrls": {
+                                "checkmodulation_name": {
+                                    "view": "checkmodulation",
+                                    "params": [
+                                        "checkmodulation_name"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "checkmodulation": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "container",
+                        "components": [
+                            {
+                                "type": "info",
+                                "attributes": {
+                                    "datamodel": {
+                                        "Check Modulation": "configCheckModulation"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "contactgroups": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "title",
+                        "attributes": {
+                            "title": "Contact Groups"
+                        }
+                    },
+                    {
+                        "type": "actionbar",
+                        "attributes": {
+                            "tableId": [
+                                0
+                            ]
+                        },
+                        "components": [
+                            {
+                                "type": "actionbar-recheck",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-more",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-search-filter",
+                                "attributes": {}
+                            }
+                        ]
+                    },
+                    {
+                        "type": "table",
+                        "attributes": {
+                            "tableId": 0,
+                            "headerFollow": true,
+                            "inputSource": "contactgroups",
+                            "isWrappable": false,
+                            "noRepeatCell": "",
+                            "checkColumn": false,
+                            "pagingbar": true,
+                            "cellUrls": {
+                                "contactgroup_name": {
+                                    "view": "contactgroup",
+                                    "params": [
+                                        "contactgroup_name"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "contactgroup": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "container",
+                        "components": [
+                            {
+                                "type": "info",
+                                "attributes": {
+                                    "datamodel": {
+                                        "Contact Group": "configContactGroup"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "contacts": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "title",
+                        "attributes": {
+                            "title": "Contacts"
+                        }
+                    },
+                    {
+                        "type": "actionbar",
+                        "attributes": {
+                            "tableId": [
+                                0
+                            ]
+                        },
+                        "components": [
+                            {
+                                "type": "actionbar-recheck",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-more",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-search-filter",
+                                "attributes": {}
+                            }
+                        ]
+                    },
+                    {
+                        "type": "table",
+                        "attributes": {
+                            "tableId": 0,
+                            "headerFollow": true,
+                            "inputSource": "contacts",
+                            "isWrappable": false,
+                            "noRepeatCell": "",
+                            "checkColumn": false,
+                            "pagingbar": true,
+                            "cellUrls": {
+                                "contact_name": {
+                                    "view": "contact",
+                                    "params": [
+                                        "contact_name"
+                                    ]
+                                }
+                            }
+                        },
+                        "components": [
+                            {
+                                "type": "cell-single",
+                                "attributes": {
+                                    "entryKey": "contact_name",
+                                    "title": "Name",
+                                    "url": {
+                                        "view": "contact",
+                                        "params": [
+                                            {
+                                                "urlParam": "contact_name",
+                                                "entryKey": "contact_name"
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            {
+                                "type": "cell-single",
+                                "attributes": {
+                                    "title": "email",
+                                    "entryKey": "email",
+                                    "class": "small"
+                                }
+                            },
+                            {
+                                "type": "cell-single",
+                                "attributes": {
+                                    "title": "host notification commands",
+                                    "entryKey": "host_notification_commands",
+                                    "class": "small"
+                                }
+                            },
+                            {
+                                "type": "cell-single",
+                                "attributes": {
+                                    "title": "Service notification commands",
+                                    "entryKey": "service_notification_commands",
+                                    "class": "small"
+                                }
+                            },
+                            {
+                                "type": "cell-other-fields",
+                                "attributes": {
+                                    "entryKey": "modulation_period",
+                                    "title": "Period",
+                                    "skipFields": [
+                                        "contact_name",
+                                        "email",
+                                        "host_notification_commands",
+                                        "service_notification_commands"
+                                    ],
+                                    "class": "large"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "contact": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "container",
+                        "components": [
+                            {
+                                "type": "info",
+                                "attributes": {
+                                    "datamodel": {
+                                        "Contact": "configContact"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "hostgroups": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "title",
+                        "attributes": {
+                            "title": "Host groups"
+                        }
+                    },
+                    {
+                        "type": "actionbar",
+                        "attributes": {
+                            "tableId": [
+                                0
+                            ]
+                        },
+                        "components": [
+                            {
+                                "type": "actionbar-recheck",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-more",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-search-filter",
+                                "attributes": {}
+                            }
+                        ]
+                    },
+                    {
+                        "type": "table",
+                        "attributes": {
+                            "tableId": 0,
+                            "headerFollow": true,
+                            "inputSource": "hostgroups",
+                            "isWrappable": false,
+                            "noRepeatCell": "",
+                            "checkColumn": false,
+                            "pagingbar": true,
+                            "cellUrls": {
+                                "hostgroup_name": {
+                                    "view": "hostgroup",
+                                    "params": [
+                                        "hostgroup_name"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "hostgroup": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "container",
+                        "components": [
+                            {
+                                "type": "info",
+                                "attributes": {
+                                    "datamodel": {
+                                        "Host Group": "configHostGroup"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "macromodulations": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "title",
+                        "attributes": {
+                            "title": "Macromodulations"
+                        }
+                    },
+                    {
+                        "type": "actionbar",
+                        "attributes": {
+                            "tableId": [
+                                0
+                            ]
+                        },
+                        "components": [
+                            {
+                                "type": "actionbar-recheck",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-more",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-search-filter",
+                                "attributes": {}
+                            }
+                        ]
+                    },
+                    {
+                        "type": "table",
+                        "attributes": {
+                            "tableId": 0,
+                            "headerFollow": true,
+                            "inputSource": "macromodulations",
+                            "isWrappable": false,
+                            "noRepeatCell": "",
+                            "checkColumn": false,
+                            "pagingbar": true,
+                            "cellUrls": {
+                                "macromodulation_name": {
+                                    "view": "macromodulation",
+                                    "params": [
+                                    ]
+                                }
+                            }
+                        },
+                        "components": [
+                            {
+                                "type": "cell-single",
+                                "attributes": {
+                                    "entryKey": "macromodulation_name",
+                                    "title": "Name",
+                                    "url": {
+                                        "view": "macromodulation",
+                                        "params": [
+                                            {
+                                                "urlParam": "macromodulation_name",
+                                                "entryKey": "macromodulation_name"
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            {
+                                "type": "cell-single",
+                                "attributes": {
+                                    "title": "Period",
+                                    "entryKey": "modulation_period"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "macromodulation": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "container",
+                        "components": [
+                            {
+                                "type": "info",
+                                "attributes": {
+                                    "datamodel": {
+                                        "Macro Modulation": "configMacroModulation"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "notificationways": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "title",
+                        "attributes": {
+                            "title": "Notification Ways"
+                        }
+                    },
+                    {
+                        "type": "actionbar",
+                        "attributes": {
+                            "tableId": [
+                                0
+                            ]
+                        },
+                        "components": [
+                            {
+                                "type": "actionbar-recheck",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-more",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-search-filter",
+                                "attributes": {}
+                            }
+                        ]
+                    },
+                    {
+                        "type": "table",
+                        "attributes": {
+                            "tableId": 0,
+                            "headerFollow": true,
+                            "inputSource": "notificationways",
+                            "isWrappable": false,
+                            "noRepeatCell": "",
+                            "checkColumn": false,
+                            "pagingbar": true,
+                            "cellUrls": {
+                                "notificationway_name": {
+                                    "view": "notificationway",
+                                    "params": [
+                                        "notificationway_name"
+                                    ]
+                                }
+                            }
+                        },
+                        "components": [
+                            {
+                                "type": "cell-single",
+                                "attributes": {
+                                    "title": "host notification commands",
+                                    "entryKey": "host_notification_commands",
+                                    "class": "small"
+                                }
+                            },
+                            {
+                                "type": "cell-single",
+                                "attributes": {
+                                    "title": "Service notification commands",
+                                    "entryKey": "service_notification_commands",
+                                    "class": "small"
+                                }
+                            },
+                            {
+                                "type": "cell-other-fields",
+                                "attributes": {
+                                    "entryKey": "modulation_period",
+                                    "title": "Period",
+                                    "skipFields": [
+                                        "contact_name",
+                                        "email",
+                                        "host_notification_commands",
+                                        "service_notification_commands"
+                                    ],
+                                    "class": "large"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "notificationway": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "container",
+                        "components": [
+                            {
+                                "type": "info",
+                                "attributes": {
+                                    "datamodel": {
+                                        "Notification Way": "configNotificationWay"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "realms": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "title",
+                        "attributes": {
+                            "title": "Realms"
+                        }
+                    },
+                    {
+                        "type": "actionbar",
+                        "attributes": {
+                            "tableId": [
+                                0
+                            ]
+                        },
+                        "components": [
+                            {
+                                "type": "actionbar-recheck",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-more",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-search-filter",
+                                "attributes": {}
+                            }
+                        ]
+                    },
+                    {
+                        "type": "table",
+                        "attributes": {
+                            "tableId": 0,
+                            "headerFollow": true,
+                            "inputSource": "realms",
+                            "isWrappable": false,
+                            "noRepeatCell": "",
+                            "checkColumn": false,
+                            "pagingbar": true,
+                            "cellUrls": {
+                                "realm_name": {
+                                    "view": "realm",
+                                    "params": [
+                                        "realm_name"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "realm": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "container",
+                        "components": [
+                            {
+                                "type": "info",
+                                "attributes": {
+                                    "datamodel": {
+                                        "Realm": "configRealm"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "servicegroups": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "title",
+                        "attributes": {
+                            "title": "Service groups"
+                        }
+                    },
+                    {
+                        "type": "actionbar",
+                        "attributes": {
+                            "tableId": [
+                                0
+                            ]
+                        },
+                        "components": [
+                            {
+                                "type": "actionbar-recheck",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-more",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-search-filter",
+                                "attributes": {}
+                            }
+                        ]
+                    },
+                    {
+                        "type": "table",
+                        "attributes": {
+                            "tableId": 0,
+                            "headerFollow": true,
+                            "inputSource": "servicegroups",
+                            "isWrappable": false,
+                            "noRepeatCell": "",
+                            "checkColumn": false,
+                            "pagingbar": true,
+                            "cellUrls": {
+                                "servicegroup_name": {
+                                    "view": "servicegroup",
+                                    "params": [
+                                        "servicegroup_name"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "servicegroup": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "container",
+                        "components": [
+                            {
+                                "type": "info",
+                                "attributes": {
+                                    "datamodel": {
+                                        "Service Group": "configServiceGroup"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "timeperiods": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "title",
+                        "attributes": {
+                            "title": "Time periods"
+                        }
+                    },
+                    {
+                        "type": "actionbar",
+                        "attributes": {
+                            "tableId": [
+                                0
+                            ]
+                        },
+                        "components": [
+                            {
+                                "type": "actionbar-recheck",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-more",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-search-filter",
+                                "attributes": {}
+                            }
+                        ]
+                    },
+                    {
+                        "type": "table",
+                        "attributes": {
+                            "tableId": 0,
+                            "headerFollow": true,
+                            "inputSource": "timeperiods",
+                            "isWrappable": false,
+                            "noRepeatCell": "",
+                            "checkColumn": false,
+                            "pagingbar": true,
+                            "cellUrls": {
+                                "timeperiod_name": {
+                                    "view": "timeperiod",
+                                    "params": [
+                                        "timeperiod_name"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "timeperiod": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "container",
+                        "components": [
+                            {
+                                "type": "info",
+                                "attributes": {
+                                    "datamodel": {
+                                        "Time Period": "configTimePeriod"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "configServices": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "title",
+                        "attributes": {
+                            "title": "Services"
+                        }
+                    },
+                    {
+                        "type": "actionbar",
+                        "attributes": {
+                            "tableId": [
+                                0
+                            ]
+                        },
+                        "components": [
+                            {
+                                "type": "actionbar-recheck",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-more",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-search-filter",
+                                "attributes": {}
+                            }
+                        ]
+                    },
+                    {
+                        "type": "table",
+                        "attributes": {
+                            "tableId": 0,
+                            "headerFollow": true,
+                            "inputSource": "configServices",
+                            "isWrappable": false,
+                            "noRepeatCell": "",
+                            "checkColumn": false,
+                            "pagingbar": true
+                        },
+                        "components": [
+                            {
+                                "type": "cell-single",
+                                "attributes": {
+                                    "entryKey": "host_name",
+                                    "title": "Host name"
+                                }
+                            },
+                            {
+                                "type": "cell-single",
+                                "attributes": {
+                                    "title": "Service description",
+                                    "entryKey": "service_description",
+                                    "url": {
+                                        "view": "service",
+                                        "params": [
+                                            {
+                                                "urlParam": "host_name",
+                                                "entryKey": "host_name"
+                                            },
+                                            {
+                                                "urlParam": "service_description",
+                                                "entryKey": "service_description"
+                                            }
+                                        ]
+                                    },
+                                    "class": "medium"
+                                }
+                            },
+                            {
+                                "type": "cell-single",
+                                "attributes": {
+                                    "entryKey": "contact_groups",
+                                    "title": "Contact groups",
+                                    "class": "small"
+                                }
+                            },
+                            {
+                                "type": "cell-single",
+                                "attributes": {
+                                    "entryKey": "contacts",
+                                    "title": "Contacts",
+                                    "class": "small"
+                                }
+                            },
+                            {
+                                "type": "cell-other-fields",
+                                "attributes": {
+                                    "title": "title",
+                                    "skipFields": [
+                                        "contact_groups",
+                                        "service_description",
+                                        "host_name"
+                                    ],
+                                    "class": "medium"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "service": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "container",
+                        "components": [
+                            {
+                                "type": "service-main",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "service-live",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "service-info",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "service-graphs",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "info",
+                                "attributes": {
+                                    "datamodel": {
+                                        "Service configuration": "configService"
                                     }
                                 }
                             }
