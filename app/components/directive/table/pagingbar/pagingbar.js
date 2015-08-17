@@ -10,20 +10,20 @@ angular.module('bansho.table.pagingbar', ['bansho.datasource', 'bansho.surveil',
             templateUrl: 'components/directive/table/pagingbar/pagingbar.html',
             controller: ['$scope', 'datasource',
                 function ($scope, datasource) {
-                    $scope.tableId = $scope.options.attributes.tableId;
+                    $scope.datasourceId = $scope.options.attributes.datasourceId;
                     $scope.pageSizes = [5, 25, 50, 75, 100];
 
-                    $scope.page = datasource.getPage($scope.tableId);
-                    $scope.size = datasource.getPageSize($scope.tableId);
+                    $scope.page = datasource.getPage($scope.datasourceId);
+                    $scope.size = datasource.getPageSize($scope.datasourceId);
 
                     $scope.previousPage = function () {
-                        datasource.previousPage($scope.tableId);
-                        $scope.page = datasource.getPage($scope.tableId);
+                        datasource.previousPage($scope.datasourceId);
+                        $scope.page = datasource.getPage($scope.datasourceId);
                     };
 
                     $scope.nextPage = function () {
-                        datasource.nextPage($scope.tableId);
-                        $scope.page = datasource.getPage($scope.tableId);
+                        datasource.nextPage($scope.datasourceId);
+                        $scope.page = datasource.getPage($scope.datasourceId);
                     };
 
                     $scope.setPageSize = function (pageSize) {
@@ -32,7 +32,7 @@ angular.module('bansho.table.pagingbar', ['bansho.datasource', 'bansho.surveil',
 
                     $scope.$watch('size', function (newValue) {
                         if (newValue !== "") {
-                            datasource.setPageSize($scope.tableId, newValue);
+                            datasource.setPageSize($scope.datasourceId, newValue);
                         }
                     });
                 }]

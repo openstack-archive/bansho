@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('bansho.table.cell_status_service_check', ['bansho.table'])
+angular.module('bansho.table')
 
     .controller('CellStatusServiceCheckCtrl', ['$scope', function ($scope) {
         if ($scope.entry.service_state === 'OK') {

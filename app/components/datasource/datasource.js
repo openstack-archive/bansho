@@ -14,33 +14,33 @@ angular.module('bansho.datasource', ['bansho.surveil'])
                 filteredData = [],
                 listeners = [];
 
-            function notifyDataChanged(tableId) {
-                angular.forEach(listeners[tableId], function (callback) {
-                    callback(filteredData[tableId], config[tableId].isCheckAll);
+            function notifyDataChanged(datasourceId) {
+                angular.forEach(listeners[datasourceId], function (callback) {
+                    callback(filteredData[datasourceId], config[datasourceId].isCheckAll);
                 });
             }
 
-            function filterData(tableId) {
-                filteredData[tableId] = $filter('filter')(data[tableId], config[tableId].searchFilter);
-                notifyDataChanged(tableId);
+            function filterData(datasourceId) {
+                filteredData[datasourceId] = $filter('filter')(data[datasourceId], config[datasourceId].searchFilter);
+                notifyDataChanged(datasourceId);
             }
 
-            function refreshTableData(tableId) {
-                var conf = config[tableId],
+            function refreshTableData(datasourceId) {
+                var conf = config[datasourceId],
                     inputSource = componentsConfig.getInputSource(conf.inputSource),
                     filter = componentsConfig.getFilter(inputSource.filter).filter,
                     promise;
 
-                if (config[tableId].queryFilter) {
-                    filter = componentsConfig.mergeFilters([config[tableId].queryFilter, filter]);
+                if (config[datasourceId].queryFilter) {
+                    filter = componentsConfig.mergeFilters([config[datasourceId].queryFilter, filter]);
                 }
 
                 promise = providerServices[inputSource.provider].getData([], filter, inputSource.endpoint, conf.queryPaging);
 
                 promise.then(function (newData) {
-                    data[tableId] = newData;
-                    config[tableId].isCheckAll = false;
-                    filterData(tableId);
+                    data[datasourceId] = newData;
+                    config[datasourceId].isCheckAll = false;
+                    filterData(datasourceId);
                 }, function (error) {
                     throw new Error('getTableData : Query failed' + error);
                 });
@@ -48,76 +48,76 @@ angular.module('bansho.datasource', ['bansho.surveil'])
 
             return {
                 refreshTableData: refreshTableData,
-                addTable: function (tableId, conf) {
-                    config[tableId] = conf;
-                    config[tableId].requestFields = [];
-                    angular.forEach(config[tableId].cells.name, function (cell) {
+                addTable: function (datasourceId, conf) {
+                    config[datasourceId] = conf;
+                    config[datasourceId].requestFields = [];
+                    angular.forEach(config[datasourceId].columns, function (cell) {
                         angular.forEach(tableGlobalConfig.cellToFieldsMap[cell], function (_value) {
-                            config[tableId].requestFields.push(_value);
+                            config[datasourceId].requestFields.push(_value);
                         });
                     });
 
-                    if (config[tableId].pagingbar) {
-                        config[tableId].queryPaging = {
+                    if (config[datasourceId].pagingbar) {
+                        config[datasourceId].queryPaging = {
                             page: 0,
                             size: configManager.getPagingSize()
                         };
                     }
                 },
-                getConfig: function (tableId) {
-                    return config[tableId];
+                getConfig: function (datasourceId) {
+                    return config[datasourceId];
                 },
-                forEachCheckedEntry: function (tableId, callbackIsChecked) {
-                    angular.forEach(filteredData[tableId], function (entry) {
+                forEachCheckedEntry: function (datasourceId, callbackIsChecked) {
+                    angular.forEach(filteredData[datasourceId], function (entry) {
                         if (entry.is_checked) {
                             callbackIsChecked(entry);
                         }
                     });
 
-                    notifyDataChanged(tableId);
+                    notifyDataChanged(datasourceId);
                 },
-                registerDataChanged: function (tableId, callback) {
-                    if (!listeners[tableId]) {
-                        listeners[tableId] = [];
+                registerDataChanged: function (datasourceId, callback) {
+                    if (!listeners[datasourceId]) {
+                        listeners[datasourceId] = [];
                     }
 
-                    listeners[tableId].push(callback);
+                    listeners[datasourceId].push(callback);
                 },
-                setAllCheckTable: function (tableId, isChecked) {
-                    config[tableId].isCheckAll = isChecked;
-                    angular.forEach(filteredData[tableId], function (entry) {
+                setAllCheckTable: function (datasourceId, isChecked) {
+                    config[datasourceId].isCheckAll = isChecked;
+                    angular.forEach(filteredData[datasourceId], function (entry) {
                         entry.is_checked = isChecked;
                     });
 
-                    notifyDataChanged(tableId, isChecked);
+                    notifyDataChanged(datasourceId, isChecked);
                 },
-                setSearchFilter: function (tableId, searchFilter) {
-                    config[tableId].searchFilter = searchFilter;
-                    filterData(tableId);
+                setSearchFilter: function (datasourceId, searchFilter) {
+                    config[datasourceId].searchFilter = searchFilter;
+                    filterData(datasourceId);
                 },
-                setQueryFilter: function (tableId, queryFilter) {
-                    config[tableId].queryFilter = queryFilter;
-                    refreshTableData(tableId);
+                setQueryFilter: function (datasourceId, queryFilter) {
+                    config[datasourceId].queryFilter = queryFilter;
+                    refreshTableData(datasourceId);
                 },
-                nextPage: function (tableId) {
-                    config[tableId].queryPaging.page += 1;
-                    refreshTableData(tableId);
+                nextPage: function (datasourceId) {
+                    config[datasourceId].queryPaging.page += 1;
+                    refreshTableData(datasourceId);
                 },
-                previousPage: function (tableId) {
-                    if (config[tableId].queryPaging.page > 0) {
-                        config[tableId].queryPaging.page -= 1;
-                        refreshTableData(tableId);
+                previousPage: function (datasourceId) {
+                    if (config[datasourceId].queryPaging.page > 0) {
+                        config[datasourceId].queryPaging.page -= 1;
+                        refreshTableData(datasourceId);
                     }
                 },
-                getPage: function (tableId) {
-                    return config[tableId].queryPaging.page;
+                getPage: function (datasourceId) {
+                    return config[datasourceId].queryPaging.page;
                 },
-                setPageSize: function (tableId, pageSize) {
-                    config[tableId].queryPaging.size = pageSize;
-                    refreshTableData(tableId);
+                setPageSize: function (datasourceId, pageSize) {
+                    config[datasourceId].queryPaging.size = pageSize;
+                    refreshTableData(datasourceId);
                 },
-                getPageSize: function (tableId) {
-                    return config[tableId].queryPaging.size;
+                getPageSize: function (datasourceId) {
+                    return config[datasourceId].queryPaging.size;
                 }
             };
         }])

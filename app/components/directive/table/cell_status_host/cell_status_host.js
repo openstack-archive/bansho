@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('bansho.table.cell_status_host', ['bansho.table'])
+angular.module('bansho.table')
 
     .controller('CellStatusHostCtrl', ['$scope', function ($scope) {
         $scope.cell_name = 'host';

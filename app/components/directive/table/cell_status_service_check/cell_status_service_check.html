@@ -1,8 +1,8 @@
-<td class="data-table__service {{state}}" ng-controller="CellStatusServiceCheckCtrl">
+<span class="data-table__service {{state}}" ng-controller="CellStatusServiceCheckCtrl">
   <dl class="data-table__data">
     <dt class="data-table__service__name">
-      <a href="#/view?view=service&host_name={{entry.host_host_name}}&service_description={{entry.service_service_description}}">{{entry.service_service_description}}</a>
+      <span>{{entry.service_service_description}}</span>
     </dt>
     <dd class="data-table__service__summary">{{entry.service_plugin_output}}</dd>
   </dl>
-</td>
+</span>

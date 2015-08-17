@@ -333,7 +333,6 @@ time.data-table__data {
         line-height: 40px;
     }
 
-
     @include medium-and-up-screen {
         width:percentage(368 / 1200);
     }
@@ -352,10 +351,6 @@ time.data-table__data {
         line-height: 24px;
     }
 
-    @include medium-and-up-screen {
-        width:percentage(500 / 1200);
-    }
-
     .data-table__service__summary {
         font-style:italic;
         margin-left:0;
@@ -372,4 +367,34 @@ time.data-table__data {
     .color-scheme--light & {
         color:$_color_light_delta;
     }
+}
+
+.data-table__ {
+  @include medium-and-up-screen {
+    width:auto;
+  }
+}
+
+.data-table__xsmall {
+  @include medium-and-up-screen {
+    width:percentage(100 / 1200);
+  }
+}
+
+.data-table__small {
+  @include medium-and-up-screen {
+    width:percentage(200 / 1200);
+  }
+}
+
+.data-table__medium {
+  @include medium-and-up-screen {
+    width:percentage(368 / 1200);
+  }
+}
+
+.data-table__large {
+  @include medium-and-up-screen {
+    width:percentage(500 / 1200);
+  }
 }

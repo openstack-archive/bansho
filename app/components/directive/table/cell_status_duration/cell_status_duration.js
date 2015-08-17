@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('bansho.table.cell_status_duration', ['bansho.table'])
+angular.module('bansho.table')
 
     .controller('CellStatusDurationCtrl', [function () {
         angular.noop();

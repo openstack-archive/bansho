@@ -24,7 +24,7 @@
                     {
                         "type": "panel",
                         "attributes": {
-                            "panelId": "openProblems"
+                            "panelId": "allProblems"
                         },
                         "components": [
                             {
@@ -94,7 +94,7 @@
                             {
                                 "type": "actionbar",
                                 "attributes": {
-                                    "tableId": [
+                                    "datasourceId": [
                                         0,
                                         1
                                     ]
@@ -152,30 +152,56 @@
                             {
                                 "type": "table",
                                 "attributes": {
-                                    "tableId": 0,
-                                    "cells": {
-                                        "text": [
-                                            "Host",
-                                            "Address",
-                                            "Duration",
-                                            "Last check",
-                                            "Host status"
-                                        ],
-                                        "name": [
-                                            "status_host",
-                                            "status_host_address",
-                                            "status_duration",
-                                            "status_last_check",
-                                            "status_host_status"
-                                        ]
-                                    },
-                                    "headerFollow": false,
+                                    "datasourceId": 0,
                                     "inputSource": "hostOpenProblems",
+                                    "headerFollow": false,
                                     "isWrappable": false,
                                     "checkColumn": true,
                                     "noRepeatCell": "",
                                     "pagingbar": false
-                                }
+                                },
+                                "components": [
+                                    {
+                                        "type": "cell-status-host",
+                                        "attributes": {
+                                            "title": "Hosts",
+                                            "url": {
+                                                "view": "host",
+                                                "params": [
+                                                    {
+                                                        "urlParam": "host_name",
+                                                        "entryKey": "host_host_name"
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "type": "cell-single",
+                                        "attributes": {
+                                            "entryKey": "host_address",
+                                            "title": "Address"
+                                        }
+                                    },
+                                    {
+                                        "type": "cell-status-duration",
+                                        "attributes": {
+                                            "title": "Duration"
+                                        }
+                                    },
+                                    {
+                                        "type": "cell-status-last-check",
+                                        "attributes": {
+                                            "title": "Last check"
+                                        }
+                                    },
+                                    {
+                                        "type": "cell-status-host-status",
+                                        "attributes": {
+                                            "title": "Host status"
+                                        }
+                                    }
+                                ]
                             },
                             {
                                 "type": "title",
@@ -188,28 +214,49 @@
                             {
                                 "type": "table",
                                 "attributes": {
-                                    "tableId": 1,
-                                    "cells": {
-                                        "text": [
-                                            "Host",
-                                            "Service check",
-                                            "Duration",
-                                            "Last check"
-                                        ],
-                                        "name": [
-                                            "status_host",
-                                            "status_service_check",
-                                            "status_duration",
-                                            "status_last_check"
-                                        ]
-                                    },
-                                    "headerFollow": false,
+                                    "datasourceId": 1,
                                     "inputSource": "serviceOpenProblemsOnly",
+                                    "headerFollow": false,
                                     "isWrappable": true,
                                     "checkColumn": true,
                                     "noRepeatCell": "host",
                                     "pagingbar": false
-                                }
+                                },
+                                "components": [
+                                    {
+                                        "type": "cell-status-host",
+                                        "attributes": {
+                                            "title": "Hosts",
+                                            "url": {
+                                                "view": "host",
+                                                "params": [
+                                                    {
+                                                        "urlParam": "host_name",
+                                                        "entryKey": "host_host_name"
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "type": "cell-status-service-check",
+                                        "attributes": {
+                                            "title": "Service check"
+                                        }
+                                    },
+                                    {
+                                        "type": "cell-status-duration",
+                                        "attributes": {
+                                            "title": "Duration"
+                                        }
+                                    },
+                                    {
+                                        "type": "cell-status-last-check",
+                                        "attributes": {
+                                            "title": "Last check"
+                                        }
+                                    }
+                                ]
                             }
                         ]
                     },
@@ -223,7 +270,7 @@
                             {
                                 "type": "actionbar",
                                 "attributes": {
-                                    "tableId": [
+                                    "datasourceId": [
                                         2,
                                         3
                                     ]
@@ -281,30 +328,56 @@
                             {
                                 "type": "table",
                                 "attributes": {
-                                    "tableId": 2,
-                                    "cells": {
-                                        "text": [
-                                            "Host",
-                                            "Address",
-                                            "Duration",
-                                            "Lastcheck",
-                                            "Hoststatus"
-                                        ],
-                                        "name": [
-                                            "status_host",
-                                            "status_host_address",
-                                            "status_duration",
-                                            "status_last_check",
-                                            "status_host_status"
-                                        ]
-                                    },
-                                    "headerFollow": false,
+                                    "datasourceId": 2,
                                     "inputSource": "hostsProblems",
+                                    "headerFollow": false,
                                     "isWrappable": false,
                                     "checkColumn": true,
                                     "noRepeatCell": "",
                                     "pagingbar": false
-                                }
+                                },
+                                "components": [
+                                    {
+                                        "type": "cell-status-host",
+                                        "attributes": {
+                                            "title": "Hosts",
+                                            "url": {
+                                                "view": "host",
+                                                "params": [
+                                                    {
+                                                        "urlParam": "host_name",
+                                                        "entryKey": "host_host_name"
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "type": "cell-single",
+                                        "attributes": {
+                                            "entryKey": "host_address",
+                                            "title": "Address"
+                                        }
+                                    },
+                                    {
+                                        "type": "cell-status-duration",
+                                        "attributes": {
+                                            "title": "Duration"
+                                        }
+                                    },
+                                    {
+                                        "type": "cell-status-last-check",
+                                        "attributes": {
+                                            "title": "Last check"
+                                        }
+                                    },
+                                    {
+                                        "type": "cell-status-host-status",
+                                        "attributes": {
+                                            "title": "Host status"
+                                        }
+                                    }
+                                ]
                             },
                             {
                                 "type": "title",
@@ -317,28 +390,49 @@
                             {
                                 "type": "table",
                                 "attributes": {
-                                    "tableId": 3,
-                                    "cells": {
-                                        "text": [
-                                            "Host",
-                                            "Service check",
-                                            "Duration",
-                                            "Last check"
-                                        ],
-                                        "name": [
-                                            "status_host",
-                                            "status_service_check",
-                                            "status_duration",
-                                            "status_last_check"
-                                        ]
-                                    },
-                                    "headerFollow": false,
+                                    "datasourceId": 3,
                                     "inputSource": "servicesProblems",
+                                    "headerFollow": false,
                                     "isWrappable": true,
                                     "checkColumn": true,
                                     "noRepeatCell": "host",
                                     "pagingbar": false
-                                }
+                                },
+                                "components": [
+                                    {
+                                        "type": "cell-status-host",
+                                        "attributes": {
+                                            "title": "Hosts",
+                                            "url": {
+                                                "view": "host",
+                                                "params": [
+                                                    {
+                                                        "urlParam": "host_name",
+                                                        "entryKey": "host_host_name"
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "type": "cell-status-service-check",
+                                        "attributes": {
+                                            "title": "Service check"
+                                        }
+                                    },
+                                    {
+                                        "type": "cell-status-duration",
+                                        "attributes": {
+                                            "title": "Duration"
+                                        }
+                                    },
+                                    {
+                                        "type": "cell-status-last-check",
+                                        "attributes": {
+                                            "title": "Last check"
+                                        }
+                                    }
+                                ]
                             }
                         ]
                     }
@@ -355,13 +449,13 @@
                     {
                         "type": "title",
                         "attributes": {
-                            "title": "Hosts"
+                            "title": "Hosts status"
                         }
                     },
                     {
                         "type": "actionbar",
                         "attributes": {
-                            "tableId": [
+                            "datasourceId": [
                                 0
                             ]
                         },
@@ -410,30 +504,59 @@
                     {
                         "type": "table",
                         "attributes": {
-                            "tableId": 0,
-                            "cells": {
-                                "text": [
-                                    "Host",
-                                    "Address",
-                                    "Duration",
-                                    "Last check",
-                                    "Host status"
-                                ],
-                                "name": [
-                                    "status_host",
-                                    "status_host_address",
-                                    "status_duration",
-                                    "status_last_check",
-                                    "status_host_status"
-                                ]
-                            },
-                            "headerFollow": true,
+                            "datasourceId": 0,
                             "inputSource": "hosts",
+                            "headerFollow": true,
                             "isWrappable": false,
                             "noRepeatCell": "",
                             "checkColumn": true,
                             "pagingbar": true
-                        }
+                        },
+                        "components": [
+                            {
+                                "type": "cell-status-host",
+                                "attributes": {
+                                    "title": "Hosts",
+                                    "url": {
+                                        "view": "host",
+                                        "params": [
+                                            {
+                                                "urlParam": "host_name",
+                                                "entryKey": "host_host_name"
+                                            }
+                                        ]
+                                    },
+                                    "class": "host"
+                                }
+                            },
+                            {
+                                "type": "cell-single",
+                                "attributes": {
+                                    "entryKey": "host_address",
+                                    "title": "Address"
+                                }
+                            },
+                            {
+                                "type": "cell-status-duration",
+                                "attributes": {
+                                    "title": "Duration"
+                                }
+                            },
+                            {
+                                "type": "cell-status-last-check",
+                                "attributes": {
+                                    "title": "Last check",
+                                    "class": "small"
+                                }
+                            },
+                            {
+                                "type": "cell-status-host-status",
+                                "attributes": {
+                                    "title": "Host status",
+                                    "class": "small"
+                                }
+                            }
+                        ]
                     }
                 ]
             }
@@ -454,7 +577,7 @@
                     {
                         "type": "actionbar",
                         "attributes": {
-                            "tableId": [
+                            "datasourceId": [
                                 0
                             ]
                         },
@@ -503,28 +626,62 @@
                     {
                         "type": "table",
                         "attributes": {
-                            "tableId": 0,
-                            "cells": {
-                                "text": [
-                                    "Host",
-                                    "Service check",
-                                    "Duration",
-                                    "Last check"
-                                ],
-                                "name": [
-                                    "status_host",
-                                    "status_service_check",
-                                    "status_duration",
-                                    "status_last_check"
-                                ]
-                            },
-                            "headerFollow": true,
+                            "datasourceId": 0,
                             "inputSource": "services",
+                            "headerFollow": true,
                             "isWrappable": false,
                             "checkColumn": true,
                             "noRepeatCell": "host",
                             "pagingbar": true
-                        }
+                        },
+                        "components": [
+                            {
+                                "type": "cell-status-host",
+                                "attributes": {
+                                    "title": "Hosts",
+                                    "url": {
+                                        "view": "host",
+                                        "params": [
+                                            {
+                                                "urlParam": "host_name",
+                                                "entryKey": "host_host_name"
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            {
+                                "type": "cell-status-service-check",
+                                "attributes": {
+                                    "title": "Service check",
+                                    "url": {
+                                        "view": "service",
+                                        "params": [
+                                            {
+                                                "urlParam": "host_name",
+                                                "entryKey": "host_host_name"
+                                            },
+                                            {
+                                                "urlParam": "service_description",
+                                                "entryKey": "service_service_description"
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            {
+                                "type": "cell-status-duration",
+                                "attributes": {
+                                    "title": "Duration"
+                                }
+                            },
+                            {
+                                "type": "cell-status-last-check",
+                                "attributes": {
+                                    "title": "Last check"
+                                }
+                            }
+                        ]
                     }
                 ]
             }
@@ -545,7 +702,7 @@
                     {
                         "type": "actionbar",
                         "attributes": {
-                            "tableId": [
+                            "datasourceId": [
                                 0
                             ]
                         },
@@ -582,32 +739,64 @@
                     {
                         "type": "table",
                         "attributes": {
-                            "tableId": 0,
-                            "cells": {
-                                "text": [
-                                    "Event type",
-                                    "Output",
-                                    "Hostname",
-                                    "Service",
-                                    "Time",
-                                    "Complete data"
-                                ],
-                                "name": [
-                                    "status_event_event_type",
-                                    "status_event_output",
-                                    "status_event_host_name",
-                                    "status_event_service",
-                                    "status_event_time",
-                                    "status_event"
-                                ]
-                            },
-                            "headerFollow": true,
+                            "datasourceId": 0,
                             "inputSource": "events",
+                            "headerFollow": true,
                             "isWrappable": false,
                             "checkColumn": false,
                             "noRepeatCell": "",
                             "pagingbar": true
-                        }
+                        },
+                        "components": [
+                            {
+                                "type": "cell-single",
+                                "attributes": {
+                                    "entryKey": "event_event_type",
+                                    "title": "Type"
+                                }
+                            },
+                            {
+                                "type": "cell-single",
+                                "attributes": {
+                                    "entryKey": "event_output",
+                                    "title": "Output"
+                                }
+                            },
+                            {
+                                "type": "cell-single",
+                                "attributes": {
+                                    "entryKey": "event_host_name",
+                                    "title": "Hostname"
+                                }
+                            },
+                            {
+                                "type": "cell-single",
+                                "attributes": {
+                                    "entryKey": "event_service_description",
+                                    "title": "Service description"
+                                }
+                            },
+                            {
+                                "type": "cell-single",
+                                "attributes": {
+                                    "entryKey": "event_time",
+                                    "title": "Time"
+                                }
+                            },
+                            {
+                                "type": "cell-other-fields",
+                                "attributes": {
+                                    "title": "Other fields",
+                                    "skipFields": [
+                                        "event_time",
+                                        "event_host_name",
+                                        "event_output",
+                                        "event_event_type",
+                                        "event_service_description"
+                                    ]
+                                }
+                            }
+                        ]
                     }
                 ]
             }
@@ -727,13 +916,13 @@
                     {
                         "type": "title",
                         "attributes": {
-                            "title": "ConfigHosts"
+                            "title": "Hosts configuration"
                         }
                     },
                     {
                         "type": "actionbar",
                         "attributes": {
-                            "tableId": [
+                            "datasourceId": [
                                 0
                             ]
                         },
@@ -770,29 +959,53 @@
                     {
                         "type": "table",
                         "attributes": {
-                            "tableId": 0,
-                            "refreshInterval": 30,
-                            "cells": {
-                                "text": [
-                                    "Host",
-                                    "Address",
-                                    "Use",
-                                    "Enable"
-                                ],
-                                "name": [
-                                    "config_host",
-                                    "config_host_address",
-                                    "config_host_use",
-                                    "config_host_register"
-                                ]
-                            },
-                            "headerFollow": false,
+                            "datasourceId": 0,
                             "inputSource": "hostsConfig",
+                            "headerFollow": false,
                             "isWrappable": false,
                             "noRepeatCell": "",
                             "checkColumn": false,
                             "pagingbar": true
-                        }
+                        },
+                        "components": [
+                            {
+                                "type": "cell-single",
+                                "attributes": {
+                                    "entryKey": "host_name",
+                                    "title": "Hosts",
+                                    "url": {
+                                        "view": "host",
+                                        "params": [
+                                            {
+                                                "urlParam": "host_name",
+                                                "entryKey": "host_name"
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            {
+                                "type": "cell-single",
+                                "attributes": {
+                                    "entryKey": "address",
+                                    "title": "Address"
+                                }
+                            },
+                            {
+                                "type": "cell-single",
+                                "attributes": {
+                                    "entryKey": "use",
+                                    "title": "Use"
+                                }
+                            },
+                            {
+                                "type": "cell-config-host-register",
+                                "attributes": {
+                                    "title": "Register",
+                                    "class": "xsmall"
+                                }
+                            }
+                        ]
                     }
                 ]
             }
@@ -813,7 +1026,7 @@
                     {
                         "type": "actionbar",
                         "attributes": {
-                            "tableId": [
+                            "datasourceId": [
                                 0
                             ]
                         },
@@ -850,24 +1063,40 @@
                     {
                         "type": "table",
                         "attributes": {
-                            "tableId": 0,
-                            "cells": {
-                                "text": [
-                                    "Template",
-                                    "Use"
-                                ],
-                                "name": [
-                                    "config_host_name",
-                                    "config_host_use"
-                                ]
-                            },
-                            "headerFollow": false,
+                            "datasourceId": 0,
                             "inputSource": "hostsConfigTemplate",
+                            "headerFollow": false,
                             "isWrappable": false,
                             "noRepeatCell": "",
                             "checkColumn": false,
                             "pagingbar": true
-                        }
+                        },
+                        "components": [
+                            {
+                                "type": "cell-single",
+                                "attributes": {
+                                    "entryKey": "name",
+                                    "title": "Name"
+                                }
+                            },
+                            {
+                                "type": "cell-single",
+                                "attributes": {
+                                    "entryKey": "use",
+                                    "title": "Use"
+                                }
+                            },
+                            {
+                                "type": "cell-other-fields",
+                                "attributes": {
+                                    "title": "Other fields",
+                                    "skipFields": [
+                                        "use",
+                                        "name"
+                                    ]
+                                }
+                            }
+                        ]
                     }
                 ]
             }
@@ -888,7 +1117,7 @@
                     {
                         "type": "actionbar",
                         "attributes": {
-                            "tableId": [
+                            "datasourceId": [
                                 0
                             ]
                         },
@@ -910,9 +1139,9 @@
                     {
                         "type": "table",
                         "attributes": {
-                            "tableId": 0,
-                            "headerFollow": true,
+                            "datasourceId": 0,
                             "inputSource": "commands",
+                            "headerFollow": true,
                             "isWrappable": false,
                             "noRepeatCell": "",
                             "checkColumn": false,
@@ -925,7 +1154,30 @@
                                     ]
                                 }
                             }
-                        }
+                        },
+                        "components": [
+                            {
+                                "type": "cell-single",
+                                "attributes": {
+                                    "entryKey": "command_name",
+                                    "title": "Name"
+                                }
+                            },
+                            {
+                                "type": "cell-single",
+                                "attributes": {
+                                    "entryKey": "command_line",
+                                    "title": "Line"
+                                }
+                            },
+                            {
+                                "type": "cell-single",
+                                "attributes": {
+                                    "entryKey": "module_type",
+                                    "title": "Module Type"
+                                }
+                            }
+                        ]
                     }
                 ]
             }
@@ -953,6 +1205,5 @@
                 ]
             }
         ]
-
     }
 }

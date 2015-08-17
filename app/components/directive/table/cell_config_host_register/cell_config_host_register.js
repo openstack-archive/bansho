@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('bansho.table.cell_config_host_register', ['bansho.table'])
+angular.module('bansho.table')
 
     .controller('CellConfigHostRegisterCtrl', ['$scope', function ($scope) {
         if ($scope.register === 0) {
