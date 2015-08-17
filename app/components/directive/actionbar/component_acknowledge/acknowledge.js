@@ -16,8 +16,8 @@ angular.module('bansho.actionbar')
                     };
 
                     $scope.acknowledgeProblems = function () {
-                        angular.forEach($scope.options.attributes.tableId, function (tableId) {
-                            datasource.forEachCheckedEntry(tableId, function (entry) {
+                        angular.forEach($scope.options.attributes.datasourceId, function (datasourceId) {
+                            datasource.forEachCheckedEntry(datasourceId, function (entry) {
                                 surveilActions.acknowledge(entry.host_host_name, entry.service_service_description, $scope.attrs).then(function (data) {
                                         notifications.push('success', 'Acknowledgement', 'Acknowledged ' + entry.host_host_name + ' ' + entry.service_service_description);
                                     },
@@ -26,7 +26,7 @@ angular.module('bansho.actionbar')
                                     });
                             });
 
-                            datasource.setAllCheckTable(tableId, false);
+                            datasource.setAllCheckTable(datasourceId, false);
                         });
 
                         $scope.isAcknowledgeFormShown = false;

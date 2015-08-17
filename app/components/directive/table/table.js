@@ -3,6 +3,7 @@
 angular.module('bansho.table', ['bansho.datasource',
                                  'bansho.actionbar',
                                  'bansho.filters',
+                                 'bansho.table.cell_single',
                                  'bansho.table.cell_status_host',
                                  'bansho.table.cell_status_event',
                                  'bansho.table.cell_status_service_check',
@@ -15,113 +16,123 @@ angular.module('bansho.table', ['bansho.datasource',
                                  'ngMaterial'
                                 ])
 
-    .directive('banshoTable', ['datasource',
-        function (datasource) {
-            return {
-                restrict: 'E',
-                scope: {
-                    options: '='
-                },
-                templateUrl: 'components/directive/table/table.html',
-                controller: ['$scope', '$window', 'headerFollow', 'datasource', 'templateManager',
-                    function ($scope, $window, headerFollow, datasource, templateManager) {
-                        var conf = {},
-                            i;
-
-                        $scope.tableId = $scope.options.attributes.tableId;
-
-                        // Create table configuration
-                        conf.title = $scope.options.attributes.title;
-
-                        conf.cells = {'text': [], 'name': []};
-                        if ($scope.options.attributes.cells) {
-                            $scope.allCells = false;
-                            conf.cells.text = $scope.options.attributes.cells.text;
-                            conf.cells.name = $scope.options.attributes.cells.name;
-                        } else {
-                            $scope.allCells = true;
-                        }
-
-                        $scope.cellUrls = $scope.options.attributes.cellUrls;
-                        $scope.createUrl = function (entry, urlParam) {
-                            var url = "/#/view?view=" + urlParam.view;
-                            angular.forEach(urlParam.params, function (paramName) {
-                                url += '&' + paramName + '=' + entry[paramName];
-                            });
-                            $window.location = url;
-                        };
-
-                        conf.inputSource = $scope.options.attributes.inputSource;
-                        conf.isWrappable = $scope.options.attributes.isWrappable;
-                        conf.pagingbar = $scope.options.attributes.pagingbar;
-                        conf.noRepeatCell = $scope.options.attributes.noRepeatCell;
-
-                        datasource.addTable($scope.tableId, conf);
-
-                        // Handle table layout
-                        $scope.checkColumn = $scope.options.attributes.checkColumn;
-                        $scope.pagingbar = conf.pagingbar;
-
-
-                        if ($scope.options.attributes.headerFollow) {
-                            headerFollow.activate();
-                        } else {
-                            headerFollow.deactivate();
-                        }
-
-                        $scope.cellsName = conf.cells.name;
-                        $scope.cellsText = conf.cells.text;
-                        $scope.cellIndexes = [];
-                        for (i = 0; i < $scope.cellsName.length; i += 1) {
-                            $scope.cellIndexes.push(i);
-                        }
-
-                        $scope.onCheckChange = function () {
-                            datasource.setAllCheckTable($scope.tableId, $scope.isCheckAll);
-                        };
-
-                        datasource.registerDataChanged($scope.tableId, function (data, isCheckAll) {
-                            $scope.isCheckAll = isCheckAll;
-                            $scope.entries = data;
-                            if ($scope.allCells) {
-                                $scope.columns = {};
-                                angular.forEach($scope.entries, function (entry) {
-                                   angular.forEach(entry, function (value, key) {
-                                       $scope.columns[key] = true;
-                                   });
-                                });
-                            }
-                        });
-                        datasource.refreshTableData($scope.tableId);
-                        templateManager.addInterval(function refreshTable () {
-                            datasource.refreshTableData($scope.tableId);
-                        });
-                    }]
-            };
-        }
-    ])
-
-    .directive('banshoCell', ['$http', '$compile', function ($http, $compile) {
+    .directive('banshoTable', function () {
         return {
-            restrict: 'A',
-            compile: function () {
-                return function (scope, element, attrs) {
-                    if (!attrs.cellName) {
-                        throw new Error('<bansho-cell> "cell-name" attribute must be defined');
+            restrict: 'E',
+            scope: {
+                options: '='
+            },
+            templateUrl: 'components/directive/table/table.html',
+            controller: ['$scope', '$window', 'headerFollow', 'datasource', 'templateManager',
+                function ($scope, $window, headerFollow, datasource, templateManager) {
+                    var conf = {},
+                        i;
+
+                    $scope.datasourceId = $scope.options.attributes.datasourceId;
+
+
+                    //conf.title = $scope.options.attributes.title;
+
+                    // Create cells configuration
+                    conf.cells = {'text': [], 'name': []};
+                    if ($scope.options.attributes.cells) {
+                        angular.forEach($scope.options.attributes.cells, function (title, property) {
+                            conf.cells.text.push(title);
+                            conf.cells.name.push(property);
+                        });
+                        $scope.allCells = false;
+                    } else {
+                        $scope.allCells = true;
                     }
 
-                    var template = 'components/directive/table/cell_' + attrs.cellName + '/cell_' + attrs.cellName + '.html';
-
-                    $http.get(template, { cache: true })
-                        .success(function (data) {
-                            var td = $compile(data)(scope);
-                            // HACK : replaceWith is a necessary hack because <tr> only accepts <td> as a child
-                            element.replaceWith(td);
+                    $scope.cellUrls = $scope.options.attributes.cellUrls;
+                    $scope.createUrl = function (entry, urlParam) {
+                        var url = "/#/view?view=" + urlParam.view;
+                        angular.forEach(urlParam.params, function (paramName) {
+                            url += '&' + paramName + '=' + entry[paramName];
                         });
-                };
-            }
+                        $window.location = url;
+                    };
+
+                    conf.inputSource = $scope.options.attributes.inputSource;
+                    conf.isWrappable = $scope.options.attributes.isWrappable;
+                    conf.pagingbar = $scope.options.attributes.pagingbar;
+                    conf.noRepeatCell = $scope.options.attributes.noRepeatCell;
+
+                    datasource.addTable($scope.datasourceId, conf);
+
+                    // Handle table layout
+                    $scope.checkColumn = $scope.options.attributes.checkColumn;
+                    $scope.pagingbar = conf.pagingbar;
+
+                    if ($scope.options.attributes.headerFollow) {
+                        headerFollow.activate();
+                    } else {
+                        headerFollow.deactivate();
+                    }
+
+                    $scope.cellsName = conf.cells.name;
+                    $scope.cellsText = conf.cells.text;
+                    $scope.cellIndexes = [];
+                    for (i = 0; i < $scope.cellsName.length; i += 1) {
+                        $scope.cellIndexes.push(i);
+                    }
+
+                    $scope.onCheckChange = function () {
+                        datasource.setAllCheckTable($scope.datasourceId, $scope.isCheckAll);
+                    };
+
+                    datasource.registerDataChanged($scope.datasourceId, function (data, isCheckAll) {
+                        $scope.isCheckAll = isCheckAll;
+                        $scope.entries = data;
+                        if ($scope.allCells) {
+                            $scope.columns = {};
+                            angular.forEach($scope.entries, function (entry) {
+                               angular.forEach(entry, function (value, key) {
+                                   $scope.columns[key] = true;
+                               });
+                            });
+                        }
+                    });
+                    datasource.refreshTableData($scope.datasourceId);
+                    templateManager.addInterval(function refreshTable () {
+                        datasource.refreshTableData($scope.datasourceId);
+                    });
+                }]
         };
-    }])
+    })
+
+    .directive('banshoCell', ['$http', '$compile', 'tableGlobalConfig',
+        function ($http, $compile, tableGlobalConfig) {
+            return {
+                restrict: 'A',
+                compile: function () {
+                    return function (scope, element, attrs) {
+                        var template = 'components/directive/table/';
+
+                        if (!attrs.cellName) {
+                            throw new Error('<bansho-cell> "cell-name" attribute must be defined');
+                        }
+
+                        if (attrs.cellName.substring(0, 7) == 'complex') {
+                            var cellName = attrs.cellName.substr(8, attrs.cellName.length);
+                            template += 'cell_' + cellName + '/cell_' + cellName + '.html';
+                        } else {
+                            scope.entryKey = attrs.cellName;
+                            template += 'cell_single/cell_single.html';
+                            tableGlobalConfig[attrs.cellName] = scope.entryKey;
+                        }
+
+                        $http.get(template, { cache: true })
+                            .success(function (data) {
+                                var td = $compile(data)(scope);
+                                // HACK : replaceWith is a necessary hack because <tr> only accepts <td> as a child
+                                element.replaceWith(td);
+                            });
+                    };
+                }
+            };
+        }])
 
     .filter('wrappableStyle', ['datasource', 'tableGlobalConfig', function (datasource, tableGlobalConfig) {
         return function (input, scope) {
@@ -130,13 +141,13 @@ angular.module('bansho.table', ['bansho.datasource',
                 parent_found = false,
                 class_name = ['', ''],
                 i,
-                fieldToWrap = tableGlobalConfig.cellWrappableField[datasource.getConfig(scope.tableId).noRepeatCell];
+                fieldToWrap = tableGlobalConfig.cellWrappableField[datasource.getConfig(scope.datasourceId).noRepeatCell];
 
             if (fieldToWrap === undefined) {
                 return input;
             }
 
-            if (datasource.getConfig(scope.tableId).isWrappable) {
+            if (datasource.getConfig(scope.datasourceId).isWrappable) {
                 class_name = ['state--hasChild', 'state--isChild'];
             }
 
@@ -169,8 +180,8 @@ angular.module('bansho.table', ['bansho.datasource',
         return function (items, scope) {
             var newItems = [],
                 previous,
-                fieldToCompare = tableGlobalConfig.cellWrappableField[datasource.getConfig(scope.tableId).noRepeatCell],
-                newAttr = datasource.getConfig(scope.tableId).noRepeatCell + "_additionnalClass";
+                fieldToCompare = tableGlobalConfig.cellWrappableField[datasource.getConfig(scope.datasourceId).noRepeatCell],
+                newAttr = datasource.getConfig(scope.datasourceId).noRepeatCell + "_additionnalClass";
 
             angular.forEach(items, function (item) {
 
