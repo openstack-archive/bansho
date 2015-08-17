@@ -10,7 +10,7 @@ angular.module('bansho.actionbar')
             },
             controller: ['$scope', 'datasource', 'surveilActions', 'notifications',
                 function ($scope, datasource, surveilActions, notifications) {
-                    $scope.tableId = $scope.options.attributes.tableId;
+                    $scope.datasourceId = $scope.options.attributes.datasourceId;
 
                     $scope.isDowntimeFormShown = false;
                     $scope.switchDowntimeFormShown = function () {
@@ -18,8 +18,8 @@ angular.module('bansho.actionbar')
                     };
 
                     $scope.sendDowntime = function () {
-                        angular.forEach($scope.options.attributes.tableId, function (tableId) {
-                            datasource.forEachCheckedEntry(tableId, function (entry) {
+                        angular.forEach($scope.options.attributes.datasourceId, function (datasourceId) {
+                            datasource.forEachCheckedEntry(datasourceId, function (entry) {
                                 surveilActions.downtime(entry.host_host_name, entry.service_service_description, $scope.attrs).then(function (data) {
                                         notifications.push('success', 'Downtime', 'Added downtime for ' + entry.host_host_name + ' ' + entry.service_service_description);
                                     },
@@ -28,7 +28,7 @@ angular.module('bansho.actionbar')
                                     });
                             });
 
-                            datasource.setAllCheckTable(tableId, false);
+                            datasource.setAllCheckTable(datasourceId, false);
                         });
 
                         $scope.isDowntimeFormShown = false;

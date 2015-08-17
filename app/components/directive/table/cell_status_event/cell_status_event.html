@@ -1,4 +1,4 @@
-<td data-ng-click="toggleExpansion()" class="data-table__event" data-ng-controller="CellStatusEventCtrl">
+<span data-ng-click="toggleExpansion()" class="data-table__event" data-ng-controller="CellStatusEventCtrl">
   <p class="data-table__data">
       <i data-ng-class="{'ico-down-dir': isExpanded, 'ico-right-dir': !isExpanded}"></i>
       <span data-ng-repeat="(k, e) in filter(entry)">
@@ -6,4 +6,4 @@
           <span data-ng-show="isExpanded"><br></span>
       </span>
   </p>
-</td>
+</span>

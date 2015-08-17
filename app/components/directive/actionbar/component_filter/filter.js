@@ -9,7 +9,7 @@ angular.module('bansho.actionbar')
             },
             templateUrl: 'components/directive/actionbar/component_filter/filter.html',
             controller: ['$scope', 'datasource', function ($scope, datasource) {
-                $scope.tableId = $scope.options.attributes.tableId;
+                $scope.datasourceId = $scope.options.attributes.datasourceId;
 
                 $scope.filters = [];
                 angular.forEach($scope.options.attributes.filters, function (filter) {
@@ -39,8 +39,8 @@ angular.module('bansho.actionbar')
                 $scope.activateFilter = function (item) {
                     $scope.activeFilter = $scope.filters[item];
 
-                    angular.forEach($scope.tableId, function (tableId) {
-                        datasource.setQueryFilter(tableId, $scope.activeFilter.filter);
+                    angular.forEach($scope.datasourceId, function (datasourceId) {
+                        datasource.setQueryFilter(datasourceId, $scope.activeFilter.filter);
                     });
                     $scope.isShown = false;
                 };
