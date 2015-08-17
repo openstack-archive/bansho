@@ -2,7 +2,7 @@
 
 'use strict';
 
-angular.module('bansho.textArea', [])
+angular.module('bansho.form')
     .directive('banshoTextArea', [
         function () {
             return {
@@ -10,14 +10,10 @@ angular.module('bansho.textArea', [])
                 scope: {
                     options: '='
                 },
-                templateUrl: 'components/directive/textArea/textArea.html',
+                templateUrl: 'components/directive/form/textArea/textArea.html',
                 controller:['$scope', '$window', 'configManager',
-                    function ($scope, $window, configManager) {
+                    function ($scope, configManager) {
                         $scope.configuration = JSON.stringify(configManager.readLayoutConfig(), null, 4);
-                        $scope.saveConfiguration = function () {
-                            configManager.saveLayoutConfig(JSON.parse($scope.configuration));
-                            $window.location.reload();
-                        };
                     }
                 ]
             };
