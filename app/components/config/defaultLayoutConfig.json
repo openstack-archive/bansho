@@ -944,7 +944,7 @@
                                 "type": "info",
                                 "attributes": {
                                     "datamodel": {
-                                        "Command": "command"
+                                        "Command": "configCommand"
                                     }
                                 }
                             }
@@ -953,6 +953,897 @@
                 ]
             }
         ]
-
+    },
+    "businessimpactmodulations": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "title",
+                        "attributes": {
+                            "title": "Business Impact Modulations"
+                        }
+                    },
+                    {
+                        "type": "actionbar",
+                        "attributes": {
+                            "tableId": [
+                                0
+                            ]
+                        },
+                        "components": [
+                            {
+                                "type": "actionbar-recheck",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-more",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-search-filter",
+                                "attributes": {}
+                            }
+                        ]
+                    },
+                    {
+                        "type": "table",
+                        "attributes": {
+                            "tableId": 0,
+                            "headerFollow": true,
+                            "inputSource": "businessimpactmodulations",
+                            "isWrappable": false,
+                            "noRepeatCell": "",
+                            "checkColumn": false,
+                            "pagingbar": true,
+                            "cellUrls": {
+                                "business_impact_modulation_name": {
+                                    "view": "businessimpactmodulation",
+                                    "params": [
+                                        "business_impact_modulation_name"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "businessimpactmodulation": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "container",
+                        "components": [
+                            {
+                                "type": "info",
+                                "attributes": {
+                                    "datamodel": {
+                                        "Business Impact Modulation": "configBusinessImpactModulation"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+      "checkmodulations": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "title",
+                        "attributes": {
+                            "title": "Check Modulations"
+                        }
+                    },
+                    {
+                        "type": "actionbar",
+                        "attributes": {
+                            "tableId": [
+                                0
+                            ]
+                        },
+                        "components": [
+                            {
+                                "type": "actionbar-recheck",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-more",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-search-filter",
+                                "attributes": {}
+                            }
+                        ]
+                    },
+                    {
+                        "type": "table",
+                        "attributes": {
+                            "tableId": 0,
+                            "headerFollow": true,
+                            "inputSource": "checkmodulations",
+                            "isWrappable": false,
+                            "noRepeatCell": "",
+                            "checkColumn": false,
+                            "pagingbar": true,
+                            "cellUrls": {
+                                "checkmodulation_name": {
+                                    "view": "checkmodulation",
+                                    "params": [
+                                        "checkmodulation_name"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "checkmodulation": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "container",
+                        "components": [
+                            {
+                                "type": "info",
+                                "attributes": {
+                                    "datamodel": {
+                                        "Check Modulation": "configCheckModulation"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "contactgroups": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "title",
+                        "attributes": {
+                            "title": "Contact Groups"
+                        }
+                    },
+                    {
+                        "type": "actionbar",
+                        "attributes": {
+                            "tableId": [
+                                0
+                            ]
+                        },
+                        "components": [
+                            {
+                                "type": "actionbar-recheck",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-more",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-search-filter",
+                                "attributes": {}
+                            }
+                        ]
+                    },
+                    {
+                        "type": "table",
+                        "attributes": {
+                            "tableId": 0,
+                            "headerFollow": true,
+                            "inputSource": "contactgroups",
+                            "isWrappable": false,
+                            "noRepeatCell": "",
+                            "checkColumn": false,
+                            "pagingbar": true,
+                            "cellUrls": {
+                                "contactgroup_name": {
+                                    "view": "contactgroup",
+                                    "params": [
+                                        "contactgroup_name"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "contactgroup": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "container",
+                        "components": [
+                            {
+                                "type": "info",
+                                "attributes": {
+                                    "datamodel": {
+                                        "Contact Group": "configContactGroup"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "contacts": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "title",
+                        "attributes": {
+                            "title": "Contacts"
+                        }
+                    },
+                    {
+                        "type": "actionbar",
+                        "attributes": {
+                            "tableId": [
+                                0
+                            ]
+                        },
+                        "components": [
+                            {
+                                "type": "actionbar-recheck",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-more",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-search-filter",
+                                "attributes": {}
+                            }
+                        ]
+                    },
+                    {
+                        "type": "table",
+                        "attributes": {
+                            "tableId": 0,
+                            "headerFollow": true,
+                            "inputSource": "contacts",
+                            "isWrappable": false,
+                            "noRepeatCell": "",
+                            "checkColumn": false,
+                            "pagingbar": true,
+                            "cellUrls": {
+                                "contact_name": {
+                                    "view": "contact",
+                                    "params": [
+                                        "contact_name"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "contact": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "container",
+                        "components": [
+                            {
+                                "type": "info",
+                                "attributes": {
+                                    "datamodel": {
+                                        "Contact": "configContact"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "hostgroups": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "title",
+                        "attributes": {
+                            "title": "Host groups"
+                        }
+                    },
+                    {
+                        "type": "actionbar",
+                        "attributes": {
+                            "tableId": [
+                                0
+                            ]
+                        },
+                        "components": [
+                            {
+                                "type": "actionbar-recheck",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-more",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-search-filter",
+                                "attributes": {}
+                            }
+                        ]
+                    },
+                    {
+                        "type": "table",
+                        "attributes": {
+                            "tableId": 0,
+                            "headerFollow": true,
+                            "inputSource": "hostgroups",
+                            "isWrappable": false,
+                            "noRepeatCell": "",
+                            "checkColumn": false,
+                            "pagingbar": true,
+                            "cellUrls": {
+                                "hostgroup_name": {
+                                    "view": "hostgroup",
+                                    "params": [
+                                        "hostgroup_name"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "hostgroup": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "container",
+                        "components": [
+                            {
+                                "type": "info",
+                                "attributes": {
+                                    "datamodel": {
+                                        "Host Group": "configHostGroup"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "macromodulations": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "title",
+                        "attributes": {
+                            "title": "Macromodulations"
+                        }
+                    },
+                    {
+                        "type": "actionbar",
+                        "attributes": {
+                            "tableId": [
+                                0
+                            ]
+                        },
+                        "components": [
+                            {
+                                "type": "actionbar-recheck",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-more",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-search-filter",
+                                "attributes": {}
+                            }
+                        ]
+                    },
+                    {
+                        "type": "table",
+                        "attributes": {
+                            "tableId": 0,
+                            "headerFollow": true,
+                            "inputSource": "macromodulations",
+                            "isWrappable": false,
+                            "noRepeatCell": "",
+                            "checkColumn": false,
+                            "pagingbar": true,
+                            "cellUrls": {
+                                "macromodulation_name": {
+                                    "view": "macromodulation",
+                                    "params": [
+                                        "macromodulation_name"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "macromodulation": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "container",
+                        "components": [
+                            {
+                                "type": "info",
+                                "attributes": {
+                                    "datamodel": {
+                                        "Macro Modulation": "configMacroModulation"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+     "notificationways": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "title",
+                        "attributes": {
+                            "title": "Notification Ways"
+                        }
+                    },
+                    {
+                        "type": "actionbar",
+                        "attributes": {
+                            "tableId": [
+                                0
+                            ]
+                        },
+                        "components": [
+                            {
+                                "type": "actionbar-recheck",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-more",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-search-filter",
+                                "attributes": {}
+                            }
+                        ]
+                    },
+                    {
+                        "type": "table",
+                        "attributes": {
+                            "tableId": 0,
+                            "headerFollow": true,
+                            "inputSource": "notificationways",
+                            "isWrappable": false,
+                            "noRepeatCell": "",
+                            "checkColumn": false,
+                            "pagingbar": true,
+                            "cellUrls": {
+                                "notificationway_name": {
+                                    "view": "notificationway",
+                                    "params": [
+                                        "notificationway_name"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "notificationway": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "container",
+                        "components": [
+                            {
+                                "type": "info",
+                                "attributes": {
+                                    "datamodel": {
+                                        "Notification Way": "configNotificationWay"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+   "realms": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "title",
+                        "attributes": {
+                            "title": "Realms"
+                        }
+                    },
+                    {
+                        "type": "actionbar",
+                        "attributes": {
+                            "tableId": [
+                                0
+                            ]
+                        },
+                        "components": [
+                            {
+                                "type": "actionbar-recheck",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-more",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-search-filter",
+                                "attributes": {}
+                            }
+                        ]
+                    },
+                    {
+                        "type": "table",
+                        "attributes": {
+                            "tableId": 0,
+                            "headerFollow": true,
+                            "inputSource": "realms",
+                            "isWrappable": false,
+                            "noRepeatCell": "",
+                            "checkColumn": false,
+                            "pagingbar": true,
+                            "cellUrls": {
+                                "realm_name": {
+                                    "view": "realm",
+                                    "params": [
+                                        "realm_name"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "realm": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "container",
+                        "components": [
+                            {
+                                "type": "info",
+                                "attributes": {
+                                    "datamodel": {
+                                        "Realm": "configRealm"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+  "servicegroups": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "title",
+                        "attributes": {
+                            "title": "Service groups"
+                        }
+                    },
+                    {
+                        "type": "actionbar",
+                        "attributes": {
+                            "tableId": [
+                                0
+                            ]
+                        },
+                        "components": [
+                            {
+                                "type": "actionbar-recheck",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-more",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-search-filter",
+                                "attributes": {}
+                            }
+                        ]
+                    },
+                    {
+                        "type": "table",
+                        "attributes": {
+                            "tableId": 0,
+                            "headerFollow": true,
+                            "inputSource": "servicegroups",
+                            "isWrappable": false,
+                            "noRepeatCell": "",
+                            "checkColumn": false,
+                            "pagingbar": true,
+                            "cellUrls": {
+                                "servicegroup_name": {
+                                    "view": "servicegroup",
+                                    "params": [
+                                        "servicegroup_name"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "servicegroup": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "container",
+                        "components": [
+                            {
+                                "type": "info",
+                                "attributes": {
+                                    "datamodel": {
+                                        "Service Group": "configServiceGroup"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+   "timeperiods": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "title",
+                        "attributes": {
+                            "title": "Time periods"
+                        }
+                    },
+                    {
+                        "type": "actionbar",
+                        "attributes": {
+                            "tableId": [
+                                0
+                            ]
+                        },
+                        "components": [
+                            {
+                                "type": "actionbar-recheck",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-more",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-search-filter",
+                                "attributes": {}
+                            }
+                        ]
+                    },
+                    {
+                        "type": "table",
+                        "attributes": {
+                            "tableId": 0,
+                            "headerFollow": true,
+                            "inputSource": "timeperiods",
+                            "isWrappable": false,
+                            "noRepeatCell": "",
+                            "checkColumn": false,
+                            "pagingbar": true,
+                            "cellUrls": {
+                                "timeperiod_name": {
+                                    "view": "timeperiod",
+                                    "params": [
+                                        "timeperiod_name"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "timeperiod": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "container",
+                        "components": [
+                            {
+                                "type": "info",
+                                "attributes": {
+                                    "datamodel": {
+                                        "Time Period": "configTimePeriod"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "configServices": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "title",
+                        "attributes": {
+                            "title": "Services"
+                        }
+                    },
+                    {
+                        "type": "actionbar",
+                        "attributes": {
+                            "tableId": [
+                                0
+                            ]
+                        },
+                        "components": [
+                            {
+                                "type": "actionbar-recheck",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-more",
+                                "attributes": {}
+                            },
+                            {
+                                "type": "actionbar-search-filter",
+                                "attributes": {}
+                            }
+                        ]
+                    },
+                    {
+                        "type": "table",
+                        "attributes": {
+                            "tableId": 0,
+                            "headerFollow": true,
+                            "inputSource": "configServices",
+                            "isWrappable": false,
+                            "noRepeatCell": "",
+                            "checkColumn": false,
+                            "pagingbar": true,
+                            "cellUrls": {
+                                "service_description": {
+                                    "view": "service",
+                                    "params": [
+                                        "host_name",
+                                        "service_description"
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "service": {
+        "template": "page",
+        "components": [
+            {
+                "type": "panel",
+                "components": [
+                    {
+                        "type": "container",
+                        "components": [
+                            {
+                                "type": "info",
+                                "attributes": {
+                                    "datamodel": {
+                                        "Service configuration": "configService"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
     }
 }

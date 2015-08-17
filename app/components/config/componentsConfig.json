@@ -273,6 +273,11 @@
             "endpoint": "services",
             "filter": "all"
         },
+        "configServices": {
+            "provider": "config",
+            "endpoint": "services",
+            "filter": "all"
+        },
         "hostsConfig": {
             "provider": "config",
             "endpoint": "hosts",
@@ -286,6 +291,56 @@
         "commands": {
             "provider": "config",
             "endpoint": "commands",
+            "filter": "all"
+        },
+        "businessimpactmodulations": {
+            "provider": "config",
+            "endpoint": "businessimpactmodulations",
+            "filter": "all"
+        },
+        "checkmodulations": {
+            "provider": "config",
+            "endpoint": "checkmodulations",
+            "filter": "all"
+        },
+        "contactgroups": {
+            "provider": "config",
+            "endpoint": "contactgroups",
+            "filter": "all"
+        },
+        "contacts": {
+            "provider": "config",
+            "endpoint": "contacts",
+            "filter": "all"
+        },
+        "hostgroups": {
+            "provider": "config",
+            "endpoint": "hostgroups",
+            "filter": "all"
+        },
+        "macromodulations": {
+            "provider": "config",
+            "endpoint": "macromodulations",
+            "filter": "all"
+        },
+        "notificationways": {
+            "provider": "config",
+            "endpoint": "notificationways",
+            "filter": "all"
+        },
+        "realms": {
+            "provider": "config",
+            "endpoint": "realms",
+            "filter": "all"
+        },
+        "servicegroups": {
+            "provider": "config",
+            "endpoint": "servicegroups",
+            "filter": "all"
+        },
+        "timeperiods": {
+            "provider": "config",
+            "endpoint": "timeperiods",
             "filter": "all"
         }
     }
