@@ -65,8 +65,13 @@ angular.module('bansho.table', ['bansho.datasource',
                         }
                     };
 
-                    $scope.onCheckChange = function () {
+                    $scope.onClick = function () {
+                        $scope.isCheckAll = !$scope.isCheckAll;
                         datasource.setAllCheckTable($scope.datasourceId, $scope.isCheckAll);
+                    };
+
+                    $scope.entryOnClick = function () {
+                        $scope.isCheckAll = datasource.isAllCheckedTable($scope.datasourceId);
                     };
                 }]
         };

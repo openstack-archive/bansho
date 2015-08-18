@@ -83,6 +83,16 @@ angular.module('bansho.datasource', ['bansho.surveil'])
 
                     listeners[datasourceId].push(callback);
                 },
+                isAllCheckedTable: function (datasourceId) {
+                    var isAllChecked = true;
+                    angular.forEach(filteredData[datasourceId], function (entry) {
+                        if (!entry.is_checked) {
+                            isAllChecked = false;
+                        }
+                    });
+
+                    return isAllChecked;
+                },
                 setAllCheckTable: function (datasourceId, isChecked) {
                     config[datasourceId].isCheckAll = isChecked;
                     angular.forEach(filteredData[datasourceId], function (entry) {
