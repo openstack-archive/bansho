@@ -1033,14 +1033,6 @@
                                         {
                                             "location": "componentsConfig",
                                             "content": "all"
-                                        },
-                                        {
-                                            "location": "componentsConfig",
-                                            "content": "hostOk"
-                                        },
-                                        {
-                                            "location": "componentsConfig",
-                                            "content": "hostNotOk"
                                         }
                                     ]
                                 }
@@ -1118,10 +1110,6 @@
                         },
                         "components": [
                             {
-                                "type": "actionbar-recheck",
-                                "attributes": {}
-                            },
-                            {
                                 "type": "actionbar-more",
                                 "attributes": {}
                             },
@@ -1188,7 +1176,7 @@
                     {
                         "type": "title",
                         "attributes": {
-                         "title": "Command"
+                            "title": "Command"
                         }
                     },
                     {
@@ -1223,15 +1211,11 @@
                     {
                         "type": "actionbar",
                         "attributes": {
-                            "tableId": [
+                            "datasourceId": [
                                 0
                             ]
                         },
                         "components": [
-                            {
-                                "type": "actionbar-recheck",
-                                "attributes": {}
-                            },
                             {
                                 "type": "actionbar-more",
                                 "attributes": {}
@@ -1245,7 +1229,7 @@
                     {
                         "type": "table",
                         "attributes": {
-                            "tableId": 0,
+                            "datasourceId": 0,
                             "headerFollow": true,
                             "inputSource": "businessImpactModulations",
                             "isWrappable": false,
@@ -1301,7 +1285,7 @@
                     {
                         "type": "title",
                         "attributes": {
-                         "title": "Business Impact Modulation"
+                            "title": "Business Impact Modulation"
                         }
                     },
                     {
@@ -1336,15 +1320,11 @@
                     {
                         "type": "actionbar",
                         "attributes": {
-                            "tableId": [
+                            "datasourceId": [
                                 0
                             ]
                         },
                         "components": [
-                            {
-                                "type": "actionbar-recheck",
-                                "attributes": {}
-                            },
                             {
                                 "type": "actionbar-more",
                                 "attributes": {}
@@ -1358,7 +1338,7 @@
                     {
                         "type": "table",
                         "attributes": {
-                            "tableId": 0,
+                            "datasourceId": 0,
                             "headerFollow": true,
                             "inputSource": "checkModulations",
                             "isWrappable": false,
@@ -1414,7 +1394,7 @@
                     {
                         "type": "title",
                         "attributes": {
-                         "title": "Check Modulation"
+                            "title": "Check Modulation"
                         }
                     },
                     {
@@ -1449,15 +1429,11 @@
                     {
                         "type": "actionbar",
                         "attributes": {
-                            "tableId": [
+                            "datasourceId": [
                                 0
                             ]
                         },
                         "components": [
-                            {
-                                "type": "actionbar-recheck",
-                                "attributes": {}
-                            },
                             {
                                 "type": "actionbar-more",
                                 "attributes": {}
@@ -1471,7 +1447,7 @@
                     {
                         "type": "table",
                         "attributes": {
-                            "tableId": 0,
+                            "datasourceId": 0,
                             "headerFollow": true,
                             "inputSource": "contactGroups",
                             "isWrappable": false,
@@ -1549,7 +1525,7 @@
                     {
                         "type": "title",
                         "attributes": {
-                         "title": "Contact Group"
+                            "title": "Contact Group"
                         }
                     },
                     {
@@ -1584,15 +1560,11 @@
                     {
                         "type": "actionbar",
                         "attributes": {
-                            "tableId": [
+                            "datasourceId": [
                                 0
                             ]
                         },
                         "components": [
-                            {
-                                "type": "actionbar-recheck",
-                                "attributes": {}
-                            },
                             {
                                 "type": "actionbar-more",
                                 "attributes": {}
@@ -1606,7 +1578,7 @@
                     {
                         "type": "table",
                         "attributes": {
-                            "tableId": 0,
+                            "datasourceId": 0,
                             "headerFollow": true,
                             "inputSource": "contacts",
                             "isWrappable": false,
@@ -1692,7 +1664,7 @@
                     {
                         "type": "title",
                         "attributes": {
-                         "title": "Contact"
+                            "title": "Contact"
                         }
                     },
                     {
@@ -1727,15 +1699,11 @@
                     {
                         "type": "actionbar",
                         "attributes": {
-                            "tableId": [
+                            "datasourceId": [
                                 0
                             ]
                         },
                         "components": [
-                            {
-                                "type": "actionbar-recheck",
-                                "attributes": {}
-                            },
                             {
                                 "type": "actionbar-more",
                                 "attributes": {}
@@ -1749,7 +1717,7 @@
                     {
                         "type": "table",
                         "attributes": {
-                            "tableId": 0,
+                            "datasourceId": 0,
                             "headerFollow": true,
                             "inputSource": "hostGroups",
                             "isWrappable": false,
@@ -1829,7 +1797,7 @@
                     {
                         "type": "title",
                         "attributes": {
-                        "title": "Host Group"
+                            "title": "Host Group"
                         }
                     },
                     {
@@ -1864,15 +1832,11 @@
                     {
                         "type": "actionbar",
                         "attributes": {
-                            "tableId": [
+                            "datasourceId": [
                                 0
                             ]
                         },
                         "components": [
-                            {
-                                "type": "actionbar-recheck",
-                                "attributes": {}
-                            },
                             {
                                 "type": "actionbar-more",
                                 "attributes": {}
@@ -1886,7 +1850,7 @@
                     {
                         "type": "table",
                         "attributes": {
-                            "tableId": 0,
+                            "datasourceId": 0,
                             "headerFollow": true,
                             "inputSource": "macroModulations",
                             "isWrappable": false,
@@ -1930,10 +1894,10 @@
             {
                 "type": "panel",
                 "components": [
-                  {
+                    {
                         "type": "title",
                         "attributes": {
-                         "title": "Macro Modulation"
+                            "title": "Macro Modulation"
                         }
                     },
                     {
@@ -1968,15 +1932,11 @@
                     {
                         "type": "actionbar",
                         "attributes": {
-                            "tableId": [
+                            "datasourceId": [
                                 0
                             ]
                         },
                         "components": [
-                            {
-                                "type": "actionbar-recheck",
-                                "attributes": {}
-                            },
                             {
                                 "type": "actionbar-more",
                                 "attributes": {}
@@ -1990,7 +1950,7 @@
                     {
                         "type": "table",
                         "attributes": {
-                            "tableId": 0,
+                            "datasourceId": 0,
                             "headerFollow": true,
                             "inputSource": "notificationWays",
                             "isWrappable": false,
@@ -2057,10 +2017,10 @@
             {
                 "type": "panel",
                 "components": [
-                  {
+                    {
                         "type": "title",
                         "attributes": {
-                         "title": "Notification Way"
+                            "title": "Notification Way"
                         }
                     },
                     {
@@ -2095,7 +2055,7 @@
                     {
                         "type": "actionbar",
                         "attributes": {
-                            "tableId": [
+                            "datasourceId": [
                                 0
                             ]
                         },
@@ -2117,7 +2077,7 @@
                     {
                         "type": "table",
                         "attributes": {
-                            "tableId": 0,
+                            "datasourceId": 0,
                             "headerFollow": true,
                             "inputSource": "realms",
                             "isWrappable": false,
@@ -2170,10 +2130,10 @@
             {
                 "type": "panel",
                 "components": [
-                  {
+                    {
                         "type": "title",
                         "attributes": {
-                         "title": "Realm"
+                            "title": "Realm"
                         }
                     },
                     {
@@ -2208,15 +2168,11 @@
                     {
                         "type": "actionbar",
                         "attributes": {
-                            "tableId": [
+                            "datasourceId": [
                                 0
                             ]
                         },
                         "components": [
-                            {
-                                "type": "actionbar-recheck",
-                                "attributes": {}
-                            },
                             {
                                 "type": "actionbar-more",
                                 "attributes": {}
@@ -2230,14 +2186,15 @@
                     {
                         "type": "table",
                         "attributes": {
-                            "tableId": 0,
+                            "datasourceId": 0,
                             "headerFollow": true,
                             "inputSource": "serviceGroups",
                             "isWrappable": false,
                             "noRepeatCell": "",
                             "checkColumn": false,
-                            "pagingbar": true},
-                            "components": [
+                            "pagingbar": true
+                        },
+                        "components": [
                             {
                                 "type": "cell-single",
                                 "attributes": {
@@ -2284,8 +2241,6 @@
                                 }
                             }
                         ]
-
-
                     }
                 ]
             }
@@ -2297,10 +2252,10 @@
             {
                 "type": "panel",
                 "components": [
-                  {
+                    {
                         "type": "title",
                         "attributes": {
-                         "title": "Service Group"
+                            "title": "Service Group"
                         }
                     },
                     {
@@ -2335,15 +2290,11 @@
                     {
                         "type": "actionbar",
                         "attributes": {
-                            "tableId": [
+                            "datasourceId": [
                                 0
                             ]
                         },
                         "components": [
-                            {
-                                "type": "actionbar-recheck",
-                                "attributes": {}
-                            },
                             {
                                 "type": "actionbar-more",
                                 "attributes": {}
@@ -2357,7 +2308,7 @@
                     {
                         "type": "table",
                         "attributes": {
-                            "tableId": 0,
+                            "datasourceId": 0,
                             "headerFollow": true,
                             "inputSource": "timePeriods",
                             "isWrappable": false,
@@ -2413,7 +2364,7 @@
                     {
                         "type": "title",
                         "attributes": {
-                         "title": "Time Period"
+                            "title": "Time Period"
                         }
                     },
                     {
@@ -2448,15 +2399,11 @@
                     {
                         "type": "actionbar",
                         "attributes": {
-                            "tableId": [
+                            "datasourceId": [
                                 0
                             ]
                         },
                         "components": [
-                            {
-                                "type": "actionbar-recheck",
-                                "attributes": {}
-                            },
                             {
                                 "type": "actionbar-more",
                                 "attributes": {}
@@ -2470,7 +2417,7 @@
                     {
                         "type": "table",
                         "attributes": {
-                            "tableId": 0,
+                            "datasourceId": 0,
                             "headerFollow": true,
                             "inputSource": "configServices",
                             "isWrappable": false,
