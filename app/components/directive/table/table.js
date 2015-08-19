@@ -236,12 +236,14 @@ angular.module('bansho.table', ['bansho.datasource',
 
         function calculateThreshold() {
             // Get YThreshold
-            staticHeadYOffset = $(staticHead).position().top;
-            if (actionBar) {
-                yThreshold = Math.min(staticActionBarYOffset, staticHeadYOffset);
-            }
-            else {
-                yThreshold = staticHeadYOffset;
+            if ($(staticHead) && $(staticHead).position()) {
+                staticHeadYOffset = $(staticHead).position().top;
+                if (actionBar) {
+                    yThreshold = Math.min(staticActionBarYOffset, staticHeadYOffset);
+                }
+                else {
+                    yThreshold = staticHeadYOffset;
+                }
             }
         }
 
