@@ -9,12 +9,12 @@ angular.module('bansho.container')
                 scope.param = scope.$parent.param;
                 angular.forEach(scope.components, function(component) {
                     if (component.type === 'info') {
-                        scope.datamodels = component.attributes.datamodel;
+                        scope.inputSources = component.attributes.inputSource;
                     }
                 });
 
-                angular.forEach(scope.datamodels, function (datamodel) {
-                    scope.$parent.addDirectiveParamRequirements(datamodel);
+                angular.forEach(scope.inputSources, function (inputSource) {
+                    scope.$parent.addDirectiveParamRequirements(inputSource);
                 });
             }
         };
