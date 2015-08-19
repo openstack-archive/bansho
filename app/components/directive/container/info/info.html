@@ -1,8 +1,8 @@
-<span data-ng-repeat="(key, datamodel) in datamodels">
-  <div data-ng-show="param[datamodel]" class="subcomponent__live">
+<span data-ng-repeat="(key, inputSource) in inputSources">
+  <div data-ng-show="param[inputSource]" class="subcomponent__live">
     <h2>{{key}}</h2>
     <table class="data-table">
-      <tbody data-ng-repeat="(key, value) in param[datamodel]">
+      <tbody data-ng-repeat="(key, value) in param[inputSource]">
         <tr>
           <td>{{key}}</td>
           <td>{{value}}</td>

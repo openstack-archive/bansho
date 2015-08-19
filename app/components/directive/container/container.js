@@ -80,7 +80,6 @@ angular.module('bansho.container', [])
                                 });
                         },
                         "configService": function () {
-                            console.log('Hey, listen!')
                             surveilConfig.getService(templateManager.getPageParam('host_name'),templateManager.getPageParam('service_description'))
                                 .then(function (data) {
                                     $scope.param.configService = data[0];
@@ -134,8 +133,6 @@ angular.module('bansho.container', [])
                             var hostname = templateManager.getPageParam('host_name'),
                                 serviceDescription = templateManager.getPageParam('service_description');
 
-                            console.log('hostname ')
-                            console.log(hostname)
                             surveilStatus.getService(hostname, serviceDescription).then(function (data) {
                                 $scope.param.service = data[0];
                                 surveilStatus.getServiceMetricNames(hostname, serviceDescription).then(function(metric_names) {
