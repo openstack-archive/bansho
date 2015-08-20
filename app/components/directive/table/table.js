@@ -57,7 +57,7 @@ angular.module('bansho.table', ['bansho.datasource',
                     // Table functions.
                     $scope.createUrl = function (entry, attributes) {
                         if (attributes.url) {
-                            var url = "/#/view?view=" + attributes.url.view;
+                            var url = "#/view?view=" + attributes.url.view;
                             angular.forEach(attributes.url.params, function (value) {
                                 url += '&' + value.urlParam + '=' + entry[value.entryKey];
                             });
@@ -93,7 +93,7 @@ angular.module('bansho.table', ['bansho.datasource',
                         if (!attributes) {
                             throw new Error('Directive bansho-cell "attributes" attribute must be defined');
                         }
-                        
+
                         if (attrs.type == 'cell-single') {
                             template += 'cell_single/cell_single.html';
                             scope.attributes = attributes;
