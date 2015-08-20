@@ -3,7 +3,7 @@
 GRAFANA_URL="http://localhost:8888/grafana"
 
 # Get opt
-while getopts "H:U:P:p:g:" o; do
+while getopts "H:U:P:N:p:g:" o; do
     case "${o}" in
         H)
             INFLUXDB_HOST=${OPTARG}
