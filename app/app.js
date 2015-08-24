@@ -10,7 +10,7 @@ angular.module('bansho', [
     'bansho.sidebar',
     'bansho.surveil',
     'bansho.datasource',
-    'bansho.directive',
+    'bansho.customDirective',
     'bansho.drupal',
     'bansho.drupal.tile',
     'bansho.drupal.info',
