@@ -35,7 +35,9 @@ angular.module('bansho.datasource', ['bansho.surveil'])
                     filter = componentsConfig.mergeFilters([config[datasourceId].queryFilter, filter]);
                 }
 
-                promise = providerServices[inputSource.provider].getData([], filter, inputSource.endpoint, conf.queryPaging);
+                console.log('inputSource ')
+                console.log(inputSource)
+                promise = providerServices[inputSource.provider].getDataFromInputSource([], inputSource, null, {count: false}, conf.queryPaging);
 
                 promise.then(function (newData) {
                     data[datasourceId] = newData;
@@ -132,70 +134,14 @@ angular.module('bansho.datasource', ['bansho.surveil'])
             };
         }])
 
-    .service('sharedData', ['templateManager', 'surveilStatus', 'componentsConfig',
-        function (templateManager, surveilStatus, componentsConfig) {
-            var providerServices = {
-                    status: surveilStatus
+    .service('sharedData', ['templateManager', 'surveilStatus', 'surveilConfig', 'componentsConfig',
+        function (templateManager, surveilStatus, surveilConfig, componentsConfig) {
+            var providers = {
+                    status: surveilStatus,
+                    config: surveilConfig
                 },
                 sharedData = {},
-                listeners = {},
-                providers = {
-                    'nbServicesHostsProblems': function () {
-                        surveilStatus.getNbHostsProblems().then(function (nbHosts) {
-                            surveilStatus.getNbServicesProblems().then(function (nbServices) {
-                                sharedData.nbServicesHostsProblems = nbHosts + nbServices;
-                                notifyListeners('nbServicesHostsProblems');
-                            });
-                        });
-                    },
-                    'nbHostsOpenProblems': function () {
-                        surveilStatus.getNbHostOpenProblems().then(function (nbHostProblems) {
-                            sharedData.nbHostsOpenProblems = nbHostProblems;
-                            notifyListeners('nbHostsOpenProblems');
-                        });
-                    },
-                    'nbServicesOpenProblems': function () {
-                        surveilStatus.getNbServiceOpenProblems().then(function (nbServiceProblems) {
-                            sharedData.nbServicesOpenProblems = nbServiceProblems;
-                            notifyListeners('nbServicesOpenProblems');
-                        });
-                    },
-                    'nbHosts': function () {
-                        surveilStatus.getNbHosts().then(function (nbHosts) {
-                            sharedData.nbHosts = nbHosts;
-                            notifyListeners('nbHosts');
-                        });
-
-                    },
-                    'nbServices': function () {
-                        surveilStatus.getNbServices().then(function (nbServices) {
-                            sharedData.nbServices = nbServices;
-                            notifyListeners('nbServices');
-                        });
-                    },
-                    'nbServicesOpenProblemsOnly': function () {
-                        surveilStatus.getNbServiceOpenProblemsOnly().then(function (nbServices) {
-                            sharedData.nbServicesOpenProblemsOnly = nbServices;
-                            notifyListeners('nbServicesOpenProblemsOnly');
-                        });
-                    },
-                    'nbServicesHostsOpenProblems': function () {
-                        surveilStatus.getNbHostsProblems().then(function (nbHosts) {
-                            surveilStatus.getNbServiceOpenProblemsOnly().then(function (nbServices) {
-                                sharedData.nbServicesHostsOpenProblems = nbHosts + nbServices;
-                                notifyListeners('nbServicesHostsOpenProblems');
-                            });
-                        });
-                    },
-                    'nbServicesHostsOpenProblemsDoubleCount': function () {
-                        surveilStatus.getNbHostsProblems().then(function (nbHosts) {
-                            surveilStatus.getNbServiceOpenProblems().then(function (nbServices) {
-                                sharedData.nbServicesHostsOpenProblemsDoubleCount = nbHosts + nbServices;
-                                notifyListeners('nbServicesHostsOpenProblemsDoubleCount');
-                            });
-                        });
-                    }
-                };
+                listeners = {};
 
             var notifyListeners = function (key) {
                 angular.forEach(listeners[key], function (onChange) {
@@ -204,40 +150,27 @@ angular.module('bansho.datasource', ['bansho.surveil'])
             };
 
             return {
-                getData: function (key, onChange) {
-                    if (listeners[key] === undefined) {
-                        listeners[key] = [onChange];
-                        templateManager.addInterval(providers[key]);
-                        providers[key]();
-                    } else {
-                        listeners[key].push(onChange);
-                    }
-
-                    return sharedData[key];
-                },
-                getDataFromInputSource: function (source, onChange) {
-                    if (listeners[source] === undefined) {
-                        listeners[source] = [onChange];
+                getDataFromInputSource: function (source, isCount, keys, onChange) {
+                    if (listeners[source + isCount] === undefined) {
+                        listeners[source + isCount] = [onChange];
 
                         var inputSource = componentsConfig.getInputSource(source);
+                        console.log('inputSource ')
+                        console.log(source)
 
-                        providers[source] = function () {
-                            providerServices[inputSource.provider].getData([], componentsConfig.getFilter(inputSource.filter).filter, inputSource.endpoint)
-                                .then(function (newData) {
-                                    sharedData[source] = newData;
-                                    notifyListeners(source);
-                                }, function (error) {
-                                    throw new Error('getTableData : Query failed' + error);
-                                });
-                        };
-
-                        templateManager.addInterval(providers[source]);
-                        providers[source]();
+                        providers[inputSource.provider].getDataFromInputSource([], inputSource, keys, {count: isCount})
+                            .then(function (newData) {
+                                sharedData[source + isCount] = newData;
+                                notifyListeners(source + isCount);
+                            }, function (error) {
+                                throw new Error('getTableData : Query failed' + error);
+                            })
                     } else {
-                        listeners[source].push(onChange);
+                        listeners[source + isCount].push(onChange);
+                        notifyListeners(source + isCount);
                     }
 
-                    return sharedData[source];
+                    return sharedData[source + isCount];
                 }
             };
         }]);

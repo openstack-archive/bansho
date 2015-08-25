@@ -13,7 +13,7 @@ angular.module('bansho.hostTree', ['bansho.datasource'])
                 function ($scope, sharedData) {
                     $scope.sources = {};
                     angular.forEach($scope.options.attributes.inputSource, function (source) {
-                        $scope.sources[source] = sharedData.getDataFromInputSource(source, function (data) {
+                        $scope.sources[source] = sharedData.getDataFromInputSource(source, false, null, function (data) {
                             $scope.sources[source] = data;
                         });
                     });

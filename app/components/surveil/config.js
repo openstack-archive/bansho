@@ -29,21 +29,21 @@ angular.module('bansho.surveil')
                 return promise.promise;
             };
 
+            // All the valid endpoint with their
             var validEndpoint = {
-                "businessimpactmodulations": true,
-                "checkmodulations": true,
-                "commands": true,
-                "contacts": true,
-                "contactgroups": true,
-                "hosts": true,
-                "hostgroups": true,
-                "macromodulations": true,
-                "notificationways": true,
-                "realms": true,
-                "services": true,
-                "servicegroups": true,
-                "timeperiods": true
-
+                "businessimpactmodulations": "business_impact_modulation_name",
+                "checkmodulations": "checkmodulation_name",
+                "commands": "command_name",
+                "contacts": "contact_name",
+                "contactgroups": "contact_group_name",
+                "hosts": "host_name",
+                "hostgroups": "hostgroup_name",
+                "macromodulations": "macromodulations_name",
+                "notificationways": "notificationway_name",
+                "realms": "realm_name",
+                "services": "service_description",
+                "servicegroups": "servicegroup_name",
+                "timeperiods": "timeperiods_name"
             };
 
             var queryEndpoint = function (endpoint, fields, filters, paging, callback) {
@@ -65,6 +65,72 @@ angular.module('bansho.surveil')
 
             return {
                 getData: getData,
+                getDataFromInputSource: function (fields, inputSource, keys, operations, paging) {
+                    // Todo merge filter function
+                    var promise = $q.defer(),
+                        filter = componentsConfig.getFilter(inputSource.filter).filter,
+                        endpoint = inputSource.endpoint;
+
+                    if (endpoint === "services" &&
+                        keys && keys.host_name) {
+                        filter = {
+                            "hosts": {"is": {"host_name": [keys.host_name]}},
+                            "services": {"is": {"host_name": [keys.host_name]}}
+                        };
+
+                        if (keys.service_description) {
+                            filter.services["is"]["service_description"] = [keys.service_description];
+                        }
+                    } else if (keys && keys[validEndpoint[endpoint]]) {
+                        var key = validEndpoint[endpoint],
+                            value = keys[key];
+
+                        filter = {};
+                        filter[endpoint] = {"is": {}};
+                        filter[endpoint]["is"][key] = [value];
+                    }
+
+                    //if (!queryEndpoint[endpoint]) {
+                    //    throw new Error('getData in surveilStatus : Invalid endpoint ' + endpoint);
+                    //}
+
+                    queryEndpoint(endpoint, fields, filter, paging, function (data) {
+                        if (operations && operations.count) {
+                            promise.resolve(data.length);
+                        } else {
+                            //if (specialTreatment[endpoint]) {
+                            //    data = specialTreatment[endpoint](data);
+                            //}
+                            promise.resolve(data);
+                        }
+                    });
+
+                    return promise.promise;
+                //},
+                    //if (endpoint === 'service') {
+                    //    var promise = $q.defer(), query = { "hosts": { "is": { "host_name": [endpointValues.host_name] } }, "services": {"is": {"host_name": [endpointValues.host_name] } } };
+                    //
+                    //    if (endpointValues.service_description) {
+                    //        query.services = { "is": { "service_description": [ endpointValues.service_description ] } };
+                    //    }
+                    //
+                    //    getData([], query, "services")
+                    //        .then(function (data) {
+                    //            promise.resolve(data);
+                    //        });
+                    //    return promise.promise;
+                    //
+                    //} else {
+                    //    var endpointKey = validEndpoint[endpoint],
+                    //        singleValue = endpointValues[endpointKey]
+                    //        promise = $q.defer(), query = {endpoint: {"is": {endpointKey: [ singleValue ] } } };
+                    //    getData([], query, endpoint)
+                    //        .then(function (data) {
+                    //            promise.resolve(data);
+                    //        });
+                    //    return promise.promise;
+                    //}
+                },
                 getBusinessImpactModulation: function (businessimpactmodulationName) {
                     var promise = $q.defer(), query = {"businessimpactmodulations": {"is": {"business_impact_modulation_name": [ businessimpactmodulationName ] } } };
                     getData([], query, "businessimpactmodulations")
@@ -154,17 +220,6 @@ angular.module('bansho.surveil')
                     return promise.promise;
                 },
                 getService: function (hostname, serviceDescription) {
-                    var promise = $q.defer(), query = { "hosts": { "is": { "host_name": [hostname] } }, "services": {"is": {"host_name": [hostname] } } };
-
-                    if (serviceDescription) {
-                        query.services = { "is": { "service_description": [ serviceDescription ] } };
-                    }
-
-                    getData([], query, "services")
-                        .then(function (data) {
-                            promise.resolve(data);
-                        });
-                    return promise.promise;
                 },
                 getTimePeriod: function (timeperiodName) {
                     var promise = $q.defer(), query = {"timeperiods": {"is": {"timeperiod_name": [timeperiodName] } } };
