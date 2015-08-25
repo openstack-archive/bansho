@@ -18,18 +18,23 @@ angular.module('bansho.view')
                 getLayoutComponents: function () {
                     return layout.components;
                 },
-                addInterval: function (callback) {
+                addInterval: function (isGlobal, callback) {
                     if (refreshInterval !== NO_REFRESH) {
-                        intervals.push($interval(callback, refreshInterval * 1000));
+                        intervals.push({isGlobal: isGlobal, interval: $interval(callback, refreshInterval * 1000)});
                     }
                 },
-                clearIntervals: function () {
+                clearIntervals: function (isGlobalCleared) {
                     angular.forEach(intervals, function (i) {
-                        $interval.cancel(i);
+                        if (!isGlobalCleared && !i.isGlobal || isGlobalCleared) {
+                            $interval.cancel(i.interval);
+                        }
                     });
                 },
                 setPageParam: function (key, value) {
                     pageParam[key] = value;
+                },
+                getAllPageParams: function () {
+                    return pageParam;
                 },
                 getPageParam: function (key) {
                     if (pageParam[key] === undefined) {

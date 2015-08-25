@@ -7,12 +7,11 @@ angular.module('bansho.tactical.current_health', ['bansho.surveil',
         return {
             restrict: 'E',
             templateUrl: 'components/custom_directive/tactical/current_health/current_health.html',
-            link: function (scope, element) {
-                $rootScope.$watch('themeClassSize', function( sizeclass) {
+            controller: ['$scope', '$element', function (scope, element) {
+                $rootScope.$watch('themeClassSize', function(sizeclass) {
                     scope.themeClassSize = sizeclass;
-                    $compile(element.contents())(scope);
+                    //$compile(element.contents())(scope);
                 });
-            }
-
+            }]
         };
     }]);

@@ -12,11 +12,11 @@
                     "navigation": {
                         "openProblems": {
                             "title": "Open Problems",
-                            "provider": "nbServicesHostsOpenProblems"
+                            "inputSource": "statusServicesOpenProblems"
                         },
                         "allProblems": {
                             "title": "All Problems",
-                            "provider": "nbServicesHostsProblems"
+                            "inputSource": "statusServicesOpenProblems"
                         }
                     }
                 },
@@ -31,8 +31,8 @@
                                 "type": "host-tree",
                                 "attributes": {
                                     "inputSource": [
-                                        "hostOpenProblems",
-                                        "serviceOpenProblemsOnly"
+                                        "statusHostsOpenProblems",
+                                        "statusServicesOpenProblemsOnly"
                                     ]
                                 }
                             }
@@ -48,7 +48,7 @@
                                 "type": "host-tree",
                                 "attributes": {
                                     "inputSource": [
-                                        "servicesProblems"
+                                        "statusServicesProblems"
                                     ]
                                 }
                             }
@@ -76,11 +76,11 @@
                     "navigation": {
                         "openProblems": {
                             "title": "Open Problems",
-                            "provider": "nbServicesHostsOpenProblems"
+                            "inputSource": "statusServicesOpenProblems"
                         },
                         "allProblems": {
                             "title": "All Problems",
-                            "provider": "nbServicesHostsOpenProblemsDoubleCount"
+                            "inputSource": "statusServicesOpenProblems"
                         }
                     }
                 },
@@ -146,14 +146,14 @@
                                 "attributes": {
                                     "title": "Open Hosts Problems",
                                     "item": "host",
-                                    "provider": "nbHostsOpenProblems"
+                                    "inputSource": "statusHostsOpenProblems"
                                 }
                             },
                             {
                                 "type": "table",
                                 "attributes": {
                                     "datasourceId": 0,
-                                    "inputSource": "hostOpenProblems",
+                                    "inputSource": "statusHostsOpenProblems",
                                     "headerFollow": false,
                                     "isWrappable": false,
                                     "checkColumn": true,
@@ -208,14 +208,14 @@
                                 "attributes": {
                                     "title": "Open Service Problems",
                                     "item": "service",
-                                    "provider": "nbServicesOpenProblemsOnly"
+                                    "inputSource": "statusServicesOpenProblemsOnly"
                                 }
                             },
                             {
                                 "type": "table",
                                 "attributes": {
                                     "datasourceId": 1,
-                                    "inputSource": "serviceOpenProblemsOnly",
+                                    "inputSource": "statusServicesOpenProblemsOnly",
                                     "headerFollow": false,
                                     "isWrappable": true,
                                     "checkColumn": true,
@@ -276,8 +276,7 @@
                     {
                         "type": "panel",
                         "attributes": {
-                            "panelId": "allProblems",
-                            "provider": "nbServicesHostsOpenProblems"
+                            "panelId": "allProblems"
                         },
                         "components": [
                             {
@@ -335,14 +334,14 @@
                                 "attributes": {
                                     "title": "Hosts Problems",
                                     "item": "host",
-                                    "provider": "nbHostsOpenProblems"
+                                    "inputSource": "statusHostsProblems"
                                 }
                             },
                             {
                                 "type": "table",
                                 "attributes": {
                                     "datasourceId": 2,
-                                    "inputSource": "hostsProblems",
+                                    "inputSource": "statusHostsProblems",
                                     "headerFollow": false,
                                     "isWrappable": false,
                                     "checkColumn": true,
@@ -397,14 +396,14 @@
                                 "attributes": {
                                     "title": "Services Problems",
                                     "item": "service",
-                                    "provider": "nbServicesOpenProblems"
+                                    "inputSource": "statusServicesProblems"
                                 }
                             },
                             {
                                 "type": "table",
                                 "attributes": {
                                     "datasourceId": 3,
-                                    "inputSource": "servicesProblems",
+                                    "inputSource": "statusServicesProblems",
                                     "headerFollow": false,
                                     "isWrappable": true,
                                     "checkColumn": true,
@@ -531,7 +530,7 @@
                         "type": "table",
                         "attributes": {
                             "datasourceId": 0,
-                            "inputSource": "hosts",
+                            "inputSource": "statusHosts",
                             "headerFollow": true,
                             "isWrappable": false,
                             "noRepeatCell": "",
@@ -653,7 +652,7 @@
                         "type": "table",
                         "attributes": {
                             "datasourceId": 0,
-                            "inputSource": "services",
+                            "inputSource": "statusServices",
                             "headerFollow": true,
                             "isWrappable": false,
                             "checkColumn": true,
@@ -766,7 +765,7 @@
                         "type": "table",
                         "attributes": {
                             "datasourceId": 0,
-                            "inputSource": "events",
+                            "inputSource": "statusEvents",
                             "headerFollow": true,
                             "isWrappable": false,
                             "checkColumn": false,
@@ -835,37 +834,31 @@
                 "type": "panel",
                 "components": [
                     {
-                        "type": "container",
-                        "components": [
-                            {
-                                "type": "host-main",
-                                "attributes": {}
-                            },
-                            {
-                                "type": "host-live",
-                                "attributes": {}
-                            },
-                            {
-                                "type": "host-load",
-                                "attributes": {}
-                            },
-                            {
-                                "type": "host-cpu",
-                                "attributes": {}
-                            },
-                            {
-                                "type": "host-services-list",
-                                "attributes": {}
-                            },
-                            {
-                                "type": "info",
-                                "attributes": {
-                                    "inputSource": {
-                                        "Configuration": "configHost"
-                                    }
-                                }
-                            }
-                        ]
+                        "type": "tile-host-main",
+                        "attributes": {}
+                    },
+                    {
+                        "type": "tile-host-live",
+                        "attributes": {}
+                    },
+                    {
+                        "type": "tile-host-load",
+                        "attributes": {}
+                    },
+                    {
+                        "type": "tile-host-cpu",
+                        "attributes": {}
+                    },
+                    {
+                        "type": "tile-host-services-list",
+                        "attributes": {}
+                    },
+                    {
+                        "type": "tile-info",
+                        "attributes": {
+                            "inputSource": "configHost",
+                            "title": "Configuration"
+                        }
                     }
                 ]
             }
@@ -955,7 +948,7 @@
                         "type": "table",
                         "attributes": {
                             "datasourceId": 0,
-                            "inputSource": "hostsConfig",
+                            "inputSource": "configHost",
                             "headerFollow": false,
                             "isWrappable": false,
                             "noRepeatCell": "",
@@ -1051,7 +1044,7 @@
                         "type": "table",
                         "attributes": {
                             "datasourceId": 0,
-                            "inputSource": "hostsConfigTemplate",
+                            "inputSource": "configHostTemplate",
                             "headerFollow": false,
                             "isWrappable": false,
                             "noRepeatCell": "",
@@ -1123,7 +1116,7 @@
                         "type": "table",
                         "attributes": {
                             "datasourceId": 0,
-                            "inputSource": "commands",
+                            "inputSource": "configCommands",
                             "headerFollow": true,
                             "isWrappable": false,
                             "noRepeatCell": "",
@@ -1180,17 +1173,11 @@
                         }
                     },
                     {
-                        "type": "container",
-                        "components": [
-                            {
-                                "type": "info",
-                                "attributes": {
-                                    "inputSource": {
-                                        "Configuration": "configCommand"
-                                    }
-                                }
-                            }
-                        ]
+                        "type": "tile-info",
+                        "attributes": {
+                            "inputSource": "configCommands",
+                            "title": "Configuration"
+                        }
                     }
                 ]
             }
@@ -1231,7 +1218,7 @@
                         "attributes": {
                             "datasourceId": 0,
                             "headerFollow": true,
-                            "inputSource": "businessImpactModulations",
+                            "inputSource": "configBusinessImpactModulations",
                             "isWrappable": false,
                             "noRepeatCell": "",
                             "checkColumn": false,
@@ -1289,17 +1276,11 @@
                         }
                     },
                     {
-                        "type": "container",
-                        "components": [
-                            {
-                                "type": "info",
-                                "attributes": {
-                                    "inputSource": {
-                                        "Configuration": "configBusinessImpactModulation"
-                                    }
-                                }
-                            }
-                        ]
+                        "type": "tile-info",
+                        "attributes": {
+                            "inputSource": "configBusinessImpactModulations",
+                            "title": "Configuration"
+                        }
                     }
                 ]
             }
@@ -1340,7 +1321,7 @@
                         "attributes": {
                             "datasourceId": 0,
                             "headerFollow": true,
-                            "inputSource": "checkModulations",
+                            "inputSource": "configCheckModulations",
                             "isWrappable": false,
                             "noRepeatCell": "",
                             "checkColumn": false,
@@ -1398,17 +1379,11 @@
                         }
                     },
                     {
-                        "type": "container",
-                        "components": [
-                            {
-                                "type": "info",
-                                "attributes": {
-                                    "inputSource": {
-                                        "Configuration": "configCheckModulation"
-                                    }
-                                }
-                            }
-                        ]
+                        "type": "tile-info",
+                        "attributes": {
+                            "inputSource": "configCheckModulations",
+                            "title": "Configuration"
+                        }
                     }
                 ]
             }
@@ -1449,7 +1424,7 @@
                         "attributes": {
                             "datasourceId": 0,
                             "headerFollow": true,
-                            "inputSource": "contactGroups",
+                            "inputSource": "configContactGroups",
                             "isWrappable": false,
                             "noRepeatCell": "",
                             "checkColumn": false,
@@ -1529,17 +1504,11 @@
                         }
                     },
                     {
-                        "type": "container",
-                        "components": [
-                            {
-                                "type": "info",
-                                "attributes": {
-                                    "inputSource": {
-                                        "Configuration": "configContactGroup"
-                                    }
-                                }
-                            }
-                        ]
+                        "type": "tile-info",
+                        "attributes": {
+                            "inputSource": "configContactGroups",
+                            "title": "Configuration"
+                        }
                     }
                 ]
             }
@@ -1580,7 +1549,7 @@
                         "attributes": {
                             "datasourceId": 0,
                             "headerFollow": true,
-                            "inputSource": "contacts",
+                            "inputSource": "configContacts",
                             "isWrappable": false,
                             "noRepeatCell": "",
                             "checkColumn": false,
@@ -1668,17 +1637,11 @@
                         }
                     },
                     {
-                        "type": "container",
-                        "components": [
-                            {
-                                "type": "info",
-                                "attributes": {
-                                    "inputSource": {
-                                        "Configuration": "configContact"
-                                    }
-                                }
-                            }
-                        ]
+                        "type": "tile-info",
+                        "attributes": {
+                            "inputSource": "configContacts",
+                            "title": "Configuration"
+                        }
                     }
                 ]
             }
@@ -1719,7 +1682,7 @@
                         "attributes": {
                             "datasourceId": 0,
                             "headerFollow": true,
-                            "inputSource": "hostGroups",
+                            "inputSource": "configHostGroups",
                             "isWrappable": false,
                             "noRepeatCell": "",
                             "checkColumn": false,
@@ -1801,17 +1764,11 @@
                         }
                     },
                     {
-                        "type": "container",
-                        "components": [
-                            {
-                                "type": "info",
-                                "attributes": {
-                                    "inputSource": {
-                                        "Configuration": "configHostGroup"
-                                    }
-                                }
-                            }
-                        ]
+                        "type": "tile-info",
+                        "attributes": {
+                            "inputSource": "configHostGroups",
+                            "title": "Configuration"
+                        }
                     }
                 ]
             }
@@ -1852,7 +1809,7 @@
                         "attributes": {
                             "datasourceId": 0,
                             "headerFollow": true,
-                            "inputSource": "macroModulations",
+                            "inputSource": "configMacroModulations",
                             "isWrappable": false,
                             "noRepeatCell": "",
                             "checkColumn": false,
@@ -1901,17 +1858,11 @@
                         }
                     },
                     {
-                        "type": "container",
-                        "components": [
-                            {
-                                "type": "info",
-                                "attributes": {
-                                    "inputSource": {
-                                        "Configuration": "configMacroModulation"
-                                    }
-                                }
-                            }
-                        ]
+                        "type": "tile-info",
+                        "attributes": {
+                            "inputSource": "configMacroModulations",
+                            "title": "Configuration"
+                        }
                     }
                 ]
             }
@@ -1952,7 +1903,7 @@
                         "attributes": {
                             "datasourceId": 0,
                             "headerFollow": true,
-                            "inputSource": "notificationWays",
+                            "inputSource": "configNotificationWays",
                             "isWrappable": false,
                             "noRepeatCell": "",
                             "checkColumn": false,
@@ -2024,17 +1975,11 @@
                         }
                     },
                     {
-                        "type": "container",
-                        "components": [
-                            {
-                                "type": "info",
-                                "attributes": {
-                                    "inputSource": {
-                                        "Configuration": "configNotificationWay"
-                                    }
-                                }
-                            }
-                        ]
+                        "type": "tile-info",
+                        "attributes": {
+                            "inputSource": "configNotificationWays",
+                            "title": "Configuration"
+                        }
                     }
                 ]
             }
@@ -2079,7 +2024,7 @@
                         "attributes": {
                             "datasourceId": 0,
                             "headerFollow": true,
-                            "inputSource": "realms",
+                            "inputSource": "configRealms",
                             "isWrappable": false,
                             "noRepeatCell": "",
                             "checkColumn": false,
@@ -2137,17 +2082,11 @@
                         }
                     },
                     {
-                        "type": "container",
-                        "components": [
-                            {
-                                "type": "info",
-                                "attributes": {
-                                    "inputSource": {
-                                        "Command": "configRealm"
-                                    }
-                                }
-                            }
-                        ]
+                        "type": "tile-info",
+                        "attributes": {
+                            "inputSource": "configRealms",
+                            "title": "Command"
+                        }
                     }
                 ]
             }
@@ -2188,7 +2127,7 @@
                         "attributes": {
                             "datasourceId": 0,
                             "headerFollow": true,
-                            "inputSource": "serviceGroups",
+                            "inputSource": "configServiceGroups",
                             "isWrappable": false,
                             "noRepeatCell": "",
                             "checkColumn": false,
@@ -2259,17 +2198,11 @@
                         }
                     },
                     {
-                        "type": "container",
-                        "components": [
-                            {
-                                "type": "info",
-                                "attributes": {
-                                    "inputSource": {
-                                        "Configuration": "configServiceGroup"
-                                    }
-                                }
-                            }
-                        ]
+                        "type": "tile-info",
+                        "attributes": {
+                            "inputSource": "configServiceGroups",
+                            "title": "Configuration"
+                        }
                     }
                 ]
             }
@@ -2310,7 +2243,7 @@
                         "attributes": {
                             "datasourceId": 0,
                             "headerFollow": true,
-                            "inputSource": "timePeriods",
+                            "inputSource": "configTimePeriods",
                             "isWrappable": false,
                             "noRepeatCell": "",
                             "checkColumn": false,
@@ -2368,17 +2301,11 @@
                         }
                     },
                     {
-                        "type": "container",
-                        "components": [
-                            {
-                                "type": "info",
-                                "attributes": {
-                                    "inputSource": {
-                                        "Configuration": "configTimePeriod"
-                                    }
-                                }
-                            }
-                        ]
+                        "type": "tile-info",
+                        "attributes": {
+                            "title": "Configuration",
+                            "inputSource": "configTimePeriods"
+                        }
                     }
                 ]
             }
@@ -2495,33 +2422,27 @@
                 "type": "panel",
                 "components": [
                     {
-                        "type": "container",
-                        "components": [
-                            {
-                                "type": "service-main",
-                                "attributes": {}
-                            },
-                            {
-                                "type": "service-live",
-                                "attributes": {}
-                            },
-                            {
-                                "type": "service-info",
-                                "attributes": {}
-                            },
-                            {
-                                "type": "service-graphs",
-                                "attributes": {}
-                            },
-                            {
-                                "type": "info",
-                                "attributes": {
-                                    "inputSource": {
-                                        "Service configuration": "configService"
-                                    }
-                                }
-                            }
-                        ]
+                        "type": "tile-service-main",
+                        "attributes": {}
+                    },
+                    {
+                        "type": "tile-service-live",
+                        "attributes": {}
+                    },
+                    {
+                        "type": "tile-service-info",
+                        "attributes": {}
+                    },
+                    {
+                        "type": "tile-service-metrics",
+                        "attributes": {}
+                    },
+                    {
+                        "type": "tile-info",
+                        "attributes": {
+                            "title": "Service configuration",
+                            "inputSource": "configServices"
+                        }
                     }
                 ]
             }
