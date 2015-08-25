@@ -204,7 +204,7 @@
                 "hosts": {
                     "is": {
                         "register": [
-                          "0"
+                            "0"
                         ]
                     }
                 }
@@ -216,11 +216,11 @@
                 "hosts": {
                     "isnot": {
                         "register": [
-                          "0"
+                            "0"
                         ]
                     }
                 }
-             }
+            }
         },
         "all": {
             "name": "All",
@@ -233,42 +233,42 @@
         }
     },
     "inputSource": {
-        "hostOpenProblems": {
+        "statusHostsOpenProblems": {
             "provider": "status",
             "endpoint": "hosts",
             "filter": "allHostOpenProblems"
         },
-        "serviceOpenProblems": {
+        "statusServicesOpenProblems": {
             "provider": "status",
             "endpoint": "services",
             "filter": "allServiceOpenProblems"
         },
-        "serviceOpenProblemsOnly": {
+        "statusServicesOpenProblemsOnly": {
             "provider": "status",
             "endpoint": "services",
             "filter": "allServiceOpenProblemsOnly"
         },
-        "hostsProblems": {
+        "statusHostsProblems": {
             "provider": "status",
             "endpoint": "hosts",
             "filter": "allHostsProblems"
         },
-        "servicesProblems": {
+        "statusServicesProblems": {
             "provider": "status",
             "endpoint": "services",
             "filter": "allServicesProblems"
         },
-        "events": {
+        "statusEvents": {
             "provider": "status",
             "endpoint": "events",
             "filter": "all"
         },
-        "hosts": {
+        "statusHosts": {
             "provider": "status",
             "endpoint": "hosts",
             "filter": "all"
         },
-        "services": {
+        "statusServices": {
             "provider": "status",
             "endpoint": "services",
             "filter": "all"
@@ -278,67 +278,67 @@
             "endpoint": "services",
             "filter": "all"
         },
-        "hostsConfig": {
+        "configHost": {
             "provider": "config",
             "endpoint": "hosts",
             "filter": "allHostConfigWithoutTemplate"
         },
-        "hostsConfigTemplate": {
+        "configHostTemplate": {
             "provider": "config",
             "endpoint": "hosts",
             "filter": "allHostConfigTemplate"
         },
-        "commands": {
+        "configCommands": {
             "provider": "config",
             "endpoint": "commands",
             "filter": "all"
         },
-        "businessImpactModulations": {
+        "configBusinessImpactModulations": {
             "provider": "config",
             "endpoint": "businessimpactmodulations",
             "filter": "all"
         },
-        "checkModulations": {
+        "configCheckModulations": {
             "provider": "config",
             "endpoint": "checkmodulations",
             "filter": "all"
         },
-        "contactGroups": {
+        "configContactGroups": {
             "provider": "config",
             "endpoint": "contactgroups",
             "filter": "all"
         },
-        "contacts": {
+        "configContacts": {
             "provider": "config",
             "endpoint": "contacts",
             "filter": "all"
         },
-        "hostGroups": {
+        "configHostGroups": {
             "provider": "config",
             "endpoint": "hostgroups",
             "filter": "all"
         },
-        "macroModulations": {
+        "configMacroModulations": {
             "provider": "config",
             "endpoint": "macromodulations",
             "filter": "all"
         },
-        "notificationWays": {
+        "configNotificationWays": {
             "provider": "config",
             "endpoint": "notificationways",
             "filter": "all"
         },
-        "realms": {
+        "configRealms": {
             "provider": "config",
             "endpoint": "realms",
             "filter": "all"
         },
-        "serviceGroups": {
+        "configServiceGroups": {
             "provider": "config",
             "endpoint": "servicegroups",
             "filter": "all"
         },
-        "timePeriods": {
+        "configTimePeriods": {
             "provider": "config",
             "endpoint": "timeperiods",
             "filter": "all"
