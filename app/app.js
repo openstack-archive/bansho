@@ -26,10 +26,11 @@ angular.module('bansho', [
     }])
 
     // Reinitialise objects on url change
-    .run(['$rootScope', 'templateManager', 'reinitDrupalTiles', 'reinitDrupalInfo', 'componentsConfig',
-        function ($rootScope, templateManager, reinitDrupalTiles, reinitDrupalInfo, componentsConfig) {
+    .run(['$rootScope', 'templateManager', 'sharedData', 'reinitDrupalTiles', 'reinitDrupalInfo', 'componentsConfig',
+        function ($rootScope, templateManager, sharedData, reinitDrupalTiles, reinitDrupalInfo, componentsConfig) {
             componentsConfig.load();
             $rootScope.$on('$locationChangeStart', function () {
+                sharedData.clear();
                 templateManager.clearIntervals();
                 reinitDrupalTiles();
                 reinitDrupalInfo();
