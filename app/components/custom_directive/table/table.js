@@ -50,7 +50,7 @@ angular.module('bansho.table', ['bansho.datasource',
                         $scope.entries = data;
                     });
                     datasource.refreshTableData($scope.datasourceId);
-                    templateManager.addInterval(function refreshTable () {
+                    templateManager.addInterval(false, function refreshTable () {
                         datasource.refreshTableData($scope.datasourceId);
                     });
 

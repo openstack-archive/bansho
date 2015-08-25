@@ -29,21 +29,21 @@ angular.module('bansho.surveil')
                 return promise.promise;
             };
 
+            // All the valid endpoint with their
             var validEndpoint = {
-                "businessimpactmodulations": true,
-                "checkmodulations": true,
-                "commands": true,
-                "contacts": true,
-                "contactgroups": true,
-                "hosts": true,
-                "hostgroups": true,
-                "macromodulations": true,
-                "notificationways": true,
-                "realms": true,
-                "services": true,
-                "servicegroups": true,
-                "timeperiods": true
-
+                "businessimpactmodulations": "business_impact_modulation_name",
+                "checkmodulations": "checkmodulation_name",
+                "commands": "command_name",
+                "contacts": "contact_name",
+                "contactgroups": "contact_group_name",
+                "hosts": "host_name",
+                "hostgroups": "hostgroup_name",
+                "macromodulations": "macromodulations_name",
+                "notificationways": "notificationway_name",
+                "realms": "realm_name",
+                "services": "service_description",
+                "servicegroups": "servicegroup_name",
+                "timeperiods": "timeperiods_name"
             };
 
             var queryEndpoint = function (endpoint, fields, filters, paging, callback) {
@@ -65,113 +65,39 @@ angular.module('bansho.surveil')
 
             return {
                 getData: getData,
-                getBusinessImpactModulation: function (businessimpactmodulationName) {
-                    var promise = $q.defer(), query = {"businessimpactmodulations": {"is": {"business_impact_modulation_name": [ businessimpactmodulationName ] } } };
-                    getData([], query, "businessimpactmodulations")
-                        .then(function (data) {
-                            promise.resolve(data);
-                        });
-                    return promise.promise;
-                },
-                getCheckModulation: function (checkmodulationName) {
-                    var promise = $q.defer(), query = {"checkmodulations": {"is": {"checkmodulation_name": [ checkmodulationName ] } } };
-                    getData([], query, "checkmodulations")
-                        .then(function (data) {
-                            promise.resolve(data);
-                        });
-                    return promise.promise;
-                },
-                getCommand: function (commandName) {
-                    var promise = $q.defer(), query = {"commands": {"is": {"command_name": [ commandName ] } } };
-                    getData([], query, "commands")
-                        .then(function (data) {
-                            promise.resolve(data);
-                        });
-                    return promise.promise;
-                },
-                getContactGroup: function (contactgroupName) {
-                    var promise = $q.defer(), query = {"contactgroups": {"is": {"contactgroup_name": [ contactgroupName ] } } };
-                    getData([], query, "contactgroups")
-                        .then(function (data) {
-                            promise.resolve(data);
-                        });
-                    return promise.promise;
-                },
-                getContact: function (contactName) {
-                    var promise = $q.defer(), query = {"contacts": {"is": {"contact_name": [ contactName ] } } };
-                    getData([], query, "contacts")
-                        .then(function (data) {
-                            promise.resolve(data);
-                        });
-                    return promise.promise;
-                },
-                getHost: function (hostName) {
-                    var promise = $q.defer(), query = {"hosts": {"is": {"host_name": [ hostName ] } } };
-                    getData([], query, "hosts")
-                        .then(function (data) {
-                            promise.resolve(data);
-                        });
-                    return promise.promise;
-                },
-                getHostGroup: function (hostgroupName) {
-                    var promise = $q.defer(), query = {"hostgroups": {"is": {"hostgroup_name": [ hostgroupName ] } } };
-                    getData([], query, "hostgroups")
-                        .then(function (data) {
-                            promise.resolve(data);
-                        });
-                    return promise.promise;
-                },
-                getMacroModulationName: function (macromodulationName) {
-                    var promise = $q.defer(), query = {"macromodulations": {"is": {"macromodulation_name": [ macromodulationName ] } } };
-                    getData([], query, "macromodulations")
-                        .then(function (data) {
-                            promise.resolve(data);
-                        });
-                    return promise.promise;
-                },
-                getNotificationWay: function (notificationwayName) {
-                    var promise = $q.defer(), query = {"notificationways": {"is": {"notificationway_name": [notificationwayName] } } };
-                    getData([], query, "notificationways")
-                        .then(function (data) {
-                            promise.resolve(data);
-                        });
-                    return promise.promise;
-                },
-                getRealm: function (realmName) {
-                    var promise = $q.defer(), query = {"realms": {"is": {"realm_name": [realmName] } } };
-                    getData([], query, "realms")
-                        .then(function (data) {
-                            promise.resolve(data);
-                        });
-                    return promise.promise;
-                },
-                getServiceGroup: function (servicegroupName) {
-                    var promise = $q.defer(), query = {"servicegroups": {"is": {"servicegroup_name": [servicegroupName] } } };
-                    getData([], query, "servicegroups")
-                        .then(function (data) {
-                            promise.resolve(data);
-                        });
-                    return promise.promise;
-                },
-                getService: function (hostname, serviceDescription) {
-                    var promise = $q.defer(), query = { "hosts": { "is": { "host_name": [hostname] } }, "services": {"is": {"host_name": [hostname] } } };
+                getDataFromInputSource: function (fields, inputSource, keys, operations, paging) {
+                    // Todo merge filter function
+                    var promise = $q.defer(),
+                        filter = componentsConfig.getFilter(inputSource.filter).filter,
+                        endpoint = inputSource.endpoint;
 
-                    if (serviceDescription) {
-                        query.services = { "is": { "service_description": [ serviceDescription ] } };
+                    if (endpoint === "services" &&
+                        keys && keys.host_name) {
+                        filter = {
+                            "hosts": {"is": {"host_name": [keys.host_name]}},
+                            "services": {"is": {"host_name": [keys.host_name]}}
+                        };
+
+                        if (keys.service_description) {
+                            filter.services.is.service_description = [keys.service_description];
+                        }
+                    } else if (keys && keys[validEndpoint[endpoint]]) {
+                        var key = validEndpoint[endpoint],
+                            value = keys[key];
+
+                        filter = {};
+                        filter[endpoint] = {"is": {}};
+                        filter[endpoint].is[key] = [value];
                     }
 
-                    getData([], query, "services")
-                        .then(function (data) {
+                    queryEndpoint(endpoint, fields, filter, paging, function (data) {
+                        if (operations && operations.count) {
+                            promise.resolve(data.length);
+                        } else {
                             promise.resolve(data);
-                        });
-                    return promise.promise;
-                },
-                getTimePeriod: function (timeperiodName) {
-                    var promise = $q.defer(), query = {"timeperiods": {"is": {"timeperiod_name": [timeperiodName] } } };
-                    getData([], query, "timeperiods")
-                        .then(function (data) {
-                            promise.resolve(data);
-                        });
+                        }
+                    });
+
                     return promise.promise;
                 }
             };
