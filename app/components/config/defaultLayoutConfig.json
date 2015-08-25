@@ -12,11 +12,11 @@
                     "navigation": {
                         "openProblems": {
                             "title": "Open Problems",
-                            "provider": "nbServicesHostsOpenProblems"
+                            "inputSource": "statusServicesOpenProblems"
                         },
                         "allProblems": {
                             "title": "All Problems",
-                            "provider": "nbServicesHostsProblems"
+                            "inputSource": "statusServicesOpenProblems"
                         }
                     }
                 },
@@ -31,8 +31,8 @@
                                 "type": "host-tree",
                                 "attributes": {
                                     "inputSource": [
-                                        "hostOpenProblems",
-                                        "serviceOpenProblemsOnly"
+                                        "statusHostsOpenProblems",
+                                        "statusServicesOpenProblemsOnly"
                                     ]
                                 }
                             }
@@ -48,7 +48,7 @@
                                 "type": "host-tree",
                                 "attributes": {
                                     "inputSource": [
-                                        "servicesProblems"
+                                        "statusServicesProblems"
                                     ]
                                 }
                             }
@@ -76,11 +76,11 @@
                     "navigation": {
                         "openProblems": {
                             "title": "Open Problems",
-                            "provider": "nbServicesHostsOpenProblems"
+                            "inputSource": "statusServicesOpenProblems"
                         },
                         "allProblems": {
                             "title": "All Problems",
-                            "provider": "nbServicesHostsOpenProblemsDoubleCount"
+                            "inputSource": "statusServicesOpenProblems"
                         }
                     }
                 },
@@ -146,14 +146,14 @@
                                 "attributes": {
                                     "title": "Open Hosts Problems",
                                     "item": "host",
-                                    "provider": "nbHostsOpenProblems"
+                                    "inputSource": "statusHostsOpenProblems"
                                 }
                             },
                             {
                                 "type": "table",
                                 "attributes": {
                                     "datasourceId": 0,
-                                    "inputSource": "hostOpenProblems",
+                                    "inputSource": "statusHostsOpenProblems",
                                     "headerFollow": false,
                                     "isWrappable": false,
                                     "checkColumn": true,
@@ -208,14 +208,14 @@
                                 "attributes": {
                                     "title": "Open Service Problems",
                                     "item": "service",
-                                    "provider": "nbServicesOpenProblemsOnly"
+                                    "inputSource": "statusServicesOpenProblemsOnly"
                                 }
                             },
                             {
                                 "type": "table",
                                 "attributes": {
                                     "datasourceId": 1,
-                                    "inputSource": "serviceOpenProblemsOnly",
+                                    "inputSource": "statusServicesOpenProblemsOnly",
                                     "headerFollow": false,
                                     "isWrappable": true,
                                     "checkColumn": true,
@@ -276,8 +276,7 @@
                     {
                         "type": "panel",
                         "attributes": {
-                            "panelId": "allProblems",
-                            "provider": "nbServicesHostsOpenProblems"
+                            "panelId": "allProblems"
                         },
                         "components": [
                             {
@@ -335,14 +334,14 @@
                                 "attributes": {
                                     "title": "Hosts Problems",
                                     "item": "host",
-                                    "provider": "nbHostsOpenProblems"
+                                    "inputSource": "statusHostsProblems"
                                 }
                             },
                             {
                                 "type": "table",
                                 "attributes": {
                                     "datasourceId": 2,
-                                    "inputSource": "hostsProblems",
+                                    "inputSource": "statusHostsProblems",
                                     "headerFollow": false,
                                     "isWrappable": false,
                                     "checkColumn": true,
@@ -397,14 +396,14 @@
                                 "attributes": {
                                     "title": "Services Problems",
                                     "item": "service",
-                                    "provider": "nbServicesOpenProblems"
+                                    "inputSource": "statusServicesProblems"
                                 }
                             },
                             {
                                 "type": "table",
                                 "attributes": {
                                     "datasourceId": 3,
-                                    "inputSource": "servicesProblems",
+                                    "inputSource": "statusServicesProblems",
                                     "headerFollow": false,
                                     "isWrappable": true,
                                     "checkColumn": true,
@@ -531,7 +530,7 @@
                         "type": "table",
                         "attributes": {
                             "datasourceId": 0,
-                            "inputSource": "hosts",
+                            "inputSource": "statusHosts",
                             "headerFollow": true,
                             "isWrappable": false,
                             "noRepeatCell": "",
@@ -955,7 +954,7 @@
                         "type": "table",
                         "attributes": {
                             "datasourceId": 0,
-                            "inputSource": "hostsConfig",
+                            "inputSource": "configHost",
                             "headerFollow": false,
                             "isWrappable": false,
                             "noRepeatCell": "",
@@ -1051,7 +1050,7 @@
                         "type": "table",
                         "attributes": {
                             "datasourceId": 0,
-                            "inputSource": "hostsConfigTemplate",
+                            "inputSource": "configHostTemplate",
                             "headerFollow": false,
                             "isWrappable": false,
                             "noRepeatCell": "",
@@ -1123,7 +1122,7 @@
                         "type": "table",
                         "attributes": {
                             "datasourceId": 0,
-                            "inputSource": "commands",
+                            "inputSource": "configCommand",
                             "headerFollow": true,
                             "isWrappable": false,
                             "noRepeatCell": "",

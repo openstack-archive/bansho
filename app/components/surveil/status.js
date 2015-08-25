@@ -58,20 +58,6 @@ angular.module('bansho.surveil')
                 });
             };
 
-            var getData = function (fields, filters, endpoint, paging) {
-                var promise = $q.defer();
-
-                if (!queryEndpoint[endpoint]) {
-                    throw new Error('getData in surveilStatus : Invalid endpoint ' + endpoint);
-                }
-
-                queryEndpoint[endpoint](fields, filters, paging, function (data) {
-                    promise.resolve(data);
-                });
-
-                return promise.promise;
-            };
-
             var queryHostsServices = function (fields, filters, paging, callback) {
                 var hostQuery = surveilQuery(fields, filters.hosts, paging),
                     serviceQuery = surveilQuery(fields, filters.services, paging);
@@ -158,83 +144,111 @@ angular.module('bansho.surveil')
                 }
             };
 
-            return {
-                getData: getData,
-                getHost: function (hostname) {
-                    var promise = $q.defer(), query = {"hosts": {"is": {"host_name": [ hostname ] } } };
-                    getData([], query, "hosts")
-                        .then(function (data) {
-                            promise.resolve(data);
-                        });
-                    return promise.promise;
-                },
-                getNbHosts: function () {
-                    var promise = $q.defer();
-                    getData([], componentsConfig.getFilter("all").filter, "hosts")
-                        .then(function (data) {
-                            promise.resolve(data.length);
-                        });
-                    return promise.promise;
-                },
-                getNbHostOpenProblems: function () {
-                    var promise = $q.defer();
-                    getData([], componentsConfig.getFilter("allHostOpenProblems").filter, "hosts")
-                        .then(function (data) {
-                            promise.resolve(data.length);
-                        });
-                    return promise.promise;
-                },
-                getNbHostsProblems: function () {
-                    var promise = $q.defer();
-                    getData([], componentsConfig.getFilter("allHostsProblems").filter, "hosts")
-                        .then(function (data) {
-                            promise.resolve(data.length);
-                        });
-                    return promise.promise;
-                },
-                getService: function (hostname, serviceDescription) {
-                    var promise = $q.defer(), query = { "hosts": { "is": { "host_name": [hostname] } }, "services": {"is": {"host_name": [hostname] } } };
+            var validEndpoint = {
+                "events": "event_name",
+                "hosts": "host_name",
+                "services": "service_description",
+            };
 
-                    if (serviceDescription) {
-                        query.services = { "is": { "service_description": [ serviceDescription ] } };
+            var specialTreatment = {
+                //statusHosts: function (data) {
+                //    var hostname = templateManager.getPageParam('host_name');
+                //
+                //    surveilStatus.getHost(templateManager.getPageParam('host_name')).then(function (data) {
+                //        surveilStatus.getService(templateManager.getPageParam('host_name')).then(function (services) {
+                            //                $scope.param.host = data[0];
+                            //$scope.param.host.services = [];
+                            //angular.forEach(services, function (service) {
+                            //    if (service.service_description === 'cpu') {
+                            //        $scope.param.host.cpu = service;
+                            //    } else if (service.service_description === 'load') {
+                            //        $scope.param.host.load = service;
+                            //        $scope.param.host.load.iframeUrl = iframeUrl.getIFrameUrl("metric_load1", hostname, "load");
+                            //    } else {
+                            //        $scope.param.host.services.push(service);
+                            //    }
+                            //});
+                        //});
+                    //});
+                //},
+                statusHostMetrics: function (data) {
+                    var hostname = templateManager.getPageParam('host_name');
+
+                    surveilStatus.getHostMetricNames(hostname).then(function (metrics) {
+                        $scope.param.host.metrics = metrics;
+                        angular.forEach(metrics, function (metric) {
+                            surveilStatus.getHostMetric(hostname, metric).then(function (data) {
+                                //                     TODO: waiting for ORBER BY DESC support in InfluxDB
+                            });
+                        });
+                    });
+                },
+                statusService: function (data) {
+                    var hostname = templateManager.getPageParam('host_name'),
+                        serviceDescription = templateManager.getPageParam('service_description');
+
+                    surveilStatus.getService(hostname, serviceDescription).then(function (data) {
+                        $scope.param.service = data[0];
+                        surveilStatus.getServiceMetricNames(hostname, serviceDescription).then(function(metric_names) {
+                            $scope.param.service.iframeUrls = {};
+                            angular.forEach(metric_names, function (metricName) {
+                                $scope.param.service.iframeUrls[metricName] = iframeUrl.getIFrameUrl("metric_" + metricName, hostname, serviceDescription);
+                                surveilStatus.getServiceMetric(hostname, serviceDescription).then(function(data) {
+                                    //TODO: waiting for ORBER BY DESC support in InfluxDB
+                                });
+                            });
+                        });
+                    });
+                }
+            };
+
+            return {
+                getDataFromInputSource: function (fields, inputSource, keys, operations, paging) {
+                    // Todo merge filter function
+                    var promise = $q.defer(),
+                        filter = componentsConfig.getFilter(inputSource.filter).filter,
+                        endpoint = inputSource.endpoint;
+                    console.log('keys ')
+                    console.log(keys)
+                    console.log('keys[validEndpoint[endpoint] ')
+                    console.log(keys[validEndpoint[endpoint]])
+
+                    if (endpoint === "services" &&
+                        keys && keys.host_name) {
+                        filter = {
+                            "hosts": {"is": {"host_name": [keys.host_name]}},
+                            "services": {"is": {"host_name": [keys.host_name]}}
+                        };
+
+                        if (keys.service_description) {
+                            filter.services = {
+                                "is": {"service_description": [keys.service_description]}
+                            };
+                        }
+                    } else if (keys && keys[validEndpoint[endpoint]]) {
+                        var key = validEndpoint[endpoint],
+                            value = keys[key];
+
+                        filter = {
+                            endpoint: {"is": { key : [value]}}
+                        };
                     }
 
-                    getData([], query, "services")
-                        .then(function (data) {
+                    if (!queryEndpoint[endpoint]) {
+                        throw new Error('getData in surveilStatus : Invalid endpoint ' + endpoint);
+                    }
+
+                    queryEndpoint[endpoint](fields, filter, paging, function (data) {
+                        if (operations && operations.count) {
+                            promise.resolve(data.length);
+                        } else {
+                            if (specialTreatment[endpoint]) {
+                                data = specialTreatment[endpoint](data);
+                            }
                             promise.resolve(data);
-                        });
-                    return promise.promise;
-                },
-                getNbServices: function () {
-                    var promise = $q.defer();
-                    getData([], componentsConfig.getFilter("allServices").filter, "services")
-                        .then(function (data) {
-                            promise.resolve(data.length);
-                        });
-                    return promise.promise;
-                },
-                getNbServiceOpenProblems: function () {
-                    var promise = $q.defer();
-                    getData([], componentsConfig.getFilter("allServiceOpenProblems").filter, "services")
-                        .then(function (data) {
-                            promise.resolve(data.length);
-                        });
-                    return promise.promise;
-                },
-                getNbServiceOpenProblemsOnly: function () {
-                    var promise = $q.defer();
-                    getData([], componentsConfig.getFilter("allServiceOpenProblemsOnly").filter, "services")
-                        .then(function (data) {
-                            promise.resolve(data.length);
-                        });
-                    return promise.promise;
-                },
-                getNbServicesProblems: function () {
-                    var promise = $q.defer();
-                    getData([], componentsConfig.getFilter("allServicesProblems").filter, "services")
-                        .then(function (data) {
-                            promise.resolve(data.length);
-                        });
+                        }
+                    });
+
                     return promise.promise;
                 },
                 getHostMetric: function (host, metric) {

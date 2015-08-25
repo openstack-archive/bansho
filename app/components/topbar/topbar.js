@@ -21,9 +21,16 @@ angular.module('bansho.topbar', ['bansho.surveil'])
                     };
 
                     authService.registerOnLogin(function () {
-                        $scope.allProblems = sharedData.getData('nbServicesHostsOpenProblems', function (data) {
-                            $scope.allProblems = data;
+                        $scope.nbHosts = sharedData.getDataFromInputSource('statusHostsOpenProblems', true, null, function (nbHosts) {
+                            $scope.nbHosts = nbHosts;
+                            $scope.allProblems = $scope.nbServices + $scope.nbHosts
                         });
+
+                        sharedData.getDataFromInputSource('statusServicesOpenProblems', true, null, function (nbServices) {
+                            $scope.nbServices = nbServices;
+                            $scope.allProblems = $scope.nbServices + $scope.nbHosts
+                        });
+
 
                         $scope.components = configManager.getConfigData('topbar').components;
                         $compile($element.contents())($scope);

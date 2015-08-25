@@ -5,9 +5,14 @@ angular.module('bansho.container')
         return {
             restrict: 'E',
             templateUrl: 'components/custom_directive/container/host_cpu/host_cpu.html',
-            link: function (scope) {
+            link: ['scope', 'sharedData', 'templateManager', function (scope, sharedData, templateManager) {
                 scope.param = scope.$parent.param;
-                scope.$parent.addDirectiveParamRequirements('host');
-            }
+
+                scope.data = sharedData.getDataFromInputSource('statusHost', false, null, function (host) {
+                    scope.data = host;
+                });
+
+                scope.$parent.addDirectiveParamRequirements('statusHosts');
+            }]
         };
     });

@@ -2,7 +2,7 @@
     "env": "production",
     "username":"",
     "password":"",
-    "useStoredConfig": true,
+    "useStoredConfig": false,
     "surveilApiUrl": "surveil/v2",
     "surveilAuthUrl": "surveil/v2/auth",
     "refreshInterval": 30

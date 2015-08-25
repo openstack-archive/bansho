@@ -31,6 +31,9 @@ angular.module('bansho.view')
                 setPageParam: function (key, value) {
                     pageParam[key] = value;
                 },
+                getAllPageParams: function () {
+                    return pageParam;
+                },
                 getPageParam: function (key) {
                     if (pageParam[key] === undefined) {
                         throw new Error("ERROR :'" + key + "' GET parameter must be set in url");

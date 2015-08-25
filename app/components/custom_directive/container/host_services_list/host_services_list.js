@@ -7,7 +7,7 @@ angular.module('bansho.container')
             templateUrl: 'components/custom_directive/container/host_services_list/host_services_list.html',
             link: function (scope) {
                 scope.param = scope.$parent.param;
-                scope.$parent.addDirectiveParamRequirements('host');
+                scope.$parent.addDirectiveParamRequirements('statusHosts');
             }
         };
     });

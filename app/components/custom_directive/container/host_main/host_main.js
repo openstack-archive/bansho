@@ -5,9 +5,11 @@ angular.module('bansho.container')
         return {
             restrict: 'E',
             templateUrl: 'components/custom_directive/container/host_main/host_main.html',
-            link: function (scope) {
-                scope.param = scope.$parent.param;
-                scope.$parent.addDirectiveParamRequirements('host');
-            }
+            controller: ['$scope', 'sharedData', 'templateManager', function (scope, sharedData, templateManager) {
+                scope.host = sharedData.getDataFromInputSource('statusHosts', false,
+                    templateManager.getAllPageParams(), function (host) {
+                        scope.host = host;
+                    });
+            }]
         };
     });

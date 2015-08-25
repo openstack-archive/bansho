@@ -1,14 +1,14 @@
-<div data-ng-show="param.host.cpu" class="subcomponent__live subcomponent__small">
+<div data-ng-show="param.statusHost.cpu" class="subcomponent__live subcomponent__small">
   <h2>Cpu</h2>
   <table class="data-table">
     <tbody>
       <tr>
         <td>State</td>
-        <td><bansho-service-state-icon state="param.host.cpu.state"></bansho-service-state-icon> {{param.host.cpu.state}}</td>
+        <td><bansho-service-state-icon state="param.statusHost.cpu.state"></bansho-service-state-icon> {{param.statusHost.cpu.state}}</td>
       </tr>
       <tr>
         <td>Output</td>
-        <td>{{param.host.cpu.plugin_output}}</td>
+        <td>{{param.statusHost.cpu.plugin_output}}</td>
       </tr>
     </tbody>
   </table>
