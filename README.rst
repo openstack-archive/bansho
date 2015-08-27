@@ -11,118 +11,95 @@ Web Interface for Surveil
 .. image:: https://github.com/stackforge/surveil-specs/raw/master/bansho.png
       :alt: Bansho interface picture
 
-Production
-==========
 
+Launch Bansho
+=============
+
+To launch Bansho do the following:
 
 ::
 
-    sudo apt-get install docker.io
     git clone https://github.com/stackforge/bansho
     cd bansho
+    sudo apt-get install docker.io
+    make build
+
+
+Start a Surveil and Grafana docker container (available at this link: https://github.com/stackforge/surveil).
+
+
+Production
+--------------
+
+::
+
     make build
     make production
 
 
-You can alternatively forge a Docker command to select your port.
+Make production will production will start container and run the production task (this could take up to 3 minutes).
+Once everything ready you will be able to test minified files at http://localhost:8888.
 
 
 Development
-===========
+-----------
 
-Clone project :
-
-::
-
-    git clone https://github.com/stackforge/bansho
-    cd bansho
-
-
-Install development dependencies :
+Install development dependencies locally:
 
 ::
 
     sudo apt-get install npm nodejs-legacy ruby docker.io
-    npm install grunt-cli bower
+    npm install -g grunt-cli
     npm install
-    bower install
     gem install sass
-    make build
 
 
-Start the Docker container (be sure to have a surveil container available at this link: https://github.com/stackforge/surveil )
+Run the target daemon to start the container and serve Bansho at http://localhost:8888.
 
 ::
 
     make daemon
 
 
-If you wish to develop in a docker container, here is how to proceed (assuming
-you already have docker installed) :
-
-::
-
-    curl http://localhost:8888/
-
-
-To only compile sass files to css run :
-
-::
-
-    grunt sass
+This will start a Bansho container and run the Grunt development task.
+The Grunt task will compile Sass on change, watch all your files and refresh your browser on save.
 
 
 Coding style
 ============
 
-This project conforms to JSLint coding style (http://github.com/douglascrockford/JSLint).
-Run the linter as follows:
+This project conforms to some of the JSHint coding style (http://jshint.com/about/). JSHint warnings are also shown in the Grunt development task:
 
 ::
 
     grunt jshint
 
+
+Naming conventions
+------------------
+
+ - Camel case
+ - custom_directives are prefixed with `bansho`
+ - Controllers are suffixed with `Ctrl`
+
+
 Tests
 =====
 
-AngularJS comes with Karma which is an automatic unit test runner.
-While running, Karma automatically executes the tests when any js file changes.
-To launch Karma :
+To run test execute :
 
 ::
 
     npm test
 
-Launch
-======
-
-::
-
-    npm start
-
-
-Now, go on http://127.0.0.1:8000/app/
 
 Contributing
 ============
 
-To contribute to this project, please fork the repo. Then do your commits (branch as you will)
-and then open a pull-request to this repo's master branch.
+To contribute to this project, please refer to the Surveil developer documentation.
 
-::
+Good practices before pushing into Gerrit:
 
-    <fork this repo on github>
-    git clone your-repo/bansho
-    git checkout -b dev-new-feature-xx
-    git commit ...
-    git push origin dev-new-feature-xx
-    <You can now open your pull-request to this repo's master>
-
-Good practices before opening a pull request:
-
-    - Run tests with `npm test`
-    - Lint your .js files with `grunt jslint`
-    - Make sure your directives are prefixed with `bansho`
-    - Make sure your controllers are suffixed with `Ctrl`
-    - Resolve merge conflicts locally
+    - Lint your files with `grunt jslint`
+    - Test in production
 
