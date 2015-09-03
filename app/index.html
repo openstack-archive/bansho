@@ -43,90 +43,147 @@
   <script src="bower_components/pnotify/pnotify.desktop.js"></script>
   <script src="bower_components/pnotify/pnotify.nonblock.js"></script>
 
+  <!-- Bansho -->
   <script src="app.js"></script>
-  <script src="components/config/config.js"></script>
+  <script src="app.config.js"></script>
+
+  <script src="components/authentication/authentication.module.js"></script>
+  <script src="components/authentication/auth.service.js"></script>
+  <script src="components/authentication/login.controller.js"></script>
+  <script src="components/authentication/session.service.js"></script>
 
 
-  <!-- Surveil API client -->
-  <script src="components/surveil/surveil.js"></script>
-  <script src="components/surveil/status.js"></script>
-  <script src="components/surveil/actions.js"></script>
-  <script src="components/surveil/config.js"></script>
-  <script src="components/surveil/query.js"></script>
-
-  <script src="components/authentication/authentication.js"></script>
-  <script src="components/ng-justgage/ng-justgage.js"></script>
-  <script src="components/filters/filters.js"></script>
-  <script src="components/notifications/notifications.js"></script>
-  <script src="components/sidebar/sidebar.js"></script>
-  <script src="components/topbar/topbar.js"></script>
-  <script src="components/datasource/datasource.js"></script>
-  <script src="components/grafana/grafana.js"></script>
+  <script src="components/config/config.module.js"></script>
+  <script src="components/config/configManager.service.js"></script>
+  <script src="components/config/componentsConfig.service.js"></script>
+  <script src="components/config/themeManager.service.js"></script>
 
 
-  <!-- Directives -->
-  <script src="components/custom_directive/custom_directive.js"></script>
+  <!-- Custom directives -->
+  <script src="components/customDirective/customDirective.module.js"></script>
+  <script src="components/customDirective/banshoComponents.directive.js"></script>
+  <script src="components/customDirective/directiveBuilder.factory.js"></script>
 
-  <!-- Table components -->
-  <script src="components/custom_directive/table/table.js"></script>
+  <script src="components/customDirective/actionbar/actionbar.module.js"></script>
+  <script src="components/customDirective/actionbar/acknowledge/acknowledge.directive.js"></script>
+  <script src="components/customDirective/actionbar/downtime/downtime.directive.js"></script>
+  <script src="components/customDirective/actionbar/filter/filter.directive.js"></script>
+  <script src="components/customDirective/actionbar/more/more.directive.js"></script>
+  <script src="components/customDirective/actionbar/recheck/recheck.directive.js"></script>
+  <script src="components/customDirective/actionbar/searchFilter/searchFilter.directive.js"></script>
 
-  <script src="components/custom_directive/table/cell_single/cell_single.js"></script>
-  <script src="components/custom_directive/table/cell_other_fields/cell_other_fields.js"></script>
+  <script src="components/customDirective/hostTree/hostTree.module.js"></script>
+  <script src="components/customDirective/hostTree/hostTree.directive.js"></script>
 
-  <script src="components/custom_directive/table/cell_status_duration/cell_status_duration.js"></script>
-  <script src="components/custom_directive/table/cell_config_host_register/cell_config_host_register.js"></script>
-  <script src="components/custom_directive/table/cell_status_host/cell_status_host.js"></script>
-  <script src="components/custom_directive/table/cell_status_last_check/cell_status_last_check.js"></script>
-  <script src="components/custom_directive/table/cell_status_service_check/cell_status_service_check.js"></script>
-  <script src="components/custom_directive/table/cell_status_host_status/cell_status_host_status.js"></script>
+  <script src="components/customDirective/stateIcon/stateIcon.module.js"></script>
+  <script src="components/customDirective/stateIcon/hostStateIcon.directive.js"></script>
+  <script src="components/customDirective/stateIcon/serviceStateIcon.directive.js"></script>
 
-  <script src="components/custom_directive/tab_panel/tab_panel.js"></script>
+  <script src="components/customDirective/table/table.module.js"></script>
+  <script src="components/customDirective/table/table.directive.js"></script>
+  <script src="components/customDirective/table/cells/cell.directive.js"></script>
+  <script src="components/customDirective/table/cells/cellConfigHostRegister/cellConfigHostRegister.controller.js"></script>
+  <script src="components/customDirective/table/cells/cellOtherFields/cellOtherFields.controller.js"></script>
+  <script src="components/customDirective/table/cells/cellSingle/cellSingle.controller.js"></script>
+  <script src="components/customDirective/table/cells/cellStatusDuration/cellStatusDuration.controller.js"></script>
+  <script src="components/customDirective/table/cells/cellStatusHost/cellStatusHost.controller.js"></script>
+  <script src="components/customDirective/table/cells/cellStatusHostStatus/cellStatusHostStatus.controller.js"></script>
+  <script src="components/customDirective/table/cells/cellStatusLastCheck/cellStatusLastCheck.controller.js"></script>
+  <script src="components/customDirective/table/cells/cellStatusServiceCheck/cellStatusServiceCheck.controller.js"></script>
+  <script src="components/customDirective/table/cells/cellOtherFields/cellOtherFields.controller.js"></script>
+  <script src="components/customDirective/table/filters/noRepeatFilter.filter.js"></script>
+  <script src="components/customDirective/table/filters/wrappableStyle.filter.js"></script>
+  <script src="components/customDirective/table/header/headerFollow.service.js"></script>
+  <script src="components/customDirective/table/pagingBar/pagingBar.module.js"></script>
+  <script src="components/customDirective/table/pagingBar/pagingBar.directive.js"></script>
 
-  <script src="components/custom_directive/state_icon/state_icon.js"></script>
+  <script src="components/customDirective/tabPanel/tabPanel.module.js"></script>
+  <script src="components/customDirective/tabPanel/tabPanel.directive.js"></script>
+  <script src="components/customDirective/tabPanel/panel.directive.js"></script>
 
-  <script src="components/custom_directive/text_area/text_area.js"></script>
+  <script src="components/customDirective/tactical/tactical.module.js"></script>
+  <script src="components/customDirective/tactical/tactical.directive.js"></script>
+  <script src="components/customDirective/tactical/currentHealth/currentHealth.directive.js"></script>
+  <script src="components/customDirective/tactical/statusOverview/statusOverview.directive.js"></script>
+  <script src="components/customDirective/tactical/topAlertProducers/topAlertProducers.directive.js"></script>
 
-  <script src="components/custom_directive/host_tree/host_tree.js"></script>
+  <script src="components/customDirective/textArea/textArea.module.js"></script>
+  <script src="components/customDirective/textArea/textArea.directive.js"></script>
 
-  <script src="components/custom_directive/title/title.js"></script>
+  <script src="components/customDirective/tile/tile.module.js"></script>
+  <script src="components/customDirective/tile/host_cpu/host_cpu.directive.js"></script>
+  <script src="components/customDirective/tile/host_live/host_live.directive.js"></script>
+  <script src="components/customDirective/tile/host_load/host_load.directive.js"></script>
+  <script src="components/customDirective/tile/host_main/host_main.directive.js"></script>
+  <script src="components/customDirective/tile/host_services_list/host_services_list.directive.js"></script>
+  <script src="components/customDirective/tile/info/info.directive.js"></script>
+  <script src="components/customDirective/tile/service_info/service_info.directive.js"></script>
+  <script src="components/customDirective/tile/service_live/service_live.directive.js"></script>
+  <script src="components/customDirective/tile/service_main/service_main.directive.js"></script>
+  <script src="components/customDirective/tile/service_metrics/service_metrics.directive.js"></script>
 
-  <script src="components/custom_directive/tactical/tactical.js"></script>
-  <script src="components/custom_directive/tactical/status_overview/status_overview.js"></script>
-  <script src="components/custom_directive/tactical/current_health/current_health.js"></script>
-  <script src="components/custom_directive/tactical/top_alert_producers/top_alert_producers.js"></script>
+  <script src="components/customDirective/title/title.module.js"></script>
+  <script src="components/customDirective/title/title.directive.js"></script>
 
-  <script src="components/custom_directive/tile/tile.js"></script>
-  <script src="components/custom_directive/tile/info/info.js"></script>
-  <script src="components/custom_directive/tile/host_cpu/host_cpu.js"></script>
-  <script src="components/custom_directive/tile/host_load/host_load.js"></script>
-  <script src="components/custom_directive/tile/host_main/host_main.js"></script>
-  <script src="components/custom_directive/tile/host_live/host_live.js"></script>
-  <script src="components/custom_directive/tile/host_services_list/host_services_list.js"></script>
-  <script src="components/custom_directive/tile/service_main/service_main.js"></script>
-  <script src="components/custom_directive/tile/service_live/service_live.js"></script>
-  <script src="components/custom_directive/tile/service_info/service_info.js"></script>
-  <script src="components/custom_directive/tile/service_metrics/service_metrics.js"></script>
 
-  <script src="components/custom_directive/actionbar/actionbar.js"></script>
-  <script src="components/custom_directive/actionbar/component_acknowledge/acknowledge.js"></script>
-  <script src="components/custom_directive/actionbar/component_downtime/downtime.js"></script>
-  <script src="components/custom_directive/actionbar/component_filter/filter.js"></script>
-  <script src="components/custom_directive/actionbar/component_more/more.js"></script>
-  <script src="components/custom_directive/actionbar/component_recheck/recheck.js"></script>
-  <script src="components/custom_directive/actionbar/component_search_filter/search_filter.js"></script>
+  <script src="components/datasource/datasource.module.js"></script>
+  <script src="components/datasource/datasource.service.js"></script>
+  <script src="components/datasource/sharedData.service.js"></script>
 
-  <script src="components/custom_directive/table/paging_bar/paging_bar.js"></script>
 
-  <script src="components/drupal/drupal.js"></script>
-  <script src="components/drupal/drupal_tile/drupal_tile.js"></script>
-  <script src="components/drupal/drupal_info/drupal_info.js"></script>
+  <script src="components/datasource/datasource.module.js"></script>
+  <script src="components/datasource/datasource.service.js"></script>
+  <script src="components/datasource/sharedData.service.js"></script>
 
-  <script src="routing_view/routing_view.js"></script>
 
-  <script src="templates/template.js"></script>
-  <script src="templates/page/page.js"></script>
-  <script src="templates/drupal_dashboard/drupal_dashboard.js"></script>
-  <script src="templates/drupal/drupal.js"></script>
+  <script src="components/drupal/drupal.module.js"></script>
+  <script src="components/drupal/drupal_info/drupal_info.service.js"></script>
+  <script src="components/drupal/drupal_tile/drupal_tile.service.js"></script>
+
+
+  <script src="components/filters/filters.module.js"></script>
+  <script src="components/filters/timeElapsed.filter.js"></script>
+
+
+  <script src="components/grafana/grafana.module.js"></script>
+  <script src="components/grafana/grafana.service.js"></script>
+
+
+  <script src="components/ng-justgage/ng-justgage.directive.js"></script>
+
+
+  <script src="components/notifications/notifications.module.js"></script>
+  <script src="components/notifications/notifications.service.js"></script>
+
+
+  <script src="components/sidebar/sidebar.module.js"></script>
+  <script src="components/sidebar/sidebar.directive.js"></script>
+
+
+  <!-- Surveil API -->
+  <script src="components/surveil/surveil.module.js"></script>
+  <script src="components/surveil/actions.service.js"></script>
+  <script src="components/surveil/config.service.js"></script>
+  <script src="components/surveil/query.factory.js"></script>
+  <script src="components/surveil/status.service.js"></script>
+  <script src="components/surveil/surveilApiConfig.service.js"></script>
+
+
+  <script src="components/topbar/topbar.module.js"></script>
+  <script src="components/topbar/topbar.directive.js"></script>
+
+
+  <script src="routing_view/routing_view.module.js"></script>
+  <script src="routing_view/view.controller.js"></script>
+  <script src="routing_view/loadConfig.service.js"></script>
+
+
+  <script src="templates/templates.module.js"></script>
+  <script src="templates/templatesManager.service.js"></script>
+  <script src="templates/page/page.module.js"></script>
+  <script src="templates/page/page.controller.js"></script>
+  <script src="templates/drupal/drupal.module.js"></script>
+  <script src="templates/drupalDashboard/drupalDashboard.module.js"></script>
   <!-- endbuild -->
 </head>
 

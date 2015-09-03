@@ -43,7 +43,11 @@ Install development dependencies :
 ::
 
     sudo apt-get install npm nodejs-legacy ruby docker.io
+<<<<<<< Updated upstream
     npm install grunt-cli bower
+=======
+    npm install -g grunt-cli bower
+>>>>>>> Stashed changes
     npm install
     bower install
     gem install sass
@@ -78,7 +82,13 @@ Coding style
 This project conforms to JSLint coding style (http://github.com/douglascrockford/JSLint).
 Run the linter as follows:
 
+<<<<<<< Updated upstream
 ::
+=======
+ - Camel case
+ - customDirectives are prefixed with `bansho`
+ - Controllers are suffixed with `Ctrl`
+>>>>>>> Stashed changes
 
     grunt jshint
 

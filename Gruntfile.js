@@ -16,6 +16,13 @@ module.exports = function (grunt) {
             dist: 'dist'
         },
 
+        karma: {
+            unit: {
+                configFile: 'karma.conf.js',
+                template: require('grunt-template-jasmine-requirejs')
+            }
+        },
+
         clean: {
             dist: [
                 '<%= project.dist %>/assets/',
@@ -157,7 +164,7 @@ module.exports = function (grunt) {
                     '<%= project.app %>/**/*.html',
                     '<%= project.assets %>/sass/{,*/}*.{scss,sass}'
                 ],
-                tasks: ['sass:dev', 'jshint:all']
+                tasks: ['sass:dev', 'jshint:all', 'karma']
             },
             staging: {
                 files: [
@@ -178,6 +185,7 @@ module.exports = function (grunt) {
     grunt.registerTask('development', [
         'sass',
         'jshint:all',
+        'karma',
         'watch:development'
     ]);
 
