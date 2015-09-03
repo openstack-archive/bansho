@@ -1,1 +1,0 @@
-angular.module('bansho.tile', []);
