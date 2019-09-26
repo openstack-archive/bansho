@@ -1,9 +1,0 @@
-<span data-ng-click="toggleExpansion()" data-ng-controller="CellOtherFieldsCtrl">
-  <p class="data-table__data">
-      <i data-ng-class="{'ico-down-dir': isExpanded, 'ico-right-dir': !isExpanded}"></i>
-      <span data-ng-repeat="(k, e) in filter(entry)">
-          <b>{{k}}</b>: {{e}}
-          <span data-ng-show="isExpanded"><br></span>
-      </span>
-  </p>
-</span>
